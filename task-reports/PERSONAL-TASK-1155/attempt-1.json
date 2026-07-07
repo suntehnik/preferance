@@ -1,0 +1,210 @@
+{
+  "task_id": "PERSONAL-TASK-1155",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Implemented the US-844 desktop score/result UI in the shared browser-remake worktree without touching domain scoring contracts, then completed a focused MZ-403 continuation to fix acceptance-review score-panel clipping. The game surface now renders an always-visible compact score panel for all players with bullet, mountain, and mutual-whist values that fit the left desktop side panel across active, settlement, next-deal, and finished states; structured current/previous deal result panels during deal-settlement and next-deal; and a finished-state final settlement plus deterministic ranking summary sourced from finalResult. The finished phase continues to expose no continuation action, satisfying the completed-bullet guard at the UI layer.",
+  "files_changed": [
+    "src/ui/render.ts",
+    "src/ui/render.test.ts",
+    "src/styles.css",
+    "task-reports/PERSONAL-TASK-1155/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts",
+      "result": "passed",
+      "evidence_type": "focused_component",
+      "evidence": "26 UI/controller tests passed, confirming the renderer changes did not break start/resume controller behavior."
+    },
+    {
+      "command": "npm run test -- src/test/ruleFlow.integration.test.ts src/persistence/saveStore.test.ts",
+      "result": "passed",
+      "evidence_type": "real_integration_test",
+      "evidence": "35 integration and persistence tests passed, covering settlement transitions, next-deal flow, and save/load compatibility with finished-bullet suppression."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest: 12 files and 123 tests passed. Build: tsc and vite build succeeded."
+    },
+    {
+      "command": "npm run dev",
+      "result": "passed",
+      "evidence_type": "live_browser",
+      "evidence": "Dev server served the app at http://127.0.0.1:5331/. Playwright browser evidence captured start, game, settlement, and final states. Console showed one benign favicon.ico 404 only."
+    }
+  ],
+  "risks": [],
+  "downstream_notes": [
+    "No controller behavior change was needed for completed bullets because the domain/legal-action layer already exposes no finished-phase continuation and persistence already suppresses finished-bullet resume.",
+    "The compact score panel shows the current state totals, while deal-settlement and next-deal panels show the before/delta/after breakdown sourced from dealResult and previousDealResult for compact traceability.",
+    "Acceptance review reported that the original side-panel score table clipped mutual-whist columns in settlement and finished screenshots. This continuation replaced that wide table with a compact per-player score layout intended to keep all mutual-whist values readable without horizontal scrolling."
+  ],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "focused UI/component tests, settlement/persistence regressions, then full npm run verify",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1155",
+      "epic_reference_id": "PERSONAL-EP-180",
+      "us_reference_id": "PERSONAL-US-844"
+    },
+    "dependency_reports_reviewed": [
+      "docs/test-design/us-844-bullet-scoring.md",
+      "task-reports/PERSONAL-TASK-1153/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1154/attempt-1.json",
+      "task-reports/PERSONAL-US-843/review-cycle-1/review-report.json"
+    ],
+    "browser_verification": {
+      "dev_server_command": "npm run dev",
+      "dev_server_url": "http://127.0.0.1:5331/",
+      "playwright_start_snapshot": ".playwright-cli/page-2026-07-06T01-49-58-408Z.yml",
+      "console_notes": [
+        "One benign favicon.ico 404 only."
+      ]
+    }
+  },
+  "visual_artifacts": [
+    {
+      "type": "playwright_snapshot",
+      "path": ".playwright-cli/page-2026-07-06T01-49-58-408Z.yml",
+      "state": "start",
+      "notes": "Start-page snapshot captured from the dev server session."
+    },
+    {
+      "type": "screenshot",
+      "path": "output/playwright/mz-403-start.png",
+      "state": "start",
+      "notes": "Desktop start screen on the local dev server."
+    },
+    {
+      "type": "screenshot",
+      "path": "output/playwright/mz-403-game.png",
+      "state": "game",
+      "notes": "Active in-game desktop UI with score table visible."
+    },
+    {
+      "type": "script_snippet",
+      "path": "output/playwright/mz403-settlement.js",
+      "state": "settlement",
+      "notes": "Synthetic state injection used to render the settlement view deterministically."
+    },
+    {
+      "type": "screenshot",
+      "path": "output/playwright/mz-403-settlement.png",
+      "state": "settlement",
+      "notes": "Earlier settlement snapshot showed score information, before/delta/after result table, whist list, and only the 'Подсчитать' action, but acceptance review found the old side-panel table clipped mutual-whist columns. The current implementation replaces that wide table with a compact per-player score layout; screenshots were not retaken in this continuation."
+    },
+    {
+      "type": "script_snippet",
+      "path": "output/playwright/mz403-final.js",
+      "state": "final",
+      "notes": "Synthetic state injection used to render the final-result view deterministically."
+    },
+    {
+      "type": "screenshot",
+      "path": "output/playwright/mz-403-final.png",
+      "state": "final",
+      "notes": "Earlier final snapshot showed score information, final ranking with 3 places, final settlement text, 'Партия завершена', and no action buttons or continuation controls, but acceptance review found the old side-panel table clipped mutual-whist columns. The current implementation replaces that wide table with a compact per-player score layout; screenshots were not retaken in this continuation."
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1760",
+      "scenario": "Render bullet, mountain, and mutual-whist totals for all three players in a visible compact desktop score panel that does not rely on hidden horizontal scroll for the primary score information.",
+      "evidence_type": "visual_review",
+      "command_or_source": "src/ui/render.ts; src/styles.css; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts; npm run verify; output/playwright/mz-403-game.png; output/playwright/mz-403-settlement.png; output/playwright/mz-403-final.png",
+      "result": "passed",
+      "limitations": "Browser screenshots were captured before this compact-layout continuation, so post-fix visual evidence in this report relies on the updated DOM/CSS plus fresh automated tests/build rather than replacement screenshots."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1761",
+      "scenario": "Render structured current/previous deal result details and final finished-state ranking/result summary from dealResult, previousDealResult, and finalResult.",
+      "evidence_type": "visual_review",
+      "command_or_source": "src/ui/render.ts; npm run test -- src/test/ruleFlow.integration.test.ts src/persistence/saveStore.test.ts; npm run verify; output/playwright/mz403-settlement.js; output/playwright/mz-403-settlement.png; output/playwright/mz403-final.js; output/playwright/mz-403-final.png",
+      "result": "passed",
+      "limitations": "Browser evidence uses deterministic synthetic state snippets for settlement/final views rather than a fully scripted end-to-end playthrough."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2426",
+      "scenario": "Deal-settlement and next-deal screens expose readable settlement summaries plus explicit before/delta/after score details instead of relying on log text alone.",
+      "evidence_type": "visual_review",
+      "command_or_source": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts; output/playwright/mz403-settlement.js; output/playwright/mz-403-settlement.png",
+      "result": "passed",
+      "limitations": "Visual confirmation was manual/Playwright-captured rather than screenshot-diff based."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2427",
+      "scenario": "Finished bullets show final result/ranking and do not render any next-deal continuation control.",
+      "evidence_type": "visual_review",
+      "command_or_source": "npm run test -- src/test/ruleFlow.integration.test.ts src/persistence/saveStore.test.ts; npm run verify; output/playwright/mz403-final.js; output/playwright/mz-403-final.png",
+      "result": "passed",
+      "limitations": "Resume suppression remains covered by persistence and integration tests rather than new controller logic in this task."
+    },
+    {
+      "req_or_ac_or_contract": "US-844 desktop UI contract",
+      "scenario": "Desktop card-table presentation keeps the new score/result surfaces inside the existing restrained layout with explicit labeled result regions and a compact readable score rail in all phases, including settlement and finished.",
+      "evidence_type": "visual_review",
+      "command_or_source": "src/ui/render.ts; src/styles.css; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts; npm run verify; .playwright-cli/page-2026-07-06T01-49-58-408Z.yml; output/playwright/mz-403-start.png; output/playwright/mz-403-game.png; output/playwright/mz-403-settlement.png; output/playwright/mz-403-final.png",
+      "result": "passed",
+      "limitations": "No screenshot diff tooling exists in the project verify entrypoints, and screenshots were not retaken during this continuation, so visual evidence combines prior captured artifacts with the current compact-layout code/test verification."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "accessibility",
+      "applicability": "applicable_required",
+      "evidence_type": "focused_component",
+      "command_or_source": "src/ui/render.ts; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts",
+      "result": "passed",
+      "limitations": "Assessment is based on semantic tables, labeled regions, focusable buttons, and explicit text labels in tests/source rather than external audit tooling.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "visual_layout",
+      "applicability": "applicable_required",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "npm run dev; .playwright-cli/page-2026-07-06T01-49-58-408Z.yml; output/playwright/mz-403-start.png; output/playwright/mz-403-game.png; output/playwright/mz403-settlement.js; output/playwright/mz-403-settlement.png; output/playwright/mz403-final.js; output/playwright/mz-403-final.png; src/ui/render.ts; src/styles.css; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Visual review used previously captured Playwright artifacts on the local dev server and fresh code/test verification after the compact-layout fix, rather than automated screenshot diffing or replacement screenshots.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable_critical",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts; npm run test -- src/test/ruleFlow.integration.test.ts src/persistence/saveStore.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Regression evidence is deterministic local test/build coverage.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run verify; npm run dev; .playwright-cli/page-2026-07-06T01-49-58-408Z.yml",
+      "result": "passed",
+      "limitations": "Release evidence is scoped to this static local Vite app's test/build entrypoints plus local browser verification artifacts.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1155 scope; src/ui/render.ts; src/styles.css",
+      "result": "passed",
+      "limitations": "This task is presentation-only with no auth, backend, network, or sensitive-data path.",
+      "accepted_risk": "none"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "task_id": "PERSONAL-TASK-1149",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Added US-843 integration coverage in src/test/aiDecision.integration.test.ts that drives chooseAiAction plus applyAction through representative bidding, contract ordering, widow pickup, discard, whist, all-pass, misere, contract play, settlement, and next-deal scenarios with deterministic fixtures. Also strengthened src/test/integrationHarness.ts so auto-turn smoke failures include seed, step, phase, actor, legal action keys, chosen action, and trace context for reproducible stuck/illegal-action diagnostics. Targeted integration commands and full npm run verify both passed.",
+  "files_changed": [
+    "src/test/aiDecision.integration.test.ts",
+    "src/test/integrationHarness.ts",
+    "task-reports/PERSONAL-TASK-1149/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/test/aiDecision.integration.test.ts",
+      "result": "failed before fix, then passed",
+      "evidence_type": "tdd_red_green",
+      "evidence": "Initial red run exposed an incorrect ten-level transition expectation and missing harness reproduction diagnostics; green run passed 2 integration tests after aligning the transition assertion and enriching harness failure payloads."
+    },
+    {
+      "command": "npm run test -- src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts src/test/ruleFlow.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "targeted_integration_regression",
+      "evidence": "3 integration-oriented files passed with 9/9 tests, covering the new AI legality scenarios, existing deterministic harness behavior, and the US-842 rule-flow baseline."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "full_verification",
+      "evidence": "Vitest passed 12 files / 111 tests and the production build completed successfully with tsc and vite build."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1149",
+      "epic_context_refs": [
+        "PERSONAL-EP-180",
+        "PERSONAL-US-843",
+        "PERSONAL-REQ-1758",
+        "PERSONAL-REQ-1759",
+        "PERSONAL-AC-2424",
+        "PERSONAL-AC-2425"
+      ]
+    },
+    "dependency_reports_reviewed": [
+      "docs/test-design/us-843-ai-decisions.md",
+      "task-reports/PERSONAL-TASK-1147/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1148/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1142/attempt-1.json",
+      "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json"
+    ],
+    "notes": "No backend or live API applies; evidence is local deterministic Vitest integration coverage against the domain engine and harness."
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1758",
+      "scenario": "AI chooses an action from the legal set and applyAction accepts it across bidding, contract order, widow pickup, discard, whist decision, all-pass play, misere play, contract play, deal settlement, and next-deal states.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts; npm run test -- src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts src/test/ruleFlow.integration.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Coverage is deterministic and representative rather than an exhaustive bullet-completion matrix."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1759",
+      "scenario": "AI decisions reflect current phase and rule context instead of a phase-blind fallback across bidding, whist, all-pass, misere, and contract play fixtures.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts scenario assertions for non-first bidding choice, ten-level check, six-spades whist legality, misere/all-pass/contract play distinction, and follow-suit enforcement.",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Assertions stay at legality and phase-context level and intentionally do not freeze a full DOS-style strategy profile."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2424",
+      "scenario": "Given legal actions exist for an AI actor, AI selects one without throwing and the rules engine applies it without error.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts legality/applyAction matrix; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "The test suite exercises representative fixtures rather than every possible seat/hand permutation."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2425",
+      "scenario": "Across bidding, whist, contract play, all-pass, and misere scenarios, AI decisions remain phase-aware and do not collapse to a generic first-legal-action policy.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts scenario matrix; docs/test-design/us-843-ai-decisions.md",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Phase-awareness is demonstrated with targeted fixture contrasts rather than exhaustive cross-seed behavioral snapshots."
+    },
+    {
+      "req_or_ac_or_contract": "US-843 observability diagnostics",
+      "scenario": "When the AI auto-turn harness goes illegal, failure output contains seed, phase, actor, legal action keys, chosen action, and trace context for reproduction.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts illegal-harness diagnostic assertion; src/test/integrationHarness.ts failure-message wrapping",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Diagnostics are local thrown-error payloads; no external telemetry pipeline exists in this project scope."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "targeted_integration_tests_first",
+      "applicability": "applicable_required",
+      "evidence_type": "targeted_integration_regression",
+      "command_or_source": "npm run test -- src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts src/test/ruleFlow.integration.test.ts",
+      "result": "passed",
+      "limitations": "This gate verifies the targeted integration surface before the broader suite, not the whole repository alone.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "full_verification",
+      "applicability": "applicable_required",
+      "evidence_type": "full_verification",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "Verification is local deterministic test/build evidence; no backend/live service path applies.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "observability_diagnostics",
+      "applicability": "applicable_required",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts; src/test/integrationHarness.ts",
+      "result": "passed",
+      "limitations": "Observability coverage is limited to thrown reproduction context because there is no external logger or telemetry sink.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release_gate_input",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "implementation_verification",
+      "command_or_source": "src/test/aiDecision.integration.test.ts; src/test/integrationHarness.ts; npm run verify",
+      "result": "passed",
+      "limitations": "This task contributes the integration-test slice of the US-843 release gate and does not replace adjacent unit or broader US completion evidence.",
+      "accepted_risk": "none"
+    }
+  ]
+}

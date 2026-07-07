@@ -1,0 +1,243 @@
+- main [ref=e18]:
+  - generic [ref=e19]:
+    - generic [ref=e20]:
+      - strong [ref=e21]: AF Computers
+      - generic [ref=e22]: AI
+    - generic [ref=e23]:
+      - heading "MARRIAGE" [level=1] [ref=e24]
+      - paragraph [ref=e25]: Сочинский преферанс
+    - generic [ref=e26]:
+      - strong [ref=e27]: VIMCOM
+      - generic [ref=e28]: AI
+  - generic [ref=e29]:
+    - complementary [ref=e30]:
+      - region "Счет пули" [ref=e31]:
+        - heading "Счет пули" [level=2] [ref=e32]
+        - table "Текущий счет пули" [ref=e34]:
+          - rowgroup [ref=e35]:
+            - row "Игрок Пуля Гора Вист vs You Вист vs AF Computers Вист vs VIMCOM" [ref=e36]:
+              - columnheader "Игрок" [ref=e37]
+              - columnheader "Пуля" [ref=e38]
+              - columnheader "Гора" [ref=e39]
+              - columnheader "Вист vs You" [ref=e40]
+              - columnheader "Вист vs AF Computers" [ref=e41]
+              - columnheader "Вист vs VIMCOM" [ref=e42]
+          - rowgroup [ref=e43]:
+            - row "You 0 0 Нет виста против себя 0 0" [ref=e44]:
+              - rowheader "You" [ref=e45]
+              - cell "0" [ref=e46]
+              - cell "0" [ref=e47]
+              - cell "Нет виста против себя" [ref=e48]:
+                - text: "-"
+                - generic [ref=e49]: Нет виста против себя
+              - cell "0" [ref=e50]
+              - cell "0" [ref=e51]
+            - row "AF Computers 0 0 0 Нет виста против себя 0" [ref=e52]:
+              - rowheader "AF Computers" [ref=e53]
+              - cell "0" [ref=e54]
+              - cell "0" [ref=e55]
+              - cell "0" [ref=e56]
+              - cell "Нет виста против себя" [ref=e57]:
+                - text: "-"
+                - generic [ref=e58]: Нет виста против себя
+              - cell "0" [ref=e59]
+            - row "VIMCOM 0 0 0 0 Нет виста против себя" [ref=e60]:
+              - rowheader "VIMCOM" [ref=e61]
+              - cell "0" [ref=e62]
+              - cell "0" [ref=e63]
+              - cell "0" [ref=e64]
+              - cell "0" [ref=e65]
+              - cell "Нет виста против себя" [ref=e66]:
+                - text: "-"
+                - generic [ref=e67]: Нет виста против себя
+      - region "Ход партии" [ref=e68]:
+        - heading "Ход партии" [level=2] [ref=e69]
+        - list [ref=e70]:
+          - listitem [ref=e71]: New deal started
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - generic "AF Computers hand" [ref=e74]:
+          - img [ref=e76]
+          - img [ref=e81]
+          - img [ref=e86]
+          - img [ref=e91]
+          - img [ref=e96]
+          - img [ref=e101]
+          - img [ref=e106]
+          - img [ref=e111]
+          - img [ref=e116]
+          - img [ref=e121]
+        - generic "VIMCOM hand" [ref=e125]:
+          - img [ref=e127]
+          - img [ref=e132]
+          - img [ref=e137]
+          - img [ref=e142]
+          - img [ref=e147]
+          - img [ref=e152]
+          - img [ref=e157]
+          - img [ref=e162]
+          - img [ref=e167]
+          - img [ref=e172]
+      - generic [ref=e177]: Торговля
+      - generic [ref=e178]:
+        - button "10 пики" [disabled] [ref=e179]:
+          - img [ref=e180]:
+            - generic [ref=e182]: "10"
+            - generic [ref=e183]: ♠
+            - generic [ref=e184]:
+              - generic [ref=e185]: ♠
+              - generic [ref=e186]: ♠
+              - generic [ref=e187]: ♠
+              - generic [ref=e188]: ♠
+              - generic [ref=e189]: ♠
+              - generic [ref=e190]: ♠
+              - generic [ref=e191]: ♠
+              - generic [ref=e192]: ♠
+              - generic [ref=e193]: ♠
+              - generic [ref=e194]: ♠
+            - generic [ref=e195]:
+              - generic [ref=e196]: "10"
+              - generic [ref=e197]: ♠
+        - button "J пики" [disabled] [ref=e198]:
+          - img [ref=e199]:
+            - generic [ref=e201]: J
+            - generic [ref=e202]: ♠
+            - generic [ref=e203]:
+              - generic [ref=e204]: ♠
+              - generic [ref=e205]: ♠
+            - generic [ref=e206]:
+              - generic [ref=e207]: J
+              - generic [ref=e208]: ♠
+        - button "K пики" [disabled] [ref=e209]:
+          - img [ref=e210]:
+            - generic [ref=e212]: K
+            - generic [ref=e213]: ♠
+            - generic [ref=e214]:
+              - generic [ref=e215]: ♠
+              - generic [ref=e216]: ♠
+            - generic [ref=e217]:
+              - generic [ref=e218]: K
+              - generic [ref=e219]: ♠
+        - button "9 трефы" [disabled] [ref=e220]:
+          - img [ref=e221]:
+            - generic [ref=e223]: "9"
+            - generic [ref=e224]: ♣
+            - generic [ref=e225]:
+              - generic [ref=e226]: ♣
+              - generic [ref=e227]: ♣
+              - generic [ref=e228]: ♣
+              - generic [ref=e229]: ♣
+              - generic [ref=e230]: ♣
+              - generic [ref=e231]: ♣
+              - generic [ref=e232]: ♣
+              - generic [ref=e233]: ♣
+              - generic [ref=e234]: ♣
+            - generic [ref=e235]:
+              - generic [ref=e236]: "9"
+              - generic [ref=e237]: ♣
+        - button "10 трефы" [disabled] [ref=e238]:
+          - img [ref=e239]:
+            - generic [ref=e241]: "10"
+            - generic [ref=e242]: ♣
+            - generic [ref=e243]:
+              - generic [ref=e244]: ♣
+              - generic [ref=e245]: ♣
+              - generic [ref=e246]: ♣
+              - generic [ref=e247]: ♣
+              - generic [ref=e248]: ♣
+              - generic [ref=e249]: ♣
+              - generic [ref=e250]: ♣
+              - generic [ref=e251]: ♣
+              - generic [ref=e252]: ♣
+              - generic [ref=e253]: ♣
+            - generic [ref=e254]:
+              - generic [ref=e255]: "10"
+              - generic [ref=e256]: ♣
+        - button "J трефы" [disabled] [ref=e257]:
+          - img [ref=e258]:
+            - generic [ref=e260]: J
+            - generic [ref=e261]: ♣
+            - generic [ref=e262]:
+              - generic [ref=e263]: ♣
+              - generic [ref=e264]: ♣
+            - generic [ref=e265]:
+              - generic [ref=e266]: J
+              - generic [ref=e267]: ♣
+        - button "10 бубны" [disabled] [ref=e268]:
+          - img [ref=e269]:
+            - generic [ref=e271]: "10"
+            - generic [ref=e272]: ♦
+            - generic [ref=e273]:
+              - generic [ref=e274]: ♦
+              - generic [ref=e275]: ♦
+              - generic [ref=e276]: ♦
+              - generic [ref=e277]: ♦
+              - generic [ref=e278]: ♦
+              - generic [ref=e279]: ♦
+              - generic [ref=e280]: ♦
+              - generic [ref=e281]: ♦
+              - generic [ref=e282]: ♦
+              - generic [ref=e283]: ♦
+            - generic [ref=e284]:
+              - generic [ref=e285]: "10"
+              - generic [ref=e286]: ♦
+        - button "K бубны" [disabled] [ref=e287]:
+          - img [ref=e288]:
+            - generic [ref=e290]: K
+            - generic [ref=e291]: ♦
+            - generic [ref=e292]:
+              - generic [ref=e293]: ♦
+              - generic [ref=e294]: ♦
+            - generic [ref=e295]:
+              - generic [ref=e296]: K
+              - generic [ref=e297]: ♦
+        - button "J червы" [disabled] [ref=e298]:
+          - img [ref=e299]:
+            - generic [ref=e301]: J
+            - generic [ref=e302]: ♥
+            - generic [ref=e303]:
+              - generic [ref=e304]: ♥
+              - generic [ref=e305]: ♥
+            - generic [ref=e306]:
+              - generic [ref=e307]: J
+              - generic [ref=e308]: ♥
+        - button "K червы" [disabled] [ref=e309]:
+          - img [ref=e310]:
+            - generic [ref=e312]: K
+            - generic [ref=e313]: ♥
+            - generic [ref=e314]:
+              - generic [ref=e315]: ♥
+              - generic [ref=e316]: ♥
+            - generic [ref=e317]:
+              - generic [ref=e318]: K
+              - generic [ref=e319]: ♥
+    - complementary [ref=e320]:
+      - heading "Действия" [level=2] [ref=e321]
+      - generic [ref=e322]:
+        - generic [ref=e323]:
+          - button "Пас" [ref=e324] [cursor=pointer]
+          - button "Мизер" [ref=e325] [cursor=pointer]
+        - generic [ref=e326]:
+          - generic [ref=e327]: Ставка
+          - generic [ref=e328]:
+            - button "Ставка 6 пики" [ref=e329] [cursor=pointer]: 6♠
+            - button "Ставка 6 трефы" [ref=e330] [cursor=pointer]: 6♣
+            - button "Ставка 6 бубны" [ref=e331] [cursor=pointer]: 6♦
+            - button "Ставка 6 червы" [ref=e332] [cursor=pointer]: 6♥
+            - button "Ставка 7 пики" [ref=e333] [cursor=pointer]: 7♠
+            - button "Ставка 7 трефы" [ref=e334] [cursor=pointer]: 7♣
+            - button "Ставка 7 бубны" [ref=e335] [cursor=pointer]: 7♦
+            - button "Ставка 7 червы" [ref=e336] [cursor=pointer]: 7♥
+            - button "Ставка 8 пики" [ref=e337] [cursor=pointer]: 8♠
+            - button "Ставка 8 трефы" [ref=e338] [cursor=pointer]: 8♣
+            - button "Ставка 8 бубны" [ref=e339] [cursor=pointer]: 8♦
+            - button "Ставка 8 червы" [ref=e340] [cursor=pointer]: 8♥
+            - button "Ставка 9 пики" [ref=e341] [cursor=pointer]: 9♠
+            - button "Ставка 9 трефы" [ref=e342] [cursor=pointer]: 9♣
+            - button "Ставка 9 бубны" [ref=e343] [cursor=pointer]: 9♦
+            - button "Ставка 9 червы" [ref=e344] [cursor=pointer]: 9♥
+            - button "Ставка 10 пики" [ref=e345] [cursor=pointer]: 10♠
+            - button "Ставка 10 трефы" [ref=e346] [cursor=pointer]: 10♣
+            - button "Ставка 10 бубны" [ref=e347] [cursor=pointer]: 10♦
+            - button "Ставка 10 червы" [ref=e348] [cursor=pointer]: 10♥
+  - generic [ref=e349]: "Фаза: bidding · Игрок: You"

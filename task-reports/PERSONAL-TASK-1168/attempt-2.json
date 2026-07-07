@@ -1,0 +1,203 @@
+{
+  "task_id": "PERSONAL-TASK-1168",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Corrective attempt 2 confirms MZ-601 is complete as a QA/test-design task. The US-846 matrix exposes the remaining PERSONAL-AC-2431 deterministic full-bullet smoke gap and now classifies it as explicit downstream ownership for MZ-602, with MZ-603 regression verification and MZ-604 release-readiness gates. MZ-601 is ready to accept; PERSONAL-US-846 is not release-ready until the downstream executable smoke gap is closed and verified.",
+  "files_changed": [
+    "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+    "task-reports/PERSONAL-TASK-1168/attempt-2.json"
+  ],
+  "tests_run": [
+    {
+      "command": "mcp__spexus.current_context",
+      "result": "passed",
+      "evidence_type": "mandatory_spexus_context",
+      "evidence": "Read active Spexus tenant/project/component scope before reading task artifacts. Active project PERSONAL, component default."
+    },
+    {
+      "command": "mcp__spexus.get_task PERSONAL-TASK-1168",
+      "result": "passed",
+      "evidence_type": "task_scope_confirmation",
+      "evidence": "Confirmed [MZ-601] US-846 QA coverage matrix is qa-test-design implementation work for PERSONAL-EP-180 and must expose missing test owners before final verification."
+    },
+    {
+      "command": "sed -n '1,260p' docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "evidence_type": "artifact_review",
+      "evidence": "Re-read attempt-1 matrix and confirmed it already identified the full-bullet smoke gap and named MZ-602, MZ-603, and MZ-604 as downstream owners."
+    },
+    {
+      "command": "sed -n '1,260p' task-reports/PERSONAL-TASK-1168/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "report_review",
+      "evidence": "Confirmed attempt-1 report was structurally useful but invalid for orchestrator acceptance because it combined status=succeeded with non-empty risks and failure_type=release_readiness_gap."
+    },
+    {
+      "command": "rg -n \"fullBulletSmoke|runDeterministicSmoke|keeps state valid after several legal actions|phase.*finished|illegal|stuck\" src/test/integrationHarness.ts src/test/integrationHarness.test.ts src/domain/engine.test.ts",
+      "result": "passed",
+      "evidence_type": "gap_confirmation_review",
+      "evidence": "Confirmed current smoke evidence is short-horizon only: integrationHarness.test uses maxSteps: 12, integrationHarness reserves fullBulletSmoke for future full-bullet work, and engine.test contains only a short playable-loop smoke plus unrelated targeted finished-state checks."
+    },
+    {
+      "command": "sed -n '1,220p' package.json",
+      "result": "passed",
+      "evidence_type": "verification_entrypoint_review",
+      "evidence": "Confirmed existing project verification entrypoints are npm run test, npm run build, and npm run verify. Broad suites were not run because this corrective task only edits QA/report artifacts and required lightweight file/JSON checks."
+    },
+    {
+      "command": "test -s docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "evidence_type": "artifact_existence_readability",
+      "evidence": "Verified the updated matrix is non-empty."
+    },
+    {
+      "command": "rg -n \"Downstream Gap Routing|downstream-gap-routed|MZ-601 is ready to accept|MZ-602|MZ-603|MZ-604\" docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "evidence_type": "routing_phrase_check",
+      "evidence": "Verified the updated matrix explicitly routes the remaining full-bullet smoke, regression, and release-readiness gates to downstream owners."
+    },
+    {
+      "command": "jq -e . task-reports/PERSONAL-TASK-1168/attempt-2.json",
+      "result": "passed",
+      "evidence_type": "json_validity_check",
+      "evidence": "Verified attempt-2 report is valid JSON."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "component_key": "default",
+    "layer": "qa-test-design",
+    "phase": "implementation",
+    "qa_risk_level": "critical",
+    "release_gate_required": true,
+    "nfr_applicability": {
+      "regression_verification": "required",
+      "release_readiness": "required",
+      "security_review": "not_applicable"
+    },
+    "production_code_edited_by_worker": false,
+    "broad_test_suites_run": false,
+    "broad_test_suite_omission_reason": "Corrective attempt 2 only clarifies QA design/report routing. Existing project verification entrypoints were identified, but broad test execution is downstream MZ-603 scope after MZ-602 implements the missing full-bullet smoke."
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "MZ-601 task contract",
+      "scenario": "QA/test-design task must expose missing test owners before final verification.",
+      "evidence_type": "task_scope_confirmation",
+      "command_or_source": "mcp__spexus.get_task PERSONAL-TASK-1168; docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "MZ-601 does not implement executable tests; it defines and routes the matrix."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1763",
+      "scenario": "Trace all rule-critical behavior categories to current executable coverage or downstream owner.",
+      "evidence_type": "qa_design_trace_matrix",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed_for_MZ-601_downstream_gap_routed",
+      "limitations": "All areas except full-bullet smoke are mapped to existing executable evidence. Full-bullet smoke remains required before US-846 release acceptance."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2430",
+      "scenario": "Rule-critical unit and integration coverage exists for deck/deal, bidding, legal actions, trick winner, whist, all-pass, misere, scoring, persistence, and AI legality.",
+      "evidence_type": "source_and_test_inventory_review",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md; src/domain/cards.test.ts; src/domain/rules.test.ts; src/domain/engine.test.ts; src/domain/scoring.test.ts; src/persistence/saveStore.test.ts; src/ai/heuristicAi.test.ts; src/test/*.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed_for_MZ-601_traceability",
+      "limitations": "Fresh regression execution is intentionally assigned to MZ-603, not claimed by this report."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2431",
+      "scenario": "Deterministic seed plus simple AI full-bullet smoke must complete without unhandled error, illegal AI action, or stuck actor.",
+      "evidence_type": "gap_confirmation_review",
+      "command_or_source": "rg -n \"fullBulletSmoke|runDeterministicSmoke|keeps state valid after several legal actions|phase.*finished|illegal|stuck\" src/test/integrationHarness.ts src/test/integrationHarness.test.ts src/domain/engine.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "downstream_gap_routed_to_MZ-602",
+      "limitations": "Current repo has short-horizon smoke scaffolding only. This is visible and routed; it is not an unresolved MZ-601 risk."
+    },
+    {
+      "req_or_ac_or_contract": "Downstream ownership contract",
+      "scenario": "Do not hide executable gap; route closure to named downstream tasks.",
+      "evidence_type": "qa_design_risk_routing",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md#downstream-gap-routing",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "MZ-602 must produce executable evidence; MZ-603 must rerun regression verification; MZ-604 must decide release readiness from current evidence."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "Spexus protocol compliance",
+      "applicability": "required",
+      "evidence_type": "mandatory_context_review",
+      "command_or_source": "mcp__spexus.current_context; mcp__spexus.get_task PERSONAL-TASK-1168",
+      "result": "passed",
+      "limitations": "No Spexus writes were performed.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "MZ-601 acceptance",
+      "applicability": "required",
+      "evidence_type": "qa_design_artifact_review",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "limitations": "Acceptance applies only to the QA/test-design task, not to US-846 release readiness.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "MZ-602 executable gap routing",
+      "applicability": "required",
+      "evidence_type": "downstream_owner_assignment",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "limitations": "MZ-602 still must implement the deterministic full-bullet smoke test.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "MZ-603 regression verification routing",
+      "applicability": "required",
+      "evidence_type": "downstream_owner_assignment",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "limitations": "MZ-603 must rerun the relevant unit, integration, and new smoke coverage after MZ-602.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "MZ-604 release-readiness routing",
+      "applicability": "required",
+      "evidence_type": "downstream_owner_assignment",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "limitations": "US-846 remains not release-ready until MZ-604 sees executable evidence for PERSONAL-AC-2431.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "JSON report validity",
+      "applicability": "required",
+      "evidence_type": "json_validity_check",
+      "command_or_source": "jq -e . task-reports/PERSONAL-TASK-1168/attempt-2.json",
+      "result": "passed",
+      "limitations": "Schema validation is by required field presence and JSON parsing; no broad test suite was needed for this docs/report correction.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Security review applicability",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_classification",
+      "command_or_source": "mcp__spexus.get_task PERSONAL-TASK-1168; package.json; docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "not_applicable",
+      "limitations": "Static localStorage browser-app scope with no auth/backend boundary in this task.",
+      "accepted_risk": "none"
+    }
+  ]
+}

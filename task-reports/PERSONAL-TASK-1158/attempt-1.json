@@ -1,0 +1,274 @@
+{
+  "task_id": "PERSONAL-TASK-1158",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "failed",
+  "summary": "US-844 visual regression verification found a laptop-width settlement blocker. Spexus current_context was read before task access, all required dependency reports were present and reviewed, npm run verify passed, and fresh Playwright/browser captures were created for active score, deal settlement, and final result states at 1280x800 desktop and 1024x768 laptop. Desktop active/settlement/final screenshots are framed and readable, active laptop and final laptop are readable, and the final state correctly exposes no continuation controls. However, output/playwright/mz-406-settlement-laptop.png clips the right side of the deal score-change table/result content at 1024px, including the final 'Стало' column area, so the no-clipped-score-results visual gate is not satisfied.",
+  "files_changed": [
+    "output/playwright/mz406-capture.mjs",
+    "output/playwright/mz-406-active-desktop.png",
+    "output/playwright/mz-406-settlement-desktop.png",
+    "output/playwright/mz-406-final-desktop.png",
+    "output/playwright/mz-406-active-laptop.png",
+    "output/playwright/mz-406-settlement-laptop.png",
+    "output/playwright/mz-406-final-laptop.png",
+    "task-reports/PERSONAL-TASK-1158/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest: 13 files and 125 tests passed. Build: tsc and vite build completed successfully."
+    },
+    {
+      "command": "npm run dev",
+      "result": "passed",
+      "evidence_type": "live_browser",
+      "evidence": "Vite served the app at http://127.0.0.1:5331/ after sandbox escalation. The server was stopped after browser capture."
+    },
+    {
+      "command": "node output/playwright/mz406-capture.mjs",
+      "result": "passed",
+      "evidence_type": "browser_visual_capture",
+      "evidence": "Captured active, settlement, and final screenshots at 1280x800 and 1024x768. Script metrics reported no document-level horizontal overflow and showed final-state button arrays were empty; manual screenshot inspection still found settlement table clipping inside the 1024px result panel."
+    }
+  ],
+  "risks": [
+    {
+      "severity": "high",
+      "risk": "Laptop settlement result table is clipped at 1024x768.",
+      "evidence": "output/playwright/mz-406-settlement-laptop.png shows the right side of the score-change table cut off, including the 'Стало' column values. This violates the task expectation to confirm no clipped whist columns/numbers after the MZ-403 visual fix.",
+      "release_material": true
+    }
+  ],
+  "failure_type": "nfr_gap",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "US-844 desktop/laptop visual regression for active score display, deal settlement, and final result states using existing npm verify/dev entrypoints plus bundled Playwright browser capture",
+    "node_package_scripts": {
+      "dev": "vite --host 127.0.0.1 --port 5331",
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task": true,
+      "task_read": "PERSONAL-TASK-1158",
+      "epic_reference_id": "PERSONAL-EP-180"
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1153/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1154/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1155/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1156/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1157/attempt-1.json"
+    ],
+    "capture_viewports": [
+      "1280x800 desktop",
+      "1024x768 laptop"
+    ],
+    "process_cleanup": "Local Vite dev server was stopped after screenshot capture.",
+    "notes": "No production source code was changed. The only added non-report artifact is a Playwright capture helper under output/playwright/ plus generated PNG evidence."
+  },
+  "visual_artifacts": [
+    {
+      "type": "existing_screenshot_reviewed",
+      "path": "output/playwright/mz-403-game.png",
+      "state": "settlement",
+      "viewport": "1280x720",
+      "result": "supporting_only",
+      "notes": "Existing artifact reviewed; despite filename, it shows deal-settlement state rather than an active game state."
+    },
+    {
+      "type": "existing_screenshot_reviewed",
+      "path": "output/playwright/mz-403-settlement.png",
+      "state": "settlement",
+      "viewport": "1280x720",
+      "result": "supporting_only",
+      "notes": "Existing desktop settlement screenshot shows readable side score cards and result table at 1280 width."
+    },
+    {
+      "type": "existing_screenshot_reviewed",
+      "path": "output/playwright/mz-403-final.png",
+      "state": "final",
+      "viewport": "1280x720",
+      "result": "supporting_only",
+      "notes": "Existing desktop final screenshot shows readable score cards, final ranking/settlement, and no action buttons."
+    },
+    {
+      "type": "existing_script_reviewed",
+      "path": "output/playwright/mz403-settlement.js",
+      "state": "settlement",
+      "result": "reviewed",
+      "notes": "Deterministic settlement fixture used as basis for fresh MZ-406 capture."
+    },
+    {
+      "type": "existing_script_reviewed",
+      "path": "output/playwright/mz403-final.js",
+      "state": "final",
+      "result": "reviewed",
+      "notes": "Deterministic final-result fixture used as basis for fresh MZ-406 capture."
+    },
+    {
+      "type": "playwright_screenshot_created",
+      "path": "output/playwright/mz-406-active-desktop.png",
+      "state": "active",
+      "viewport": "1280x800",
+      "result": "passed",
+      "notes": "Score cards and whist numbers are readable; action controls are visible and aligned."
+    },
+    {
+      "type": "playwright_screenshot_created",
+      "path": "output/playwright/mz-406-settlement-desktop.png",
+      "state": "deal-settlement",
+      "viewport": "1280x800",
+      "result": "passed",
+      "notes": "Score cards, settlement summary, score-change table, whist line, and 'Подсчитать' control are readable."
+    },
+    {
+      "type": "playwright_screenshot_created",
+      "path": "output/playwright/mz-406-final-desktop.png",
+      "state": "final",
+      "viewport": "1280x800",
+      "result": "passed",
+      "notes": "Final result/ranking/settlement text is readable and no continuation controls are rendered."
+    },
+    {
+      "type": "playwright_screenshot_created",
+      "path": "output/playwright/mz-406-active-laptop.png",
+      "state": "active",
+      "viewport": "1024x768",
+      "result": "passed",
+      "notes": "Score cards and whist numbers remain readable at laptop width."
+    },
+    {
+      "type": "playwright_screenshot_created",
+      "path": "output/playwright/mz-406-settlement-laptop.png",
+      "state": "deal-settlement",
+      "viewport": "1024x768",
+      "result": "failed",
+      "notes": "The result panel clips the right side of the score-change table, including the final column values."
+    },
+    {
+      "type": "playwright_screenshot_created",
+      "path": "output/playwright/mz-406-final-laptop.png",
+      "state": "final",
+      "viewport": "1024x768",
+      "result": "passed",
+      "notes": "Final result/ranking/settlement text is readable and no continuation controls are rendered."
+    },
+    {
+      "type": "playwright_capture_script",
+      "path": "output/playwright/mz406-capture.mjs",
+      "state": "all",
+      "result": "passed",
+      "notes": "Browser capture helper used to create the six fresh MZ-406 screenshots and layout metrics."
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1760",
+      "scenario": "Active/game score display exposes bullet, mountain, and mutual-whist values for all three players across desktop and laptop widths.",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "output/playwright/mz-406-active-desktop.png; output/playwright/mz-406-active-laptop.png; node output/playwright/mz406-capture.mjs",
+      "result": "passed",
+      "limitations": "Active state uses deterministic synthetic score fixture rendered through the live app."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1761",
+      "scenario": "Deal settlement and final result surfaces expose result summaries, score changes/ranking, and readable settlement text.",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "output/playwright/mz-406-settlement-desktop.png; output/playwright/mz-406-settlement-laptop.png; output/playwright/mz-406-final-desktop.png; output/playwright/mz-406-final-laptop.png",
+      "result": "failed",
+      "limitations": "Final result surfaces pass, and desktop settlement passes, but laptop settlement clips the score-change table."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2426",
+      "scenario": "Given a deal completes, the score table/result display shows updated bullet, mountain, and mutual whist values with readable before/delta/after detail.",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "output/playwright/mz-406-settlement-desktop.png; output/playwright/mz-406-settlement-laptop.png",
+      "result": "failed",
+      "limitations": "The laptop viewport clips the right side of the before/delta/after table, so the visual acceptance check is not satisfied."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2427",
+      "scenario": "Given the bullet target is reached, final ranking/result summary is shown and accidental continuation is prevented.",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "output/playwright/mz-406-final-desktop.png; output/playwright/mz-406-final-laptop.png; node output/playwright/mz406-capture.mjs",
+      "result": "passed",
+      "limitations": "Verified by screenshot inspection plus capture metrics showing final-state button arrays were empty."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-403 no clipped whist columns/numbers visual contract",
+      "scenario": "Score/result columns and whist numbers remain visible after the MZ-403 compact score visual fix.",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "output/playwright/mz-406-settlement-laptop.png",
+      "result": "failed",
+      "limitations": "Side score cards pass, but the central settlement score-change table is clipped at laptop width."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "ongoing score visual readability",
+      "applicability": "applicable_required",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "output/playwright/mz-406-active-desktop.png; output/playwright/mz-406-active-laptop.png",
+      "result": "passed",
+      "limitations": "Active fixture uses deterministic non-zero score data for visual readability.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "deal settlement visual readability",
+      "applicability": "applicable_required",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "output/playwright/mz-406-settlement-desktop.png; output/playwright/mz-406-settlement-laptop.png",
+      "result": "failed",
+      "limitations": "Desktop is readable, but laptop clips the result table.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "final result visual readability/no continuation",
+      "applicability": "applicable_required",
+      "evidence_type": "browser_visual_review",
+      "command_or_source": "output/playwright/mz-406-final-desktop.png; output/playwright/mz-406-final-laptop.png; node output/playwright/mz406-capture.mjs",
+      "result": "passed",
+      "limitations": "No screenshot-diff baseline exists; verification is manual screenshot review plus Playwright metrics.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "desktop/laptop viewport coverage",
+      "applicability": "applicable_required",
+      "evidence_type": "browser_visual_capture",
+      "command_or_source": "node output/playwright/mz406-capture.mjs",
+      "result": "passed",
+      "limitations": "Covered 1280x800 and 1024x768 only, matching the task's desktop/laptop scope; full mobile is out of scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression/release",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run verify",
+      "result": "failed",
+      "limitations": "Automated tests/build passed, but the manual visual release gate fails due to clipped laptop settlement content.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security not applicable",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1158 scope; local static Vite app visual verification only",
+      "result": "passed",
+      "limitations": "No auth, backend, network, or sensitive data path is involved in this visual-regression task.",
+      "accepted_risk": "none"
+    }
+  ],
+  "downstream_notes": [
+    "The capture metrics reported no document-level horizontal overflow at 1024px, so the blocker appears to be internal clipping/insufficient responsive behavior in the settlement result table/panel rather than page-wide overflow.",
+    "Existing MZ-403 screenshots remain useful supporting evidence for 1280-width desktop, but MZ-406 fresh artifacts should be used for the current visual verdict because they include laptop coverage and a true active score state."
+  ]
+}

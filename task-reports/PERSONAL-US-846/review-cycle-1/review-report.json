@@ -1,0 +1,357 @@
+{
+  "epic_id": "PERSONAL-EP-180",
+  "us_id": "PERSONAL-US-846",
+  "summary": {
+    "verdict_basis": "US-846 completion verification passed. Spexus current_context was read before the PERSONAL-EP-180 epic hierarchy. Exact accepted reports for MZ-601 through MZ-604 are present at the requested paths and accepted. Source/test inspection confirms PERSONAL-REQ-1763, PERSONAL-AC-2430, and PERSONAL-AC-2431 have executable evidence. The full-bullet smoke is deterministic and release-evidence quality: fixed seed 639, real engine, real heuristic AI, legal-action checks before applyAction, phase=finished assertion, maxSteps=80, progress/stuck protection, and useful diagnostics. Regression verification and release-readiness evidence exist. Mocked/static evidence is disclosed as local in-process Vitest/jsdom/localStorage/static fixture evidence, not backend-live evidence. Security, backend, auth, migration, and server persistence obligations remain not applicable for the static Vite/localStorage app scope.",
+    "production_source_modified_by_this_review": false,
+    "report_written": "task-reports/PERSONAL-US-846/review-cycle-1/review-report.json",
+    "us_841_caveat": "The historically requested US-841 completion report path is absent. This gate does not invent that report; it accepts current direct persistence/start-resume executable tests plus orchestrator-log completion context as sufficient for US-846 release readiness."
+  },
+  "requirements_coverage": [
+    {
+      "requirement_id": "PERSONAL-REQ-1763",
+      "status": "covered",
+      "evidence": [
+        "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+        "src/domain/cards.test.ts",
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/domain/scoring.test.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "src/test/ruleFlow.integration.test.ts",
+        "src/test/us844Scoring.integration.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "src/test/integrationHarness.test.ts",
+        "task-reports/PERSONAL-TASK-1170/attempt-1.json"
+      ],
+      "limitations": "Evidence is automated in-process unit/integration/smoke coverage for a static local app; no backend-live path applies."
+    }
+  ],
+  "acceptance_criteria_coverage": [
+    {
+      "acceptance_criterion_id": "PERSONAL-AC-2430",
+      "status": "covered",
+      "evidence": [
+        "task-reports/PERSONAL-TASK-1170/attempt-1.json records npm run verify passing 14 files / 137 tests plus tsc and vite build",
+        "src/domain/cards.test.ts",
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/domain/scoring.test.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/ruleFlow.integration.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "src/test/us844Scoring.integration.test.ts"
+      ],
+      "limitations": "No exception required."
+    },
+    {
+      "acceptance_criterion_id": "PERSONAL-AC-2431",
+      "status": "covered",
+      "evidence": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "task-reports/PERSONAL-TASK-1169/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1170/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1171/attempt-1.json"
+      ],
+      "limitations": "Single deterministic bounded seed is accepted for the smoke gate; adjacent targeted suites cover broader rule/AI behavior."
+    }
+  ],
+  "component_coverage": [
+    {
+      "component_key": "default",
+      "component_name": "Default Component",
+      "status": "covered",
+      "evidence": [
+        "mcp__spexus.current_context",
+        "mcp__spexus.epic_hierarchy(PERSONAL-EP-180, full_hierarchy=true)",
+        "task-reports/orchestrator-log.json"
+      ],
+      "limitations": "Single active Spexus component in scope."
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "MZ-601 QA coverage matrix",
+      "scenario": "Accepted QA/test-design matrix exists and routes the original AC-2431 full-bullet gap to downstream owners.",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1168/attempt-2.json; docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "live_paths": [
+        "docs/test-design/us-846-rule-critical-coverage-matrix.md"
+      ],
+      "mocked_paths": [],
+      "accepted_for": "MZ-601 acceptance and US-846 traceability input",
+      "limitations": "Design/report evidence only; executable closure comes from MZ-602 and MZ-603."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-602 implementation",
+      "scenario": "Deterministic full-bullet smoke implemented using real game engine and heuristic AI.",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "task-reports/PERSONAL-TASK-1169/attempt-1.json; src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/test/aiDecision.integration.test.ts",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "accepted_for": "MZ-602 and PERSONAL-AC-2431 executable implementation evidence",
+      "limitations": "Smoke intentionally uses bulletTarget=1, seed=639, and maxSteps=80 for a fast deterministic release gate."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-603 regression verification",
+      "scenario": "Complete regression and targeted full-bullet smoke verification executed after MZ-602.",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "live_paths": [
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "accepted_for": "Regression verification and release-readiness dependency",
+      "limitations": "This completion review did not rerun npm run verify because the prompt restricted writes to the report, and npm run verify includes build output. Same-day accepted MZ-603 evidence is used."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-604 release gate",
+      "scenario": "Release-readiness gate accepts MZ-601, MZ-602, and MZ-603 evidence and classifies NFR applicability.",
+      "evidence_type": "release_readiness",
+      "evidence_source": "task-reports/PERSONAL-TASK-1171/attempt-1.json",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "accepted_for": "US-846 release-readiness input",
+      "limitations": "MZ-604 relied on MZ-603 same-day verify evidence rather than rerunning broad verification."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1763",
+      "scenario": "Automated suite covers deck/deal, bidding, fixed profile, legal actions, trick winner, whist/half-whist, all-pass, misere, scoring, save/load, AI legality, and full-bullet smoke.",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md; task-reports/PERSONAL-TASK-1170/attempt-1.json; test inventory source inspection",
+      "live_paths": [
+        "src/domain/cards.test.ts",
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/domain/scoring.test.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "src/test/ruleFlow.integration.test.ts",
+        "src/test/us844Scoring.integration.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "src/test/integrationHarness.test.ts"
+      ],
+      "mocked_paths": [],
+      "accepted_for": "PERSONAL-REQ-1763",
+      "limitations": "No backend-live path applies."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2430",
+      "scenario": "Rule-critical unit tests execute for deck/deal, bidding, legal action generation, trick winner, whist, all-pass, misere, scoring, persistence, and AI legality.",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json records npm run verify passing 14 files / 137 tests plus tsc and vite build",
+      "live_paths": [
+        "src/domain/cards.test.ts",
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/domain/scoring.test.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/ruleFlow.integration.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "src/test/us844Scoring.integration.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "accepted_for": "PERSONAL-AC-2430",
+      "limitations": "No exception required."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2431",
+      "scenario": "Deterministic seed plus simple AI full-bullet smoke completes without unhandled error, illegal AI action, or stuck actor.",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/test/aiDecision.integration.test.ts; task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "accepted_for": "PERSONAL-AC-2431",
+      "limitations": "Single deterministic seed is accepted for the smoke gate."
+    },
+    {
+      "req_or_ac_or_contract": "US-841 missing report caveat",
+      "scenario": "Historical requested US-841 review report path is absent, but direct persistence/start-resume tests cover the relevant saved-game contract for US-846.",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "test -f task-reports/PERSONAL-US-841/review-cycle-1/review-report.json returned missing; src/persistence/saveStore.test.ts; src/test/startResume.integration.test.ts; task-reports/orchestrator-log.json",
+      "live_paths": [
+        "src/persistence/saveStore.test.ts",
+        "src/test/startResume.integration.test.ts"
+      ],
+      "mocked_paths": [
+        "localStorage fixtures in src/persistence/saveStore.test.ts",
+        "localStorage fixtures in src/test/startResume.integration.test.ts"
+      ],
+      "accepted_for": "US-846 persistence/start-resume dependency confidence",
+      "limitations": "Traceability report remains missing historically; this is not treated as a release blocker because direct executable evidence is present."
+    },
+    {
+      "req_or_ac_or_contract": "Prior US gates",
+      "scenario": "US-842 through US-845 completion gates are present and passed, and this US-846 gate does not replace them.",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json; task-reports/PERSONAL-US-843/review-cycle-1/review-report.json; task-reports/PERSONAL-US-844/review-cycle-2/review-report.json; task-reports/PERSONAL-US-845/review-cycle-2/review-report.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Prior US gate dependency context",
+      "limitations": "Prior gates remain independent product acceptance artifacts."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "Spexus protocol compliance",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "mcp__spexus.current_context; mcp__spexus.epic_hierarchy(PERSONAL-EP-180, full_hierarchy=true)",
+      "accepted_for": "Mandatory protocol",
+      "limitations": "No Spexus writes were performed.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Exact accepted US-846 task reports",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1168/attempt-2.json; task-reports/PERSONAL-TASK-1169/attempt-1.json; task-reports/PERSONAL-TASK-1170/attempt-1.json; task-reports/PERSONAL-TASK-1171/attempt-1.json",
+      "accepted_for": "MZ-601 through MZ-604 task completion",
+      "limitations": "Used exact requested paths; no attempts inferred.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Approved US description match",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "mcp__spexus.epic_hierarchy(PERSONAL-EP-180, full_hierarchy=true); docs/test-design/us-846-rule-critical-coverage-matrix.md; source test inventory",
+      "accepted_for": "US-846 scope conformance",
+      "limitations": "Scope is automated coverage and release evidence, not new gameplay features.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "REQ-1763 executable coverage",
+      "applicability": "required",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md; src/domain/*.test.ts; src/persistence/saveStore.test.ts; src/ai/heuristicAi.test.ts; src/test/*.integration.test.ts",
+      "accepted_for": "PERSONAL-REQ-1763",
+      "limitations": "In-process static app automated tests, not live backend tests.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "AC-2430 rule-critical tests",
+      "applicability": "required",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json npm run verify evidence",
+      "accepted_for": "PERSONAL-AC-2430",
+      "limitations": "Completion verifier relied on accepted same-day regression evidence instead of rerunning build-producing commands.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "AC-2431 full-bullet smoke quality",
+      "applicability": "required",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/test/aiDecision.integration.test.ts",
+      "accepted_for": "PERSONAL-AC-2431",
+      "limitations": "Smoke uses one deterministic bounded seed and bulletTarget=1 by design.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Complete regression verification",
+      "applicability": "required",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "accepted_for": "US-846 regression verification",
+      "limitations": "MZ-603 records npm run verify and targeted smoke rerun; this report did not rerun them to honor write restrictions.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Release readiness",
+      "applicability": "required",
+      "evidence_type": "release_readiness",
+      "evidence_source": "task-reports/PERSONAL-TASK-1171/attempt-1.json",
+      "accepted_for": "US-846 release readiness",
+      "limitations": "No server rollback, feature flag, deployment smoke, or live API gate applies to this local static app scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Mocked/static evidence disclosure",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "rg scan for page.route, route.fulfill, msw, fetch, XMLHttpRequest, mock, stub, fake, localStorage; docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "accepted_for": "Evidence integrity",
+      "limitations": "localStorage/jsdom/static deterministic fixture evidence is accepted only for local static app behavior. No backend-live claims are made.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Security/backend/auth/migration applicability",
+      "applicability": "not_applicable",
+      "evidence_type": "security_review",
+      "evidence_source": "package.json; docs/test-design/us-846-rule-critical-coverage-matrix.md; source scan",
+      "accepted_for": "NFR classification",
+      "limitations": "No backend, auth, accounts, server API, database migration, tenant scope, or server persistence exists in this US scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Prior US gates preserved",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json; task-reports/PERSONAL-US-843/review-cycle-1/review-report.json; task-reports/PERSONAL-US-844/review-cycle-2/review-report.json; task-reports/PERSONAL-US-845/review-cycle-2/review-report.json",
+      "accepted_for": "Dependency gate context",
+      "limitations": "US-846 confirms, but does not replace, earlier acceptance gates.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "US-841 missing report caveat",
+      "applicability": "required_traceability_caveat",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "src/persistence/saveStore.test.ts; src/test/startResume.integration.test.ts; task-reports/orchestrator-log.json",
+      "accepted_for": "US-846 start/resume/persistence dependency confidence",
+      "limitations": "Historical US-841 review report remains missing.",
+      "accepted_risk": "none"
+    }
+  ],
+  "findings": [],
+  "stats": {
+    "tasks_expected": 4,
+    "tasks_found": 4,
+    "tasks_accepted": 4,
+    "prior_us_gates_expected": 4,
+    "prior_us_gates_found": 4,
+    "prior_us_gates_passed": 4,
+    "missing_historical_us_reports": [
+      "task-reports/PERSONAL-US-841/review-cycle-1/review-report.json"
+    ],
+    "requirements_total": 1,
+    "requirements_covered": 1,
+    "acceptance_criteria_total": 2,
+    "acceptance_criteria_covered": 2,
+    "evidence_rows": 9,
+    "quality_gate_rows": 12,
+    "findings_total": 0,
+    "critical_findings": 0,
+    "medium_findings": 0,
+    "low_findings": 0,
+    "commands_rerun_by_this_review": [],
+    "commands_relied_on_from_accepted_reports": [
+      "task-reports/PERSONAL-TASK-1170/attempt-1.json: npm run verify passed 14 files / 137 tests plus tsc and vite build",
+      "task-reports/PERSONAL-TASK-1170/attempt-1.json: npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts passed 2 files / 5 tests",
+      "task-reports/PERSONAL-TASK-1169/attempt-1.json: targeted rule-critical regression passed 41 tests"
+    ],
+    "production_source_files_changed_by_this_review": 0,
+    "report_files_written_by_this_review": 1
+  },
+  "verdict": "passed"
+}

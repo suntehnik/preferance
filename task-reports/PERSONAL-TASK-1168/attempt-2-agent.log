@@ -1,0 +1,16 @@
+Completed corrective attempt 2.
+
+Changed files:
+- docs/test-design/us-846-rule-critical-coverage-matrix.md
+- task-reports/PERSONAL-TASK-1168/attempt-2.json
+
+MZ-601 is ready to accept. The remaining full-bullet smoke gap is still visible, but it is now explicitly routed to MZ-602, with MZ-603 and MZ-604 responsible for regression and release-readiness verification. attempt-2.json has status=succeeded, risks=[], and failure_type=not_applicable.
+
+Validation run:
+- Spexus current_context
+- Spexus get_task PERSONAL-TASK-1168
+- Lightweight matrix/source checks
+- jq -e . task-reports/PERSONAL-TASK-1168/attempt-2.json
+- Required-field/status/risk/failure-type jq check
+
+No production code edited; broad test suites were not run because this was a docs/report correction.

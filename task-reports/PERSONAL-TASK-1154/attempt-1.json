@@ -1,0 +1,180 @@
+{
+  "task_id": "PERSONAL-TASK-1154",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Implemented the US-844 domain scoring/result model for bullet, mountain, mutual whists, deal-result preview, bullet-target completion, and deterministic final settlement ranking. Deal-settlement states now carry structured result data without mutating score totals until settleDeal, next-deal and finished states preserve the settled result payload, and finished bullets expose a final ranking derived deterministically from bullet, mountain, and net whists. The whist/final-settlement behavior follows the explicit MVP contract decision from MZ-401 rather than claiming exact DOS-authentic formulas. Focused scoring, engine, rule-flow, and persistence tests passed, and the full npm run verify suite passed with 120 tests plus a production build.",
+  "files_changed": [
+    "src/domain/state.ts",
+    "src/domain/scoring.ts",
+    "src/domain/scoring.test.ts",
+    "src/domain/engine.ts",
+    "src/domain/engine.test.ts",
+    "src/persistence/saveStore.ts",
+    "src/persistence/saveStore.test.ts",
+    "task-reports/PERSONAL-TASK-1154/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/domain/scoring.test.ts src/domain/engine.test.ts",
+      "result": "passed",
+      "evidence_type": "contract_or_unit",
+      "evidence": "35 domain scoring/engine tests passed after the red-green cycle locked the new result model and settlement behavior."
+    },
+    {
+      "command": "npm run test -- src/test/ruleFlow.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "real_integration_test",
+      "evidence": "5 rule-flow integration tests passed, covering settlement transitions and bullet completion flow."
+    },
+    {
+      "command": "npm run test -- src/persistence/saveStore.test.ts",
+      "result": "passed",
+      "evidence_type": "migration_verification",
+      "evidence": "30 persistence tests passed, confirming save/load compatibility still accepts the updated runtime state shape."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest: 12 files, 120 tests passed. Build: tsc and vite build completed successfully."
+    }
+  ],
+  "risks": [],
+  "downstream_notes": [
+    "Whist and final-settlement formulas are implemented as the explicit MVP scoring contract from docs/test-design/us-844-bullet-scoring.md, not as proven exact DOS-authentic reverse-engineering results. Later UI/release tasks should preserve and communicate that contract unless product direction changes."
+  ],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "focused domain-plus-regression tests followed by full npm run verify",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1154",
+      "epic_hierarchy_read": "PERSONAL-EP-180"
+    },
+    "dependency_reports_reviewed": [
+      "docs/test-design/us-844-bullet-scoring.md",
+      "task-reports/PERSONAL-TASK-1153/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1140/attempt-2.json",
+      "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json"
+    ],
+    "notes": "A first full verify attempt surfaced a TypeScript noUnusedLocals error from an obsolete engine helper after the scoring refactor; the helper was removed and npm run verify was rerun to green before finalizing this report."
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1760",
+      "scenario": "Maintain bullet, mountain, and mutual-whist values across successful/failed game contracts, misere, and progressive all-pass, while preserving directed whist matrix invariants.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "src/domain/scoring.ts; src/domain/scoring.test.ts; npm run test -- src/domain/scoring.test.ts src/domain/engine.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Evidence is deterministic local domain-test coverage rather than DOS binary equivalence proof."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1761",
+      "scenario": "Expose deterministic result data for deal settlement, bullet-target completion, and final settlement/ranking through engine state transitions.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/domain/engine.ts; src/domain/engine.test.ts; src/test/ruleFlow.integration.test.ts; npm run test -- src/test/ruleFlow.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "UI rendering of the richer score/result model remains in later US-844 UI tasks."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2426",
+      "scenario": "Deal completion updates the score table via settled bullet, mountain, and whist totals without mutating active scores before settleDeal.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "src/domain/engine.test.ts; src/domain/scoring.test.ts; npm run test -- src/domain/scoring.test.ts src/domain/engine.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Acceptance coverage here is domain-state evidence; visible score-table presentation is deferred to later UI work."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2427",
+      "scenario": "Bullet completion yields deterministic finished-state result data and prevents next-deal continuation.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/domain/engine.test.ts; src/test/ruleFlow.integration.test.ts; npm run test -- src/test/ruleFlow.integration.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Finished-state persistence suppression is exercised by the existing saveStore suite; UI final-result surface is still a follow-up task."
+    },
+    {
+      "req_or_ac_or_contract": "US-844 MVP scoring contract decision",
+      "scenario": "Implement whist and final-settlement behavior for SC-844-016 through SC-844-022 using the explicit MZ-401 MVP assumption set unless contradicted by Spexus refs.",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "docs/test-design/us-844-bullet-scoring.md; task-reports/PERSONAL-TASK-1153/attempt-1.json; src/domain/scoring.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "implemented",
+      "limitations": "This is a deliberate implementation contract for MVP, not a claim of reverse-engineered exact original formulas."
+    },
+    {
+      "req_or_ac_or_contract": "Persistence compatibility contract from US-841",
+      "scenario": "Updated runtime state shape remains compatible with save/load validation and migration behavior.",
+      "evidence_type": "migration_verification",
+      "command_or_source": "src/persistence/saveStore.test.ts; npm run test -- src/persistence/saveStore.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "No schema migration code change was required because the persistence validator already accepts extra state fields while preserving JSON payload contents."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "targeted-scoring-domain-tests-first",
+      "applicability": "applicable_critical",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/domain/scoring.test.ts src/domain/engine.test.ts",
+      "result": "passed",
+      "limitations": "Focused scope only; broader regression was still required.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "rule-flow-regression",
+      "applicability": "applicable",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run test -- src/test/ruleFlow.integration.test.ts",
+      "result": "passed",
+      "limitations": "Local deterministic integration flow only; no backend/live API applies to this static app.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "persistence-compatibility",
+      "applicability": "applicable",
+      "evidence_type": "migration_verification",
+      "command_or_source": "npm run test -- src/persistence/saveStore.test.ts",
+      "result": "passed",
+      "limitations": "Covers browser-local persistence behavior only.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release-gate-required",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "This release-gate evidence covers current domain/test/build scope only; later UI score table/result tasks still need their own verification evidence.",
+      "accepted_risk": "Whist/final-settlement formulas remain an MVP contract decision rather than DOS-authentic proof."
+    },
+    {
+      "gate": "security-review",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1154 scope; PERSONAL-EP-180 hierarchy; source inspection",
+      "result": "passed",
+      "limitations": "No backend, auth, network, or sensitive data path exists in this task scope.",
+      "accepted_risk": "none"
+    }
+  ]
+}

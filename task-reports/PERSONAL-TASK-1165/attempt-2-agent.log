@@ -1,0 +1,5 @@
+Verification attempt 2 is complete and written to task-reports/PERSONAL-TASK-1165/attempt-2.json.
+
+Verdict: failed, failure_type: product_gap.
+
+The post-fix settlement/final laptop issue from attempt 1 is fixed, but a remaining release-blocking visual gap was found in the contract-order screenshots: the legal action stack extends beneath/off the bottom status frame at both 1280x800 and 1024x768, so action visibility is not fully release-ready. JSON validation of the report passed.

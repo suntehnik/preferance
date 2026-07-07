@@ -1,0 +1,15 @@
+- main [ref=e3]:
+  - region "MARRIAGE" [ref=e4]:
+    - paragraph [ref=e5]: Сочинский преферанс
+    - heading "MARRIAGE" [level=1] [ref=e6]
+    - paragraph [ref=e7]: Выберите размер пули, чтобы начать новую партию.
+    - group "Выбор размера пули" [ref=e8]:
+      - button "Начать пулю до 10" [ref=e9] [cursor=pointer]:
+        - strong [ref=e10]: "10"
+        - generic [ref=e11]: пуля
+      - button "Начать пулю до 20" [ref=e12] [cursor=pointer]:
+        - strong [ref=e13]: "20"
+        - generic [ref=e14]: пуля
+      - button "Начать пулю до 30" [ref=e15] [cursor=pointer]:
+        - strong [ref=e16]: "30"
+        - generic [ref=e17]: пуля

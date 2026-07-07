@@ -1,0 +1,648 @@
+{
+  "epic_id": "PERSONAL-EP-180",
+  "status": "completed",
+  "current_phase": null,
+  "current_us": null,
+  "rank_order_policy": "Spexus task rank ASC",
+  "current_task": null,
+  "completed_tasks": [
+    "PERSONAL-TASK-1129",
+    "PERSONAL-TASK-1130",
+    "PERSONAL-TASK-1131",
+    "PERSONAL-TASK-1132",
+    "PERSONAL-TASK-1133",
+    "PERSONAL-TASK-1134",
+    "PERSONAL-TASK-1135",
+    "PERSONAL-TASK-1136",
+    "PERSONAL-TASK-1137",
+    "PERSONAL-TASK-1138",
+    "PERSONAL-TASK-1139",
+    "PERSONAL-TASK-1140",
+    "PERSONAL-TASK-1141",
+    "PERSONAL-TASK-1142",
+    "PERSONAL-TASK-1143",
+    "PERSONAL-TASK-1144",
+    "PERSONAL-TASK-1145",
+    "PERSONAL-TASK-1146",
+    "PERSONAL-TASK-1147",
+    "PERSONAL-TASK-1148",
+    "PERSONAL-TASK-1149",
+    "PERSONAL-TASK-1150",
+    "PERSONAL-TASK-1151",
+    "PERSONAL-TASK-1152",
+    "PERSONAL-TASK-1153",
+    "PERSONAL-TASK-1154",
+    "PERSONAL-TASK-1155",
+    "PERSONAL-TASK-1156",
+    "PERSONAL-TASK-1157",
+    "PERSONAL-TASK-1158",
+    "PERSONAL-TASK-1159",
+    "PERSONAL-TASK-1160",
+    "PERSONAL-TASK-1161",
+    "PERSONAL-TASK-1162",
+    "PERSONAL-TASK-1163",
+    "PERSONAL-TASK-1164",
+    "PERSONAL-TASK-1165",
+    "PERSONAL-TASK-1166",
+    "PERSONAL-TASK-1167",
+    "PERSONAL-TASK-1168",
+    "PERSONAL-TASK-1169",
+    "PERSONAL-TASK-1170",
+    "PERSONAL-TASK-1171"
+  ],
+  "last_completed_task": "PERSONAL-TASK-1171",
+  "reports": {
+    "PERSONAL-TASK-1132": "task-reports/PERSONAL-TASK-1132/attempt-1.json",
+    "PERSONAL-TASK-1133": "task-reports/PERSONAL-TASK-1133/attempt-1.json",
+    "PERSONAL-TASK-1134": "task-reports/PERSONAL-TASK-1134/attempt-1.json",
+    "PERSONAL-TASK-1135": "task-reports/PERSONAL-TASK-1135/attempt-1.json",
+    "PERSONAL-TASK-1136": "task-reports/PERSONAL-TASK-1136/attempt-1.json",
+    "PERSONAL-TASK-1137": "task-reports/PERSONAL-TASK-1137/attempt-1.json",
+    "PERSONAL-TASK-1138": "task-reports/PERSONAL-TASK-1138/attempt-1.json",
+    "PERSONAL-TASK-1139": "task-reports/PERSONAL-TASK-1139/attempt-1.json",
+    "PERSONAL-TASK-1140": "task-reports/PERSONAL-TASK-1140/attempt-2.json",
+    "PERSONAL-TASK-1141": "task-reports/PERSONAL-TASK-1141/attempt-1.json",
+    "PERSONAL-TASK-1142": "task-reports/PERSONAL-TASK-1142/attempt-1.json",
+    "PERSONAL-TASK-1143": "task-reports/PERSONAL-TASK-1143/attempt-1.json",
+    "PERSONAL-TASK-1144": "task-reports/PERSONAL-TASK-1144/attempt-1.json",
+    "PERSONAL-TASK-1145": "task-reports/PERSONAL-TASK-1145/attempt-1.json",
+    "PERSONAL-TASK-1146": "task-reports/PERSONAL-TASK-1146/attempt-1.json",
+    "PERSONAL-TASK-1147": "task-reports/PERSONAL-TASK-1147/attempt-1.json",
+    "PERSONAL-TASK-1148": "task-reports/PERSONAL-TASK-1148/attempt-1.json",
+    "PERSONAL-TASK-1149": "task-reports/PERSONAL-TASK-1149/attempt-1.json",
+    "PERSONAL-TASK-1150": "task-reports/PERSONAL-TASK-1150/attempt-1.json",
+    "PERSONAL-TASK-1151": "task-reports/PERSONAL-TASK-1151/attempt-1.json",
+    "PERSONAL-TASK-1152": "task-reports/PERSONAL-TASK-1152/attempt-1.json",
+    "PERSONAL-TASK-1153": "task-reports/PERSONAL-TASK-1153/attempt-1.json",
+    "PERSONAL-TASK-1154": "task-reports/PERSONAL-TASK-1154/attempt-1.json",
+    "PERSONAL-TASK-1155": "task-reports/PERSONAL-TASK-1155/attempt-1.json",
+    "PERSONAL-TASK-1156": "task-reports/PERSONAL-TASK-1156/attempt-1.json",
+    "PERSONAL-TASK-1157": "task-reports/PERSONAL-TASK-1157/attempt-1.json",
+    "PERSONAL-TASK-1158": "task-reports/PERSONAL-TASK-1158/attempt-2.json",
+    "PERSONAL-TASK-1159": "task-reports/PERSONAL-TASK-1159/attempt-1.json",
+    "PERSONAL-TASK-1160": "task-reports/PERSONAL-TASK-1160/attempt-1.json",
+    "PERSONAL-TASK-1161": "task-reports/PERSONAL-TASK-1161/attempt-1.json",
+    "PERSONAL-TASK-1162": "task-reports/PERSONAL-TASK-1162/attempt-1.json",
+    "PERSONAL-TASK-1163": "task-reports/PERSONAL-TASK-1163/attempt-1.json",
+    "PERSONAL-TASK-1164": "task-reports/PERSONAL-TASK-1164/attempt-1.json",
+    "PERSONAL-TASK-1165-attempt-2-failed": "task-reports/PERSONAL-TASK-1165/attempt-2.json",
+    "PERSONAL-TASK-1165-fix-2": "task-reports/PERSONAL-TASK-1165/fix-2.json",
+    "PERSONAL-TASK-1165": "task-reports/PERSONAL-TASK-1165/attempt-3.json",
+    "PERSONAL-TASK-1166": "task-reports/PERSONAL-TASK-1166/attempt-1.json",
+    "PERSONAL-TASK-1167": "task-reports/PERSONAL-TASK-1167/attempt-1.json",
+    "PERSONAL-TASK-1168": "task-reports/PERSONAL-TASK-1168/attempt-2.json",
+    "PERSONAL-TASK-1169": "task-reports/PERSONAL-TASK-1169/attempt-1.json",
+    "PERSONAL-TASK-1170": "task-reports/PERSONAL-TASK-1170/attempt-1.json",
+    "PERSONAL-TASK-1171": "task-reports/PERSONAL-TASK-1171/attempt-1.json"
+  },
+  "subagent_calls_total": 58,
+  "delegated_runs": [
+    {
+      "task_id": "PERSONAL-TASK-1139",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase QA test design uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1140",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase service-domain-orchestration task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1140",
+      "attempt": 2,
+      "agent_type": "worker",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Retry after orchestrator review found a cross-boundary state/persistence compatibility gap in a materially complex rule-state-machine task."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1141",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase presentation-client task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1142",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase integration-tests task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1143",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1144",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1145",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1146",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-US-842 completion gate",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: US completion gate uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1147",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase QA test design uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1148",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase service-domain-orchestration task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1149",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase integration-tests task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1150",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1151",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1152",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-US-843 completion gate",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: US completion gate uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1153",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase QA test design uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1154",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase service-domain-orchestration task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1155",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase presentation-client task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1156",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase integration-tests task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1157",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1158",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1158 visual-fix",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Corrective implementation after MZ-406 verification found a scoped laptop visual regression in the settlement score-change table."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1158",
+      "attempt": 2,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Retry verification after focused visual-fix worker and orchestrator visual rerun closed the counted nfr_gap from attempt 1."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1159",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: critical component regression verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-US-844 completion gate",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: US completion gate uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1160",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification/release gate task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-US-844 completion gate",
+      "attempt": 2,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Rerun US completion gate after discovering and completing rank-32000 MZ-408 release gate."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1161",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase QA test design uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1162",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase presentation-client task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1163",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first attempt for implementation-phase integration-tests task uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1164",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1165",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: visual regression verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1165 visual-fix",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Corrective implementation after MZ-505 verification found laptop visual release blockers in settlement/final result framing."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1165",
+      "attempt": 2,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Retry visual verification after focused result-layout fix and orchestrator post-fix capture rerun."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1165 contract-order visual-fix",
+      "attempt": 2,
+      "agent_type": "worker",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Override after two counted MZ-505 visual verifier product gaps; focused corrective implementation is higher-risk and uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1165",
+      "attempt": 3,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Verification task under explicit override after focused contract-order action visibility fix; all verification tasks use GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1166",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: component regression verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-US-845 completion gate",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "US completion gate verification uses GPT-5.5 medium per orchestrator delegation model."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1167",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Release-readiness verification task uses GPT-5.5 medium per orchestrator verification rules."
+    },
+    {
+      "task_id": "PERSONAL-US-845 completion gate",
+      "attempt": 2,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Rerun US completion gate after correcting task rank order and completing MZ-507 release gate."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1168",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first implementation/QA design attempt uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1168",
+      "attempt": 2,
+      "agent_type": "worker",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Retry after acceptance-semantics gap in attempt-1 report; subtle downstream-risk routing uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1169",
+      "attempt": 1,
+      "agent_type": "worker",
+      "model": "gpt-5.4",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: first implementation attempt uses GPT-5.4 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1170",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: regression verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-TASK-1171",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "Orchestrator delegation model: release-readiness verification task uses GPT-5.5 medium."
+    },
+    {
+      "task_id": "PERSONAL-US-846 completion gate",
+      "attempt": 1,
+      "agent_type": "default",
+      "model": "gpt-5.5",
+      "reasoning_level": "medium",
+      "model_selection_reason": "US completion gate verification uses GPT-5.5 medium per orchestrator delegation model."
+    }
+  ],
+  "retry_decisions": [
+    {
+      "task_id": "PERSONAL-TASK-1140",
+      "after_attempt": 1,
+      "classification": "upstream_contract_gap",
+      "reason": "Rule engine introduced bulletTarget and new phases, but UI start path did not propagate selected bullet size into GameState and saveStore validation still recognized only the old phase set, risking lost resume during new US-842 phases.",
+      "decision": "retry with focused worker attempt 2 before accepting MZ-202"
+    },
+    {
+      "task_id": "PERSONAL-TASK-1158",
+      "after_attempt": 1,
+      "classification": "nfr_gap",
+      "reason": "Visual verification found laptop 1024x768 settlement score-change table clipping the right side of the table, including final column values.",
+      "decision": "run focused visual-fix worker before retrying MZ-406 verification attempt 2"
+    },
+    {
+      "task_id": "PERSONAL-TASK-1165",
+      "after_attempt": 1,
+      "classification": "product_gap",
+      "reason": "Visual verification found 1024x768 settlement/final result states not release-ready: settlement result extends below the visible table frame with clipped score-change context, and final result framing is crowded by inactive hand rows.",
+      "decision": "run focused visual-fix worker before retrying MZ-505 verification attempt 2"
+    },
+    {
+      "task_id": "PERSONAL-TASK-1165",
+      "after_attempt": 2,
+      "classification": "product_gap",
+      "reason": "Attempt 2 confirmed the settlement/final laptop fix, but found contract-order legal action stack clipping below the bottom status frame at 1280x800 and 1024x768.",
+      "decision": "stop orchestration per two-counted-failures rule; task moved back to Backlog for targeted contract-order action visibility fix before another verifier run"
+    },
+    {
+      "task_id": "PERSONAL-TASK-1168",
+      "after_attempt": 1,
+      "classification": "verifier_prompt_error",
+      "reason": "attempt-1 created a useful matrix but the task report is acceptance-inconsistent: status=succeeded with risks non-empty and failure_type=release_readiness_gap. The downstream AC-2431 gap should either be routed as MZ-602 ownership while MZ-601 risks=[], or the task should fail explicitly.",
+      "decision": "retry with focused report/matrix correction using GPT-5.5 medium before accepting MZ-601"
+    }
+  ],
+  "last_verification": {
+    "command": "PERSONAL-US-846 completion gate",
+    "result": "passed",
+    "details": "review-cycle-1 passed; 4/4 tasks accepted, 9 evidence rows, 12 quality gates, 0 findings."
+  },
+  "follow_up_fixes": {
+    "PERSONAL-TASK-1135": "Added invalid-save fallback visual evidence during MZ-108 review."
+  },
+  "completed_user_stories": [
+    "PERSONAL-US-841",
+    "PERSONAL-US-842",
+    "PERSONAL-US-843",
+    "PERSONAL-US-844",
+    "PERSONAL-US-845",
+    "PERSONAL-US-846"
+  ],
+  "review_reports": {
+    "PERSONAL-US-842": "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json",
+    "PERSONAL-US-843": "task-reports/PERSONAL-US-843/review-cycle-1/review-report.json",
+    "PERSONAL-US-844": "task-reports/PERSONAL-US-844/review-cycle-2/review-report.json",
+    "PERSONAL-US-845": "task-reports/PERSONAL-US-845/review-cycle-2/review-report.json",
+    "PERSONAL-US-846": "task-reports/PERSONAL-US-846/review-cycle-1/review-report.json"
+  },
+  "next_task": null,
+  "visual_reruns": {
+    "PERSONAL-TASK-1158": "task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json",
+    "PERSONAL-TASK-1165": "task-reports/PERSONAL-TASK-1165/orchestrator-visual-rerun.json"
+  },
+  "overrides": [
+    {
+      "accepted_at": "2026-07-06T11:06:24+02:00",
+      "scope": "PERSONAL-TASK-1165 retry-stop override",
+      "reason": "User explicitly granted override after orchestrator stopped on two counted MZ-505 product_gap failures.",
+      "source_report": "task-reports/PERSONAL-TASK-1165/attempt-2.json",
+      "source_finding": "contract-order legal action stack clipped/extends beneath bottom status frame at 1280x800 and 1024x768"
+    }
+  ],
+  "routed_risks": [
+    {
+      "source_task": "PERSONAL-TASK-1165",
+      "source_report": "task-reports/PERSONAL-TASK-1165/attempt-2.json",
+      "exact_risk": "Contract-order legal action stack extends beneath/off the bottom status frame at both required desktop sizes; action visibility is not release-ready.",
+      "downstream_task": "PERSONAL-TASK-1165",
+      "required_verification_evidence": [
+        "targeted contract-order layout regression/unit evidence",
+        "npm run verify or scoped equivalent plus build",
+        "regenerated MZ-505 desktop/laptop screenshots",
+        "visual verifier report with risks=[] covering contract-order action visibility"
+      ],
+      "status": "closed",
+      "closure_report": "task-reports/PERSONAL-TASK-1165/attempt-3.json",
+      "closed_at": "2026-07-06T11:19:10+02:00"
+    },
+    {
+      "source_task": "PERSONAL-TASK-1168",
+      "source_report": "task-reports/PERSONAL-TASK-1168/attempt-2.json",
+      "exact_risk": "PERSONAL-AC-2431 lacks deterministic full-bullet smoke executable coverage before MZ-602.",
+      "downstream_task": "PERSONAL-TASK-1169",
+      "required_verification_evidence": [
+        "deterministic full-bullet smoke test reaches phase=finished",
+        "no unhandled error during smoke",
+        "every AI action selected during smoke is legal",
+        "bounded step count prevents stuck actor/infinite loop"
+      ],
+      "status": "closed",
+      "closure_report": "task-reports/PERSONAL-TASK-1169/attempt-1.json",
+      "closed_at": "2026-07-06T12:11:45+02:00"
+    }
+  ],
+  "stopped_with_issues_resolved_by_override": {
+    "resolved_at": "2026-07-06T11:06:24+02:00",
+    "source_stop": {
+      "stopped_at": "2026-07-06T09:10:24Z",
+      "epic_id": "PERSONAL-EP-180",
+      "us_id": "PERSONAL-US-845",
+      "task_id": "PERSONAL-TASK-1165",
+      "task_title": "[MZ-505] US-845 visual regression for desktop table",
+      "rule": "Stop after 2 counted failed attempts for the same task",
+      "attempts": [
+        "task-reports/PERSONAL-TASK-1165/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1165/attempt-2.json"
+      ],
+      "failure_type": "product_gap",
+      "summary": "MZ-505 visual verification failed twice. Attempt 1 settlement/final laptop result framing was fixed and rerun successfully, but attempt 2 found remaining release-blocking contract-order action clipping at 1280x800 and 1024x768.",
+      "remaining_blocker": "Contract-order legal action stack extends beneath/off the bottom status frame at both required desktop sizes.",
+      "evidence": [
+        "output/playwright/mz-505-contract-desktop.png",
+        "output/playwright/mz-505-contract-laptop.png",
+        "output/playwright/mz505-capture-results.json"
+      ],
+      "spexus_comment_id": "8845cda9-a77b-41f8-b3cb-9bbdbf1994e0"
+    },
+    "override_scope": "PERSONAL-TASK-1165 retry-stop override"
+  },
+  "ordering_corrections": [
+    {
+      "detected_at": "2026-07-06T11:33:07+02:00",
+      "type": "premature_us_completion_gate",
+      "us_id": "PERSONAL-US-845",
+      "task_id": "PERSONAL-TASK-1167",
+      "rank": "39000",
+      "problem": "US-845 completion gate review-cycle-1 was run before remaining rank-39000 release-readiness task MZ-507.",
+      "action": "Run MZ-507 now, then rerun US-845 completion gate as review-cycle-2. Treat review-cycle-1 as superseded evidence only."
+    }
+  ],
+  "superseded_review_reports": {
+    "PERSONAL-US-845 review-cycle-1": "task-reports/PERSONAL-US-845/review-cycle-1/review-report.json"
+  },
+  "completed_at": "2026-07-06T12:30:15+02:00",
+  "final_summary": {
+    "epic_id": "PERSONAL-EP-180",
+    "done_tasks": 43,
+    "backlog_tasks": 0,
+    "in_progress_tasks": 0,
+    "completed_user_stories": [
+      "PERSONAL-US-841",
+      "PERSONAL-US-842",
+      "PERSONAL-US-843",
+      "PERSONAL-US-844",
+      "PERSONAL-US-845",
+      "PERSONAL-US-846"
+    ],
+    "final_review_report": "task-reports/PERSONAL-US-846/review-cycle-1/review-report.json",
+    "last_verify_evidence": "MZ-603 npm run verify passed 14 files / 137 tests plus TypeScript and Vite build; US-846 completion gate passed with 0 findings.",
+    "epic_comment_id": "e22b7fb9-6a7d-4854-8b8b-87921804bb95"
+  }
+}

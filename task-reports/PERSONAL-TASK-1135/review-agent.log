@@ -1,0 +1,11 @@
+Averroes visual review:
+- No findings.
+- clean-start: centered, stable, readable, no apparent overlap.
+- saved-bullet-resume: prompt is clear and offers resume/new choices without visible collision.
+- after-start-new: game shell fits 1280x800, side panels/action controls visible, status line in viewport.
+- Accepted MZ-106 based on screenshots and layout metrics.
+
+Follow-up after MZ-108 evidence review:
+- Added invalid-save-fallback-1280x800.png using a corrupt localStorage seed artifact.
+- Metrics showed start-only fallback, no continue option, scrollWidth=1280, scrollHeight=800, no overflowing inspected elements.
+- Manual visual inspection confirmed the fallback matches the clean start layout without overlap.

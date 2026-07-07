@@ -1,0 +1,148 @@
+{
+  "task_id": "PERSONAL-TASK-1161",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Created the US-845 desktop table states QA design document at docs/test-design/us-845-desktop-table-states.md. The document defines executable desktop/laptop UI scenarios for bidding, contract ordering, widow pickup, discard, whist/check decisions, contract play, all-pass, misere, deal settlement, next-deal, and final-result states; includes active-actor, legal-action, contract/trump, trick/hands, and score-table verification expectations; traces REQ-1762, AC-2428, and AC-2429; and routes downstream work to MZ-502, MZ-503, accessibility verification, visual regression, component regression, and the release gate. The design explicitly depends on accepted US-842 and US-844 evidence and stays within the existing Vitest/jsdom plus Playwright-style screenshot workflow.",
+  "files_changed": [
+    "docs/test-design/us-845-desktop-table-states.md",
+    "task-reports/PERSONAL-TASK-1161/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "test -r docs/test-design/us-845-desktop-table-states.md && sed -n '1,120p' docs/test-design/us-845-desktop-table-states.md",
+      "result": "passed",
+      "evidence_type": "document_readability_check",
+      "evidence": "Verified the US-845 QA design document exists in the worktree and is readable as plain text."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "spexus_context": {
+      "current_context_read_before_artifacts": true,
+      "task_read": "PERSONAL-TASK-1161",
+      "epic_hierarchy_read": "PERSONAL-EP-180",
+      "component_key": "default",
+      "project_key": "PERSONAL"
+    },
+    "dependency_inputs_reviewed": [
+      "docs/test-design/us-842-rule-phases.md",
+      "task-reports/PERSONAL-TASK-1146/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1160/attempt-1.json",
+      "task-reports/PERSONAL-US-844/review-cycle-2/review-report.json",
+      "src/ui/render.test.ts",
+      "src/ui/controller.test.ts",
+      "src/test/us844Scoring.integration.test.ts",
+      "src/test/ruleFlow.integration.test.ts",
+      "output/playwright/mz406-capture.mjs"
+    ],
+    "verification_scope": "docs-only QA design update with targeted source/report inspection and document readability verification"
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1762",
+      "scenario": "Desktop table states must show current phase, active actor, legal human actions, contract, trump when applicable, current trick, player hands, score table, deal result, and final result.",
+      "evidence_type": "qa_design_spec",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md",
+      "result": "passed",
+      "limitations": "This task defines executable scenarios and routing only; downstream implementation and verification tasks must provide runtime evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "Desktop/laptop states for bidding, contract, whist, play, deal-result, and final-result remain understandable and do not block normal play.",
+      "evidence_type": "qa_design_spec",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md; src/ui/render.test.ts; src/test/ruleFlow.integration.test.ts",
+      "result": "passed",
+      "limitations": "The task records proposed executable checks; it does not itself prove final UI behavior."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2429",
+      "scenario": "Deal-result and next-deal states must make the result understandable and let the player proceed unless the bullet is complete.",
+      "evidence_type": "qa_design_spec",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md; src/test/us844Scoring.integration.test.ts; task-reports/PERSONAL-TASK-1160/attempt-1.json",
+      "result": "passed",
+      "limitations": "This row captures design traceability and downstream test targets, not fresh runtime verification."
+    },
+    {
+      "req_or_ac_or_contract": "US-842 dependency contract",
+      "scenario": "Desktop UI scenarios inherit legal phase and legal-action expectations from the accepted US-842 rule-phase design and release gate.",
+      "evidence_type": "dependency_review",
+      "command_or_source": "docs/test-design/us-842-rule-phases.md; task-reports/PERSONAL-TASK-1146/attempt-1.json",
+      "result": "passed",
+      "limitations": "Legal-action behavior is assumed from accepted upstream evidence and must remain aligned in downstream implementation."
+    },
+    {
+      "req_or_ac_or_contract": "US-844 dependency contract",
+      "scenario": "Desktop UI scenarios inherit accepted score/result/final-result evidence boundaries and screenshot classification from US-844 artifacts.",
+      "evidence_type": "dependency_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1160/attempt-1.json; task-reports/PERSONAL-US-844/review-cycle-2/review-report.json; output/playwright/mz406-capture.mjs",
+      "result": "passed",
+      "limitations": "Visual artifact classification is reused as precedent; no new screenshots were required for this docs-only task."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "accessibility",
+      "applicability": "required",
+      "evidence_type": "qa_design_routing",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md",
+      "result": "planned",
+      "limitations": "This task defines accessibility expectations and ownership only; downstream verification must supply runtime evidence.",
+      "accepted_risk": "none",
+      "downstream_owner": "accessibility verification task"
+    },
+    {
+      "gate": "visual",
+      "applicability": "required",
+      "evidence_type": "qa_design_routing",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md; output/playwright/mz406-capture.mjs",
+      "result": "planned",
+      "limitations": "The report routes required screenshot review but does not include fresh captures for this docs-only task.",
+      "accepted_risk": "none",
+      "downstream_owner": "visual regression / screenshot review"
+    },
+    {
+      "gate": "regression",
+      "applicability": "required",
+      "evidence_type": "qa_design_routing",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md; src/ui/render.test.ts; src/test/ruleFlow.integration.test.ts; src/test/us844Scoring.integration.test.ts",
+      "result": "planned",
+      "limitations": "This row identifies the required regression surfaces and ownership, not completed regression execution.",
+      "accepted_risk": "none",
+      "downstream_owner": "MZ-503 integration tests and component regression"
+    },
+    {
+      "gate": "release",
+      "applicability": "required",
+      "evidence_type": "qa_design_routing",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md",
+      "result": "planned",
+      "limitations": "Release-gate evidence will be produced by later verifier tasks after implementation and regression complete.",
+      "accepted_risk": "none",
+      "downstream_owner": "release gate verifier"
+    },
+    {
+      "gate": "presentation-client implementation",
+      "applicability": "required",
+      "evidence_type": "qa_design_routing",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md",
+      "result": "planned",
+      "limitations": "This task assigns implementation expectations only; it does not perform presentation-client changes.",
+      "accepted_risk": "none",
+      "downstream_owner": "MZ-502"
+    },
+    {
+      "gate": "security",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_classification",
+      "command_or_source": "PERSONAL-TASK-1161 scope and docs/test-design/us-845-desktop-table-states.md",
+      "result": "not_applicable",
+      "limitations": "Security review is out of scope because this task only defines local desktop UI QA scenarios and changes no production code.",
+      "accepted_risk": "none",
+      "downstream_owner": "none"
+    }
+  ]
+}

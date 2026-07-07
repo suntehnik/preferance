@@ -1,0 +1,177 @@
+{
+  "task_id": "PERSONAL-TASK-1157",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Verified US-844 score/results accessibility for the current score panel, deal-result panel, and final-result panel. Spexus current_context was read before task and epic hierarchy access. Dependency reports PERSONAL-TASK-1153 through PERSONAL-TASK-1156 were present and successful. Source and DOM tests show the score display uses labeled score sections with explicit bullet, mountain, and mutual-whist text; deal and final result panels use labeled regions, headings, structured tables/lists, and understandable result copy; native button controls remain keyboard reachable in active states; and finished bullets expose no settle/next-deal continuation controls. Focused verification and the release gate passed.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1157/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "accessibility_review",
+      "evidence": "3 test files passed, 28 tests passed. Covered score panel labels/content, result panel structure/content, legal action controls, discard button/toggle labels, keyboard-order-sensitive resume flow, and finished-state absence of continuation controls."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest: 13 files and 125 tests passed. Build: tsc and vite build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "US-844 accessibility review for score table, deal result, final result, and interactive control presence/focus order using existing project verification entrypoints",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1157",
+      "epic_hierarchy_read": "PERSONAL-EP-180",
+      "us_reference_id": "PERSONAL-US-844"
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1153/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1154/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1155/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1156/attempt-1.json"
+    ],
+    "source_files_reviewed": [
+      "src/ui/render.ts",
+      "src/styles.css",
+      "src/ui/render.test.ts",
+      "src/ui/controller.test.ts",
+      "src/test/us844Scoring.integration.test.ts"
+    ],
+    "visual_artifacts_reviewed": [
+      "output/playwright/mz-403-game.png",
+      "output/playwright/mz-403-settlement.png",
+      "output/playwright/mz-403-final.png",
+      "output/playwright/mz403-settlement.js",
+      "output/playwright/mz403-final.js"
+    ],
+    "notes": "No production code was changed. Verification used source inspection, existing DOM/component/integration tests, and the repo release gate. No external accessibility scanner exists in the project entrypoints, so the review stayed within existing tests/source and listed visual artifacts."
+  },
+  "quality_gate_matrix": [
+    {
+      "gate": "score display semantics/readability",
+      "applicability": "applicable_required",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts scoreboardMarkup; src/styles.css score-panel/score-list rules; src/ui/render.test.ts compact score panel test; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "limitations": "The compact score display is built from labeled sections and definition lists rather than one native table; this is acceptable for readability and accessible names but is not literal table semantics.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "deal result announcement/heading structure",
+      "applicability": "applicable_required",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts renderDealResultPanel; src/ui/render.test.ts structured deal result details test; src/test/us844Scoring.integration.test.ts settlement scenario; output/playwright/mz403-settlement.js; output/playwright/mz-403-settlement.png",
+      "result": "passed",
+      "limitations": "The panel is exposed as a labeled section with h2/h3 structure and native score-change table, but there is no live-region announcement for dynamic updates.",
+      "accepted_risk": "No live-region risk accepted for this static render flow because the task requirement is understandable result structure and existing tests verify the rendered state after transition."
+    },
+    {
+      "gate": "final result announcement/ranking structure",
+      "applicability": "applicable_required",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts renderFinalResultPanel; src/ui/render.test.ts finished-state final settlement/ranking test; src/test/us844Scoring.integration.test.ts completed bullet scenario; output/playwright/mz403-final.js; output/playwright/mz-403-final.png",
+      "result": "passed",
+      "limitations": "The final result is a labeled section with h2/h3 structure and an ordered ranking list, but not an aria-live announcement.",
+      "accepted_risk": "No blocking risk; finished state is rendered as the primary current state and contains understandable text plus no continuation controls."
+    },
+    {
+      "gate": "keyboard/focus/order for interactive controls",
+      "applicability": "applicable_required",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts renderActions/actionButton/humanCards/setupDiscardSelection; src/styles.css focus-visible rules; src/ui/render.test.ts legal controls, labels, card enablement, finished-state tests; src/ui/controller.test.ts resume keyboard order test",
+      "result": "passed",
+      "limitations": "Focus order is verified by DOM order and native button behavior; no browser tab-walk automation was added because the task required existing project entrypoints only.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression/release check",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Local deterministic test/build evidence for a static browser app; no backend/live API applies.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security not applicable",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1157 scope; PERSONAL-EP-180 static app scope; src/ui/render.ts; src/styles.css",
+      "result": "passed",
+      "limitations": "This verification covers local UI rendering and tests only; no auth, backend, network, or sensitive data path is involved.",
+      "accepted_risk": "none"
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1760",
+      "scenario": "The current score display exposes bullet, mountain, and mutual whist values for all three players with readable labels.",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts scoreboardMarkup; src/ui/render.test.ts renders a compact visible score panel with bullet, mountain, and mutual whists for every player; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "DOM/source review and jsdom assertions; no external screen reader transcript."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1761",
+      "scenario": "Deal and bullet completion results are exposed to the UI as structured result panels with summaries, score changes, ranking, and final settlement text.",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts renderDealResultPanel/renderFinalResultPanel; src/test/us844Scoring.integration.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "In-process renderer/integration coverage, not a full browser assistive-technology audit."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2426",
+      "scenario": "Given a deal completes, when the result is settled, the score table shows updated bullet, mountain, and mutual whist values for all players and the deal result has understandable score-change details.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us844Scoring.integration.test.ts settles a deal into next-deal score totals and keeps the updated score/result UI in sync; src/ui/render.test.ts structured deal result details test",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Assertions validate rendered DOM text and control presence in jsdom; visual artifacts were reviewed as supporting evidence only."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2427",
+      "scenario": "Given the bullet target is reached, final ranking/result summary is shown and accidental continuation is prevented by absence of continuation controls.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us844Scoring.integration.test.ts renders the completed bullet final result without any continuation control after settleDeal; src/ui/render.test.ts renders no human action controls once the bullet is finished; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Continuation prevention is verified through rendered action absence and release tests, not manual keyboard tab capture."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-405 accessibility contract",
+      "scenario": "Interactive controls remain native buttons with accessible names; discard toggles communicate selected state; finished state has no settle or next-deal controls.",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts actionButton/humanCards/renderContractActions/setupDiscardSelection; src/ui/render.test.ts labels discard card toggles, provides accessible names, legal actions only, finished state no controls",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Keyboard reachability is inferred from native button elements plus DOM order and enabled/disabled state assertions."
+    }
+  ],
+  "downstream_notes": [
+    "The score panel intentionally uses compact labeled sections and definition lists instead of a wide native table to avoid the clipping risk identified in MZ-403. If a future requirement insists on literal table semantics for the score panel, that should be a targeted UI follow-up rather than a blocker for current readability/accessibility.",
+    "No project accessibility scanner or browser tab-walk command exists in package scripts. This review therefore used the existing DOM/component/integration tests and source inspection as the smallest reliable project entrypoints."
+  ]
+}

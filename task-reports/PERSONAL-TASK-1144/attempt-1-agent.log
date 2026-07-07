@@ -1,0 +1,50 @@
+Verification task PERSONAL-TASK-1144 / MZ-206 for epic PERSONAL-EP-180.
+
+Mandatory Spexus context:
+- Called mcp__spexus.current_context before reading Spexus artifacts.
+- Read PERSONAL-TASK-1144 with mcp__spexus.get_task.
+
+Local context reviewed:
+- src/ui/render.ts
+- src/styles.css
+- src/test/ruleFlow.integration.test.ts
+- docs/test-design/us-842-rule-phases.md
+- task-reports/PERSONAL-TASK-1141/attempt-1.json
+- task-reports/PERSONAL-TASK-1142/attempt-1.json
+- task-reports/PERSONAL-TASK-1143/attempt-1.json
+
+Work performed:
+- Added deterministic Vite fixture host at task-reports/PERSONAL-TASK-1144/phase-fixtures.html.
+- Added deterministic fixture states at task-reports/PERSONAL-TASK-1144/phase-fixtures.ts. The fixture imports production src/ui/render.ts and src/styles.css and selects states with ?fixture=...
+- Started Vite with npm run dev at http://127.0.0.1:5331/. Initial sandboxed start failed with EPERM on 127.0.0.1:5331, so the command was rerun with approved escalation.
+- Captured real browser screenshots with the Codex in-app browser at a 1280x800 viewport for bidding, whist, contract-play, all-pass, misere, deal-settlement, and next-deal.
+- Saved screenshots under task-reports/PERSONAL-TASK-1144/screenshots/.
+- Ran browser DOM diagnostics for nonblank content, viewport dimensions, visible action controls/cards, current state messages, text overflow, and text overlap.
+- Manually reviewed the saved screenshots. No blank screens, obvious clipping, or incoherent overlap were observed.
+- Ran file checks on screenshot artifacts and npm run verify.
+
+Screenshot files:
+- task-reports/PERSONAL-TASK-1144/screenshots/01-bidding.jpg
+- task-reports/PERSONAL-TASK-1144/screenshots/02-whist-decision.jpg
+- task-reports/PERSONAL-TASK-1144/screenshots/03-contract-play.jpg
+- task-reports/PERSONAL-TASK-1144/screenshots/04-all-pass.jpg
+- task-reports/PERSONAL-TASK-1144/screenshots/05-misere.jpg
+- task-reports/PERSONAL-TASK-1144/screenshots/06-deal-settlement.jpg
+- task-reports/PERSONAL-TASK-1144/screenshots/07-next-deal.jpg
+
+Verification commands:
+- npm run dev
+- Browser screenshot capture through http://127.0.0.1:5331/task-reports/PERSONAL-TASK-1144/phase-fixtures.html?fixture=...
+- file task-reports/PERSONAL-TASK-1144/screenshots/*.jpg
+- npm run verify
+
+Results:
+- Screenshots captured at 1280x800 with nonzero file sizes.
+- Browser diagnostics: zero overflow items and zero overlap pairs across the seven fixtures.
+- npm run verify passed 11 Vitest files / 101 tests, then tsc and vite build succeeded.
+
+Notes:
+- The production state model uses phase=play for contract, all-pass, and misere play. The all-pass and misere screenshots identify the deal family through deterministic log context while retaining the production footer phase label.
+- No production UI code was changed.
+- Risks: none.
+- Failure type: not_applicable.

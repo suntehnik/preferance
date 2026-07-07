@@ -1,0 +1,8 @@
+Herschel release gate review:
+- No blocking findings.
+- Accepted REQ-1752 / AC-2420 via controller tests, start/resume integration tests, and release report evidence.
+- Accepted REQ-1753 / AC-2421 via regression/jsdom integration plus accessibility and visual evidence.
+- Accepted REQ-1754 / AC-2421 via migration/compatibility evidence.
+- Confirmed contract_or_unit/regression evidence is appropriate because scope is local frontend/localStorage with no backend.
+- Low non-blocking process nit: orchestrator-log needed cleanup for last_completed_task/current phase.
+- Accepted MZ-109.

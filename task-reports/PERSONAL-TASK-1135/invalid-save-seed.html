@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Invalid save seed</title>
+  </head>
+  <body>
+    <script>
+      localStorage.setItem('marriage.save.v1', '{bad json');
+      location.replace('/');
+    </script>
+  </body>
+</html>

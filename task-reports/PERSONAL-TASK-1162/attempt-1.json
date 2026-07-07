@@ -1,0 +1,163 @@
+{
+  "task_id": "PERSONAL-TASK-1162",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Implemented the desktop table state polish in the presentation-client renderer so the live game surface exposes phase, active actor, contract context, declarer, trump when applicable, and current trick context inside the existing desktop rail without changing domain legality or scoring behavior. Added focused renderer coverage for contract-family, contract-play, all-pass, and misere state visibility rules, while preserving the score/result surfaces from the US-844 dependency. The resulting UI keeps the first screen as a playable game surface and makes state comprehension clearer across bidding, contract, play, settlement, next-deal, and finished flows.",
+  "files_changed": [
+    "src/ui/render.ts",
+    "src/styles.css",
+    "src/ui/render.test.ts",
+    "task-reports/PERSONAL-TASK-1162/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts",
+      "result": "passed",
+      "evidence_type": "tdd_component",
+      "evidence": "20 renderer tests passed after adding the new state-context assertions for contract/order, whist, contract play, all-pass, and misere states."
+    },
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "focused_regression",
+      "evidence": "36 tests passed across renderer, controller shell behavior, rule-driven flow, and score/result integration."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest completed 13 files / 128 tests with 0 failures, then tsc and vite build completed successfully."
+    },
+    {
+      "command": "npm run dev",
+      "result": "passed",
+      "evidence_type": "live_surface_smoke",
+      "evidence": "The local Vite desktop app started successfully at http://127.0.0.1:5331/ for live UI inspection."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "presentation-client desktop state rendering, focused UI/integration regression, and full test/build verification",
+    "spexus_context": {
+      "current_context_read_before_artifacts": true,
+      "task_read": "PERSONAL-TASK-1162",
+      "epic_hierarchy_read": "PERSONAL-EP-180",
+      "component_key": "default",
+      "project_key": "PERSONAL"
+    },
+    "dependency_inputs_reviewed": [
+      "docs/test-design/us-845-desktop-table-states.md",
+      "task-reports/PERSONAL-TASK-1161/attempt-1.json",
+      "docs/test-design/us-842-rule-phases.md",
+      "task-reports/PERSONAL-TASK-1146/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1155/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1160/attempt-1.json"
+    ],
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build",
+      "dev": "vite --host 127.0.0.1 --port 5331"
+    }
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1762",
+      "scenario": "Desktop table shows current phase, active actor, legal human actions, contract, trump when applicable, current trick, hands, score table, deal result, and final result.",
+      "evidence_type": "component_and_integration",
+      "command_or_source": "src/ui/render.ts; src/styles.css; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Fresh browser screenshot capture was not added in this task report; runtime evidence is the verified renderer DOM/CSS plus targeted and full automated test/build coverage."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "Desktop/laptop bidding, contract, whist, play, deal-result, and final-result states remain understandable and do not block normal play.",
+      "evidence_type": "component_and_regression",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md; src/ui/render.test.ts; src/ui/controller.test.ts; src/test/ruleFlow.integration.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "The acceptance evidence is centered on deterministic desktop state fixtures and integration transitions rather than a new scripted end-to-end desktop screenshot flow."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2429",
+      "scenario": "Deal-result visibility remains understandable and the player can proceed to the next deal unless the bullet is complete.",
+      "evidence_type": "score_result_regression",
+      "command_or_source": "src/ui/render.ts; src/ui/render.test.ts; src/test/us844Scoring.integration.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "This task relied on the accepted US-844 result surfaces and revalidated them through renderer and scoring integration coverage."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-501 design contract",
+      "scenario": "Desktop state families expose compact contract/trump/actor/trick context while suppressing misleading declarer or trump labels for all-pass and misere states.",
+      "evidence_type": "tdd_component",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts",
+      "result": "passed",
+      "limitations": "Coverage is representative rather than exhaustive for every phase permutation, but it explicitly exercises contract/order, whist, contract play, all-pass, and misere desktop contexts."
+    },
+    {
+      "req_or_ac_or_contract": "US-842 legality dependency",
+      "scenario": "UI legal-action projection continues to depend on upstream rule legality and phase transition contracts without changing rule behavior in this task.",
+      "evidence_type": "dependency_regression",
+      "command_or_source": "docs/test-design/us-842-rule-phases.md; task-reports/PERSONAL-TASK-1146/attempt-1.json; src/test/ruleFlow.integration.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "This task intentionally did not modify engine legality or scoring logic; continued validity depends on upstream rule coverage staying green."
+    },
+    {
+      "req_or_ac_or_contract": "US-844 score/result dependency",
+      "scenario": "Score table, deal result, and final result panels remain visible and readable while the new live-state context is layered into the existing desktop shell.",
+      "evidence_type": "dependency_regression",
+      "command_or_source": "task-reports/PERSONAL-TASK-1155/attempt-1.json; task-reports/PERSONAL-TASK-1160/attempt-1.json; src/ui/render.ts; src/ui/render.test.ts; src/test/us844Scoring.integration.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "The task reused the accepted US-844 surface shape and verified that the added state panel did not regress those result-oriented states."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "accessibility",
+      "applicability": "applicable_required",
+      "evidence_type": "component_semantics",
+      "command_or_source": "src/ui/render.ts; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts",
+      "result": "passed",
+      "limitations": "Evidence is based on labeled controls, readable state text, and semantic dt/dd sections in automated renderer assertions rather than a separate accessibility scanner.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "visual",
+      "applicability": "applicable_required",
+      "evidence_type": "desktop_surface_verification",
+      "command_or_source": "src/styles.css; src/ui/render.ts; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts; npm run dev",
+      "result": "passed",
+      "limitations": "Visual verification for this task is based on the live desktop app startup plus deterministic renderer/CSS evidence; no new screenshot-diff artifacts were added.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression_scope",
+      "applicability": "applicable_required",
+      "evidence_type": "focused_and_full_regression",
+      "command_or_source": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Regression verification is automated and deterministic for the specified table layout, action area, hand rendering, trick area, and score/result panel surfaces.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release_readiness",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "test_build_and_live_smoke",
+      "command_or_source": "npm run verify; npm run dev",
+      "result": "passed",
+      "limitations": "Release-readiness evidence is limited to local automated verification and live app startup in this worktree.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_classification",
+      "command_or_source": "PERSONAL-TASK-1162 scope; src/ui/render.ts; src/styles.css",
+      "result": "not_applicable",
+      "limitations": "This task is presentation-only and changes no network, auth, backend, or sensitive-data paths.",
+      "accepted_risk": "none"
+    }
+  ]
+}

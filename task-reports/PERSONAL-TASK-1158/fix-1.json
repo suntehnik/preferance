@@ -1,0 +1,64 @@
+{
+  "task_id": "PERSONAL-TASK-1158",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "fixed_pending_visual_rerun",
+  "summary": "Scoped the US-844 settlement-panel fix to the deal score-change presentation. The settlement result table now exposes semantic cell labels in markup and switches to a stacked row-card layout at narrower desktop/laptop widths so the before/delta/after values remain visible inside the central panel instead of clipping the right side. Domain scoring and result semantics were not changed. Requested automated tests and npm run verify passed. A fresh Playwright screenshot rerun could not be completed in this session because starting the local Vite server on 127.0.0.1:5331 was blocked by the sandbox and the escalation retry was rejected by the environment usage gate.",
+  "files_changed": [
+    "src/styles.css",
+    "src/ui/render.ts",
+    "src/ui/render.test.ts",
+    "task-reports/PERSONAL-TASK-1158/fix-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts",
+      "result": "passed",
+      "evidence_type": "targeted_regression",
+      "evidence": "18/18 tests passed, including the new settlement score-change cell-label regression test."
+    },
+    {
+      "command": "npm run test -- src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "targeted_regression",
+      "evidence": "11/11 tests passed."
+    },
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "requested_suite",
+      "evidence": "29/29 tests passed."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest: 13 files and 126 tests passed. Build: tsc and vite build completed successfully."
+    },
+    {
+      "command": "npm run dev",
+      "result": "blocked",
+      "evidence_type": "environment_limit",
+      "evidence": "Sandbox denied binding to 127.0.0.1:5331 with EPERM. Escalation retry was rejected by the environment usage gate before the server could start."
+    },
+    {
+      "command": "node output/playwright/mz406-capture.mjs",
+      "result": "not_run",
+      "evidence_type": "blocked_by_dev_server",
+      "evidence": "Not rerun because the required local dev server could not be started in this session."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "visual_rerun_status": "pending separate verifier rerun once localhost server start is permitted",
+    "notes": [
+      "Fix kept within preferred ownership files for settlement/result presentation.",
+      "No domain, scoring, or engine behavior was changed."
+    ]
+  },
+  "visual_artifacts": []
+}

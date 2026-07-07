@@ -1,0 +1,20 @@
+Implemented the focused MZ-505 fix and wrote the required report:
+task-reports/PERSONAL-TASK-1165/fix-2.json
+
+Changed:
+- src/ui/render.ts
+- src/styles.css
+- src/ui/render.test.ts
+- src/test/us845DesktopTable.integration.test.ts
+- output/playwright/mz505-capture.mjs
+- regenerated MZ-505 screenshots/results under output/playwright/
+
+Commands run:
+- npm run test -- src/ui/render.test.ts src/test/us845DesktopTable.integration.test.ts first failed as expected, then passed
+- npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts src/test/us845DesktopTable.integration.test.ts
+- npm run verify
+- npm run dev for Vite capture server, stopped afterward
+- MZ505_BASE_URL=http://127.0.0.1:5332/ node output/playwright/mz505-capture.mjs
+- jq validation of fix-2.json
+
+MZ-505 is ready for verifier attempt 3. Fresh metrics show contract actions now fit above the status frame at both 1280x800 and 1024x768, and the prior settlement/final laptop fix remains intact.

@@ -1,0 +1,20 @@
+Agent: Ramanujan (019f3681-3a47-7df2-98e2-45a9cfb46a3a)
+Task: PERSONAL-TASK-1161 / MZ-501 US-845 QA test design for desktop table states
+Attempt: 1
+Model: gpt-5.4
+Reasoning: medium
+
+Initial final message:
+Done. I added the QA design doc at docs/test-design/us-845-desktop-table-states.md and the task report at task-reports/PERSONAL-TASK-1161/attempt-1.json.
+
+The doc covers the desktop/laptop state matrix for bidding, contract order / pickup / discard, whist and ten-level check, contract play, all-pass, misere, settlement, next-deal, and final-result, with explicit traceability to PERSONAL-REQ-1762, PERSONAL-AC-2428, and PERSONAL-AC-2429. It also routes downstream ownership to MZ-502, MZ-503, accessibility, visual regression, component regression, and the release gate, while keeping mobile/tutorial/glossary out of scope and staying inside the existing Vitest/jsdom plus Playwright evidence model.
+
+Verification was minimal and clean: confirmed the markdown exists and is readable, and parsed the final JSON report successfully. No production source files were changed.
+
+Amendment requested by orchestrator:
+The report was substantively accepted, but each quality_gate_matrix row needed the strict limitations field.
+
+Amendment final message:
+Amended only task-reports/PERSONAL-TASK-1161/attempt-1.json to add limitations to every quality_gate_matrix row. Status, risks, and failure_type are unchanged.
+
+Validation passed: JSON parses cleanly.

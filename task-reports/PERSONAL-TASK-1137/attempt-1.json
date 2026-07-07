@@ -1,0 +1,136 @@
+{
+  "task_id": "PERSONAL-TASK-1137",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "Completed US-841 default-component regression verification across MZ-102 through MZ-107. Start/resume/persistence implementation matches the mapped requirements and acceptance criteria, full verification passes, required accessibility/visual/compatibility evidence exists, and no out-of-scope multi-save/backend/account/sync/mobile/tutorial behavior was introduced.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1137/attempt-1.json",
+    "task-reports/PERSONAL-TASK-1137/review-agent.log",
+    "task-reports/PERSONAL-TASK-1135/attempt-1.json",
+    "task-reports/PERSONAL-TASK-1135/review-agent.log",
+    "task-reports/PERSONAL-TASK-1135/invalid-save-seed.html",
+    "task-reports/PERSONAL-TASK-1135/screenshots/invalid-save-fallback-1280x800.png"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "details": "9 test files passed, 74 tests passed, production build passed"
+    },
+    {
+      "command": "rg \"multi-save|backend|mobile|tutorial|account|sync|server|fetch|XMLHttpRequest|indexedDB\" src docs/test-design task-reports -n",
+      "result": "passed",
+      "details": "No implementation scope creep in src; matches only out-of-scope notes and reports."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06"
+  },
+  "dependency_reports": {
+    "PERSONAL-TASK-1132": "task-reports/PERSONAL-TASK-1132/attempt-1.json",
+    "PERSONAL-TASK-1133": "task-reports/PERSONAL-TASK-1133/attempt-1.json",
+    "PERSONAL-TASK-1134": "task-reports/PERSONAL-TASK-1134/attempt-1.json",
+    "PERSONAL-TASK-1135": "task-reports/PERSONAL-TASK-1135/attempt-1.json",
+    "PERSONAL-TASK-1136": "task-reports/PERSONAL-TASK-1136/attempt-1.json"
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-AC-2420",
+      "scenario": "Player can start a new local bullet by selecting a supported size before first deal creation.",
+      "evidence_type": "regression_test",
+      "command_or_source": "src/ui/controller.test.ts, src/test/startResume.integration.test.ts, npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Local jsdom integration and browser visual evidence; no backend exists."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1753 / PERSONAL-AC-2421",
+      "scenario": "Valid unfinished saved bullet shows continue/start-new prompt and restores only after explicit continue.",
+      "evidence_type": "regression_test",
+      "command_or_source": "src/ui/controller.test.ts, src/test/startResume.integration.test.ts, MZ-105/MZ-106 reports",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Local browser visual evidence for desktop only as scoped by task."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1754 / PERSONAL-AC-2421",
+      "scenario": "Schema-1 localStorage active bullet is stable, restorable, validates bad data, and hides finished/completed bullets from resume.",
+      "evidence_type": "migration_verification",
+      "command_or_source": "src/persistence/saveStore.test.ts, src/test/startResume.integration.test.ts, MZ-107 report",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "LocalStorage only; no backend migration layer exists."
+    },
+    {
+      "req_or_ac_or_contract": "Owner scope",
+      "scenario": "No multi-save/backend/account/sync/mobile/tutorial scope slipped into implementation.",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "git diff --stat and rg scope-creep search",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Source review."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "accessibility-review",
+      "applicability": "applicable",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1134/attempt-1.json",
+      "result": "passed",
+      "limitations": "No axe dependency; native/browser/source evidence.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "visual-regression",
+      "applicability": "applicable",
+      "evidence_type": "visual_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1135/attempt-1.json",
+      "result": "passed",
+      "limitations": "Desktop/laptop viewport only, as scoped.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "compatibility",
+      "applicability": "applicable",
+      "evidence_type": "migration_verification",
+      "command_or_source": "task-reports/PERSONAL-TASK-1136/attempt-1.json",
+      "result": "passed",
+      "limitations": "LocalStorage schema only.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "component-regression",
+      "applicability": "applicable",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "No live backend or Playwright package exists in project.",
+      "accepted_risk": "None."
+    }
+  ],
+  "reviews": [
+    {
+      "reviewer": "Russell",
+      "result": "initial_review_found_p2_evidence_gap",
+      "findings": [
+        "MZ-106 missing invalid-save fallback visual evidence."
+      ],
+      "resolution": "Reopened MZ-106, captured invalid-save fallback screenshot/metrics, updated MZ-106 report, returned MZ-106 to Done."
+    },
+    {
+      "reviewer": "Russell re-review",
+      "result": "accepted",
+      "findings": [],
+      "summary": "Prior evidence gap resolved; MZ-108 accepted."
+    }
+  ]
+}

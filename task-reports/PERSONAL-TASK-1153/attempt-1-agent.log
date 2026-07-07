@@ -1,0 +1,19 @@
+Completed TASK PERSONAL-TASK-1153 / MZ-401.
+
+Artifacts:
+- docs/test-design/us-844-bullet-scoring.md
+- task-reports/PERSONAL-TASK-1153/attempt-1.json
+
+Created US-844 bullet scoring QA design with numeric executable scenarios for contract success/failure, misere success/failure, progressive all-pass, deal settlement, next-deal continuation, bullet completion, final result display expectations, and accessibility/visual applicability. Provisional whist/final-settlement rows are explicitly routed to later tasks because the exact formulas are not locked in PERSONAL-STD-063.
+
+Initial report listed the scoring-contract gap under risks. After orchestrator review, amended only attempt-1.json:
+- set risks to []
+- preserved the scoring-contract gap in downstream_notes and quality-gate disclosures
+
+Verification:
+- test -r docs/test-design/us-844-bullet-scoring.md
+- test -r task-reports/PERSONAL-TASK-1153/attempt-1.json
+- jq empty task-reports/PERSONAL-TASK-1153/attempt-1.json
+- sed -n '1,80p' docs/test-design/us-844-bullet-scoring.md
+
+Result: succeeded, failure_type=not_applicable, blocking risks=[].

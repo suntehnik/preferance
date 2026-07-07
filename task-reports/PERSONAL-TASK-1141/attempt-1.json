@@ -1,0 +1,64 @@
+{
+  "task_id": "PERSONAL-TASK-1141",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Bound the rendered human action surface to the rule engine so bidding, contract ordering, widow pickup, discard confirmation, whist decisions, play-card clicks, settlement, and next-deal continuation expose only legal actions. Removed the active-game new-deal bypass from the gameplay UI and suppressed clickable rule controls when the actor is AI.",
+  "files_changed": [
+    "src/ui/render.ts",
+    "src/ui/controller.test.ts",
+    "src/ui/render.test.ts",
+    "task-reports/PERSONAL-TASK-1141/attempt-1.json",
+    "task-reports/PERSONAL-TASK-1141/attempt-1-agent.log"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts",
+      "result": "failed before fix, then passed after fix",
+      "evidence": "Red run failed 8 assertions because rendered controls lacked legal-action identities, still showed the active-game bypass path, and discard confirmation was not rule-engine bound. Green run passed 12 render tests covering bidding, contract order, widow pickup, discard, whist, play, settlement, next-deal, finished, and AI actor states."
+    },
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts",
+      "result": "passed",
+      "evidence": "Focused UI/controller verification passed 21 tests, including the preserved US-841 start/resume flow and removal of the in-game new-deal bypass button."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence": "Vitest passed 10 files / 94 tests and the production build completed successfully with tsc and vite build."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    }
+  },
+  "evidence_matrix": [
+    {
+      "requirement": "PERSONAL-REQ-1755",
+      "scenario": "Fixed-profile whist and all-pass continuation controls",
+      "expected": "UI shows pass/whist/half-whist only where the profile allows them, shows check-only for ten-level games, and exposes only settle/next-deal actions for post-play continuation.",
+      "evidence": "src/ui/render.test.ts covers standard whist, ten-level check, and all-pass settlement/next-deal rendering via getLegalActions-backed action identities; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts passed.",
+      "status": "covered"
+    },
+    {
+      "requirement": "PERSONAL-REQ-1756",
+      "scenario": "Human action surface stays inside legal rule actions for every supported phase",
+      "expected": "Bidding, contract order, widow pickup, discard confirmation, misere play, contract play, settlement, and next-deal controls are a subset or projection of getLegalActions(state).",
+      "evidence": "src/ui/render.test.ts asserts rendered action keys against getLegalActions for bidding, contract order, widow pickup, contract play, misere play, settlement, next-deal, finished, and AI actor states; discard confirmation only emits a legal discardCards action after a legal pair is selected.",
+      "status": "covered"
+    },
+    {
+      "requirement": "PERSONAL-AC-2422",
+      "scenario": "UI legal action surface and invalid-control suppression",
+      "expected": "Invalid actions are not displayed as clickable controls, active gameplay does not expose a bypassing new-deal action, and AI-actor turns do not expose clickable human rule actions.",
+      "evidence": "src/ui/render.ts now omits the active-game data-new-game control, tags legal action buttons with stable identities, disables non-legal play cards, and suppresses clickable rule controls for AI actors; src/ui/controller.test.ts and src/ui/render.test.ts verify the behavior.",
+      "status": "covered"
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "task_id": "PERSONAL-TASK-1146",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "US-842 integration release gate passed. Spexus current_context was read before the task and epic hierarchy. All exact dependency reports listed in the verifier prompt were present, valid JSON, matched the expected task/epic ids, and reported succeeded status. Current source/test inspection plus npm run verify confirmed fixed Sochi profile rules, UI legal-action binding, US-scoped integration coverage, component verification, accessibility review, desktop visual evidence, localStorage compatibility, and release readiness are mutually consistent for this static frontend/domain app. AC-2422 and AC-2423 have passing evidence. No backend, live API, auth, scope, server persistence, route wiring, or intercepted browser evidence applies.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1146/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "regression_test",
+      "evidence": "Vitest passed 11 files / 101 tests, including src/test/ruleFlow.integration.test.ts, src/domain/engine.test.ts, src/ui/render.test.ts, src/ui/controller.test.ts, and src/persistence/saveStore.test.ts. TypeScript compilation and Vite production build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "build": "tsc && vite build",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1146",
+      "epic_hierarchy_read": "PERSONAL-EP-180"
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1139/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1140/attempt-2.json",
+      "task-reports/PERSONAL-TASK-1141/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1142/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1143/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1144/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1145/attempt-1.json"
+    ],
+    "backend_live_api_applicability": "not_applicable_static_vite_frontend_domain_app",
+    "notes": "No backend service, live API, authentication scope, middleware, route wiring, server persistence, database migration, or online multiplayer exists in the epic scope or source tree. Evidence is local domain/unit/integration/jsdom tests, source/report review, browser localStorage compatibility checks, and prior Vite-served desktop screenshot review."
+  },
+  "quality_gate_matrix": [
+    {
+      "gate": "dependency report integrity",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1139/attempt-1.json; task-reports/PERSONAL-TASK-1140/attempt-2.json; task-reports/PERSONAL-TASK-1141/attempt-1.json; task-reports/PERSONAL-TASK-1142/attempt-1.json; task-reports/PERSONAL-TASK-1143/attempt-1.json; task-reports/PERSONAL-TASK-1144/attempt-1.json; task-reports/PERSONAL-TASK-1145/attempt-1.json",
+      "result": "passed",
+      "limitations": "Report review is not counted alone for runtime behavior; it was supplemented by current source/test inspection and npm run verify.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "rule implementation",
+      "applicability": "applicable_critical",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run verify; src/domain/engine.ts; src/domain/rules.ts; src/domain/engine.test.ts; src/domain/rules.test.ts; src/test/ruleFlow.integration.test.ts",
+      "result": "passed",
+      "limitations": "Evidence covers the fixed Sochi MVP profile, not configurable agreement variants or exact DOS emulation.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "UI legal-action binding",
+      "applicability": "applicable_ui_facing",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run verify; src/ui/render.ts; src/ui/render.test.ts; src/ui/controller.test.ts; src/test/ruleFlow.integration.test.ts; task-reports/PERSONAL-TASK-1141/attempt-1.json",
+      "result": "passed",
+      "limitations": "UI projection is verified through jsdom renderer/controller tests and integration tests, not a manual end-to-end clickthrough of every phase.",
+      "accepted_risk": "No blocking risk; prior visual browser fixtures supplement jsdom coverage for desktop presentation."
+    },
+    {
+      "gate": "US-scoped integration tests",
+      "applicability": "applicable_critical",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run verify; src/test/ruleFlow.integration.test.ts; task-reports/PERSONAL-TASK-1142/attempt-1.json",
+      "result": "passed",
+      "limitations": "Local integration tests exercise domain state transitions and jsdom renderer projection. No backend/live API path exists for this app.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "component verification",
+      "applicability": "applicable_default_component",
+      "evidence_type": "regression_test",
+      "command_or_source": "task-reports/PERSONAL-TASK-1145/attempt-1.json; npm run verify",
+      "result": "passed",
+      "limitations": "Component verification is for the single active Spexus default component and static local frontend/domain code.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable_critical_supported_rule_phases_end_to_end",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "The suite includes deterministic rule-flow integration and unit coverage, but not a full manual browser bullet playthrough. Full-bullet smoke breadth is also covered by adjacent US-846 scope.",
+      "accepted_risk": "No blocking US-842 regression risk remains."
+    },
+    {
+      "gate": "accessibility",
+      "applicability": "applicable_ui_facing_legal_actions",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1143/attempt-1.json; npm run verify; src/ui/render.test.ts; src/styles.css",
+      "result": "passed",
+      "limitations": "Evidence is source/jsdom review for native buttons, accessible labels, aria-pressed discard state, focus-visible styling, non-color-only affordance, and suppression of AI/finished controls. No external screen-reader session was run.",
+      "accepted_risk": "No blocking accessibility risk remains for the desktop-first MVP gate."
+    },
+    {
+      "gate": "visual",
+      "applicability": "applicable_desktop_first_ui_states",
+      "evidence_type": "visual_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1144/attempt-1.json; task-reports/PERSONAL-TASK-1144/screenshots/; task-reports/PERSONAL-TASK-1144/screenshot-manifest.json",
+      "result": "passed",
+      "limitations": "Prior visual evidence covers deterministic 1280x800 desktop fixtures for bidding, whist decision, contract play, all-pass, misere, deal-settlement, and next-deal. Full mobile adaptation is explicitly out of MVP scope.",
+      "accepted_risk": "Desktop-first visual coverage is acceptable for this release scope."
+    },
+    {
+      "gate": "migration/compatibility",
+      "applicability": "applicable_browser_localStorage_state_compatibility",
+      "evidence_type": "migration_verification",
+      "command_or_source": "task-reports/PERSONAL-TASK-1140/attempt-2.json; npm run verify; src/persistence/saveStore.test.ts",
+      "result": "passed",
+      "limitations": "Compatibility evidence is for browser localStorage schema/state migration only. No database, DTO/API compatibility, seeded data, or rollback migration path exists.",
+      "accepted_risk": "Legacy pre-rule-engine saves without bulletTarget default to bulletTarget 10 because the old payload did not carry that field; accepted as non-blocking in PERSONAL-TASK-1140."
+    },
+    {
+      "gate": "security",
+      "applicability": "not_applicable",
+      "evidence_type": "security_review",
+      "command_or_source": "PERSONAL-EP-180 scope; package.json; source inspection for network/API/auth usage",
+      "result": "passed",
+      "limitations": "The app has no server, accounts, online multiplayer, authorization, tenant/project scope, live API mutation path, sensitive data flow, or backend validation surface.",
+      "accepted_risk": "No security gate applies beyond local static-app behavior."
+    },
+    {
+      "gate": "observability",
+      "applicability": "not_applicable_for_static_local_mvp",
+      "evidence_type": "observability_check",
+      "command_or_source": "PERSONAL-EP-180 desktop-first static browser scope; source inspection",
+      "result": "passed",
+      "limitations": "No production logging, metrics, tracing, backend operators, or service health surface is in MVP scope.",
+      "accepted_risk": "No observability requirement applies to this local static rules-engine release gate."
+    },
+    {
+      "gate": "release-readiness",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run verify; dependency reports PERSONAL-TASK-1139 through PERSONAL-TASK-1145; Spexus PERSONAL-US-842 hierarchy",
+      "result": "passed",
+      "limitations": "No feature flag, server rollback, or live deployment smoke path exists for the static local MVP. Release readiness is based on green project verify, current source/test consistency, dependency evidence, and documented scope limits.",
+      "accepted_risk": "Static app release has no server rollback path; green production build is acceptable for this component release gate."
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-STD-063",
+      "scenario": "Fixed Sochi MVP profile decisions trace to reverse-engineering evidence and explicit product interpretation",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "Spexus epic hierarchy for PERSONAL-EP-180; docs/test-design/us-842-rule-phases.md; task-reports/PERSONAL-TASK-1139/attempt-1.json; task-reports/PERSONAL-TASK-1145/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "The release target is classic Sochi preference under the fixed MVP agreement profile, not exact DOS emulation."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1755",
+      "scenario": "Enforce fixed agreement profile: six spades does not require mandatory whist, ten-level games are checked, whist is half-responsible, all-pass scoring is progressive, and all-pass exits by a six-level game",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run verify; src/domain/engine.test.ts; src/test/ruleFlow.integration.test.ts; src/domain/scoring.test.ts; task-reports/PERSONAL-TASK-1140/attempt-2.json; task-reports/PERSONAL-TASK-1142/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Local deterministic integration/unit tests prove the fixed MVP profile; no backend or live path applies."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1756",
+      "scenario": "Supported phases end to end: bidding, all-pass, contract ordering, widow pickup, discard, whist/check/half-whist/pass, trick play, misere, deal settlement, next-deal transition, and bullet completion",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run verify; src/test/ruleFlow.integration.test.ts; src/domain/engine.test.ts; src/ui/render.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Evidence uses representative deterministic local flows plus broader unit coverage. Full mobile adaptation and exact original AI reconstruction are out of US-842 scope."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1757",
+      "scenario": "When a third card completes a trick, determine trick winner, update trick counts, clear current trick, and assign next lead to the trick winner",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run verify; src/test/ruleFlow.integration.test.ts; src/domain/engine.test.ts; src/domain/engine.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Trick winner evidence is deterministic local rules-engine execution with fixed card fixtures."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2422",
+      "scenario": "Given any supported game phase, when the player attempts to act, the UI exposes only legal actions for the fixed Sochi MVP profile",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run verify; src/test/ruleFlow.integration.test.ts; src/ui/render.test.ts; src/ui/controller.test.ts; task-reports/PERSONAL-TASK-1141/attempt-1.json; task-reports/PERSONAL-TASK-1143/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Legal-action binding is verified through getLegalActions/applyAction plus jsdom renderer/controller tests and prior desktop screenshots, not through a live backend/browser API path."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2423",
+      "scenario": "Given three cards have been played to a trick, the rules engine records the trick winner, updates trick counts, clears the trick, and makes the winner the next leader",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run verify; src/test/ruleFlow.integration.test.ts; src/domain/engine.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Covered by local deterministic state assertions; no network/live runtime applies."
+    },
+    {
+      "req_or_ac_or_contract": "Evidence Integrity Contract",
+      "scenario": "Classify mocked, backend, auth, scope, persistence, route wiring, and live-browser applicability for this local frontend/domain app",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "PERSONAL-EP-180 scope; package.json; rg source inspection for fetch/page.route/route.fulfill/MSW; task-reports/PERSONAL-TASK-1144/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "No backend, live API, auth, scope headers, server persistence, route wiring, page.route interception, route.fulfill, MSW, fetch, or XMLHttpRequest usage was found in the app source. Prior visual evidence used Vite-served fixtures importing production renderer/styles and is accepted only as visual_review, not backend/live evidence."
+    },
+    {
+      "req_or_ac_or_contract": "Release gate MZ-208",
+      "scenario": "Confirm rule implementation, UI binding, integration tests, component verification, accessibility, visual checks, compatibility, regression, and release readiness are complete and mutually consistent",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run verify; all listed dependency reports; current source/test inspection",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Release readiness is scoped to the static Vite/web build and localStorage MVP. No server deployment smoke, rollback, auth, or database migration gate applies."
+    }
+  ]
+}

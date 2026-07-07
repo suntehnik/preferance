@@ -1,0 +1,4740 @@
+[
+  {
+    "state": "bidding",
+    "viewport": "desktop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-bidding-desktop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1280,
+      "height": 800
+    },
+    "documentScrollWidth": 1280,
+    "documentScrollHeight": 800,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 547.81,
+          "y": 23.59,
+          "width": 184.36,
+          "height": 34.56,
+          "right": 732.17,
+          "bottom": 58.16
+        },
+        "scrollWidth": 184,
+        "clientWidth": 184,
+        "scrollHeight": 39,
+        "clientHeight": 35
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 23.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 226.05,
+          "right": 260.41,
+          "bottom": 341.58
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 1019.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 151.19,
+          "right": 1256.41,
+          "bottom": 266.72
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Торговля\n              \n            "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 1019.59,
+          "y": 306.72,
+          "width": 236.81,
+          "height": 256.38,
+          "right": 1256.41,
+          "bottom": 563.09
+        },
+        "text": "ПасМизерСтавка6♠6♣6♦6♥7♠7♣7♦7♥8♠8♣8♦8♥9♠9♣9♦9♥10♠10♣10♦10♥"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 288.63,
+          "y": 103.94,
+          "width": 702.75,
+          "height": 634.69,
+          "right": 991.38,
+          "bottom": 738.63
+        },
+        "text": "Торговля\n      \n    \n          \n    \n      \n      7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    "
+      },
+      {
+        "selector": ".human-hand",
+        "rect": {
+          "x": 307.02,
+          "y": 624.13,
+          "width": 665.97,
+          "height": 96.11,
+          "right": 972.98,
+          "bottom": 720.23
+        },
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    \n      \n      7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n     "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 307.02,
+          "y": 232.83,
+          "width": 665.97,
+          "height": 376.91,
+          "right": 972.98,
+          "bottom": 609.73
+        },
+        "text": "Торговля"
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 12,
+          "y": 749.81,
+          "width": 1256,
+          "height": 38.19,
+          "right": 1268,
+          "bottom": 788
+        },
+        "text": "Фаза: bidding · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".human-hand",
+        "width": 665.96,
+        "height": 96.10000000000002
+      },
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 665.96,
+        "height": 376.9
+      }
+    ],
+    "buttons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 497.31,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 563.86,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 570.25,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 636.8,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 643.19,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 709.73,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "K\n      ♦\n      ♦♦\n      \n        K\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 716.13,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 782.67,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "Пас",
+        "actionKey": "pass",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 306.72,
+          "width": 114.41,
+          "height": 38.39,
+          "right": 1134,
+          "bottom": 345.11
+        }
+      },
+      {
+        "text": "Мизер",
+        "actionKey": "bidMisere",
+        "disabled": false,
+        "rect": {
+          "x": 1142,
+          "y": 306.72,
+          "width": 114.41,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 345.11
+        }
+      },
+      {
+        "text": "6♠",
+        "actionKey": "bidGame:6-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 375.11,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 407.91
+        }
+      },
+      {
+        "text": "6♣",
+        "actionKey": "bidGame:6-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 375.11,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 407.91
+        }
+      },
+      {
+        "text": "6♦",
+        "actionKey": "bidGame:6-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 375.11,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 407.91
+        }
+      },
+      {
+        "text": "6♥",
+        "actionKey": "bidGame:6-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 375.11,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 407.91
+        }
+      },
+      {
+        "text": "7♠",
+        "actionKey": "bidGame:7-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 413.91,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 446.7
+        }
+      },
+      {
+        "text": "7♣",
+        "actionKey": "bidGame:7-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 413.91,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 446.7
+        }
+      },
+      {
+        "text": "7♦",
+        "actionKey": "bidGame:7-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 413.91,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 446.7
+        }
+      },
+      {
+        "text": "7♥",
+        "actionKey": "bidGame:7-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 413.91,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 446.7
+        }
+      },
+      {
+        "text": "8♠",
+        "actionKey": "bidGame:8-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 452.7,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 485.5
+        }
+      },
+      {
+        "text": "8♣",
+        "actionKey": "bidGame:8-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 452.7,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 485.5
+        }
+      },
+      {
+        "text": "8♦",
+        "actionKey": "bidGame:8-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 452.7,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 485.5
+        }
+      },
+      {
+        "text": "8♥",
+        "actionKey": "bidGame:8-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 452.7,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 485.5
+        }
+      },
+      {
+        "text": "9♠",
+        "actionKey": "bidGame:9-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 491.5,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 524.3
+        }
+      },
+      {
+        "text": "9♣",
+        "actionKey": "bidGame:9-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 491.5,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 524.3
+        }
+      },
+      {
+        "text": "9♦",
+        "actionKey": "bidGame:9-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 491.5,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 524.3
+        }
+      },
+      {
+        "text": "9♥",
+        "actionKey": "bidGame:9-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 491.5,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 524.3
+        }
+      },
+      {
+        "text": "10♠",
+        "actionKey": "bidGame:10-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 530.3,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 563.09
+        }
+      },
+      {
+        "text": "10♣",
+        "actionKey": "bidGame:10-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 530.3,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 563.09
+        }
+      },
+      {
+        "text": "10♦",
+        "actionKey": "bidGame:10-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 530.3,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 563.09
+        }
+      },
+      {
+        "text": "10♥",
+        "actionKey": "bidGame:10-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 530.3,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 563.09
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 497.31,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 563.86,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 570.25,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 636.8,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 643.19,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 709.73,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "K\n      ♦\n      ♦♦\n      \n        K\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 716.13,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 782.67,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "Пас",
+        "actionKey": "pass",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 306.72,
+          "width": 114.41,
+          "height": 38.39,
+          "right": 1134,
+          "bottom": 345.11
+        }
+      },
+      {
+        "text": "Мизер",
+        "actionKey": "bidMisere",
+        "disabled": false,
+        "rect": {
+          "x": 1142,
+          "y": 306.72,
+          "width": 114.41,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 345.11
+        }
+      },
+      {
+        "text": "6♠",
+        "actionKey": "bidGame:6-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 375.11,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 407.91
+        }
+      },
+      {
+        "text": "6♣",
+        "actionKey": "bidGame:6-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 375.11,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 407.91
+        }
+      },
+      {
+        "text": "6♦",
+        "actionKey": "bidGame:6-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 375.11,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 407.91
+        }
+      },
+      {
+        "text": "6♥",
+        "actionKey": "bidGame:6-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 375.11,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 407.91
+        }
+      },
+      {
+        "text": "7♠",
+        "actionKey": "bidGame:7-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 413.91,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 446.7
+        }
+      },
+      {
+        "text": "7♣",
+        "actionKey": "bidGame:7-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 413.91,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 446.7
+        }
+      },
+      {
+        "text": "7♦",
+        "actionKey": "bidGame:7-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 413.91,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 446.7
+        }
+      },
+      {
+        "text": "7♥",
+        "actionKey": "bidGame:7-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 413.91,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 446.7
+        }
+      },
+      {
+        "text": "8♠",
+        "actionKey": "bidGame:8-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 452.7,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 485.5
+        }
+      },
+      {
+        "text": "8♣",
+        "actionKey": "bidGame:8-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 452.7,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 485.5
+        }
+      },
+      {
+        "text": "8♦",
+        "actionKey": "bidGame:8-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 452.7,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 485.5
+        }
+      },
+      {
+        "text": "8♥",
+        "actionKey": "bidGame:8-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 452.7,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 485.5
+        }
+      },
+      {
+        "text": "9♠",
+        "actionKey": "bidGame:9-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 491.5,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 524.3
+        }
+      },
+      {
+        "text": "9♣",
+        "actionKey": "bidGame:9-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 491.5,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 524.3
+        }
+      },
+      {
+        "text": "9♦",
+        "actionKey": "bidGame:9-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 491.5,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 524.3
+        }
+      },
+      {
+        "text": "9♥",
+        "actionKey": "bidGame:9-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 491.5,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 524.3
+        }
+      },
+      {
+        "text": "10♠",
+        "actionKey": "bidGame:10-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 530.3,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1074.3,
+          "bottom": 563.09
+        }
+      },
+      {
+        "text": "10♣",
+        "actionKey": "bidGame:10-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1080.3,
+          "y": 530.3,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1135,
+          "bottom": 563.09
+        }
+      },
+      {
+        "text": "10♦",
+        "actionKey": "bidGame:10-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1141,
+          "y": 530.3,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1195.7,
+          "bottom": 563.09
+        }
+      },
+      {
+        "text": "10♥",
+        "actionKey": "bidGame:10-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1201.7,
+          "y": 530.3,
+          "width": 54.7,
+          "height": 32.8,
+          "right": 1256.41,
+          "bottom": 563.09
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 23.59,
+      "y": 115.53,
+      "width": 236.81,
+      "height": 226.05,
+      "right": 260.41,
+      "bottom": 341.58
+    },
+    "resultPanelRect": null,
+    "actionAreaRect": {
+      "x": 1019.59,
+      "y": 306.72,
+      "width": 236.81,
+      "height": 256.38,
+      "right": 1256.41,
+      "bottom": 563.09
+    },
+    "humanHandRect": {
+      "x": 307.02,
+      "y": 624.13,
+      "width": 665.97,
+      "height": 96.11,
+      "right": 972.98,
+      "bottom": 720.23
+    },
+    "trickZoneRect": {
+      "x": 307.02,
+      "y": 232.83,
+      "width": 665.97,
+      "height": 376.91,
+      "right": 972.98,
+      "bottom": 609.73
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": false,
+    "hasLegalActionArea": true,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involved Торговля 7 ♣ ♣♣♣♣♣♣♣ 7 ♣ 7 ♠ ♠♠♠♠♠♠♠ 7 ♠ A ♥ ♥ A ♥ K ♦ ♦♦ K ♦ Состояние стола Фаза Торговля Игрок You Действия ПасМизерС"
+  },
+  {
+    "state": "contract",
+    "viewport": "desktop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-contract-desktop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1280,
+      "height": 800
+    },
+    "documentScrollWidth": 1280,
+    "documentScrollHeight": 800,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 547.81,
+          "y": 23.59,
+          "width": 184.36,
+          "height": 34.56,
+          "right": 732.17,
+          "bottom": 58.16
+        },
+        "scrollWidth": 184,
+        "clientWidth": 184,
+        "scrollHeight": 39,
+        "clientHeight": 35
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 23.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 226.05,
+          "right": 260.41,
+          "bottom": 341.58
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 1019.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 276.38,
+          "right": 1256.41,
+          "bottom": 391.91
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Заказ игры\n              \n          "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 1019.59,
+          "y": 431.91,
+          "width": 236.81,
+          "height": 149.17,
+          "right": 1256.41,
+          "bottom": 581.08
+        },
+        "text": "Заказ8♥9♠9♣9♦9♥10♠10♣10♦10♥"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 288.63,
+          "y": 103.94,
+          "width": 702.75,
+          "height": 634.69,
+          "right": 991.38,
+          "bottom": 738.63
+        },
+        "text": "8 червы\n    \n  \n          \n          \n          \n        \n          Закажите игру.\n        \n      \n          \n    \n     "
+      },
+      {
+        "selector": ".human-hand",
+        "rect": {
+          "x": 307.02,
+          "y": 618.13,
+          "width": 665.97,
+          "height": 102.11,
+          "right": 972.98,
+          "bottom": 720.23
+        },
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    \n      \n      7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n     "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 307.02,
+          "y": 232.83,
+          "width": 665.97,
+          "height": 370.91,
+          "right": 972.98,
+          "bottom": 603.73
+        },
+        "text": "Закажите игру."
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 12,
+          "y": 749.81,
+          "width": 1256,
+          "height": 38.19,
+          "right": 1268,
+          "bottom": 788
+        },
+        "text": "Фаза: contract · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".human-hand",
+        "width": 665.96,
+        "height": 102.10000000000002
+      },
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 665.96,
+        "height": 370.9
+      }
+    ],
+    "buttons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 497.31,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 563.86,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 570.25,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 636.8,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 643.19,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 709.73,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "K\n      ♦\n      ♦♦\n      \n        K\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 716.13,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 782.67,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "8♥",
+        "actionKey": "orderContract:8-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 453.91,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1094.53,
+          "bottom": 492.3
+        }
+      },
+      {
+        "text": "9♠",
+        "actionKey": "orderContract:9-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1100.53,
+          "y": 453.91,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1175.47,
+          "bottom": 492.3
+        }
+      },
+      {
+        "text": "9♣",
+        "actionKey": "orderContract:9-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1181.47,
+          "y": 453.91,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 492.3
+        }
+      },
+      {
+        "text": "9♦",
+        "actionKey": "orderContract:9-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 498.3,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1094.53,
+          "bottom": 536.69
+        }
+      },
+      {
+        "text": "9♥",
+        "actionKey": "orderContract:9-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1100.53,
+          "y": 498.3,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1175.47,
+          "bottom": 536.69
+        }
+      },
+      {
+        "text": "10♠",
+        "actionKey": "orderContract:10-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1181.47,
+          "y": 498.3,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 536.69
+        }
+      },
+      {
+        "text": "10♣",
+        "actionKey": "orderContract:10-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 542.69,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1094.53,
+          "bottom": 581.08
+        }
+      },
+      {
+        "text": "10♦",
+        "actionKey": "orderContract:10-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1100.53,
+          "y": 542.69,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1175.47,
+          "bottom": 581.08
+        }
+      },
+      {
+        "text": "10♥",
+        "actionKey": "orderContract:10-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1181.47,
+          "y": 542.69,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 581.08
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 497.31,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 563.86,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 570.25,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 636.8,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 643.19,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 709.73,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "K\n      ♦\n      ♦♦\n      \n        K\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 716.13,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 782.67,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "8♥",
+        "actionKey": "orderContract:8-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 453.91,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1094.53,
+          "bottom": 492.3
+        }
+      },
+      {
+        "text": "9♠",
+        "actionKey": "orderContract:9-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1100.53,
+          "y": 453.91,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1175.47,
+          "bottom": 492.3
+        }
+      },
+      {
+        "text": "9♣",
+        "actionKey": "orderContract:9-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1181.47,
+          "y": 453.91,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 492.3
+        }
+      },
+      {
+        "text": "9♦",
+        "actionKey": "orderContract:9-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 498.3,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1094.53,
+          "bottom": 536.69
+        }
+      },
+      {
+        "text": "9♥",
+        "actionKey": "orderContract:9-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1100.53,
+          "y": 498.3,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1175.47,
+          "bottom": 536.69
+        }
+      },
+      {
+        "text": "10♠",
+        "actionKey": "orderContract:10-spades",
+        "disabled": false,
+        "rect": {
+          "x": 1181.47,
+          "y": 498.3,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 536.69
+        }
+      },
+      {
+        "text": "10♣",
+        "actionKey": "orderContract:10-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 542.69,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1094.53,
+          "bottom": 581.08
+        }
+      },
+      {
+        "text": "10♦",
+        "actionKey": "orderContract:10-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 1100.53,
+          "y": 542.69,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1175.47,
+          "bottom": 581.08
+        }
+      },
+      {
+        "text": "10♥",
+        "actionKey": "orderContract:10-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 1181.47,
+          "y": 542.69,
+          "width": 74.94,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 581.08
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 23.59,
+      "y": 115.53,
+      "width": 236.81,
+      "height": 226.05,
+      "right": 260.41,
+      "bottom": 341.58
+    },
+    "resultPanelRect": null,
+    "actionAreaRect": {
+      "x": 1019.59,
+      "y": 431.91,
+      "width": 236.81,
+      "height": 149.17,
+      "right": 1256.41,
+      "bottom": 581.08
+    },
+    "humanHandRect": {
+      "x": 307.02,
+      "y": 618.13,
+      "width": 665.97,
+      "height": 102.11,
+      "right": 972.98,
+      "bottom": 720.23
+    },
+    "trickZoneRect": {
+      "x": 307.02,
+      "y": 232.83,
+      "width": 665.97,
+      "height": 370.91,
+      "right": 972.98,
+      "bottom": 603.73
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": false,
+    "hasLegalActionArea": true,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involved 8 червы Закажите игру. 7 ♣ ♣♣♣♣♣♣♣ 7 ♣ 7 ♠ ♠♠♠♠♠♠♠ 7 ♠ A ♥ ♥ A ♥ K ♦ ♦♦ K ♦ Состояние стола Фаза Заказ игры Игрок You Ко"
+  },
+  {
+    "state": "whist",
+    "viewport": "desktop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-whist-desktop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1280,
+      "height": 800
+    },
+    "documentScrollWidth": 1280,
+    "documentScrollHeight": 800,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 547.81,
+          "y": 23.59,
+          "width": 184.36,
+          "height": 34.56,
+          "right": 732.17,
+          "bottom": 58.16
+        },
+        "scrollWidth": 184,
+        "clientWidth": 184,
+        "scrollHeight": 39,
+        "clientHeight": 35
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 23.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 226.05,
+          "right": 260.41,
+          "bottom": 341.58
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 1019.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 276.38,
+          "right": 1256.41,
+          "bottom": 391.91
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Висты\n              \n            \n  "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 1019.59,
+          "y": 431.91,
+          "width": 236.81,
+          "height": 131.17,
+          "right": 1256.41,
+          "bottom": 563.08
+        },
+        "text": "ПасВистПолвиста"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 288.63,
+          "y": 103.94,
+          "width": 702.75,
+          "height": 634.69,
+          "right": 991.38,
+          "bottom": 738.63
+        },
+        "text": "8 червы\n    \n  \n          \n          \n          Решение по висту.\n          \n    \n      \n      7\n      ♣\n      ♣♣♣♣♣♣♣\n "
+      },
+      {
+        "selector": ".human-hand",
+        "rect": {
+          "x": 307.02,
+          "y": 618.13,
+          "width": 665.97,
+          "height": 102.11,
+          "right": 972.98,
+          "bottom": 720.23
+        },
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    \n      \n      9\n      ♦\n      ♦♦♦♦♦♦♦♦♦\n      \n   "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 307.02,
+          "y": 232.83,
+          "width": 665.97,
+          "height": 370.91,
+          "right": 972.98,
+          "bottom": 603.73
+        },
+        "text": "Решение по висту."
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 12,
+          "y": 749.81,
+          "width": 1256,
+          "height": 38.19,
+          "right": 1268,
+          "bottom": 788
+        },
+        "text": "Фаза: contract · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".human-hand",
+        "width": 665.96,
+        "height": 102.10000000000002
+      },
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 665.96,
+        "height": 370.9
+      }
+    ],
+    "buttons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 533.78,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 600.33,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "9\n      ♦\n      ♦♦♦♦♦♦♦♦♦\n      \n        9\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 606.72,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 673.27,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "J\n      ♠\n      ♠♠\n      \n        J\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 679.66,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 746.2,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "Пас",
+        "actionKey": "pass",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 431.91,
+          "width": 114.41,
+          "height": 38.39,
+          "right": 1134,
+          "bottom": 470.3
+        }
+      },
+      {
+        "text": "Вист",
+        "actionKey": "whist",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 478.3,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 516.69
+        }
+      },
+      {
+        "text": "Полвиста",
+        "actionKey": "halfWhist",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 524.69,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 563.08
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 533.78,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 600.33,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "9\n      ♦\n      ♦♦♦♦♦♦♦♦♦\n      \n        9\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 606.72,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 673.27,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "J\n      ♠\n      ♠♠\n      \n        J\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 679.66,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 746.2,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "Пас",
+        "actionKey": "pass",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 431.91,
+          "width": 114.41,
+          "height": 38.39,
+          "right": 1134,
+          "bottom": 470.3
+        }
+      },
+      {
+        "text": "Вист",
+        "actionKey": "whist",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 478.3,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 516.69
+        }
+      },
+      {
+        "text": "Полвиста",
+        "actionKey": "halfWhist",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 524.69,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 563.08
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 23.59,
+      "y": 115.53,
+      "width": 236.81,
+      "height": 226.05,
+      "right": 260.41,
+      "bottom": 341.58
+    },
+    "resultPanelRect": null,
+    "actionAreaRect": {
+      "x": 1019.59,
+      "y": 431.91,
+      "width": 236.81,
+      "height": 131.17,
+      "right": 1256.41,
+      "bottom": 563.08
+    },
+    "humanHandRect": {
+      "x": 307.02,
+      "y": 618.13,
+      "width": 665.97,
+      "height": 102.11,
+      "right": 972.98,
+      "bottom": 720.23
+    },
+    "trickZoneRect": {
+      "x": 307.02,
+      "y": 232.83,
+      "width": 665.97,
+      "height": 370.91,
+      "right": 972.98,
+      "bottom": 603.73
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": false,
+    "hasLegalActionArea": true,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involved 8 червы Решение по висту. 7 ♣ ♣♣♣♣♣♣♣ 7 ♣ 9 ♦ ♦♦♦♦♦♦♦♦♦ 9 ♦ J ♠ ♠♠ J ♠ Состояние стола Фаза Висты Игрок You Контракт 8 ч"
+  },
+  {
+    "state": "play",
+    "viewport": "desktop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-play-desktop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1280,
+      "height": 800
+    },
+    "documentScrollWidth": 1280,
+    "documentScrollHeight": 800,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 547.81,
+          "y": 23.59,
+          "width": 184.36,
+          "height": 34.56,
+          "right": 732.17,
+          "bottom": 58.16
+        },
+        "scrollWidth": 184,
+        "clientWidth": 184,
+        "scrollHeight": 39,
+        "clientHeight": 35
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 23.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 226.05,
+          "right": 260.41,
+          "bottom": 341.58
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 1019.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 423.16,
+          "right": 1256.41,
+          "bottom": 538.69
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Розыгрыш\n              \n            "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 1019.59,
+          "y": 578.69,
+          "width": 236.81,
+          "height": 0,
+          "right": 1256.41,
+          "bottom": 578.69
+        },
+        "text": ""
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 288.63,
+          "y": 103.94,
+          "width": 702.75,
+          "height": 634.69,
+          "right": 991.38,
+          "bottom": 738.63
+        },
+        "text": "6 пикиВистПас\n    \n  \n          \n          \n          \n    \n      \n      10\n      ♣\n      ♣♣♣♣♣♣♣♣♣♣\n      \n        10\n "
+      },
+      {
+        "selector": ".human-hand",
+        "rect": {
+          "x": 307.02,
+          "y": 624.13,
+          "width": 665.97,
+          "height": 96.11,
+          "right": 972.98,
+          "bottom": 720.23
+        },
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    \n      \n      7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n     "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 307.02,
+          "y": 232.83,
+          "width": 665.97,
+          "height": 376.91,
+          "right": 972.98,
+          "bottom": 609.73
+        },
+        "text": "10\n      ♣\n      ♣♣♣♣♣♣♣♣♣♣\n      \n        10\n        ♣\n      \n    \n  \n    \n      \n      A\n      ♣\n      ♣\n      \n      "
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 12,
+          "y": 749.81,
+          "width": 1256,
+          "height": 38.19,
+          "right": 1268,
+          "bottom": 788
+        },
+        "text": "Фаза: play · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".human-hand",
+        "width": 665.96,
+        "height": 96.10000000000002
+      },
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 665.96,
+        "height": 376.9
+      }
+    ],
+    "buttons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": false,
+        "rect": {
+          "x": 533.78,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 600.33,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 606.72,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 673.27,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 679.66,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 746.2,
+          "bottom": 720.23
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": false,
+        "rect": {
+          "x": 533.78,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 600.33,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 606.72,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 673.27,
+          "bottom": 720.23
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 679.66,
+          "y": 624.13,
+          "width": 66.55,
+          "height": 96.11,
+          "right": 746.2,
+          "bottom": 720.23
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 23.59,
+      "y": 115.53,
+      "width": 236.81,
+      "height": 226.05,
+      "right": 260.41,
+      "bottom": 341.58
+    },
+    "resultPanelRect": null,
+    "actionAreaRect": {
+      "x": 1019.59,
+      "y": 578.69,
+      "width": 236.81,
+      "height": 0,
+      "right": 1256.41,
+      "bottom": 578.69
+    },
+    "humanHandRect": {
+      "x": 307.02,
+      "y": 624.13,
+      "width": 665.97,
+      "height": 96.11,
+      "right": 972.98,
+      "bottom": 720.23
+    },
+    "trickZoneRect": {
+      "x": 307.02,
+      "y": 232.83,
+      "width": 665.97,
+      "height": 376.91,
+      "right": 972.98,
+      "bottom": 609.73
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": false,
+    "hasLegalActionArea": false,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involved 6 пикиВистПас 10 ♣ ♣♣♣♣♣♣♣♣♣♣ 10 ♣ A ♣ ♣ A ♣ Розыгрыш 7 ♣ ♣♣♣♣♣♣♣ 7 ♣ 7 ♠ ♠♠♠♠♠♠♠ 7 ♠ A ♥ ♥ A ♥ Состояние стола Фаза Роз"
+  },
+  {
+    "state": "settlement",
+    "viewport": "desktop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-settlement-desktop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1280,
+      "height": 800
+    },
+    "documentScrollWidth": 1280,
+    "documentScrollHeight": 800,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 547.81,
+          "y": 23.59,
+          "width": 184.36,
+          "height": 34.56,
+          "right": 732.17,
+          "bottom": 58.16
+        },
+        "scrollWidth": 184,
+        "clientWidth": 184,
+        "scrollHeight": 39,
+        "clientHeight": 35
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 23.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 226.05,
+          "right": 260.41,
+          "bottom": 341.58
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 1019.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 401.56,
+          "right": 1256.41,
+          "bottom": 517.09
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Расчет сдачи\n              \n        "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 1019.59,
+          "y": 557.09,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 595.48
+        },
+        "text": "Подсчитать"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 288.63,
+          "y": 103.94,
+          "width": 702.75,
+          "height": 634.69,
+          "right": 991.38,
+          "bottom": 738.63
+        },
+        "text": "8 червыВистПас\n    \n  \n          \n          \n          \n    \n      \n        Результат сдачи\n        Контракт выполнен\n  "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 303.81,
+          "y": 119.13,
+          "width": 672.38,
+          "height": 604.31,
+          "right": 976.19,
+          "bottom": 723.44
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 8 hearts for +6 bullet. Whists: P1 whist +12 vs P0.\n    "
+      },
+      {
+        "selector": "[data-result-panel]",
+        "rect": {
+          "x": 317,
+          "y": 132.31,
+          "width": 646,
+          "height": 476.17,
+          "right": 963,
+          "bottom": 608.48
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 8 hearts for +6 bullet. Whists: P1 whist +12 vs P0.\n    "
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 12,
+          "y": 749.81,
+          "width": 1256,
+          "height": 38.19,
+          "right": 1268,
+          "bottom": 788
+        },
+        "text": "Фаза: deal-settlement · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 672.3800000000001,
+        "height": 604.3100000000001
+      },
+      {
+        "a": ".card-table",
+        "b": "[data-result-panel]",
+        "width": 646,
+        "height": 476.17
+      },
+      {
+        "a": ".trick-zone",
+        "b": "[data-result-panel]",
+        "width": 646,
+        "height": 476.17
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Подсчитать",
+        "actionKey": "settleDeal",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 557.09,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 595.48
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "Подсчитать",
+        "actionKey": "settleDeal",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 557.09,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 595.48
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 23.59,
+      "y": 115.53,
+      "width": 236.81,
+      "height": 226.05,
+      "right": 260.41,
+      "bottom": 341.58
+    },
+    "resultPanelRect": {
+      "x": 317,
+      "y": 132.31,
+      "width": 646,
+      "height": 476.17,
+      "right": 963,
+      "bottom": 608.48
+    },
+    "actionAreaRect": {
+      "x": 1019.59,
+      "y": 557.09,
+      "width": 236.81,
+      "height": 38.39,
+      "right": 1256.41,
+      "bottom": 595.48
+    },
+    "humanHandRect": null,
+    "trickZoneRect": {
+      "x": 303.81,
+      "y": 119.13,
+      "width": 672.38,
+      "height": 604.31,
+      "right": 976.19,
+      "bottom": 723.44
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": true,
+    "hasLegalActionArea": true,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involvedVIMCOM plays king hearts 8 червыВистПас Результат сдачи Контракт выполнен Player 0 made 8 hearts for +6 bullet. Whists: P"
+  },
+  {
+    "state": "final",
+    "viewport": "desktop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-final-desktop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1280,
+      "height": 800
+    },
+    "documentScrollWidth": 1280,
+    "documentScrollHeight": 800,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 547.81,
+          "y": 23.59,
+          "width": 184.36,
+          "height": 34.56,
+          "right": 732.17,
+          "bottom": 58.16
+        },
+        "scrollWidth": 184,
+        "clientWidth": 184,
+        "scrollHeight": 39,
+        "clientHeight": 35
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 23.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 226.05,
+          "right": 260.41,
+          "bottom": 341.58
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 1019.59,
+          "y": 115.53,
+          "width": 236.81,
+          "height": 151.19,
+          "right": 1256.41,
+          "bottom": 266.72
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Следующая сдача\n              \n     "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 1019.59,
+          "y": 306.72,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 345.11
+        },
+        "text": "Следующая сдача"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 288.63,
+          "y": 103.94,
+          "width": 702.75,
+          "height": 634.69,
+          "right": 991.38,
+          "bottom": 738.63
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 6 spades for +2 bullet. Whists: P1 whist +4 vs P0.\n     "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 303.81,
+          "y": 119.13,
+          "width": 672.38,
+          "height": 604.31,
+          "right": 976.19,
+          "bottom": 723.44
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 6 spades for +2 bullet. Whists: P1 whist +4 vs P0.\n     "
+      },
+      {
+        "selector": "[data-result-panel]",
+        "rect": {
+          "x": 317,
+          "y": 132.31,
+          "width": 646,
+          "height": 453.78,
+          "right": 963,
+          "bottom": 586.09
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 6 spades for +2 bullet. Whists: P1 whist +4 vs P0.\n     "
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 12,
+          "y": 749.81,
+          "width": 1256,
+          "height": 38.19,
+          "right": 1268,
+          "bottom": 788
+        },
+        "text": "Фаза: next-deal · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 672.3800000000001,
+        "height": 604.3100000000001
+      },
+      {
+        "a": ".card-table",
+        "b": "[data-result-panel]",
+        "width": 646,
+        "height": 453.78000000000003
+      },
+      {
+        "a": ".trick-zone",
+        "b": "[data-result-panel]",
+        "width": 646,
+        "height": 453.78000000000003
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Следующая сдача",
+        "actionKey": "startNextDeal",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 306.72,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 345.11
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "Следующая сдача",
+        "actionKey": "startNextDeal",
+        "disabled": false,
+        "rect": {
+          "x": 1019.59,
+          "y": 306.72,
+          "width": 236.81,
+          "height": 38.39,
+          "right": 1256.41,
+          "bottom": 345.11
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 23.59,
+      "y": 115.53,
+      "width": 236.81,
+      "height": 226.05,
+      "right": 260.41,
+      "bottom": 341.58
+    },
+    "resultPanelRect": {
+      "x": 317,
+      "y": 132.31,
+      "width": 646,
+      "height": 453.78,
+      "right": 963,
+      "bottom": 586.09
+    },
+    "actionAreaRect": {
+      "x": 1019.59,
+      "y": 306.72,
+      "width": 236.81,
+      "height": 38.39,
+      "right": 1256.41,
+      "bottom": 345.11
+    },
+    "humanHandRect": null,
+    "trickZoneRect": {
+      "x": 303.81,
+      "y": 119.13,
+      "width": 672.38,
+      "height": 604.31,
+      "right": 976.19,
+      "bottom": 723.44
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": true,
+    "hasLegalActionArea": false,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .11 -2 Пуля. Цель 10. You: Пуля 11, Гора нет записей, Висты AF Computers нет записей, VIMCOM нет записей; AF Computers: Пуля нет записей, Гора нет записей, Висты You -2, VIMCOM нет записей; VIMCOM: Пуля нет записей, Гора нет записей, Висты You нет записей, AF Computers нет записей Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involvedPlayer 0 made 6 spades for +2 bullet. Whists: P1 whist +4 "
+  },
+  {
+    "viewport": "desktop",
+    "consoleMessages": [
+      {
+        "type": "debug",
+        "text": "[vite] connecting..."
+      },
+      {
+        "type": "debug",
+        "text": "[vite] connected."
+      }
+    ]
+  },
+  {
+    "state": "bidding",
+    "viewport": "laptop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-bidding-laptop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "documentScrollWidth": 1024,
+    "documentScrollHeight": 768,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 423.52,
+          "y": 22.72,
+          "width": 176.97,
+          "height": 33.17,
+          "right": 600.48,
+          "bottom": 55.89
+        },
+        "scrollWidth": 177,
+        "clientWidth": 177,
+        "scrollHeight": 37,
+        "clientHeight": 33
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 22.72,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 226.05,
+          "right": 260.31,
+          "bottom": 338.09
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 763.69,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 151.19,
+          "right": 1001.28,
+          "bottom": 263.23
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Торговля\n              \n            "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 763.69,
+          "y": 303.23,
+          "width": 237.59,
+          "height": 248.28,
+          "right": 1001.28,
+          "bottom": 551.52
+        },
+        "text": "ПасМизерСтавка6♠6♣6♦6♥7♠7♣7♦7♥8♠8♣8♦8♥9♠9♣9♦9♥10♠10♣10♦10♥"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 284.81,
+          "y": 100.84,
+          "width": 454.38,
+          "height": 607.48,
+          "right": 739.19,
+          "bottom": 708.33
+        },
+        "text": "Торговля\n      \n    \n          \n    \n      \n      7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    "
+      },
+      {
+        "selector": ".human-hand",
+        "rect": {
+          "x": 302.63,
+          "y": 613.63,
+          "width": 418.75,
+          "height": 76.89,
+          "right": 721.38,
+          "bottom": 690.52
+        },
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    \n      \n      7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n     "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 302.63,
+          "y": 209.36,
+          "width": 418.75,
+          "height": 390.45,
+          "right": 721.38,
+          "bottom": 599.81
+        },
+        "text": "Торговля"
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 11.52,
+          "y": 719.08,
+          "width": 1000.97,
+          "height": 37.41,
+          "right": 1012.48,
+          "bottom": 756.48
+        },
+        "text": "Фаза: bidding · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".human-hand",
+        "width": 418.75,
+        "height": 76.88999999999999
+      },
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 418.75,
+        "height": 390.44999999999993
+      }
+    ],
+    "buttons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 396.31,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 449.55,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 455.69,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 508.92,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 515.06,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 568.3,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "K\n      ♦\n      ♦♦\n      \n        K\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 574.44,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 627.67,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "Пас",
+        "actionKey": "pass",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 303.23,
+          "width": 114.8,
+          "height": 36.86,
+          "right": 878.48,
+          "bottom": 340.09
+        }
+      },
+      {
+        "text": "Мизер",
+        "actionKey": "bidMisere",
+        "disabled": false,
+        "rect": {
+          "x": 886.48,
+          "y": 303.23,
+          "width": 114.8,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 340.09
+        }
+      },
+      {
+        "text": "6♠",
+        "actionKey": "bidGame:6-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 370.09,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 401.58
+        }
+      },
+      {
+        "text": "6♣",
+        "actionKey": "bidGame:6-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 370.09,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 401.58
+        }
+      },
+      {
+        "text": "6♦",
+        "actionKey": "bidGame:6-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 370.09,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 401.58
+        }
+      },
+      {
+        "text": "6♥",
+        "actionKey": "bidGame:6-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 370.09,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 401.58
+        }
+      },
+      {
+        "text": "7♠",
+        "actionKey": "bidGame:7-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 407.58,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 439.06
+        }
+      },
+      {
+        "text": "7♣",
+        "actionKey": "bidGame:7-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 407.58,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 439.06
+        }
+      },
+      {
+        "text": "7♦",
+        "actionKey": "bidGame:7-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 407.58,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 439.06
+        }
+      },
+      {
+        "text": "7♥",
+        "actionKey": "bidGame:7-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 407.58,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 439.06
+        }
+      },
+      {
+        "text": "8♠",
+        "actionKey": "bidGame:8-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 445.06,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 476.55
+        }
+      },
+      {
+        "text": "8♣",
+        "actionKey": "bidGame:8-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 445.06,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 476.55
+        }
+      },
+      {
+        "text": "8♦",
+        "actionKey": "bidGame:8-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 445.06,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 476.55
+        }
+      },
+      {
+        "text": "8♥",
+        "actionKey": "bidGame:8-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 445.06,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 476.55
+        }
+      },
+      {
+        "text": "9♠",
+        "actionKey": "bidGame:9-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 482.55,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 514.03
+        }
+      },
+      {
+        "text": "9♣",
+        "actionKey": "bidGame:9-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 482.55,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 514.03
+        }
+      },
+      {
+        "text": "9♦",
+        "actionKey": "bidGame:9-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 482.55,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 514.03
+        }
+      },
+      {
+        "text": "9♥",
+        "actionKey": "bidGame:9-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 482.55,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 514.03
+        }
+      },
+      {
+        "text": "10♠",
+        "actionKey": "bidGame:10-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 520.03,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 551.52
+        }
+      },
+      {
+        "text": "10♣",
+        "actionKey": "bidGame:10-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 520.03,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 551.52
+        }
+      },
+      {
+        "text": "10♦",
+        "actionKey": "bidGame:10-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 520.03,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 551.52
+        }
+      },
+      {
+        "text": "10♥",
+        "actionKey": "bidGame:10-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 520.03,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 551.52
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 396.31,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 449.55,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 455.69,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 508.92,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 515.06,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 568.3,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "K\n      ♦\n      ♦♦\n      \n        K\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 574.44,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 627.67,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "Пас",
+        "actionKey": "pass",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 303.23,
+          "width": 114.8,
+          "height": 36.86,
+          "right": 878.48,
+          "bottom": 340.09
+        }
+      },
+      {
+        "text": "Мизер",
+        "actionKey": "bidMisere",
+        "disabled": false,
+        "rect": {
+          "x": 886.48,
+          "y": 303.23,
+          "width": 114.8,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 340.09
+        }
+      },
+      {
+        "text": "6♠",
+        "actionKey": "bidGame:6-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 370.09,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 401.58
+        }
+      },
+      {
+        "text": "6♣",
+        "actionKey": "bidGame:6-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 370.09,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 401.58
+        }
+      },
+      {
+        "text": "6♦",
+        "actionKey": "bidGame:6-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 370.09,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 401.58
+        }
+      },
+      {
+        "text": "6♥",
+        "actionKey": "bidGame:6-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 370.09,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 401.58
+        }
+      },
+      {
+        "text": "7♠",
+        "actionKey": "bidGame:7-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 407.58,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 439.06
+        }
+      },
+      {
+        "text": "7♣",
+        "actionKey": "bidGame:7-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 407.58,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 439.06
+        }
+      },
+      {
+        "text": "7♦",
+        "actionKey": "bidGame:7-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 407.58,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 439.06
+        }
+      },
+      {
+        "text": "7♥",
+        "actionKey": "bidGame:7-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 407.58,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 439.06
+        }
+      },
+      {
+        "text": "8♠",
+        "actionKey": "bidGame:8-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 445.06,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 476.55
+        }
+      },
+      {
+        "text": "8♣",
+        "actionKey": "bidGame:8-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 445.06,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 476.55
+        }
+      },
+      {
+        "text": "8♦",
+        "actionKey": "bidGame:8-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 445.06,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 476.55
+        }
+      },
+      {
+        "text": "8♥",
+        "actionKey": "bidGame:8-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 445.06,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 476.55
+        }
+      },
+      {
+        "text": "9♠",
+        "actionKey": "bidGame:9-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 482.55,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 514.03
+        }
+      },
+      {
+        "text": "9♣",
+        "actionKey": "bidGame:9-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 482.55,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 514.03
+        }
+      },
+      {
+        "text": "9♦",
+        "actionKey": "bidGame:9-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 482.55,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 514.03
+        }
+      },
+      {
+        "text": "9♥",
+        "actionKey": "bidGame:9-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 482.55,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 514.03
+        }
+      },
+      {
+        "text": "10♠",
+        "actionKey": "bidGame:10-spades",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 520.03,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 818.58,
+          "bottom": 551.52
+        }
+      },
+      {
+        "text": "10♣",
+        "actionKey": "bidGame:10-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 824.58,
+          "y": 520.03,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 879.48,
+          "bottom": 551.52
+        }
+      },
+      {
+        "text": "10♦",
+        "actionKey": "bidGame:10-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 885.48,
+          "y": 520.03,
+          "width": 54.89,
+          "height": 31.48,
+          "right": 940.38,
+          "bottom": 551.52
+        }
+      },
+      {
+        "text": "10♥",
+        "actionKey": "bidGame:10-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 946.38,
+          "y": 520.03,
+          "width": 54.91,
+          "height": 31.48,
+          "right": 1001.28,
+          "bottom": 551.52
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 22.72,
+      "y": 112.05,
+      "width": 237.59,
+      "height": 226.05,
+      "right": 260.31,
+      "bottom": 338.09
+    },
+    "resultPanelRect": null,
+    "actionAreaRect": {
+      "x": 763.69,
+      "y": 303.23,
+      "width": 237.59,
+      "height": 248.28,
+      "right": 1001.28,
+      "bottom": 551.52
+    },
+    "humanHandRect": {
+      "x": 302.63,
+      "y": 613.63,
+      "width": 418.75,
+      "height": 76.89,
+      "right": 721.38,
+      "bottom": 690.52
+    },
+    "trickZoneRect": {
+      "x": 302.63,
+      "y": 209.36,
+      "width": 418.75,
+      "height": 390.45,
+      "right": 721.38,
+      "bottom": 599.81
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": false,
+    "hasLegalActionArea": true,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involved Торговля 7 ♣ ♣♣♣♣♣♣♣ 7 ♣ 7 ♠ ♠♠♠♠♠♠♠ 7 ♠ A ♥ ♥ A ♥ K ♦ ♦♦ K ♦ Состояние стола Фаза Торговля Игрок You Действия ПасМизерС"
+  },
+  {
+    "state": "contract",
+    "viewport": "laptop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-contract-laptop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "documentScrollWidth": 1024,
+    "documentScrollHeight": 768,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 423.52,
+          "y": 22.72,
+          "width": 176.97,
+          "height": 33.17,
+          "right": 600.48,
+          "bottom": 55.89
+        },
+        "scrollWidth": 177,
+        "clientWidth": 177,
+        "scrollHeight": 37,
+        "clientHeight": 33
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 22.72,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 226.05,
+          "right": 260.31,
+          "bottom": 338.09
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 763.69,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 276.38,
+          "right": 1001.28,
+          "bottom": 388.42
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Заказ игры\n              \n          "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 763.69,
+          "y": 428.42,
+          "width": 237.59,
+          "height": 144.58,
+          "right": 1001.28,
+          "bottom": 573
+        },
+        "text": "Заказ8♥9♠9♣9♦9♥10♠10♣10♦10♥"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 284.81,
+          "y": 100.84,
+          "width": 454.38,
+          "height": 607.48,
+          "right": 739.19,
+          "bottom": 708.33
+        },
+        "text": "8 червы\n    \n  \n          \n          \n          \n        \n          Закажите игру.\n        \n      \n          \n    \n     "
+      },
+      {
+        "selector": ".human-hand",
+        "rect": {
+          "x": 302.63,
+          "y": 607.63,
+          "width": 418.75,
+          "height": 82.89,
+          "right": 721.38,
+          "bottom": 690.52
+        },
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    \n      \n      7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n     "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 302.63,
+          "y": 209.36,
+          "width": 418.75,
+          "height": 384.45,
+          "right": 721.38,
+          "bottom": 593.81
+        },
+        "text": "Закажите игру."
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 11.52,
+          "y": 719.08,
+          "width": 1000.97,
+          "height": 37.41,
+          "right": 1012.48,
+          "bottom": 756.48
+        },
+        "text": "Фаза: contract · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".human-hand",
+        "width": 418.75,
+        "height": 82.88999999999999
+      },
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 418.75,
+        "height": 384.44999999999993
+      }
+    ],
+    "buttons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 396.31,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 449.55,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 455.69,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 508.92,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 515.06,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 568.3,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "K\n      ♦\n      ♦♦\n      \n        K\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 574.44,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 627.67,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "8♥",
+        "actionKey": "orderContract:8-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 450.42,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 838.88,
+          "bottom": 487.28
+        }
+      },
+      {
+        "text": "9♠",
+        "actionKey": "orderContract:9-spades",
+        "disabled": false,
+        "rect": {
+          "x": 844.88,
+          "y": 450.42,
+          "width": 75.2,
+          "height": 36.86,
+          "right": 920.08,
+          "bottom": 487.28
+        }
+      },
+      {
+        "text": "9♣",
+        "actionKey": "orderContract:9-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 926.08,
+          "y": 450.42,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 1001.27,
+          "bottom": 487.28
+        }
+      },
+      {
+        "text": "9♦",
+        "actionKey": "orderContract:9-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 493.28,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 838.88,
+          "bottom": 530.14
+        }
+      },
+      {
+        "text": "9♥",
+        "actionKey": "orderContract:9-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 844.88,
+          "y": 493.28,
+          "width": 75.2,
+          "height": 36.86,
+          "right": 920.08,
+          "bottom": 530.14
+        }
+      },
+      {
+        "text": "10♠",
+        "actionKey": "orderContract:10-spades",
+        "disabled": false,
+        "rect": {
+          "x": 926.08,
+          "y": 493.28,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 1001.27,
+          "bottom": 530.14
+        }
+      },
+      {
+        "text": "10♣",
+        "actionKey": "orderContract:10-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 536.14,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 838.88,
+          "bottom": 573
+        }
+      },
+      {
+        "text": "10♦",
+        "actionKey": "orderContract:10-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 844.88,
+          "y": 536.14,
+          "width": 75.2,
+          "height": 36.86,
+          "right": 920.08,
+          "bottom": 573
+        }
+      },
+      {
+        "text": "10♥",
+        "actionKey": "orderContract:10-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 926.08,
+          "y": 536.14,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 1001.27,
+          "bottom": 573
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 396.31,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 449.55,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 455.69,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 508.92,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 515.06,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 568.3,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "K\n      ♦\n      ♦♦\n      \n        K\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 574.44,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 627.67,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "8♥",
+        "actionKey": "orderContract:8-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 450.42,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 838.88,
+          "bottom": 487.28
+        }
+      },
+      {
+        "text": "9♠",
+        "actionKey": "orderContract:9-spades",
+        "disabled": false,
+        "rect": {
+          "x": 844.88,
+          "y": 450.42,
+          "width": 75.2,
+          "height": 36.86,
+          "right": 920.08,
+          "bottom": 487.28
+        }
+      },
+      {
+        "text": "9♣",
+        "actionKey": "orderContract:9-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 926.08,
+          "y": 450.42,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 1001.27,
+          "bottom": 487.28
+        }
+      },
+      {
+        "text": "9♦",
+        "actionKey": "orderContract:9-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 493.28,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 838.88,
+          "bottom": 530.14
+        }
+      },
+      {
+        "text": "9♥",
+        "actionKey": "orderContract:9-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 844.88,
+          "y": 493.28,
+          "width": 75.2,
+          "height": 36.86,
+          "right": 920.08,
+          "bottom": 530.14
+        }
+      },
+      {
+        "text": "10♠",
+        "actionKey": "orderContract:10-spades",
+        "disabled": false,
+        "rect": {
+          "x": 926.08,
+          "y": 493.28,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 1001.27,
+          "bottom": 530.14
+        }
+      },
+      {
+        "text": "10♣",
+        "actionKey": "orderContract:10-clubs",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 536.14,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 838.88,
+          "bottom": 573
+        }
+      },
+      {
+        "text": "10♦",
+        "actionKey": "orderContract:10-diamonds",
+        "disabled": false,
+        "rect": {
+          "x": 844.88,
+          "y": 536.14,
+          "width": 75.2,
+          "height": 36.86,
+          "right": 920.08,
+          "bottom": 573
+        }
+      },
+      {
+        "text": "10♥",
+        "actionKey": "orderContract:10-hearts",
+        "disabled": false,
+        "rect": {
+          "x": 926.08,
+          "y": 536.14,
+          "width": 75.19,
+          "height": 36.86,
+          "right": 1001.27,
+          "bottom": 573
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 22.72,
+      "y": 112.05,
+      "width": 237.59,
+      "height": 226.05,
+      "right": 260.31,
+      "bottom": 338.09
+    },
+    "resultPanelRect": null,
+    "actionAreaRect": {
+      "x": 763.69,
+      "y": 428.42,
+      "width": 237.59,
+      "height": 144.58,
+      "right": 1001.28,
+      "bottom": 573
+    },
+    "humanHandRect": {
+      "x": 302.63,
+      "y": 607.63,
+      "width": 418.75,
+      "height": 82.89,
+      "right": 721.38,
+      "bottom": 690.52
+    },
+    "trickZoneRect": {
+      "x": 302.63,
+      "y": 209.36,
+      "width": 418.75,
+      "height": 384.45,
+      "right": 721.38,
+      "bottom": 593.81
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": false,
+    "hasLegalActionArea": true,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involved 8 червы Закажите игру. 7 ♣ ♣♣♣♣♣♣♣ 7 ♣ 7 ♠ ♠♠♠♠♠♠♠ 7 ♠ A ♥ ♥ A ♥ K ♦ ♦♦ K ♦ Состояние стола Фаза Заказ игры Игрок You Ко"
+  },
+  {
+    "state": "whist",
+    "viewport": "laptop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-whist-laptop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "documentScrollWidth": 1024,
+    "documentScrollHeight": 768,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 423.52,
+          "y": 22.72,
+          "width": 176.97,
+          "height": 33.17,
+          "right": 600.48,
+          "bottom": 55.89
+        },
+        "scrollWidth": 177,
+        "clientWidth": 177,
+        "scrollHeight": 37,
+        "clientHeight": 33
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 22.72,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 226.05,
+          "right": 260.31,
+          "bottom": 338.09
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 763.69,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 276.38,
+          "right": 1001.28,
+          "bottom": 388.42
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Висты\n              \n            \n  "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 763.69,
+          "y": 428.42,
+          "width": 237.59,
+          "height": 126.58,
+          "right": 1001.28,
+          "bottom": 555
+        },
+        "text": "ПасВистПолвиста"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 284.81,
+          "y": 100.84,
+          "width": 454.38,
+          "height": 607.48,
+          "right": 739.19,
+          "bottom": 708.33
+        },
+        "text": "8 червы\n    \n  \n          \n          \n          Решение по висту.\n          \n    \n      \n      7\n      ♣\n      ♣♣♣♣♣♣♣\n "
+      },
+      {
+        "selector": ".human-hand",
+        "rect": {
+          "x": 302.63,
+          "y": 607.63,
+          "width": 418.75,
+          "height": 82.89,
+          "right": 721.38,
+          "bottom": 690.52
+        },
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    \n      \n      9\n      ♦\n      ♦♦♦♦♦♦♦♦♦\n      \n   "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 302.63,
+          "y": 209.36,
+          "width": 418.75,
+          "height": 384.45,
+          "right": 721.38,
+          "bottom": 593.81
+        },
+        "text": "Решение по висту."
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 11.52,
+          "y": 719.08,
+          "width": 1000.97,
+          "height": 37.41,
+          "right": 1012.48,
+          "bottom": 756.48
+        },
+        "text": "Фаза: contract · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".human-hand",
+        "width": 418.75,
+        "height": 82.88999999999999
+      },
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 418.75,
+        "height": 384.44999999999993
+      }
+    ],
+    "buttons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 426,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 479.23,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "9\n      ♦\n      ♦♦♦♦♦♦♦♦♦\n      \n        9\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 485.38,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 538.61,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "J\n      ♠\n      ♠♠\n      \n        J\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 544.75,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 597.98,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "Пас",
+        "actionKey": "pass",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 428.42,
+          "width": 114.8,
+          "height": 36.86,
+          "right": 878.48,
+          "bottom": 465.28
+        }
+      },
+      {
+        "text": "Вист",
+        "actionKey": "whist",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 473.28,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 510.14
+        }
+      },
+      {
+        "text": "Полвиста",
+        "actionKey": "halfWhist",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 518.14,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 555
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 426,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 479.23,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "9\n      ♦\n      ♦♦♦♦♦♦♦♦♦\n      \n        9\n        ♦",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 485.38,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 538.61,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "J\n      ♠\n      ♠♠\n      \n        J\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 544.75,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 597.98,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "Пас",
+        "actionKey": "pass",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 428.42,
+          "width": 114.8,
+          "height": 36.86,
+          "right": 878.48,
+          "bottom": 465.28
+        }
+      },
+      {
+        "text": "Вист",
+        "actionKey": "whist",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 473.28,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 510.14
+        }
+      },
+      {
+        "text": "Полвиста",
+        "actionKey": "halfWhist",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 518.14,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 555
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 22.72,
+      "y": 112.05,
+      "width": 237.59,
+      "height": 226.05,
+      "right": 260.31,
+      "bottom": 338.09
+    },
+    "resultPanelRect": null,
+    "actionAreaRect": {
+      "x": 763.69,
+      "y": 428.42,
+      "width": 237.59,
+      "height": 126.58,
+      "right": 1001.28,
+      "bottom": 555
+    },
+    "humanHandRect": {
+      "x": 302.63,
+      "y": 607.63,
+      "width": 418.75,
+      "height": 82.89,
+      "right": 721.38,
+      "bottom": 690.52
+    },
+    "trickZoneRect": {
+      "x": 302.63,
+      "y": 209.36,
+      "width": 418.75,
+      "height": 384.45,
+      "right": 721.38,
+      "bottom": 593.81
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": false,
+    "hasLegalActionArea": true,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involved 8 червы Решение по висту. 7 ♣ ♣♣♣♣♣♣♣ 7 ♣ 9 ♦ ♦♦♦♦♦♦♦♦♦ 9 ♦ J ♠ ♠♠ J ♠ Состояние стола Фаза Висты Игрок You Контракт 8 ч"
+  },
+  {
+    "state": "play",
+    "viewport": "laptop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-play-laptop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "documentScrollWidth": 1024,
+    "documentScrollHeight": 768,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 423.52,
+          "y": 22.72,
+          "width": 176.97,
+          "height": 33.17,
+          "right": 600.48,
+          "bottom": 55.89
+        },
+        "scrollWidth": 177,
+        "clientWidth": 177,
+        "scrollHeight": 37,
+        "clientHeight": 33
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 22.72,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 226.05,
+          "right": 260.31,
+          "bottom": 338.09
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 763.69,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 423.16,
+          "right": 1001.28,
+          "bottom": 535.2
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Розыгрыш\n              \n            "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 763.69,
+          "y": 575.2,
+          "width": 237.59,
+          "height": 0,
+          "right": 1001.28,
+          "bottom": 575.2
+        },
+        "text": ""
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 284.81,
+          "y": 100.84,
+          "width": 454.38,
+          "height": 607.48,
+          "right": 739.19,
+          "bottom": 708.33
+        },
+        "text": "6 пикиВистПас\n    \n  \n          \n          \n          \n    \n      \n      10\n      ♣\n      ♣♣♣♣♣♣♣♣♣♣\n      \n        10\n "
+      },
+      {
+        "selector": ".human-hand",
+        "rect": {
+          "x": 302.63,
+          "y": 613.63,
+          "width": 418.75,
+          "height": 76.89,
+          "right": 721.38,
+          "bottom": 690.52
+        },
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣\n      \n    \n  \n    \n      \n      7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n     "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 302.63,
+          "y": 209.36,
+          "width": 418.75,
+          "height": 390.45,
+          "right": 721.38,
+          "bottom": 599.81
+        },
+        "text": "10\n      ♣\n      ♣♣♣♣♣♣♣♣♣♣\n      \n        10\n        ♣\n      \n    \n  \n    \n      \n      A\n      ♣\n      ♣\n      \n      "
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 11.52,
+          "y": 719.08,
+          "width": 1000.97,
+          "height": 37.41,
+          "right": 1012.48,
+          "bottom": 756.48
+        },
+        "text": "Фаза: play · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".human-hand",
+        "width": 418.75,
+        "height": 76.88999999999999
+      },
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 418.75,
+        "height": 390.44999999999993
+      }
+    ],
+    "buttons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": false,
+        "rect": {
+          "x": 426,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 479.23,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 485.38,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 538.61,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 544.75,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 597.98,
+          "bottom": 690.52
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "7\n      ♣\n      ♣♣♣♣♣♣♣\n      \n        7\n        ♣",
+        "actionKey": null,
+        "disabled": false,
+        "rect": {
+          "x": 426,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 479.23,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "7\n      ♠\n      ♠♠♠♠♠♠♠\n      \n        7\n        ♠",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 485.38,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 538.61,
+          "bottom": 690.52
+        }
+      },
+      {
+        "text": "A\n      ♥\n      ♥\n      \n        A\n        ♥",
+        "actionKey": null,
+        "disabled": true,
+        "rect": {
+          "x": 544.75,
+          "y": 613.63,
+          "width": 53.23,
+          "height": 76.89,
+          "right": 597.98,
+          "bottom": 690.52
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 22.72,
+      "y": 112.05,
+      "width": 237.59,
+      "height": 226.05,
+      "right": 260.31,
+      "bottom": 338.09
+    },
+    "resultPanelRect": null,
+    "actionAreaRect": {
+      "x": 763.69,
+      "y": 575.2,
+      "width": 237.59,
+      "height": 0,
+      "right": 1001.28,
+      "bottom": 575.2
+    },
+    "humanHandRect": {
+      "x": 302.63,
+      "y": 613.63,
+      "width": 418.75,
+      "height": 76.89,
+      "right": 721.38,
+      "bottom": 690.52
+    },
+    "trickZoneRect": {
+      "x": 302.63,
+      "y": 209.36,
+      "width": 418.75,
+      "height": 390.45,
+      "right": 721.38,
+      "bottom": 599.81
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": false,
+    "hasLegalActionArea": false,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involved 6 пикиВистПас 10 ♣ ♣♣♣♣♣♣♣♣♣♣ 10 ♣ A ♣ ♣ A ♣ Розыгрыш 7 ♣ ♣♣♣♣♣♣♣ 7 ♣ 7 ♠ ♠♠♠♠♠♠♠ 7 ♠ A ♥ ♥ A ♥ Состояние стола Фаза Роз"
+  },
+  {
+    "state": "settlement",
+    "viewport": "laptop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-settlement-laptop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "documentScrollWidth": 1024,
+    "documentScrollHeight": 768,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 423.52,
+          "y": 22.72,
+          "width": 176.97,
+          "height": 33.17,
+          "right": 600.48,
+          "bottom": 55.89
+        },
+        "scrollWidth": 177,
+        "clientWidth": 177,
+        "scrollHeight": 37,
+        "clientHeight": 33
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 22.72,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 226.05,
+          "right": 260.31,
+          "bottom": 338.09
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 763.69,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 401.56,
+          "right": 1001.28,
+          "bottom": 513.61
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Расчет сдачи\n              \n        "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 763.69,
+          "y": 553.61,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 590.47
+        },
+        "text": "Подсчитать"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 284.81,
+          "y": 100.84,
+          "width": 454.38,
+          "height": 607.48,
+          "right": 739.19,
+          "bottom": 708.33
+        },
+        "text": "8 червыВистПас\n    \n  \n          \n          \n          \n    \n      \n        Результат сдачи\n        Контракт выполнен\n  "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 299.56,
+          "y": 115.59,
+          "width": 424.88,
+          "height": 577.98,
+          "right": 724.44,
+          "bottom": 693.58
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 8 hearts for +6 bullet. Whists: P1 whist +12 vs P0.\n    "
+      },
+      {
+        "selector": "[data-result-panel]",
+        "rect": {
+          "x": 312.31,
+          "y": 128.34,
+          "width": 399.38,
+          "height": 550.91,
+          "right": 711.69,
+          "bottom": 679.25
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 8 hearts for +6 bullet. Whists: P1 whist +12 vs P0.\n    "
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 11.52,
+          "y": 719.08,
+          "width": 1000.97,
+          "height": 37.41,
+          "right": 1012.48,
+          "bottom": 756.48
+        },
+        "text": "Фаза: deal-settlement · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 424.88000000000005,
+        "height": 577.99
+      },
+      {
+        "a": ".card-table",
+        "b": "[data-result-panel]",
+        "width": 399.38000000000005,
+        "height": 550.91
+      },
+      {
+        "a": ".trick-zone",
+        "b": "[data-result-panel]",
+        "width": 399.38000000000005,
+        "height": 550.91
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Подсчитать",
+        "actionKey": "settleDeal",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 553.61,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 590.47
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "Подсчитать",
+        "actionKey": "settleDeal",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 553.61,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 590.47
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 22.72,
+      "y": 112.05,
+      "width": 237.59,
+      "height": 226.05,
+      "right": 260.31,
+      "bottom": 338.09
+    },
+    "resultPanelRect": {
+      "x": 312.31,
+      "y": 128.34,
+      "width": 399.38,
+      "height": 550.91,
+      "right": 711.69,
+      "bottom": 679.25
+    },
+    "actionAreaRect": {
+      "x": 763.69,
+      "y": 553.61,
+      "width": 237.59,
+      "height": 36.86,
+      "right": 1001.28,
+      "bottom": 590.47
+    },
+    "humanHandRect": null,
+    "trickZoneRect": {
+      "x": 299.56,
+      "y": 115.59,
+      "width": 424.88,
+      "height": 577.98,
+      "right": 724.44,
+      "bottom": 693.58
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": true,
+    "hasLegalActionArea": true,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .3 .1 .2 .1 .6 -4 .5 .2 -5 .4 -2 Пуля. Цель 10. You: Пуля 6, Гора 1, Висты AF Computers 4, VIMCOM -2; AF Computers: Пуля 2, Гора 3, Висты You -4, VIMCOM 5; VIMCOM: Пуля 1, Гора нет записей, Висты You 2, AF Computers -5 Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involvedVIMCOM plays king hearts 8 червыВистПас Результат сдачи Контракт выполнен Player 0 made 8 hearts for +6 bullet. Whists: P"
+  },
+  {
+    "state": "final",
+    "viewport": "laptop",
+    "screenshot": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/mz-505-final-laptop.png",
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "viewportSize": {
+      "width": 1024,
+      "height": 768
+    },
+    "documentScrollWidth": 1024,
+    "documentScrollHeight": 768,
+    "horizontalOverflow": false,
+    "horizontalOverflowElements": [],
+    "clippedText": [
+      {
+        "tag": "H1",
+        "className": "",
+        "text": "MARRIAGE",
+        "rect": {
+          "x": 423.52,
+          "y": 22.72,
+          "width": 176.97,
+          "height": 33.17,
+          "right": 600.48,
+          "bottom": 55.89
+        },
+        "scrollWidth": 177,
+        "clientWidth": 177,
+        "scrollHeight": 37,
+        "clientHeight": 33
+      }
+    ],
+    "selectedRects": [
+      {
+        "selector": ".score-panel",
+        "rect": {
+          "x": 22.72,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 226.05,
+          "right": 260.31,
+          "bottom": 338.09
+        },
+        "text": "Запись пули\n      \n        \n    \n      \n        \n        \n        \n        \n        \n        \n        \n        \n        "
+      },
+      {
+        "selector": ".state-panel",
+        "rect": {
+          "x": 763.69,
+          "y": 112.05,
+          "width": 237.59,
+          "height": 151.19,
+          "right": 1001.28,
+          "bottom": 263.23
+        },
+        "text": "Состояние стола\n      \n        \n              \n                Фаза\n                Следующая сдача\n              \n     "
+      },
+      {
+        "selector": ".actions",
+        "rect": {
+          "x": 763.69,
+          "y": 303.23,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 340.09
+        },
+        "text": "Следующая сдача"
+      },
+      {
+        "selector": ".card-table",
+        "rect": {
+          "x": 284.81,
+          "y": 100.84,
+          "width": 454.38,
+          "height": 607.48,
+          "right": 739.19,
+          "bottom": 708.33
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 6 spades for +2 bullet. Whists: P1 whist +4 vs P0.\n     "
+      },
+      {
+        "selector": ".trick-zone",
+        "rect": {
+          "x": 299.56,
+          "y": 115.59,
+          "width": 424.88,
+          "height": 577.98,
+          "right": 724.44,
+          "bottom": 693.58
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 6 spades for +2 bullet. Whists: P1 whist +4 vs P0.\n     "
+      },
+      {
+        "selector": "[data-result-panel]",
+        "rect": {
+          "x": 312.31,
+          "y": 128.34,
+          "width": 399.38,
+          "height": 550.91,
+          "right": 711.69,
+          "bottom": 679.25
+        },
+        "text": "Результат сдачи\n        Контракт выполнен\n        Player 0 made 6 spades for +2 bullet. Whists: P1 whist +4 vs P0.\n     "
+      },
+      {
+        "selector": ".status-line",
+        "rect": {
+          "x": 11.52,
+          "y": 719.08,
+          "width": 1000.97,
+          "height": 37.41,
+          "right": 1012.48,
+          "bottom": 756.48
+        },
+        "text": "Фаза: next-deal · Игрок: You"
+      }
+    ],
+    "overlaps": [
+      {
+        "a": ".card-table",
+        "b": ".trick-zone",
+        "width": 424.88000000000005,
+        "height": 577.99
+      },
+      {
+        "a": ".card-table",
+        "b": "[data-result-panel]",
+        "width": 399.38000000000005,
+        "height": 550.91
+      },
+      {
+        "a": ".trick-zone",
+        "b": "[data-result-panel]",
+        "width": 399.38000000000005,
+        "height": 550.91
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Следующая сдача",
+        "actionKey": "startNextDeal",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 303.23,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 340.09
+        }
+      }
+    ],
+    "visibleButtons": [
+      {
+        "text": "Следующая сдача",
+        "actionKey": "startNextDeal",
+        "disabled": false,
+        "rect": {
+          "x": 763.69,
+          "y": 303.23,
+          "width": 237.59,
+          "height": 36.86,
+          "right": 1001.28,
+          "bottom": 340.09
+        }
+      }
+    ],
+    "scorePanelRect": {
+      "x": 22.72,
+      "y": 112.05,
+      "width": 237.59,
+      "height": 226.05,
+      "right": 260.31,
+      "bottom": 338.09
+    },
+    "resultPanelRect": {
+      "x": 312.31,
+      "y": 128.34,
+      "width": 399.38,
+      "height": 550.91,
+      "right": 711.69,
+      "bottom": 679.25
+    },
+    "actionAreaRect": {
+      "x": 763.69,
+      "y": 303.23,
+      "width": 237.59,
+      "height": 36.86,
+      "right": 1001.28,
+      "bottom": 340.09
+    },
+    "humanHandRect": null,
+    "trickZoneRect": {
+      "x": 299.56,
+      "y": 115.59,
+      "width": 424.88,
+      "height": 577.98,
+      "right": 724.44,
+      "bottom": 693.58
+    },
+    "hasScorePanel": true,
+    "hasResultPanel": true,
+    "hasLegalActionArea": false,
+    "bodyText": "AF ComputersAI MARRIAGEСочинский преферанс VIMCOMAI Запись пули .10 .11 -2 Пуля. Цель 10. You: Пуля 11, Гора нет записей, Висты AF Computers нет записей, VIMCOM нет записей; AF Computers: Пуля нет записей, Гора нет записей, Висты You -2, VIMCOM нет записей; VIMCOM: Пуля нет записей, Гора нет записей, Висты You нет записей, AF Computers нет записей Ход партии Synthetic MZ-505 visual fixtureStatic UI evidence; no backend service is involvedPlayer 0 made 6 spades for +2 bullet. Whists: P1 whist +4 "
+  },
+  {
+    "viewport": "laptop",
+    "consoleMessages": [
+      {
+        "type": "debug",
+        "text": "[vite] connecting..."
+      },
+      {
+        "type": "debug",
+        "text": "[vite] connected."
+      }
+    ]
+  }
+]

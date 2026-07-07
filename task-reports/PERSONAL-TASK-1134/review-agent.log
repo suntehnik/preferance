@@ -1,0 +1,12 @@
+Rawls accessibility review:
+- No blocking findings.
+- Confirmed start panel is labelled by start-title.
+- Confirmed Continue renders before start-new size controls.
+- Confirmed start buttons have distinct accessible names.
+- Confirmed focus-visible outline exists for start/resume controls.
+- Suggested role="group" on the labelled start-actions div as non-blocking polish.
+
+Resolution:
+- Added role="group" to start-actions.
+- Re-ran controller tests and full verify.
+- Browser evidence confirmed resume focusable order, group role/label, and focus-visible rule presence.

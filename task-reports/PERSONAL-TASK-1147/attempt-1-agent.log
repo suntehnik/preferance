@@ -1,0 +1,18 @@
+Completed TASK PERSONAL-TASK-1147 / MZ-301.
+
+Artifacts:
+- docs/test-design/us-843-ai-decisions.md
+- task-reports/PERSONAL-TASK-1147/attempt-1.json
+
+Initial report had two non-blocking downstream implementation notes in risks. After orchestrator feedback, amended only attempt-1.json:
+- set risks to []
+- moved those notes to downstream_notes
+- left the QA design document unchanged
+
+Verification:
+- test -r docs/test-design/us-843-ai-decisions.md
+- test -r task-reports/PERSONAL-TASK-1147/attempt-1.json
+- sed -n '1,40p' docs/test-design/us-843-ai-decisions.md
+- jq empty task-reports/PERSONAL-TASK-1147/attempt-1.json
+
+Result: succeeded, failure_type=not_applicable, blocking risks=[].

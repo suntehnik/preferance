@@ -1,0 +1,25 @@
+Status: completed
+Task: PERSONAL-TASK-1142
+Epic: PERSONAL-EP-180
+
+Worker final summary:
+Added US-842 integration coverage in src/test/ruleFlow.integration.test.ts.
+
+Coverage:
+- all-pass flow from bidding through play, settlement, and next-deal reopening
+- misere flow that skips whist controls and settles correctly
+- contract flow through order, widow pickup, discard, whist responses, and play
+- third-card trick resolution with winner, trick counts, and next lead/settlement actor
+- renderGame legal-action projection against getLegalActions for representative US-842 states
+
+Verification run by worker:
+- npm run test -- src/test/ruleFlow.integration.test.ts
+- npm run verify
+
+Worker reported results:
+- focused file passed 5 tests
+- full verification passed 11 files / 99 tests plus build
+
+Orchestrator acceptance:
+- npm run verify independently passed 11 files / 99 tests plus tsc and Vite build.
+- risks: none

@@ -1,0 +1,119 @@
+{
+  "task_id": "PERSONAL-TASK-1147",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Created the US-843 AI decision QA design document at docs/test-design/us-843-ai-decisions.md. Spexus current_context was read before the task and epic hierarchy. The design aligns to the current chooseAiAction/getLegalActions/GameState surfaces, defines deterministic executable scenarios for bidding, contract ordering, discard, whist, all-pass, misere, trick play, continuation states, and stuck diagnostics, and maps them back to PERSONAL-REQ-1758, PERSONAL-REQ-1759, PERSONAL-AC-2424, PERSONAL-AC-2425, and PERSONAL-STD-063. Dependency evidence from the US-842 completion gate and MZ-208 release gate was reviewed. Minimal docs-only verification confirmed the new document and final report exist and are readable.",
+  "files_changed": [
+    "docs/test-design/us-843-ai-decisions.md",
+    "task-reports/PERSONAL-TASK-1147/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "test -r docs/test-design/us-843-ai-decisions.md",
+      "result": "passed",
+      "evidence_type": "docs_verification",
+      "evidence": "Readable file check succeeded."
+    },
+    {
+      "command": "test -r task-reports/PERSONAL-TASK-1147/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "docs_verification",
+      "evidence": "Readable final task report check succeeded."
+    },
+    {
+      "command": "sed -n '1,40p' docs/test-design/us-843-ai-decisions.md",
+      "result": "passed",
+      "evidence_type": "docs_verification",
+      "evidence": "Header and opening sections rendered correctly from the written document."
+    }
+  ],
+  "risks": [],
+  "downstream_notes": [
+    "Current src/ai/heuristicAi.ts still contains a simple fallback to the first legal action, so several phase-context scenarios in this design are intended to be picked up by MZ-302/MZ-303 when they implement stronger heuristics and regression coverage.",
+    "Some scenario details call for narrow phase-specific fixtures beyond the current helper set in src/domain/engine.test.ts and src/test/integrationHarness.ts; MZ-302/MZ-303 should add those test-only fixtures without changing production rules/UI code."
+  ],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "docs_only_minimal_readability_checks",
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1147",
+      "epic_hierarchy_read": "PERSONAL-EP-180"
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json",
+      "task-reports/PERSONAL-TASK-1146/attempt-1.json"
+    ],
+    "notes": "Per task instructions, no npm run verify was needed because the work was documentation-only and no production/test code was changed."
+  },
+  "quality_gate_matrix": [
+    {
+      "gate": "spexus-context-order",
+      "applicability": "applicable",
+      "evidence_type": "task_execution_record",
+      "command_or_source": "mcp__spexus.current_context; mcp__spexus.get_task(PERSONAL-TASK-1147); mcp__spexus.epic_hierarchy(PERSONAL-EP-180)",
+      "result": "passed",
+      "limitations": "Relies on task execution order and recorded report metadata rather than an independent external audit.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "dependency-report-review",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json; task-reports/PERSONAL-TASK-1146/attempt-1.json",
+      "result": "passed",
+      "limitations": "Dependency reports informed test-design scope and readiness only; this task did not rerun implementation verification.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "qa-design-traceability",
+      "applicability": "applicable_critical",
+      "evidence_type": "design_artifact",
+      "command_or_source": "docs/test-design/us-843-ai-decisions.md",
+      "result": "passed",
+      "limitations": "This gate verifies documentation completeness and actionability, not runtime AI behavior.",
+      "accepted_risk": "Runtime behavior remains for MZ-302/MZ-303 to implement and verify."
+    },
+    {
+      "gate": "observability-verification",
+      "applicability": "applicable_required",
+      "evidence_type": "design_artifact",
+      "command_or_source": "docs/test-design/us-843-ai-decisions.md#observability-expectations-for-mz-303",
+      "result": "passed",
+      "limitations": "Observability expectations are specified but not yet enforced by automated tests in this task.",
+      "accepted_risk": "Instrumentation and failure-payload assertions are deferred to the follow-up implementation and regression tasks."
+    },
+    {
+      "gate": "security-review",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1147 scope; PERSONAL-EP-180 hierarchy; docs-only deliverable",
+      "result": "passed",
+      "limitations": "No auth, backend, network, or sensitive data path exists in this task scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "docs-verification",
+      "applicability": "applicable",
+      "evidence_type": "docs_verification",
+      "command_or_source": "test -r docs/test-design/us-843-ai-decisions.md; test -r task-reports/PERSONAL-TASK-1147/attempt-1.json; sed -n '1,40p' docs/test-design/us-843-ai-decisions.md",
+      "result": "passed",
+      "limitations": "Verification was intentionally minimal because no production or test code changed.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release-gate-readiness-input",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "design_artifact",
+      "command_or_source": "docs/test-design/us-843-ai-decisions.md; PERSONAL-REQ-1758; PERSONAL-REQ-1759; PERSONAL-AC-2424; PERSONAL-AC-2425",
+      "result": "passed",
+      "limitations": "This task contributes release-gate test design only and does not by itself satisfy the US-843 release gate.",
+      "accepted_risk": "US-843 remains dependent on later implementation and regression tasks."
+    }
+  ]
+}

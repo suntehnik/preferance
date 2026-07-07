@@ -1,0 +1,16 @@
+Agent: Singer (019f3666-298f-7e73-af8f-945968d968ca)
+Task: PERSONAL-TASK-1159 / MZ-407 US-844 component regression verification
+Attempt: 1
+Model: gpt-5.5
+Reasoning: medium
+
+Final message:
+Verification attempt 1 is complete and the report is written at task-reports/PERSONAL-TASK-1159/attempt-1.json.
+
+Verdict: passed, failure_type: not_applicable, risks: [].
+
+Evidence run:
+- Focused US-844 tests: 5 files, 64 tests passed.
+- Full npm run verify: 13 files, 126 tests passed, plus tsc and Vite build passed.
+- Dependency reports and visual artifacts were validated and reviewed.
+- Confirmed no expanded stats or visible full deal history beyond approved score/result/final-summary scope.

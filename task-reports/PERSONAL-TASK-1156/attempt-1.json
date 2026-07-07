@@ -1,0 +1,182 @@
+{
+  "task_id": "PERSONAL-TASK-1156",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Added US-844-scoped integration coverage in src/test/us844Scoring.integration.test.ts. The new tests drive real engine settlement transitions into renderer assertions: one proves settleDeal carries bullet and mutual-whist updates into next-deal score/result UI, and one proves a completed bullet shows the final ranking/result panel with no continuation controls. The work stayed inside integration tests and task reporting; production domain, UI, and persistence code were not changed.",
+  "files_changed": [
+    "src/test/us844Scoring.integration.test.ts",
+    "task-reports/PERSONAL-TASK-1156/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "real_integration_test",
+      "evidence": "Red-green cycle completed: the new US-844 integration file failed first on settlement/result UI assumptions, then passed with 2 tests after fixture tightening."
+    },
+    {
+      "command": "npm run test -- src/test/ruleFlow.integration.test.ts src/test/startResume.integration.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "real_integration_test",
+      "evidence": "11 integration tests passed across rule flow, start/resume, and the new US-844 scoring coverage."
+    },
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts",
+      "result": "passed",
+      "evidence_type": "focused_component",
+      "evidence": "26 UI/controller tests passed, guarding renderer behavior touched by the new integration assertions."
+    },
+    {
+      "command": "npm run test -- src/persistence/saveStore.test.ts",
+      "result": "passed",
+      "evidence_type": "migration_verification",
+      "evidence": "30 persistence tests passed, providing compatibility evidence for score/result state and finished-bullet resume suppression."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest: 13 files, 125 tests passed. Build: tsc and vite build succeeded."
+    }
+  ],
+  "risks": [],
+  "downstream_notes": [
+    "Persistence compatibility evidence came from the existing saveStore suite because this task did not need to modify persistence behavior or schema validation.",
+    "The new integration coverage intentionally uses deterministic hand-written end-of-deal fixtures instead of a long random full-bullet flow to keep US-844 failure signals specific and reproducible."
+  ],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "focused integration/UI/persistence verification followed by full npm run verify",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1156",
+      "epic_reference_id": "PERSONAL-EP-180",
+      "us_reference_id": "PERSONAL-US-844"
+    },
+    "dependency_reports_reviewed": [
+      "docs/test-design/us-844-bullet-scoring.md",
+      "task-reports/PERSONAL-TASK-1153/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1154/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1155/attempt-1.json",
+      "task-reports/PERSONAL-US-843/review-cycle-1/review-report.json"
+    ],
+    "notes": "The first npm run verify attempt failed in TypeScript build because a temporary test helper used loosely typed card literals. The helper was replaced with real typed deck cards and npm run verify was rerun to green."
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1760",
+      "scenario": "Maintain bullet, mountain, and mutual-whist values for all players after a scored deal settles.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us844Scoring.integration.test.ts; npm run test -- src/test/us844Scoring.integration.test.ts; npm run test -- src/test/ruleFlow.integration.test.ts src/test/startResume.integration.test.ts src/test/us844Scoring.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Coverage is deterministic in-process integration over engine plus renderer, not a browser-automation or DOS-binary equivalence proof."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1761",
+      "scenario": "Expose each deal result and the final completed-bullet settlement to the UI.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us844Scoring.integration.test.ts; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "UI evidence is DOM-level integration/component coverage rather than Playwright visual artifacts for this task."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2426",
+      "scenario": "Given a deal completes, when the deal result is settled, the score table shows updated bullet, mountain, and mutual whist values for all players.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us844Scoring.integration.test.ts first scenario; npm run test -- src/test/us844Scoring.integration.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Assertions validate rendered text/regions and settled score objects in jsdom rather than screenshot comparison."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2427",
+      "scenario": "Given the bullet target is reached, when final settlement is calculated, the game shows the final ranking/result summary and prevents accidental continuation.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us844Scoring.integration.test.ts second scenario; src/test/startResume.integration.test.ts; npm run test -- src/test/ruleFlow.integration.test.ts src/test/startResume.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run test -- src/persistence/saveStore.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Continuation prevention is covered via absence of finished-state action controls and existing saved-bullet resume suppression tests, not by new browser E2E automation."
+    },
+    {
+      "req_or_ac_or_contract": "US-844 integration-test contract",
+      "scenario": "Tie scoring, rule flow, and UI together in one deterministic integration layer without changing production domain/UI code.",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "src/test/us844Scoring.integration.test.ts; git diff -- src/test/us844Scoring.integration.test.ts task-reports/PERSONAL-TASK-1156/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "This contract is satisfied by scoped source changes and verification evidence rather than a separate runtime output."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "test_quality_false_positive_risk",
+      "applicability": "applicable_critical",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "Red-green cycle on npm run test -- src/test/us844Scoring.integration.test.ts; deterministic fixture scenarios in src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "limitations": "Representative deterministic settlement fixtures are narrower than a full bullet-play matrix.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable_critical",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "npm run test -- src/test/ruleFlow.integration.test.ts src/test/startResume.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Regression evidence is local deterministic test/build coverage.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "persistence_compatibility",
+      "applicability": "applicable",
+      "evidence_type": "migration_verification",
+      "command_or_source": "npm run test -- src/persistence/saveStore.test.ts",
+      "result": "passed",
+      "limitations": "No new persistence schema or save/load behavior was introduced in this task; this is compatibility confirmation only.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "Release evidence is scoped to the repo's existing static-app test/build entrypoints.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "accessibility_visual_applicability",
+      "applicability": "applicable",
+      "evidence_type": "focused_component",
+      "command_or_source": "src/test/us844Scoring.integration.test.ts; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts",
+      "result": "passed",
+      "limitations": "This task used DOM-level semantic and control-presence assertions, not external accessibility tooling or visual screenshot diffing.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1156 scope; src/test/us844Scoring.integration.test.ts; package.json scripts",
+      "result": "passed",
+      "limitations": "Task scope is local integration tests only, with no auth, backend, network, or sensitive-data path.",
+      "accepted_risk": "none"
+    }
+  ]
+}

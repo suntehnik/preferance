@@ -1,0 +1,35 @@
+{
+  "screenshotPath": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/sticky-bubbles-vimcom-play-desktop.png",
+  "bubbles": [
+    {
+      "text": "6 пики",
+      "className": "bid-bubble bid-bubble-2 bid-bubble-sticky",
+      "rect": {
+        "x": 866,
+        "y": 186,
+        "width": 82,
+        "height": 38
+      }
+    },
+    {
+      "text": "Вист",
+      "className": "bid-bubble bid-bubble-0 bid-bubble-sticky",
+      "rect": {
+        "x": 609,
+        "y": 570,
+        "width": 62,
+        "height": 38
+      }
+    },
+    {
+      "text": "Пас",
+      "className": "bid-bubble bid-bubble-1 bid-bubble-sticky",
+      "rect": {
+        "x": 333,
+        "y": 186,
+        "width": 62,
+        "height": 38
+      }
+    }
+  ]
+}

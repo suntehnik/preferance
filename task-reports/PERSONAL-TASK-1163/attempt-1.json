@@ -1,0 +1,177 @@
+{
+  "task_id": "PERSONAL-TASK-1163",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Added US-845 desktop table integration coverage in src/test/us845DesktopTable.integration.test.ts using the existing Vitest/jsdom integration seam. The new tests exercise representative desktop bidding, contract-family, contract play, all-pass, misere, deal-settlement, next-deal, and finished-result states through real game state plus renderer output, while reusing deterministic fixture style from the US-842 and US-844 dependency work. No production source was changed, and viewport-specific Playwright evidence was correctly left for downstream visual verification because the project exposes no Playwright runner entrypoint in package scripts.",
+  "files_changed": [
+    "src/test/us845DesktopTable.integration.test.ts",
+    "task-reports/PERSONAL-TASK-1163/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/test/us845DesktopTable.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "real_integration_test",
+      "evidence": "Red-green cycle completed. The first run failed on two incorrect desktop-state assumptions (AI-turn whist controls and misere declarer/trump fixture shape); after tightening the test fixtures to match the existing UI contract, the focused file passed with 6 tests."
+    },
+    {
+      "command": "npm run test -- src/test/us845DesktopTable.integration.test.ts src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "focused_regression",
+      "evidence": "42 tests passed across the new US-845 integration file plus the affected renderer, controller, US-842 rule-flow, and US-844 scoring/result suites."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest passed 14 files / 134 tests and the production build completed successfully with tsc and vite build."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "US-845 desktop UI state integration coverage plus focused regression and full repo verify",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "current_context_read_before_artifacts": true,
+      "task_read": "PERSONAL-TASK-1163",
+      "epic_hierarchy_read": "PERSONAL-EP-180",
+      "component_key": "default",
+      "project_key": "PERSONAL"
+    },
+    "dependency_inputs_reviewed": [
+      "docs/test-design/us-845-desktop-table-states.md",
+      "task-reports/PERSONAL-TASK-1161/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1162/attempt-1.json",
+      "docs/test-design/us-842-rule-phases.md",
+      "task-reports/PERSONAL-TASK-1142/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1146/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1156/attempt-1.json",
+      "src/test/ruleFlow.integration.test.ts",
+      "src/test/us844Scoring.integration.test.ts",
+      "src/ui/render.test.ts",
+      "src/ui/controller.test.ts"
+    ],
+    "notes": "Package scripts expose Vitest and the repo-wide verify/build path, but no formal Playwright runner entrypoint. Viewport-specific screenshot evidence therefore remains a downstream visual verification concern rather than an executable claim in this implementation task."
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1762",
+      "scenario": "Desktop table shows current phase, active actor, legal human actions, contract, trump when applicable, current trick, player hands, score table, deal result, and final bullet result.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us845DesktopTable.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Evidence is deterministic in-process engine plus renderer integration, not browser viewport automation."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "Desktop/laptop bidding, contract, whist, play, deal-result, and final-result states show the current phase, active actor, legal actions, and relevant score or contract context without blocking normal play.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us845DesktopTable.integration.test.ts; src/ui/render.test.ts; src/test/ruleFlow.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts src/ui/render.test.ts src/test/ruleFlow.integration.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "limitations": "The acceptance evidence is state-contract integration coverage rather than a new desktop screenshot flow."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2429",
+      "scenario": "After a deal completes, the result remains understandable and the player can proceed to the next deal unless the bullet is complete.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us845DesktopTable.integration.test.ts settlement/final scenarios; src/test/us844Scoring.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "The continuation/final-stop behavior is validated through DOM integration and real state transitions, not through separate browser automation."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-501 design contract",
+      "scenario": "Representative desktop state families from the QA design are executable: bidding, contract-family, contract play, all-pass/misere, settlement, next-deal, and finished result.",
+      "evidence_type": "source_and_integration_review",
+      "command_or_source": "docs/test-design/us-845-desktop-table-states.md; src/test/us845DesktopTable.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts",
+      "result": "passed",
+      "limitations": "The new file covers the minimum required state families rather than every named scenario variant from the design matrix."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-502 implementation dependency",
+      "scenario": "US-845 integration tests validate the shipped desktop renderer/controller contract without modifying production UI code.",
+      "evidence_type": "dependency_regression",
+      "command_or_source": "task-reports/PERSONAL-TASK-1162/attempt-1.json; src/test/us845DesktopTable.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts src/ui/render.test.ts src/ui/controller.test.ts",
+      "result": "passed",
+      "limitations": "This task assumes the renderer/context behavior implemented in MZ-502 remains authoritative; no production UI changes were introduced here."
+    },
+    {
+      "req_or_ac_or_contract": "US-842 legality dependency",
+      "scenario": "Desktop action exposure and phase progression remain bound to upstream legal-action and rule-flow behavior.",
+      "evidence_type": "dependency_regression",
+      "command_or_source": "docs/test-design/us-842-rule-phases.md; task-reports/PERSONAL-TASK-1142/attempt-1.json; task-reports/PERSONAL-TASK-1146/attempt-1.json; src/test/ruleFlow.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts src/test/ruleFlow.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "This task intentionally does not re-prove the full rules engine; it relies on the green US-842 dependency suites and verifies the renderer projection stays aligned with them."
+    },
+    {
+      "req_or_ac_or_contract": "US-844 score/result dependency",
+      "scenario": "Desktop score table, deal-result, next-deal, and final-result surfaces remain aligned with the US-844 scoring/result behavior.",
+      "evidence_type": "dependency_regression",
+      "command_or_source": "task-reports/PERSONAL-TASK-1156/attempt-1.json; src/test/us844Scoring.integration.test.ts; src/test/us845DesktopTable.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "This task uses the accepted US-844 result panel semantics as a dependency rather than redefining score/result behavior."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "integration_coverage",
+      "applicability": "applicable_critical",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/us845DesktopTable.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "limitations": "Coverage is representative desktop-state integration, not a full browser-run viewport automation matrix.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "visual_viewport_applicability",
+      "applicability": "applicable_downstream_nfr_task",
+      "evidence_type": "scope_classification",
+      "command_or_source": "package.json scripts; docs/test-design/us-845-desktop-table-states.md; task-reports/PERSONAL-TASK-1162/attempt-1.json",
+      "result": "passed",
+      "limitations": "No Playwright runner entrypoint exists in project scripts, so this task classifies desktop/laptop viewport evidence as downstream visual verification work rather than claiming fresh screenshot automation.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "accessibility_applicability",
+      "applicability": "applicable_downstream_nfr_task",
+      "evidence_type": "scope_classification",
+      "command_or_source": "Task scope and prompt classification; src/test/us845DesktopTable.integration.test.ts; src/ui/render.test.ts",
+      "result": "passed",
+      "limitations": "This task keeps semantic desktop-state assertions executable, while dedicated accessibility verification remains owned by separate downstream work per task scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression_scope",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "focused_and_full_regression",
+      "command_or_source": "npm run test -- src/test/us845DesktopTable.integration.test.ts src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Regression evidence is local deterministic suite coverage plus repo build verification.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release_readiness",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "Release evidence is scoped to the repo's existing test/build entrypoints in this worktree.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1163 scope; src/test/us845DesktopTable.integration.test.ts; package.json",
+      "result": "not_applicable",
+      "limitations": "The task adds local integration tests only and touches no auth, backend, network, storage schema, or sensitive-data path.",
+      "accepted_risk": "none"
+    }
+  ]
+}

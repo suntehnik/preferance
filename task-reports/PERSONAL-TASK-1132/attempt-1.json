@@ -1,0 +1,145 @@
+{
+  "task_id": "PERSONAL-TASK-1132",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "Implemented US-841 desktop start/resume flow. App boot now renders an explicit start screen with supported bullet sizes 10, 20, and 30 before any first deal is created. Valid unfinished saves show continue and start-new choices; continue renders the saved state exactly without pre-advancing AI turns; selecting a new bullet size replaces the active bullet envelope and starts with fresh technical history. Active bullet loading now also excludes saves whose bullet target is already complete.",
+  "files_changed": [
+    "src/ui/controller.ts",
+    "src/ui/render.ts",
+    "src/ui/controller.test.ts",
+    "src/styles.css",
+    "src/persistence/saveStore.ts",
+    "src/persistence/saveStore.test.ts"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/controller.test.ts",
+      "result": "passed",
+      "details": "7 tests passed"
+    },
+    {
+      "command": "npm run test -- src/persistence/saveStore.test.ts",
+      "result": "passed",
+      "details": "23 tests passed"
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "details": "8 test files passed, 67 tests passed, production build passed"
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-05"
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-AC-2420",
+      "scenario": "First boot without an active save shows supported bullet sizes and creates the first deal only after the player selects one.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/ui/controller.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "DOM-level unit coverage; browser/e2e coverage remains assigned to MZ-104."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1753 / PERSONAL-AC-2421",
+      "scenario": "Valid unfinished save shows continue/start-new prompt and does not silently auto-restore.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/ui/controller.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "DOM-level unit coverage; browser/e2e coverage remains assigned to MZ-104."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1753 / PERSONAL-REQ-1754 / PERSONAL-AC-2421",
+      "scenario": "Continue restores the saved active bullet exactly, including AI-actor checkpoint state, without running AI turns before render.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/ui/controller.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "DOM-level unit coverage."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-REQ-1753 / PERSONAL-REQ-1754",
+      "scenario": "Start-new from the resume prompt replaces the active bullet with the selected size and fresh technical history.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/ui/controller.test.ts && npm run test -- src/persistence/saveStore.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Local persistence only."
+    },
+    {
+      "req_or_ac_or_contract": "Test-design unfinished bullet rule",
+      "scenario": "Active bullet loader excludes finished phase saves and score tables whose bullet target is complete.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/persistence/saveStore.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Persistence-unit coverage."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "accessibility-review",
+      "applicability": "partial",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "native button elements, aria-labelledby on start panel, aria-label on bullet size group and size buttons",
+      "result": "accepted for implementation task",
+      "limitations": "Full accessibility evidence remains assigned to later verification tasks.",
+      "accepted_risk": "No blocking issue for MZ-103 implementation; full a11y gate not claimed here."
+    },
+    {
+      "gate": "visual-regression",
+      "applicability": "partial",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "src/styles.css start-screen layout",
+      "result": "accepted for implementation task",
+      "limitations": "No browser screenshot evidence in this task; visual verification remains assigned to later verification tasks.",
+      "accepted_risk": "No blocking issue for MZ-103 implementation."
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "No live browser run in MZ-103; covered by planned MZ-104 integration/e2e task.",
+      "accepted_risk": "None for scoped implementation."
+    }
+  ],
+  "reviews": [
+    {
+      "reviewer": "Gauss",
+      "result": "initial_review_found_blocking_gaps",
+      "findings": [
+        "Start-new retained old technicalDealHistory.",
+        "Continue could pre-advance saved AI actor states."
+      ],
+      "resolution": "Added failing tests, implemented replaceActiveBullet, and changed continue to render saved.currentDeal directly."
+    },
+    {
+      "reviewer": "Planck",
+      "result": "initial_review_found_p2_gaps",
+      "findings": [
+        "Start-new retained old technicalDealHistory.",
+        "loadActiveBullet ignored bullet target completion."
+      ],
+      "resolution": "Added failing tests and filtered completed bullet targets in active bullet loading."
+    },
+    {
+      "reviewer": "Franklin",
+      "result": "accepted",
+      "findings": [],
+      "resolution": "Re-review found no remaining blocking issues."
+    }
+  ]
+}

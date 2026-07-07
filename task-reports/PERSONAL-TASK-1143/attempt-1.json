@@ -1,0 +1,85 @@
+{
+  "task_id": "PERSONAL-TASK-1143",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Verified and tightened US-842 accessibility for legal action controls. Legal actions and playable/discard cards are native buttons, human controls are suppressed for AI actors and finished states, card controls have descriptive aria-labels, discard selection exposes aria-pressed plus changing action labels/count text, and in-game action/card buttons now have focus-visible styles. Focused UI/regression tests and the full project verify gate passed.",
+  "files_changed": [
+    "src/ui/render.ts",
+    "src/ui/render.test.ts",
+    "src/styles.css",
+    "task-reports/PERSONAL-TASK-1143/attempt-1.json",
+    "task-reports/PERSONAL-TASK-1143/attempt-1-agent.log"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts",
+      "result": "failed during verifier test-authoring, then passed",
+      "evidence": "Initial verifier-authored assertions had unstable fixture/source-import assumptions. After correcting the tests, the focused run passed 3 files / 28 tests, covering render accessibility, start/resume controller behavior, and US-842 rule-flow integration."
+    },
+    {
+      "command": "npm run verify",
+      "result": "failed during verifier test-authoring, then passed",
+      "evidence": "An intermediate run passed all tests but failed tsc because a verifier-only test imported node:fs without Node type declarations. After removing the brittle source-import assertion, final npm run verify passed 11 files / 101 tests and completed tsc plus vite build."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1141/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1142/attempt-1.json"
+    ],
+    "notes": "No backend, live API, or browser-server evidence applies to this accessibility verification. Evidence is from source accessibility review plus jsdom UI/regression tests."
+  },
+  "quality_gate_matrix": [
+    {
+      "gate": "keyboard reachability",
+      "expected": "Legal action controls and playable/discard cards are native buttons or otherwise tabbable and keyboard-clickable; disabled controls do not become the only cue for state.",
+      "evidence_type": "accessibility_review",
+      "evidence": "src/ui/render.ts renders legal action controls and cards as button elements; renderGame binds click handlers only to legal human actions, disables non-legal play cards, and uses visible action-note/discard-count text for state.",
+      "status": "passed"
+    },
+    {
+      "gate": "labels/names",
+      "expected": "Legal action controls and card controls have understandable text or accessible names. Cards need aria-labels. Discard controls need aria-pressed and an understandable confirmation label.",
+      "evidence_type": "accessibility_review",
+      "evidence": "src/ui/render.ts adds Russian accessible names for bid/order controls, card labels such as '7 трефы', discard toggle labels that switch between select/remove wording, aria-pressed on discard cards, and 'Подтвердить снос 2 выбранных карт' on the confirmation button. src/ui/render.test.ts asserts these names and states.",
+      "status": "passed"
+    },
+    {
+      "gate": "focus-visible",
+      "expected": "Buttons and card controls have focus-visible styles, not just hover styles, and CSS covers generic action buttons and card buttons beyond the start screen.",
+      "evidence_type": "accessibility_review",
+      "evidence": "src/styles.css includes .actions button:focus-visible/.secondary:focus-visible and button.card:focus-visible rules with visible outlines and offset box-shadow rings. Existing start-screen focus-visible rules remain in place.",
+      "status": "passed"
+    },
+    {
+      "gate": "non-color-only affordance",
+      "expected": "Legal, disabled, and selected states do not rely only on color; text, disabled attribute, aria-pressed, and visible text/state provide meaning.",
+      "evidence_type": "accessibility_review",
+      "evidence": "Discard selection uses aria-pressed, visible count text ('Снос: выберите...' / 'Снос выбран...'), selected card lift/outline, and a disabled/enabled confirmation button. Legal actions are rendered as explicit text buttons; disabled non-legal card controls use the native disabled attribute.",
+      "status": "passed"
+    },
+    {
+      "gate": "AI/finished no human controls",
+      "expected": "AI actor and finished states must not expose clickable human controls.",
+      "evidence_type": "regression_test",
+      "evidence": "src/ui/render.test.ts verifies no action keys and no enabled playable cards for AI actor and finished states; src/ui/render.ts returns early from renderActions for non-human actors.",
+      "status": "passed"
+    },
+    {
+      "gate": "regression verification",
+      "expected": "Focused UI tests and full project verification pass after any verifier fixes.",
+      "evidence_type": "regression_test",
+      "evidence": "Final focused command passed 3 files / 28 tests. Final npm run verify passed 11 files / 101 tests and completed production build.",
+      "status": "passed"
+    }
+  ]
+}

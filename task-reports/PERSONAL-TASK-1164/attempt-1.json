@@ -1,0 +1,205 @@
+{
+  "task_id": "PERSONAL-TASK-1164",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "Verified US-845 desktop table accessibility for keyboard/action usability and assistive-technology-readable semantics. Spexus current_context was read before task and epic artifacts. Dependency reports for MZ-501, MZ-502, MZ-503, and the prior US-844 accessibility precedent were present and successful. Source and tests show legal actions, start controls, and playable cards use native buttons; ineligible cards and pending discard confirmation are disabled; discard toggles expose aria-pressed and stateful aria labels; finished bullets expose no continuation controls; focus-visible styles remain present for start controls, actions, secondary controls, and cards. State, score, deal-result, and final-result surfaces expose visible headings, labeled sections, dl/dt/dd metadata, native score-change table semantics, result headings, card/action labels, and visible active actor/phase text. Scope was kept to desktop/laptop usability, with full mobile accessibility correctly not required. Targeted tests and the release gate passed.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1164/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us845DesktopTable.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "targeted_accessibility_verification",
+      "evidence": "3 test files passed, 35 tests passed. Covered renderer accessibility semantics, legal-only action projection, discard selection labels/state, focus-order-sensitive start/resume flow, and representative US-845 desktop table states."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Vitest passed 14 files / 134 tests, then tsc and vite build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "verification_scope": "US-845 accessibility review for desktop/laptop table UI states, action/card keyboard usability, state/score/result semantics, and release-gate readiness using source inspection plus existing Vitest/jsdom and build entrypoints",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1164",
+      "epic_hierarchy_read": "PERSONAL-EP-180",
+      "us_reference_id": "PERSONAL-US-845",
+      "requirement_reference_id": "PERSONAL-REQ-1762",
+      "acceptance_criteria_reference_ids": [
+        "PERSONAL-AC-2428",
+        "PERSONAL-AC-2429"
+      ]
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1161/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1162/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1163/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1157/attempt-1.json"
+    ],
+    "dependency_docs_reviewed": [
+      "docs/test-design/us-845-desktop-table-states.md"
+    ],
+    "source_files_reviewed": [
+      "src/ui/render.ts",
+      "src/styles.css",
+      "src/ui/render.test.ts",
+      "src/ui/controller.test.ts",
+      "src/test/us845DesktopTable.integration.test.ts"
+    ],
+    "notes": "No production source files were changed. Verification did not require a full mobile accessibility audit because the task explicitly scopes accessibility review to desktop/laptop usability."
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1762",
+      "scenario": "Desktop table shows current playable state with phase, active actor, legal human actions, player hands, score context, result context, contract/trump/trick context where applicable, and no misleading controls.",
+      "evidence_type": "source_test_and_release_review",
+      "command_or_source": "src/ui/render.ts renderGame/stateContextMarkup/renderActions/humanCards/tableContent/scoreboardMarkup/renderDealResultPanel/renderFinalResultPanel; src/ui/render.test.ts; src/test/us845DesktopTable.integration.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us845DesktopTable.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Verification uses source inspection and jsdom DOM assertions, not a real screen-reader transcript or browser tab-walk recording."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "At desktop/laptop scope, bidding, contract/order, widow/discard, whist/check, contract play, all-pass, misere, deal-result, and final-result states remain keyboard-usable and understandable.",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts actionButton/setupDiscardSelection/humanCards/stateContextMarkup; src/styles.css focus-visible rules; src/ui/render.test.ts legal controls, discard labels, accessible names, card enablement, finished-state, AI-turn tests; src/test/us845DesktopTable.integration.test.ts representative desktop-state tests",
+      "result": "passed",
+      "limitations": "Desktop/laptop usability is verified through deterministic DOM states and CSS source review; full mobile accessibility is outside this task's scope."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2429",
+      "scenario": "After a deal completes, result and next-deal states remain readable and expose a valid proceed action only when the bullet is not complete; completed bullets expose final results without continuation controls.",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts renderDealResultPanel/renderFinalResultPanel/actionNotice/renderActions; src/ui/render.test.ts structured deal result, next-deal action, final no-continuation tests; src/test/us845DesktopTable.integration.test.ts deal settlement, next-deal, final result tests; npm run verify",
+      "result": "passed",
+      "limitations": "Dynamic announcement via aria-live is not present, consistent with prior US-844 precedent; the rendered static result state is structured and labeled."
+    },
+    {
+      "req_or_ac_or_contract": "keyboard navigation/focus contract",
+      "scenario": "Controls reachable by keyboard are native buttons, focus-visible styles are present, resume keyboard order puts continue before start-new choices, and AI turns/final states avoid inaccessible or misleading controls.",
+      "evidence_type": "source_and_test_review",
+      "command_or_source": "src/ui/render.ts renderStartScreen/actionButton/humanCards/renderActions/setupDiscardSelection; src/styles.css .start-size:focus-visible, .start-continue:focus-visible, .actions button:focus-visible, .secondary:focus-visible, button.card:focus-visible; src/ui/controller.test.ts resume keyboard order; src/ui/render.test.ts AI-turn/final/no-action tests",
+      "result": "passed",
+      "limitations": "No browser-level tab traversal automation exists in project scripts; reachability is verified through native button DOM order and enabled/disabled state assertions."
+    },
+    {
+      "req_or_ac_or_contract": "card/action accessible label contract",
+      "scenario": "Legal action controls and playable cards expose accessible names; discard card toggles communicate selected/unselected state and confirmation remains disabled until a legal pair is selected.",
+      "evidence_type": "source_and_test_review",
+      "command_or_source": "src/ui/render.ts actionAccessibleLabel/cardLabel/humanCards/renderContractActions/setupDiscardSelection; src/ui/render.test.ts labels discard card toggles with selection state and a clear confirmation name; provides accessible names for legal action controls and playable cards; keeps discard confirmation disabled until a legal pair is selected",
+      "result": "passed",
+      "limitations": "Play-card action buttons use card labels for visible human cards; actionAccessibleLabel for programmatic playCard is not used on those card buttons."
+    },
+    {
+      "req_or_ac_or_contract": "state/score/result semantics contract",
+      "scenario": "Assistive technologies can read state context, score panel, deal result, and final result through headings, aria-labelledby sections, dl/dt/dd metadata, table headers, ordered ranking, and visible active actor/phase text.",
+      "evidence_type": "source_and_test_review",
+      "command_or_source": "src/ui/render.ts scoreboardMarkup/stateContextMarkup/renderDealResultPanel/renderFinalResultPanel/status-line; src/ui/render.test.ts compact score panel, structured result details, result-cell labels, final ranking tests; src/test/us845DesktopTable.integration.test.ts score/state/result checks",
+      "result": "passed",
+      "limitations": "The compact current score panel uses labeled sections and definition lists rather than one literal score table, matching the accepted US-844 accessibility precedent."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-502 implementation dependency",
+      "scenario": "The implementation under verification delivered the desktop state context and result/score surfaces now reviewed for accessibility.",
+      "evidence_type": "dependency_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1162/attempt-1.json; src/ui/render.ts; src/styles.css; src/ui/render.test.ts",
+      "result": "passed",
+      "limitations": "This verifier did not change production code; findings are based on inspecting the shipped MZ-502 implementation and test evidence."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-503 supporting integration evidence",
+      "scenario": "Representative desktop state families are covered by integration tests for bidding, contract-family, play, all-pass, misere, settlement, next-deal, and final-result states.",
+      "evidence_type": "dependency_report_and_test_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1163/attempt-1.json; src/test/us845DesktopTable.integration.test.ts; npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us845DesktopTable.integration.test.ts",
+      "result": "passed",
+      "limitations": "Integration coverage is jsdom/in-process renderer evidence rather than browser viewport automation."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "keyboard navigation/focus",
+      "applicability": "applicable_required",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "src/ui/render.ts native button rendering; src/styles.css focus-visible rules; src/ui/controller.test.ts resume keyboard order; src/ui/render.test.ts legal action, card enablement, AI-turn, final-state tests",
+      "result": "passed",
+      "limitations": "Focus order is verified by DOM order and native button behavior, not by browser tab automation.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "action labels",
+      "applicability": "applicable_required",
+      "evidence_type": "source_and_test_review",
+      "command_or_source": "src/ui/render.ts actionButton/actionAccessibleLabel/renderContractActions; src/ui/render.test.ts provides accessible names for legal action controls and playable cards; labels discard confirmation",
+      "result": "passed",
+      "limitations": "Only currently rendered legal human actions are exposed as controls; AI-turn controls are intentionally absent.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "card labels",
+      "applicability": "applicable_required",
+      "evidence_type": "source_and_test_review",
+      "command_or_source": "src/ui/render.ts humanCards/cardLabel/setupDiscardSelection; src/ui/render.test.ts accessible names for playable cards and discard toggle state",
+      "result": "passed",
+      "limitations": "Opponent card backs are aria-hidden decorative spans inside opponent hand containers; hidden opponent card identities are intentionally not exposed.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "state/score/result semantics",
+      "applicability": "applicable_required",
+      "evidence_type": "source_test_and_dependency_review",
+      "command_or_source": "src/ui/render.ts stateContextMarkup/scoreboardMarkup/renderDealResultPanel/renderFinalResultPanel/status-line; src/ui/render.test.ts; src/test/us845DesktopTable.integration.test.ts; task-reports/PERSONAL-TASK-1157/attempt-1.json",
+      "result": "passed",
+      "limitations": "No aria-live announcement is implemented for result transitions; prior US-844 precedent accepted static labeled result structures for this app flow.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "targeted_and_full_regression",
+      "command_or_source": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us845DesktopTable.integration.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Regression evidence is local deterministic Vitest/jsdom plus build verification.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release readiness",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "Release readiness is scoped to the repository's current test/build scripts in this worktree.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "visual applicability",
+      "applicability": "desktop_laptop_scope_only",
+      "evidence_type": "scope_classification",
+      "command_or_source": "PERSONAL-TASK-1164 scope; docs/test-design/us-845-desktop-table-states.md; src/styles.css desktop table layout and focus styles",
+      "result": "passed",
+      "limitations": "This accessibility review covers desktop/laptop usability. Full mobile accessibility and screenshot-diff visual QA are not required by this task.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security not-applicable classification",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1164 NFR classification; src/ui/render.ts; src/styles.css; targeted tests",
+      "result": "not_applicable",
+      "limitations": "This verification covers local UI accessibility only and touches no auth, backend, network, storage schema, or sensitive-data path.",
+      "accepted_risk": "none"
+    }
+  ]
+}

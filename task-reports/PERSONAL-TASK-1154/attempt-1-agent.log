@@ -1,0 +1,32 @@
+Agent: Ampere (019f3507-d697-7142-98e2-68a3d762a267)
+Task: PERSONAL-TASK-1154 [MZ-402] US-844 implement full preference score model
+Attempt: 1
+Model: gpt-5.4
+Reasoning: medium
+
+Final worker result:
+- Implemented the US-844 scoring/result model across domain state, scoring, engine transitions, and persistence compatibility tests.
+- Added structured deal results for deal-settlement/next-deal/finished states.
+- Added deterministic final result/ranking when the bullet target is reached.
+- Covered whist adjustments, half-whist behavior, all-pass progression, bullet completion, final ranking, and save/load compatibility.
+
+Worker verification:
+- npm run test -- src/domain/scoring.test.ts src/domain/engine.test.ts
+- npm run test -- src/test/ruleFlow.integration.test.ts
+- npm run test -- src/persistence/saveStore.test.ts
+- npm run verify
+
+Orchestrator acceptance review:
+- Report JSON validated after two report-only amendments.
+- Non-blocking MVP scoring-contract limitation was moved from risks into downstream_notes.
+- files_changed was amended to include src/persistence/saveStore.ts and src/persistence/saveStore.test.ts.
+- Local acceptance commands passed:
+  - npm run test -- src/domain/scoring.test.ts src/domain/engine.test.ts
+  - npm run test -- src/persistence/saveStore.test.ts
+  - npm run test -- src/test/ruleFlow.integration.test.ts
+  - npm run verify
+
+Accepted report:
+- task-reports/PERSONAL-TASK-1154/attempt-1.json
+- status: succeeded
+- risks: []

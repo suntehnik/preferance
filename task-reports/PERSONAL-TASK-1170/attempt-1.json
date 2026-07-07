@@ -1,0 +1,288 @@
+{
+  "task_id": "PERSONAL-TASK-1170",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "US-846 regression verification passed. MZ-601 and MZ-602 dependency reports are present, valid, and accepted for their scopes. The post-MZ-602 test suite now provides executable evidence for PERSONAL-REQ-1763, PERSONAL-AC-2430, and PERSONAL-AC-2431. The full-bullet smoke uses the real engine plus heuristic AI, is deterministic for seed 639, reaches phase=finished with bulletTarget=1, verifies chosen actions against live legal actions before applyAction, has a bounded maxSteps=80, and exposes useful failure diagnostics. npm run verify passed for the complete suite and build.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1170/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "mcp__spexus.current_context",
+      "result": "passed",
+      "evidence_type": "mandatory_spexus_context",
+      "evidence": "Read active Spexus tenant/project/component scope before Spexus task reads. Active project PERSONAL, component default."
+    },
+    {
+      "command": "mcp__spexus.get_task PERSONAL-TASK-1170",
+      "result": "passed",
+      "evidence_type": "task_scope_confirmation",
+      "evidence": "Confirmed MZ-603 is critical regression verification for PERSONAL-US-846, depends on MZ-601 and MZ-602, and requires complete test suite results plus deterministic smoke evidence."
+    },
+    {
+      "command": "sed -n '1,240p' task-reports/PERSONAL-TASK-1168/attempt-2.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_review",
+      "evidence": "MZ-601 report is present, status=succeeded, risks=[], failure_type=not_applicable, and routes the AC-2431 full-bullet smoke gap to MZ-602/MZ-603/MZ-604."
+    },
+    {
+      "command": "sed -n '1,240p' task-reports/PERSONAL-TASK-1169/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_review",
+      "evidence": "MZ-602 report is present, status=succeeded, risks=[], failure_type=not_applicable, and records both targeted smoke regression and npm run verify as passed."
+    },
+    {
+      "command": "sed -n '1,260p' task-reports/orchestrator-log.json",
+      "result": "passed",
+      "evidence_type": "orchestrator_log_review",
+      "evidence": "Orchestrator log marks PERSONAL-TASK-1168 and PERSONAL-TASK-1169 completed, current phase verification, current task PERSONAL-TASK-1170, and report paths match the exact dependency report paths requested."
+    },
+    {
+      "command": "sed -n '1,260p' docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "evidence_type": "coverage_matrix_review",
+      "evidence": "The matrix covers deck/deal, bidding, fixed profile, legal actions, trick winner, whist/half-whist, all-pass, misere, scoring, save/load, AI legality, and full-bullet smoke. Its pre-MZ-602 full-bullet row is intentionally downstream-routed; the current MZ-602 source and test results close that routed gap for MZ-603."
+    },
+    {
+      "command": "sed -n '1,520p' src/test/integrationHarness.ts",
+      "result": "passed",
+      "evidence_type": "smoke_implementation_review",
+      "evidence": "runDeterministicSmoke defaults to fullBulletSmoke seed 639, supports initialState createNewGame(seed, bulletTarget), uses chooseAiAction through chooseDeterministicHarnessAction, checks selected action legality against getLegalActions, applies actions through applyAction, records trace entries with phase/actor/legalCount/action, stops on finished/noLegalActions/maxSteps, and builds diagnostics with seed, step, phase, actor, legalCount, legal actions, chosen action, trace, and cause."
+    },
+    {
+      "command": "sed -n '1,280p' src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "evidence_type": "full_bullet_smoke_test_review",
+      "evidence": "The smoke test creates a real game with deterministicSeeds.fullBulletSmoke and fixtureDeals.fullBulletSmoke.bulletTarget=1, runs maxSteps=80, asserts stoppedReason=finished, finalSummary.phase=finished, completedSteps within the bound, non-empty trace, and step-to-step progress to guard against stuck runs."
+    },
+    {
+      "command": "sed -n '1,280p' src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "ai_legality_and_diagnostics_review",
+      "evidence": "AI integration verifies chooseAiAction is legal and applyAction-compatible across representative phases. The harness diagnostic test forces an illegal choice and asserts failure output includes seed, phase, actor, legal actions, legalCount, chosen action, and trace."
+    },
+    {
+      "command": "rg -n \"describe|it\\(|expect\\(\" src/domain/cards.test.ts src/domain/rules.test.ts src/domain/engine.test.ts src/domain/scoring.test.ts src/persistence/saveStore.test.ts src/ai/heuristicAi.test.ts src/test/startResume.integration.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "test_inventory_review",
+      "evidence": "Confirmed executable test owners exist for the US-846 rule-critical categories named by PERSONAL-REQ-1763 and PERSONAL-AC-2430, plus the new AC-2431 smoke coverage."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "complete_regression_suite",
+      "evidence": "Vitest passed 14 test files / 137 tests, then tsc and vite build completed successfully."
+    },
+    {
+      "command": "npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "targeted_full_bullet_smoke_regression",
+      "evidence": "Vitest passed 2 files / 5 tests, including the deterministic full-bullet smoke and harness diagnostics."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "component_key": "default",
+    "layer": "regression-verification",
+    "phase": "verification",
+    "qa_risk_level": "critical",
+    "release_gate_required": true,
+    "node_package_manager": "npm",
+    "test_runner": "vitest v2.1.9",
+    "verification_commands": [
+      "npm run verify",
+      "npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts"
+    ],
+    "environment_blockers": []
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "MZ-601 dependency report",
+      "scenario": "Accepted QA/test-design matrix report is present and structurally usable.",
+      "evidence_type": "dependency_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1168/attempt-2.json",
+      "live_paths": [
+        "docs/test-design/us-846-rule-critical-coverage-matrix.md"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "The matrix is a pre-MZ-602 design artifact; its full-bullet row remains downstream-routed, and current MZ-603 verification reconciles that row against post-MZ-602 executable evidence."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-602 dependency report",
+      "scenario": "Full-bullet smoke implementation report is present and claims passing targeted and broad verification.",
+      "evidence_type": "dependency_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1169/attempt-1.json; npm run verify; npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "No limitation requiring an exception; MZ-603 reran the relevant commands successfully."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1763",
+      "scenario": "Automated suite covers deck/deal, bidding, fixed agreement profile, legal actions, trick winner, whist/half-whist, all-pass, misere, scoring, save/load, AI legality, and full-bullet smoke.",
+      "evidence_type": "coverage_matrix_plus_executable_tests",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md; npm run verify",
+      "live_paths": [
+        "src/domain/cards.test.ts",
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/domain/scoring.test.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "src/test/ruleFlow.integration.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "src/test/us844Scoring.integration.test.ts",
+        "src/test/integrationHarness.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Coverage is mapped to current executable unit/integration/smoke tests; no exception is needed."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2430",
+      "scenario": "Rule-critical unit and integration tests execute for deck/deal, bidding, legal actions, trick winner, whist, all-pass, misere, scoring, persistence, and AI legality.",
+      "evidence_type": "complete_regression_suite",
+      "command_or_source": "npm run verify",
+      "live_paths": [
+        "src/domain/cards.test.ts",
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/domain/scoring.test.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "src/test/ruleFlow.integration.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "src/test/us844Scoring.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "No exception is needed; the complete suite passed."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2431",
+      "scenario": "Deterministic seed plus simple AI full-bullet smoke completes without unhandled error, illegal AI action, or stuck actor.",
+      "evidence_type": "deterministic_full_bullet_smoke",
+      "command_or_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/test/aiDecision.integration.test.ts; npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "No exception is needed. The smoke intentionally uses bulletTarget=1 and seed=639 to keep the gate deterministic, bounded, and fast."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "Spexus protocol compliance",
+      "applicability": "required",
+      "evidence_type": "mandatory_context_and_task_read",
+      "command_or_source": "mcp__spexus.current_context; mcp__spexus.get_task PERSONAL-TASK-1170",
+      "result": "passed",
+      "limitations": "No Spexus writes were performed.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Dependency report validation",
+      "applicability": "required",
+      "evidence_type": "dependency_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1168/attempt-2.json; task-reports/PERSONAL-TASK-1169/attempt-1.json; task-reports/orchestrator-log.json",
+      "result": "passed",
+      "limitations": "Exact dependency report paths were used; no report attempts were inferred.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Complete regression verification",
+      "applicability": "required",
+      "evidence_type": "full_verify_command",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "Covers the current worktree state on 2026-07-06.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Full-bullet smoke determinism",
+      "applicability": "required",
+      "evidence_type": "unit_integration_smoke_review_and_rerun",
+      "command_or_source": "src/test/integrationHarness.test.ts; npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "limitations": "Determinism is asserted for the same seed on the short replay smoke and the full-bullet smoke uses the same fixed seed and deterministic AI chooser.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Real engine plus heuristic AI",
+      "applicability": "required",
+      "evidence_type": "source_review",
+      "command_or_source": "src/test/integrationHarness.ts",
+      "result": "passed",
+      "limitations": "No mocked legal-action list or custom runner is used.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Finished-state completion",
+      "applicability": "required",
+      "evidence_type": "smoke_assertion",
+      "command_or_source": "src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "limitations": "The smoke uses bulletTarget=1 by design for a bounded full-bullet regression gate.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Legal action verification",
+      "applicability": "required",
+      "evidence_type": "harness_guard",
+      "command_or_source": "src/test/integrationHarness.ts; src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "limitations": "Legality is checked by formatted action equivalence against getLegalActions before applyAction.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Bounded max steps and stuck-run signal",
+      "applicability": "required",
+      "evidence_type": "smoke_assertion",
+      "command_or_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "limitations": "The test asserts trace progress and fails if completion is not reached within fixtureDeals.fullBulletSmoke.maxSteps=80.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Useful diagnostics",
+      "applicability": "required",
+      "evidence_type": "diagnostic_failure_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "limitations": "Diagnostics focus on harness failures caused by chooser/apply errors or illegal actions.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "REQ/AC executable evidence",
+      "applicability": "required",
+      "evidence_type": "coverage_trace",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md; npm run verify",
+      "result": "passed",
+      "limitations": "No justified exception is required for PERSONAL-REQ-1763, PERSONAL-AC-2430, or PERSONAL-AC-2431.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Release gate readiness for MZ-603 scope",
+      "applicability": "required",
+      "evidence_type": "critical_regression_verification",
+      "command_or_source": "npm run verify; npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "limitations": "MZ-604 still owns final US release-readiness acceptance, but MZ-603 regression evidence is complete.",
+      "accepted_risk": "none"
+    }
+  ]
+}

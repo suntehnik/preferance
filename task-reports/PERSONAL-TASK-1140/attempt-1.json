@@ -1,0 +1,81 @@
+{
+  "task_id": "PERSONAL-TASK-1140",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Implemented the fixed-profile Sochi rule-state machine for bidding, all-pass, contract ordering, widow pickup, discard, whist/check/half-whist decisions, contract and misere trick play, trick winner resolution, deal settlement, next-deal continuation, and bullet completion; updated AI/test harness compatibility and kept legal actions phase-scoped through getLegalActions.",
+  "files_changed": [
+    "src/domain/state.ts",
+    "src/domain/rules.ts",
+    "src/domain/rules.test.ts",
+    "src/domain/engine.ts",
+    "src/domain/engine.test.ts",
+    "src/ai/heuristicAi.ts",
+    "src/test/integrationHarness.ts",
+    "src/ui/render.ts"
+  ],
+  "tests_run": [
+    "npm test -- src/domain/engine.test.ts src/domain/rules.test.ts src/ai/heuristicAi.test.ts",
+    "npm test",
+    "npm run verify"
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "workspace": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "toolchain": "npm + vitest + tsc + vite build",
+    "date": "2026-07-06"
+  },
+  "evidence_matrix": [
+    {
+      "requirement": "PERSONAL-REQ-1755",
+      "coverage": [
+        "src/domain/rules.test.ts :: uses Sochi defaults from the remake spec",
+        "src/domain/engine.test.ts :: does not require mandatory whist on six spades",
+        "src/domain/engine.test.ts :: checks ten-level games instead of offering whist choices",
+        "src/domain/engine.test.ts :: settles progressive all-pass scoring and exposes next-deal transition",
+        "src/domain/engine.test.ts :: starts the next deal with bidding actions that still open at six-level after all-pass"
+      ],
+      "evidence_type": "contract_or_unit"
+    },
+    {
+      "requirement": "PERSONAL-REQ-1756",
+      "coverage": [
+        "src/domain/engine.test.ts :: moves to all-pass play when all players pass without a bid",
+        "src/domain/engine.test.ts :: moves to contract ordering when only the winning bidder remains",
+        "src/domain/engine.test.ts :: moves misere winners directly into misere play without a whist phase",
+        "src/domain/engine.test.ts :: moves ordered contracts through widow pickup and declarer-only discard",
+        "src/domain/engine.test.ts :: routes game contracts to whist decisions after discard",
+        "src/domain/engine.test.ts :: transitions the final trick into deal settlement",
+        "src/domain/engine.test.ts :: settles progressive all-pass scoring and exposes next-deal transition",
+        "src/domain/engine.test.ts :: moves successful settlement into bullet completion when the target is reached"
+      ],
+      "evidence_type": "contract_or_unit"
+    },
+    {
+      "requirement": "PERSONAL-REQ-1757",
+      "coverage": [
+        "src/domain/engine.test.ts :: resolves the third card of a trick with winner, trick counts, cleared trick, and next lead"
+      ],
+      "evidence_type": "contract_or_unit"
+    },
+    {
+      "requirement": "PERSONAL-AC-2422",
+      "coverage": [
+        "src/domain/engine.test.ts :: limits contract order choices to bids that outrank the winning game bid",
+        "src/domain/engine.test.ts :: moves ordered contracts through widow pickup and declarer-only discard",
+        "src/domain/engine.test.ts :: does not require mandatory whist on six spades",
+        "src/domain/engine.test.ts :: checks ten-level games instead of offering whist choices",
+        "src/domain/engine.test.ts :: only allows following suit when possible"
+      ],
+      "evidence_type": "contract_or_unit"
+    },
+    {
+      "requirement": "PERSONAL-AC-2423",
+      "coverage": [
+        "src/domain/engine.test.ts :: resolves the third card of a trick with winner, trick counts, cleared trick, and next lead",
+        "src/domain/engine.test.ts :: transitions the final trick into deal settlement"
+      ],
+      "evidence_type": "contract_or_unit"
+    }
+  ]
+}

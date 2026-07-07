@@ -1,0 +1,353 @@
+{
+  "task_id": "PERSONAL-TASK-1171",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "US-846 release-readiness gate passed. Required Spexus context and task scope were read in order. Exact dependency reports for MZ-601, MZ-602, and MZ-603 are present, valid, accepted for their scopes, and recorded with risks=[] and failure_type=not_applicable. Current source/test inspection confirms PERSONAL-REQ-1763, PERSONAL-AC-2430, and PERSONAL-AC-2431 now have executable evidence. The deterministic full-bullet smoke uses fixed seed 639, real createNewGame/applyAction/getLegalActions engine paths, real chooseAiAction heuristic AI, legality checks before applyAction, phase=finished completion with bulletTarget=1, maxSteps=80, stuck/progress assertions, and useful diagnostics. MZ-603 provides current same-day npm run verify evidence for 14 files / 137 tests plus tsc and vite build, and targeted full-bullet smoke regression evidence for 2 files / 5 tests. Prior US-842 through US-845 completion gates exist and are accepted; this US-846 release gate does not replace product acceptance of those earlier gates. The requested US-841 completion report path remains absent, but current persistence/start-resume executable tests and orchestrator-log completion context are sufficient for this US-846 release gate.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1171/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "mcp__spexus.current_context",
+      "result": "passed",
+      "evidence_type": "mandatory_spexus_context",
+      "evidence": "Read active PERSONAL project/default component scope before Spexus task reads."
+    },
+    {
+      "command": "mcp__spexus.get_task PERSONAL-TASK-1171",
+      "result": "passed",
+      "evidence_type": "task_scope_confirmation",
+      "evidence": "Confirmed MZ-604 is the US-846 release-readiness verification gate for PERSONAL-EP-180 and must verify MZ-601, MZ-602, MZ-603, full-bullet smoke, regression evidence, NFR classification, and prior US gates."
+    },
+    {
+      "command": "jq '.' task-reports/PERSONAL-TASK-1168/attempt-2.json task-reports/PERSONAL-TASK-1169/attempt-1.json task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_review",
+      "evidence": "Reviewed exact dependency reports task-reports/PERSONAL-TASK-1168/attempt-2.json, task-reports/PERSONAL-TASK-1169/attempt-1.json, and task-reports/PERSONAL-TASK-1170/attempt-1.json. All are present and accepted with no risks."
+    },
+    {
+      "command": "jq '.' task-reports/orchestrator-log.json",
+      "result": "passed",
+      "evidence_type": "orchestrator_log_review",
+      "evidence": "Confirmed current_task=PERSONAL-TASK-1171, completed_tasks includes PERSONAL-TASK-1168, PERSONAL-TASK-1169, and PERSONAL-TASK-1170, report paths match exact requested dependency paths, US-841 through US-845 are listed as completed user stories, and routed AC-2431 risk is closed by MZ-602."
+    },
+    {
+      "command": "jq '{status, summary, risks, failure_type, quality_gate_matrix, evidence_matrix}' task-reports/PERSONAL-US-842/review-cycle-1/review-report.json task-reports/PERSONAL-US-843/review-cycle-1/review-report.json task-reports/PERSONAL-US-844/review-cycle-2/review-report.json task-reports/PERSONAL-US-845/review-cycle-2/review-report.json",
+      "result": "passed",
+      "evidence_type": "prior_us_completion_review",
+      "evidence": "Confirmed accepted completion-gate evidence exists for US-842, US-843, US-844, and US-845. These gates remain prior product-acceptance evidence and are not replaced by MZ-604."
+    },
+    {
+      "command": "sed -n '1,260p' docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "evidence_type": "coverage_matrix_review",
+      "evidence": "Confirmed the matrix maps deck/deal, bidding, fixed agreement profile, legal action generation, trick winner, whist/half-whist, all-pass, misere, scoring, save/load, AI legality, and full-bullet smoke to executable tests or downstream owners. Its pre-MZ-602 full-bullet gap is now closed by MZ-602/MZ-603 evidence."
+    },
+    {
+      "command": "sed -n '1,560p' src/test/integrationHarness.ts",
+      "result": "passed",
+      "evidence_type": "smoke_harness_source_review",
+      "evidence": "Confirmed fixed seed 639, bulletTarget=1, maxSteps=80, real createNewGame/applyAction/getLegalActions engine calls, real chooseAiAction via chooseDeterministicHarnessAction, legal action assertion before applyAction, finished/noLegalActions/maxSteps stop reasons, trace capture, and diagnostics containing seed, step, phase, actor, legalCount, legal actions, chosen action, trace, and cause."
+    },
+    {
+      "command": "sed -n '1,340p' src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "evidence_type": "full_bullet_smoke_test_review",
+      "evidence": "Confirmed the smoke starts createNewGame(deterministicSeeds.fullBulletSmoke, fixtureDeals.fullBulletSmoke.bulletTarget), runs with fixtureDeals.fullBulletSmoke.maxSteps, asserts stoppedReason=finished, finalSummary.phase=finished, completedSteps within bound, non-empty trace, and step-to-step progress."
+    },
+    {
+      "command": "sed -n '1,340p' src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "ai_legality_and_diagnostics_review",
+      "evidence": "Confirmed representative AI decisions are chosen from getLegalActions and applied through applyAction, and the illegal-choice diagnostic test asserts seed, phase, actor, legal actions, legalCount, chosen action, and trace output."
+    },
+    {
+      "command": "cat package.json",
+      "result": "passed",
+      "evidence_type": "verification_entrypoint_review",
+      "evidence": "Confirmed npm run verify executes npm run test and npm run build, and npm run build executes tsc and vite build."
+    },
+    {
+      "command": "rg -n \"describe|it\\(|expect\\(\" src/persistence/saveStore.test.ts src/test/startResume.integration.test.ts docs/test-design/us-841-start-resume.md task-reports/orchestrator-log.json",
+      "result": "passed",
+      "evidence_type": "us_841_direct_evidence_review",
+      "evidence": "Confirmed the requested US-841 completion report path is absent, but current persistence/start-resume executable tests cover active bullet storage, supported bullet sizes, legacy migration, invalid save rejection, finished/non-resumable saves, deal-settlement/next-deal round-trips, start, continue, replacement, and incompatible-save fallback. Orchestrator log lists PERSONAL-US-841 as completed."
+    },
+    {
+      "command": "task-reports/PERSONAL-TASK-1170/attempt-1.json recorded npm run verify and targeted smoke rerun",
+      "result": "passed",
+      "evidence_type": "current_verify_evidence_review",
+      "evidence": "Relied on exact same-day MZ-603 evidence because source/report consistency checks found no contradiction: npm run verify passed 14 files / 137 tests plus tsc and vite build, and npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts passed 2 files / 5 tests."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "component_key": "default",
+    "layer": "release-readiness",
+    "phase": "verification",
+    "qa_risk_level": "critical",
+    "release_gate_required": true,
+    "node_package_manager": "npm",
+    "test_runner": "vitest v2.1.9 as recorded by MZ-603",
+    "verification_commands_relied_on": [
+      "npm run verify",
+      "npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts"
+    ],
+    "verification_commands_rerun_by_this_gate": [],
+    "rerun_omission_reason": "MZ-603 reran npm run verify and the targeted full-bullet smoke regression immediately before MZ-604 on 2026-07-06. Exact source/report evidence was consistent, so the release gate relied on that current evidence.",
+    "nfr_applicability": {
+      "regression_verification": "required_satisfied",
+      "release_readiness": "required_satisfied",
+      "security_review": "not_applicable_static_localStorage_vite_app",
+      "migration_backend_auth": "not_applicable_no_backend_auth_database_or_server_persistence_introduced"
+    },
+    "production_code_edited_by_verifier": false,
+    "environment_blockers": []
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "MZ-601 dependency report",
+      "scenario": "Accepted QA coverage matrix is present and usable as release-gate input.",
+      "evidence_type": "dependency_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1168/attempt-2.json; docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "live_paths": [
+        "docs/test-design/us-846-rule-critical-coverage-matrix.md"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Matrix was authored before MZ-602; MZ-604 reconciled its downstream-routed AC-2431 gap against post-MZ-602/MZ-603 executable evidence."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-602 dependency report",
+      "scenario": "Missing deterministic full-bullet smoke coverage was implemented.",
+      "evidence_type": "implementation_report_and_source_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1169/attempt-1.json; src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/test/aiDecision.integration.test.ts",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Smoke intentionally uses bulletTarget=1 and seed=639 for a deterministic, bounded release-evidence gate."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-603 dependency report",
+      "scenario": "Regression verification completed after MZ-602 and is current enough for MZ-604.",
+      "evidence_type": "regression_verification_report",
+      "command_or_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "MZ-604 did not rerun npm run verify because exact same-day MZ-603 evidence was complete and consistent."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1763",
+      "scenario": "Automated suite covers rule-critical deck/deal, bidding, fixed agreement profile, legal actions, trick winner, whist/half-whist, all-pass, misere, scoring, save/load, AI legality, and full-bullet smoke.",
+      "evidence_type": "coverage_matrix_plus_current_executable_tests",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md; task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "live_paths": [
+        "src/domain/cards.test.ts",
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/domain/scoring.test.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "src/test/ruleFlow.integration.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "src/test/us844Scoring.integration.test.ts",
+        "src/test/us845DesktopTable.integration.test.ts",
+        "src/test/integrationHarness.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "No exception required; all matrix categories now have current executable evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2430",
+      "scenario": "Rule-critical unit and integration tests execute for deck/deal, bidding, legal actions, trick winner, whist, all-pass, misere, scoring, persistence, and AI legality.",
+      "evidence_type": "complete_regression_suite",
+      "command_or_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json recorded npm run verify passed",
+      "live_paths": [
+        "src/domain/cards.test.ts",
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/domain/scoring.test.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "src/test/ruleFlow.integration.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "src/test/us844Scoring.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "No exception required; full suite and build passed in MZ-603."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2431",
+      "scenario": "Deterministic seed plus simple AI full-bullet smoke completes without unhandled error, illegal AI action, or stuck actor.",
+      "evidence_type": "deterministic_full_bullet_smoke",
+      "command_or_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/test/aiDecision.integration.test.ts; task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Smoke uses deterministic seed 639, bulletTarget=1, and maxSteps=80 by design to keep the release evidence fast and bounded."
+    },
+    {
+      "req_or_ac_or_contract": "US-841 missing report caveat",
+      "scenario": "Requested US-841 completion report path remains missing, but current direct executable persistence/start-resume evidence is sufficient for US-846 release readiness.",
+      "evidence_type": "direct_executable_test_review",
+      "command_or_source": "test -f task-reports/PERSONAL-US-841/review-cycle-1/review-report.json; src/persistence/saveStore.test.ts; src/test/startResume.integration.test.ts; task-reports/orchestrator-log.json",
+      "live_paths": [
+        "src/persistence/saveStore.test.ts",
+        "src/test/startResume.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Historical traceability report remains absent. The release gate accepts current executable persistence/start-resume tests plus orchestrator completion context as sufficient, with no release risk recorded."
+    },
+    {
+      "req_or_ac_or_contract": "Prior US gates",
+      "scenario": "Prior gates exist for US-842 through US-845 and are accepted, and MZ-604 does not replace their product acceptance.",
+      "evidence_type": "prior_completion_report_review",
+      "command_or_source": "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json; task-reports/PERSONAL-US-843/review-cycle-1/review-report.json; task-reports/PERSONAL-US-844/review-cycle-2/review-report.json; task-reports/PERSONAL-US-845/review-cycle-2/review-report.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Earlier US gates remain their own acceptance artifacts; this release gate only confirms US-846 readiness."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "Spexus protocol compliance",
+      "applicability": "required",
+      "evidence_type": "mandatory_context_and_task_read",
+      "command_or_source": "mcp__spexus.current_context; mcp__spexus.get_task PERSONAL-TASK-1171",
+      "result": "passed",
+      "limitations": "No Spexus writes were performed.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Exact dependency reports",
+      "applicability": "required",
+      "evidence_type": "dependency_report_validation",
+      "command_or_source": "task-reports/PERSONAL-TASK-1168/attempt-2.json; task-reports/PERSONAL-TASK-1169/attempt-1.json; task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "result": "passed",
+      "limitations": "Used exact requested paths; no report attempts were inferred.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "MZ-601 matrix accepted",
+      "applicability": "required",
+      "evidence_type": "qa_matrix_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1168/attempt-2.json; docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "limitations": "The matrix's pre-MZ-602 full-bullet gap is intentionally downstream-routed and now closed by later evidence.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "MZ-602 missing rule-critical tests implemented",
+      "applicability": "required",
+      "evidence_type": "implementation_report_and_source_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1169/attempt-1.json; src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "limitations": "Single deterministic smoke seed is accepted for the required release-evidence smoke.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "MZ-603 regression verification accepted",
+      "applicability": "required",
+      "evidence_type": "regression_verification_report",
+      "command_or_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "result": "passed",
+      "limitations": "MZ-604 relies on same-day complete regression evidence instead of rerunning.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Current executable REQ/AC evidence",
+      "applicability": "required",
+      "evidence_type": "source_test_report_trace",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md; task-reports/PERSONAL-TASK-1170/attempt-1.json; source/test inspection",
+      "result": "passed",
+      "limitations": "No justified exception or report-only category remains for PERSONAL-REQ-1763, PERSONAL-AC-2430, or PERSONAL-AC-2431.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Deterministic full-bullet smoke quality",
+      "applicability": "required",
+      "evidence_type": "source_and_test_review",
+      "command_or_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "limitations": "Smoke uses bulletTarget=1 to make completion deterministic and bounded.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Full verify evidence",
+      "applicability": "required",
+      "evidence_type": "same_day_release_verification",
+      "command_or_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json records npm run verify",
+      "result": "passed",
+      "limitations": "No rerun by MZ-604; MZ-603 evidence is current, complete, and source-consistent.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "NFR regression verification",
+      "applicability": "required",
+      "evidence_type": "regression_gate",
+      "command_or_source": "task-reports/PERSONAL-TASK-1170/attempt-1.json",
+      "result": "passed",
+      "limitations": "Regression scope is the static local publishable MVP game loop and associated unit/integration/build suite.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "NFR release readiness",
+      "applicability": "required",
+      "evidence_type": "release_readiness_gate",
+      "command_or_source": "package.json; task-reports/PERSONAL-TASK-1170/attempt-1.json; this report",
+      "result": "passed",
+      "limitations": "No feature flag, server rollback, or live deployment smoke path applies to this local static app scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Security review applicability",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_classification",
+      "command_or_source": "package.json; source/test/report review",
+      "result": "not_applicable",
+      "limitations": "Static Vite/localStorage app scope with no backend, auth, account, network API, server persistence, database, migration, tenant/scope, or sensitive server boundary introduced by US-846.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Prior US product acceptance not replaced",
+      "applicability": "required",
+      "evidence_type": "prior_gate_review",
+      "command_or_source": "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json; task-reports/PERSONAL-US-843/review-cycle-1/review-report.json; task-reports/PERSONAL-US-844/review-cycle-2/review-report.json; task-reports/PERSONAL-US-845/review-cycle-2/review-report.json",
+      "result": "passed",
+      "limitations": "US-846 release readiness depends on but does not supersede earlier accepted US gates.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "US-841 missing report handling",
+      "applicability": "required_traceability_caveat",
+      "evidence_type": "direct_executable_evidence_substitution",
+      "command_or_source": "src/persistence/saveStore.test.ts; src/test/startResume.integration.test.ts; task-reports/orchestrator-log.json",
+      "result": "passed",
+      "limitations": "The historical completion report path is still absent; current direct executable tests and orchestrator-log completion context are sufficient for the US-846 release gate.",
+      "accepted_risk": "none"
+    }
+  ]
+}

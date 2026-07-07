@@ -1,0 +1,357 @@
+{
+  "epic_id": "PERSONAL-EP-180",
+  "us_id": "PERSONAL-US-845",
+  "summary": {
+    "verdict_basis": "US-845 completion verification passed. Spexus current_context was read before epic hierarchy and task artifact reads, and epic hierarchy PERSONAL-EP-180 was read with full context. The accepted exact dependency reports for MZ-501 through MZ-506 are present, valid, same-epic, risk-free, and collectively cover the desktop/laptop table-state UI scope for current phase, active actor, legal actions, contract/trump/trick context, score, deal-result, next-deal, and final-result states.",
+    "scope": "Desktop/laptop static browser table UI states for Sochi preference. Tutorial, glossary, full mobile UX, backend, auth, network, server persistence, and online multiplayer are outside this US and were not added.",
+    "evidence_classification": "Automated integration evidence is Vitest/jsdom plus real domain GameState transitions and renderGame output. Visual evidence is synthetic/static UI evidence produced by deterministic GameState fixtures rendered through the local Vite app and Playwright screenshots. It is accepted for frontend UI state, layout, action visibility, and result readability, not as backend-live evidence.",
+    "blocking_findings": 0
+  },
+  "requirements_coverage": [
+    {
+      "requirement": "PERSONAL-REQ-1762",
+      "status": "covered",
+      "coverage_summary": "Renderer, styles, component tests, integration tests, accessibility review, and visual/regression reports show the desktop table presents current phase, active actor, legal human actions, contract/trump/current-trick context where applicable, player hands, score table, deal result, and final result.",
+      "primary_sources": [
+        "task-reports/PERSONAL-TASK-1162/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1163/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1164/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1165/attempt-3.json",
+        "task-reports/PERSONAL-TASK-1165/fix-2.json",
+        "task-reports/PERSONAL-TASK-1166/attempt-1.json",
+        "src/ui/render.ts",
+        "src/styles.css",
+        "src/ui/render.test.ts",
+        "src/test/us845DesktopTable.integration.test.ts",
+        "output/playwright/mz505-capture-results.json",
+        "output/playwright/mz-505-*.png"
+      ],
+      "limitations": "No backend-live path exists or is required for this static local UI story; visual captures are deterministic fixtures."
+    }
+  ],
+  "acceptance_criteria_coverage": [
+    {
+      "acceptance_criterion": "PERSONAL-AC-2428",
+      "status": "covered",
+      "coverage_summary": "Bidding, contract/order, whist, play, deal-result/settlement, and final-result states are covered at desktop and laptop viewports by MZ-505 screenshots/metrics after fix-2, with integration coverage for additional contract sub-states, all-pass, misere, and next-deal. The prior MZ-505 visual blockers were closed by routed fix-2 and accepted in attempt-3.",
+      "primary_sources": [
+        "src/test/us845DesktopTable.integration.test.ts",
+        "output/playwright/mz-505-bidding-desktop.png",
+        "output/playwright/mz-505-bidding-laptop.png",
+        "output/playwright/mz-505-contract-desktop.png",
+        "output/playwright/mz-505-contract-laptop.png",
+        "output/playwright/mz-505-whist-desktop.png",
+        "output/playwright/mz-505-whist-laptop.png",
+        "output/playwright/mz-505-play-desktop.png",
+        "output/playwright/mz-505-play-laptop.png",
+        "output/playwright/mz-505-settlement-desktop.png",
+        "output/playwright/mz-505-settlement-laptop.png",
+        "output/playwright/mz-505-final-desktop.png",
+        "output/playwright/mz-505-final-laptop.png",
+        "task-reports/PERSONAL-TASK-1165/attempt-3.json"
+      ],
+      "limitations": "Next-deal is covered by jsdom/integration evidence rather than a dedicated screenshot family."
+    },
+    {
+      "acceptance_criterion": "PERSONAL-AC-2429",
+      "status": "covered",
+      "coverage_summary": "Deal settlement and next-deal integration tests show understandable result context and legal continuation only when the bullet is not complete; final-result tests and screenshots show ranking/result summary with no continuation controls. MZ-505 fix history closed the laptop result readability issue.",
+      "primary_sources": [
+        "src/test/us845DesktopTable.integration.test.ts",
+        "src/ui/render.test.ts",
+        "task-reports/PERSONAL-TASK-1164/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1165/fix-1.json",
+        "task-reports/PERSONAL-TASK-1165/fix-2.json",
+        "output/playwright/mz-505-settlement-laptop.png",
+        "output/playwright/mz-505-final-laptop.png"
+      ],
+      "limitations": "Result screenshots use deterministic fixture text and scores; broader score correctness is inherited from accepted US-844 evidence."
+    }
+  ],
+  "component_coverage": [
+    {
+      "component": "default",
+      "layers": [
+        "qa-test-design",
+        "presentation-client",
+        "integration-tests",
+        "accessibility-review",
+        "visual-regression",
+        "regression-verification"
+      ],
+      "status": "covered",
+      "actual_changes_or_artifacts": [
+        "docs/test-design/us-845-desktop-table-states.md",
+        "src/ui/render.ts",
+        "src/styles.css",
+        "src/ui/render.test.ts",
+        "src/ui/controller.test.ts",
+        "src/test/us845DesktopTable.integration.test.ts",
+        "output/playwright/mz505-capture.mjs",
+        "output/playwright/mz505-capture-results.json",
+        "output/playwright/mz-505-*.png",
+        "task-reports/PERSONAL-TASK-1161/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1162/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1163/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1164/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1165/attempt-3.json",
+        "task-reports/PERSONAL-TASK-1165/fix-2.json",
+        "task-reports/PERSONAL-TASK-1166/attempt-1.json"
+      ],
+      "notes": "Accepted task reports show actual code/test/artifact changes in the touched UI, style, integration, visual, and report surfaces. No dependent component or backend contract gap remains for this static desktop UI scope."
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1762",
+      "scenario": "Desktop table exposes phase, active actor, legal actions, contract/trump/current-trick context, player hands, score table, deal result, and final result.",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "task-reports/PERSONAL-TASK-1162/attempt-1.json; src/ui/render.ts; src/styles.css; src/ui/render.test.ts; npm run test -- src/ui/render.test.ts; npm run verify recorded in MZ-502",
+      "live_paths": [],
+      "mocked_paths": [
+        "Vitest/jsdom renderer assertions over deterministic GameState fixtures"
+      ],
+      "accepted_for": "Renderer state presentation, legal action projection into DOM controls/cards, score/result panel presence, and scoped release test/build evidence.",
+      "limitations": "Component-level DOM evidence, not browser viewport evidence and not backend-live evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "Desktop/laptop bidding state shows actor, phase, legal bid/pass controls, score, hands, and no result panel.",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1163/attempt-1.json; src/test/us845DesktopTable.integration.test.ts; npm run test -- src/test/us845DesktopTable.integration.test.ts recorded in MZ-503",
+      "live_paths": [],
+      "mocked_paths": [
+        "In-process GameState fixture rendered with renderGame under Vitest/jsdom"
+      ],
+      "accepted_for": "Static frontend integration of rules-derived legal actions and renderer DOM for bidding.",
+      "limitations": "No browser viewport automation in this row; viewport layout supplied by visual rows."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "Contract-order and whist states keep one legal action family visible with active actor and contract context.",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "src/test/us845DesktopTable.integration.test.ts; task-reports/PERSONAL-TASK-1163/attempt-1.json; task-reports/PERSONAL-TASK-1165/fix-2.json",
+      "live_paths": [],
+      "mocked_paths": [
+        "In-process GameState fixture",
+        "Playwright synthetic visual fixture rendered by output/playwright/mz505-capture.mjs"
+      ],
+      "accepted_for": "Contract/whist UI state, legal action visibility, compact contract-order grid, and no-blocking desktop/laptop action visibility.",
+      "limitations": "Visual fixture is static; it proves frontend layout and action visibility, not backend behavior."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "Play state shows active actor, current trick, contract/trump context when applicable, and only legal playable cards as enabled controls.",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "src/test/us845DesktopTable.integration.test.ts; src/ui/render.test.ts; output/playwright/mz-505-play-desktop.png; output/playwright/mz-505-play-laptop.png",
+      "live_paths": [],
+      "mocked_paths": [
+        "In-process GameState fixture",
+        "Playwright synthetic visual fixture"
+      ],
+      "accepted_for": "Frontend legal card affordance visibility and play table context.",
+      "limitations": "Legal action generation itself is inherited from accepted US-842 rule-flow evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "All-pass and misere play states omit misleading trump/declarer-only context and keep legal card play visible.",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "src/test/us845DesktopTable.integration.test.ts; task-reports/PERSONAL-TASK-1163/attempt-1.json; docs/test-design/us-845-desktop-table-states.md",
+      "live_paths": [],
+      "mocked_paths": [
+        "Vitest/jsdom GameState fixtures"
+      ],
+      "accepted_for": "Representative non-standard play-state UI context and legal action projection.",
+      "limitations": "No dedicated screenshot family for all-pass/misere; visual coverage focuses the six AC-named families."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2429",
+      "scenario": "Deal settlement and next-deal states display understandable result context and legal continuation unless bullet is complete.",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "src/test/us845DesktopTable.integration.test.ts; src/ui/render.test.ts; task-reports/PERSONAL-TASK-1164/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [
+        "Vitest/jsdom state-transition fixtures"
+      ],
+      "accepted_for": "Result/continuation DOM semantics, next-deal action exposure, and completed-bullet no-continuation behavior.",
+      "limitations": "Browser screenshot coverage covers settlement/final; next-deal continuation is jsdom integration evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428/PERSONAL-AC-2429 visual contract",
+      "scenario": "Desktop and laptop screenshots cover bidding, contract, whist, play, deal-result, and final-result states without incoherent overlap or action/result clipping.",
+      "evidence_type": "visual_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1165/attempt-3.json; task-reports/PERSONAL-TASK-1165/fix-2.json; output/playwright/mz505-capture-results.json; output/playwright/mz-505-*.png",
+      "live_paths": [
+        "Local Vite app at http://127.0.0.1:5332/ recorded in MZ-505 fix-2"
+      ],
+      "mocked_paths": [
+        "output/playwright/mz505-capture.mjs injects deterministic GameState fixtures in page.evaluate; no backend/API path is used"
+      ],
+      "accepted_for": "Static frontend visual layout, desktop/laptop viewport framing, action visibility, result readability, score panel presence, and closure of MZ-505 visual risks.",
+      "limitations": "Synthetic/static visual UI evidence; not backend-live and not a full manual playthrough."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-505 override routed risk",
+      "scenario": "Contract-order action stack clipping after two failed MZ-505 attempts is explicitly routed and closed.",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "task-reports/orchestrator-log.json; task-reports/PERSONAL-TASK-1165/attempt-2.json; task-reports/PERSONAL-TASK-1165/fix-2.json; task-reports/PERSONAL-TASK-1165/attempt-3.json",
+      "live_paths": [],
+      "mocked_paths": [
+        "Regenerated Playwright synthetic visual fixture screenshots"
+      ],
+      "accepted_for": "Process/risk closure evidence under the orchestrator override protocol.",
+      "limitations": "The override permits a third verification after routed fix; it is not itself success evidence. Success comes from fix-2 plus attempt-3."
+    },
+    {
+      "req_or_ac_or_contract": "Accessibility contract",
+      "scenario": "Desktop table controls are keyboard usable and readable by assistive technologies for core play states, and remain applicable after fix-2.",
+      "evidence_type": "accessibility_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1164/attempt-1.json; task-reports/PERSONAL-TASK-1166/attempt-1.json; src/ui/render.ts; src/styles.css; src/ui/render.test.ts",
+      "live_paths": [],
+      "mocked_paths": [
+        "Source/test review plus Vitest/jsdom assertions"
+      ],
+      "accepted_for": "Native button controls, focus-visible styling, action/card accessible names, result/score/state semantics, and applicability after compact contract-order fix.",
+      "limitations": "No manual screen-reader transcript or browser tab-walk recording."
+    },
+    {
+      "req_or_ac_or_contract": "Scope boundary contract",
+      "scenario": "Tutorial, glossary, and full-mobile scope were not introduced.",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "rg tutorial/glossary/full-mobile/mobile/help across US-845 docs, UI source/tests, capture harness, and reports; task-reports/PERSONAL-TASK-1166/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Scope control and release-risk boundary.",
+      "limitations": "Responsive CSS exists elsewhere in the app; US-845 implementation and evidence stay desktop/laptop focused."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "Spexus artifact read order",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "mcp__spexus.current_context read before mcp__spexus.epic_hierarchy PERSONAL-EP-180 and task/report inspection in this completion gate",
+      "accepted_for": "Mandatory protocol compliance.",
+      "limitations": "None.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "QA/test strategy",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "docs/test-design/us-845-desktop-table-states.md; task-reports/PERSONAL-TASK-1161/attempt-1.json",
+      "accepted_for": "Executable downstream scenario design and ownership routing.",
+      "limitations": "Design task is not runtime proof by itself; downstream reports supply runtime evidence.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Implementation component coverage",
+      "applicability": "required",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "task-reports/PERSONAL-TASK-1162/attempt-1.json; src/ui/render.ts; src/styles.css; src/ui/render.test.ts",
+      "accepted_for": "Presentation-client desktop state UI changes.",
+      "limitations": "No domain/rules/scoring production behavior change was required by this US.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Integration coverage",
+      "applicability": "required",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1163/attempt-1.json; src/test/us845DesktopTable.integration.test.ts",
+      "accepted_for": "US-scoped integration coverage for bidding, contract/order, whist, play, all-pass, misere, settlement, next-deal, and finished states.",
+      "limitations": "Vitest/jsdom in-process integration; no browser viewport runner in package scripts.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Mocked/static harness disclosure",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "output/playwright/mz505-capture.mjs; task-reports/PERSONAL-TASK-1165/attempt-3.json; task-reports/PERSONAL-TASK-1166/attempt-1.json",
+      "accepted_for": "Correct evidence classification under the Evidence Integrity Contract.",
+      "limitations": "No page.route/MSW/fetch interception was found; the harness is still synthetic because it renders deterministic GameState fixtures.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Accessibility",
+      "applicability": "required_for_ui_change",
+      "evidence_type": "accessibility_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1164/attempt-1.json; task-reports/PERSONAL-TASK-1166/attempt-1.json",
+      "accepted_for": "Desktop/laptop keyboard/action usability and assistive-technology-readable state, score, action, card, deal-result, and final-result semantics after MZ-505 fix-2.",
+      "limitations": "No manual screen-reader run; accepted source/test review remains applicable because fix-2 preserved native controls, labels, and focus-visible styling.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Visual regression",
+      "applicability": "required_for_ui_layout_change",
+      "evidence_type": "visual_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1165/attempt-3.json; task-reports/PERSONAL-TASK-1165/fix-2.json; output/playwright/mz505-capture-results.json; output/playwright/mz-505-*.png",
+      "accepted_for": "Desktop/laptop key-state screenshots and DOM metrics for bidding, contract, whist, play, deal-result, and final-result.",
+      "limitations": "Synthetic/static visual evidence. The only reported clipped text is the known decorative MARRIAGE heading; non-decorative action/result blockers were closed.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Regression impact",
+      "applicability": "required",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1166/attempt-1.json; task-reports/PERSONAL-TASK-1165/fix-2.json",
+      "accepted_for": "Desktop table state regression, related renderer/controller/rule-flow/US-844 scoring-result regression, and scoped release impact review.",
+      "limitations": "MZ-506 accepted same-day recorded verify and visual evidence without rerunning npm run verify.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Release readiness",
+      "applicability": "release_gate_required",
+      "evidence_type": "release_readiness",
+      "evidence_source": "task-reports/PERSONAL-TASK-1162/attempt-1.json; task-reports/PERSONAL-TASK-1163/attempt-1.json; task-reports/PERSONAL-TASK-1164/attempt-1.json; task-reports/PERSONAL-TASK-1165/fix-2.json; task-reports/PERSONAL-TASK-1166/attempt-1.json",
+      "accepted_for": "Repo test/build verification and final visual/accessibility/regression gates for release-impacting UI changes.",
+      "limitations": "Release readiness is scoped to current local static app scripts and recorded evidence; no feature flag/rollback is needed for static local UI work.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Security",
+      "applicability": "not_applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "Task scopes for PERSONAL-TASK-1161 through PERSONAL-TASK-1166; source inspection of UI/style/test-only changes",
+      "accepted_for": "NFR classification.",
+      "limitations": "No auth, backend, network, storage schema, tenant/scope, authorization, or sensitive-data behavior is touched by US-845.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Migration/persistence compatibility",
+      "applicability": "not_applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "US-845 task scope and files_changed across accepted reports",
+      "accepted_for": "NFR classification.",
+      "limitations": "No schema, save format, migration, seeded data, DTO/API compatibility, or persistence behavior changed for this US.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Dependent component/contract gaps",
+      "applicability": "required",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1166/attempt-1.json; task-reports/orchestrator-log.json; accepted US-842/US-844 dependency reports cited by US-845 reports",
+      "accepted_for": "No remaining dependent component or contract gap.",
+      "limitations": "US-845 relies on previously accepted rule legality and scoring/result contracts from US-842 and US-844.",
+      "accepted_risk": "none"
+    }
+  ],
+  "findings": [],
+  "stats": {
+    "tasks_reviewed": 6,
+    "accepted_reports_reviewed": 8,
+    "context_history_reports_reviewed": 4,
+    "source_or_artifact_files_reviewed": 9,
+    "visual_screenshots_reviewed_or_accounted": 12,
+    "requirements_total": 1,
+    "requirements_covered": 1,
+    "acceptance_criteria_total": 2,
+    "acceptance_criteria_covered": 2,
+    "blocking_findings": 0,
+    "medium_findings": 0,
+    "low_findings": 0,
+    "mocked_or_static_harnesses_disclosed": true,
+    "live_backend_required": false,
+    "release_ready": true
+  },
+  "verdict": "passed"
+}

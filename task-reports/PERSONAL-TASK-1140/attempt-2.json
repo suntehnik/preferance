@@ -1,0 +1,109 @@
+{
+  "task_id": "PERSONAL-TASK-1140",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Fixed attempt-1 compatibility gaps by propagating selected bullet sizes into UI-created GameState instances and updating persistence validation to accept valid US-842 deal-settlement/next-deal saves while rejecting malformed new-phase and base-field shapes. Orchestrator post-review added legacy pre-rule-engine save migration for both schema-one state envelopes and active bullet envelopes without bulletTarget.",
+  "files_changed": [
+    "src/domain/state.ts",
+    "src/domain/rules.ts",
+    "src/domain/rules.test.ts",
+    "src/domain/engine.ts",
+    "src/domain/engine.test.ts",
+    "src/ai/heuristicAi.ts",
+    "src/test/integrationHarness.ts",
+    "src/ui/render.ts",
+    "src/ui/controller.ts",
+    "src/ui/controller.test.ts",
+    "src/persistence/saveStore.ts",
+    "src/persistence/saveStore.test.ts",
+    "task-reports/PERSONAL-TASK-1140/attempt-2.json",
+    "task-reports/PERSONAL-TASK-1140/attempt-2-agent.log"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/controller.test.ts",
+      "result": "failed before fix, then passed after fix",
+      "evidence": "Red run failed 3 assertions where currentDeal.bulletTarget stayed 10 for selected 20/30; green run passed 9 tests."
+    },
+    {
+      "command": "npm run test -- src/persistence/saveStore.test.ts",
+      "result": "failed before fix, then passed after fix",
+      "evidence": "Red run rejected valid deal-settlement saves and accepted malformed bulletTarget; green run passed 28 tests."
+    },
+    {
+      "command": "npm run test -- src/domain/engine.test.ts",
+      "result": "passed",
+      "evidence": "21 tests passed, covering legal actions, trick resolution, settlement, next-deal, and bullet completion transitions."
+    },
+    {
+      "command": "npm run test -- src/domain/rules.test.ts",
+      "result": "passed",
+      "evidence": "4 rules tests passed."
+    },
+    {
+      "command": "npm run test -- src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "evidence": "2 integration harness tests passed."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence": "Vitest: 9 files, 80 tests passed. Build: tsc and vite build completed successfully."
+    },
+    {
+      "command": "npm run test -- src/persistence/saveStore.test.ts",
+      "result": "passed after orchestrator post-review compatibility fix",
+      "evidence": "30 persistence tests passed, including pre-rule-engine schema-one and active bullet envelope migration without bulletTarget."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed after orchestrator post-review compatibility fix",
+      "evidence": "Vitest: 9 files, 82 tests passed. Build: tsc and vite build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    }
+  },
+  "evidence_matrix": [
+    {
+      "scenario": "selected bullet target propagation into GameState",
+      "expected": "activeBulletSettings.bulletSize equals currentDeal.bulletTarget for supported sizes selected through start/reset UI paths.",
+      "evidence": "src/ui/controller.test.ts asserts selected 20 and in-game reset from selected 30 persist matching currentDeal.bulletTarget; npm run test -- src/ui/controller.test.ts passed after fix.",
+      "status": "covered"
+    },
+    {
+      "scenario": "active bullet persistence/resume compatibility for new US-842 phases",
+      "expected": "Valid deal-settlement and next-deal active bullet saves are accepted by loadActiveBullet.",
+      "evidence": "src/persistence/saveStore.test.ts round-trips deal-settlement and next-deal saves with active bullet metadata; npm run test -- src/persistence/saveStore.test.ts passed after fix.",
+      "status": "covered"
+    },
+    {
+      "scenario": "pre-rule-engine legacy save migration",
+      "expected": "Schema-one state envelopes and active bullet envelopes created before GameState.bulletTarget continue to load as active bullets with bulletTarget defaulted to 10.",
+      "evidence": "src/persistence/saveStore.test.ts covers legacy {schema,state} and active bullet envelope migration without currentDeal.bulletTarget; npm run test -- src/persistence/saveStore.test.ts passed 30 tests; npm run verify passed 82 tests and build.",
+      "status": "covered",
+      "limitations": "Migration defaults old saves to bulletTarget 10 because the old state payload did not carry bullet target inside GameState."
+    },
+    {
+      "scenario": "strict rejection of malformed new-phase saves",
+      "expected": "Malformed new-phase summaries and malformed bulletTarget values are rejected.",
+      "evidence": "src/persistence/saveStore.test.ts rejects missing settlementSummary, null previousSummary, and string bulletTarget; focused persistence suite passed.",
+      "status": "covered",
+      "limitations": "Persistence validation is structural rather than a full semantic game-state verifier; semantic impossibilities remain covered by domain/state-machine tests."
+    },
+    {
+      "scenario": "no regression to MZ-202 legal-actions/trick/settlement tests",
+      "expected": "Existing rule-machine domain behavior remains green.",
+      "evidence": "npm run test -- src/domain/engine.test.ts passed 21 tests; npm run test -- src/domain/rules.test.ts passed 4 tests; final npm run verify passed all 82 tests and build.",
+      "status": "covered"
+    }
+  ]
+}
