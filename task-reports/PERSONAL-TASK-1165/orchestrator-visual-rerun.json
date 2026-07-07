@@ -1,0 +1,83 @@
+{
+  "task_id": "PERSONAL-TASK-1165",
+  "epic_id": "PERSONAL-EP-180",
+  "type": "orchestrator_visual_rerun_after_fix",
+  "status": "passed",
+  "summary": "After the focused result-layout fix, the orchestrator reran targeted tests, focused regression, full npm verification, and the MZ-505 Playwright capture against a local Vite server. The post-fix laptop settlement and final result screenshots no longer show inactive hand rows crowding the result panel. The result panels stay above the status line, and only the known decorative MARRIAGE heading appears in clipped-text metrics.",
+  "commands_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/test/us845DesktopTable.integration.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence": "3 files / 29 tests passed."
+    },
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts src/test/us845DesktopTable.integration.test.ts",
+      "result": "passed",
+      "evidence": "5 files / 43 tests passed."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence": "14 test files / 135 tests passed; tsc and vite build passed."
+    },
+    {
+      "command": "npm run dev",
+      "result": "passed",
+      "evidence": "Vite served http://127.0.0.1:5331/ for post-fix visual capture and was stopped afterward."
+    },
+    {
+      "command": "node output/playwright/mz505-capture.mjs",
+      "result": "passed",
+      "evidence": "Regenerated MZ-505 desktop/laptop screenshots and output/playwright/mz505-capture-results.json."
+    }
+  ],
+  "visual_artifacts": [
+    "output/playwright/mz-505-bidding-desktop.png",
+    "output/playwright/mz-505-bidding-laptop.png",
+    "output/playwright/mz-505-contract-desktop.png",
+    "output/playwright/mz-505-contract-laptop.png",
+    "output/playwright/mz-505-whist-desktop.png",
+    "output/playwright/mz-505-whist-laptop.png",
+    "output/playwright/mz-505-play-desktop.png",
+    "output/playwright/mz-505-play-laptop.png",
+    "output/playwright/mz-505-settlement-desktop.png",
+    "output/playwright/mz-505-settlement-laptop.png",
+    "output/playwright/mz-505-final-desktop.png",
+    "output/playwright/mz-505-final-laptop.png",
+    "output/playwright/mz505-capture-results.json",
+    "output/playwright/mz505-capture.mjs"
+  ],
+  "laptop_result_metrics": [
+    {
+      "state": "settlement",
+      "horizontalOverflow": false,
+      "clippedText": [
+        "MARRIAGE"
+      ],
+      "resultPanelBottom": 679.25,
+      "statusLineTop": 719.08,
+      "humanHandRect": null,
+      "visibleButtons": [
+        "settleDeal"
+      ]
+    },
+    {
+      "state": "final",
+      "horizontalOverflow": false,
+      "clippedText": [
+        "MARRIAGE"
+      ],
+      "resultPanelBottom": 643.84,
+      "statusLineTop": 719.08,
+      "humanHandRect": null,
+      "visibleButtons": []
+    }
+  ],
+  "risks": [],
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "evidence_classification": "Screenshots are synthetic/static visual UI evidence rendered through the local Vite app with deterministic GameState fixtures; they are not backend-live evidence."
+  }
+}

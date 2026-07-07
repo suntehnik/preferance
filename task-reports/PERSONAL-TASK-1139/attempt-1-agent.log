@@ -1,0 +1,11 @@
+Status: succeeded
+Task: PERSONAL-TASK-1139
+Epic: PERSONAL-EP-180
+
+Created `docs/test-design/us-842-rule-phases.md` with executable QA scenarios for every required US-842 phase and transition. The document makes the fixed Sochi profile explicit, includes REQ/AC traceability, legal-action generation scenarios, settlement and bullet-completion transitions, trick-winner fixtures, all-pass and misere fixtures, deferred accessibility/visual gates for MZ-205/MZ-206, and implementation handoff notes for MZ-202/MZ-204.
+
+Verification completed with:
+- `rg -n "^(# US-842 Rule Phases QA Test Design|## Fixed Agreement Profile Assumptions|## Scenario Matrix|## Legal Action Generation Scenarios Per Phase|## Transition Scenarios|## Trick-Winner Fixtures|## All-Pass And Misere Fixtures|## Regression And NFR Notes|## Implementation Handoff Notes)" docs/test-design/us-842-rule-phases.md`
+- `npm run test`
+
+Risks: none.

@@ -1,0 +1,121 @@
+{
+  "task_id": "PERSONAL-TASK-1144",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Captured deterministic desktop browser screenshots for US-842 bidding, whist decision, contract play, all-pass play, misere play, deal-settlement, and next-deal states using a Vite-served fixture that imports production renderGame and styles. Visual review found no blank screens, no obvious text overlap or clipping, visible active actor/phase status, visible current trick or state area, and understandable legal action/card controls for each state.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1144/phase-fixtures.html",
+    "task-reports/PERSONAL-TASK-1144/phase-fixtures.ts",
+    "task-reports/PERSONAL-TASK-1144/screenshots/01-bidding.jpg",
+    "task-reports/PERSONAL-TASK-1144/screenshots/02-whist-decision.jpg",
+    "task-reports/PERSONAL-TASK-1144/screenshots/03-contract-play.jpg",
+    "task-reports/PERSONAL-TASK-1144/screenshots/04-all-pass.jpg",
+    "task-reports/PERSONAL-TASK-1144/screenshots/05-misere.jpg",
+    "task-reports/PERSONAL-TASK-1144/screenshots/06-deal-settlement.jpg",
+    "task-reports/PERSONAL-TASK-1144/screenshots/07-next-deal.jpg",
+    "task-reports/PERSONAL-TASK-1144/screenshot-manifest.json",
+    "task-reports/PERSONAL-TASK-1144/attempt-1.json",
+    "task-reports/PERSONAL-TASK-1144/attempt-1-agent.log"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run dev",
+      "result": "passed",
+      "evidence_type": "visual_review",
+      "evidence": "Started Vite on http://127.0.0.1:5331/ outside the sandbox after the sandbox blocked localhost binding with EPERM."
+    },
+    {
+      "command": "Codex in-app browser screenshot capture at 1280x800 for phase-fixtures.html?fixture=bidding|whist|contract-play|all-pass|misere|deal-settlement|next-deal",
+      "result": "passed",
+      "evidence_type": "visual_review",
+      "evidence": "Captured seven real browser screenshots under task-reports/PERSONAL-TASK-1144/screenshots/. File checks reported 1280x800 image dimensions for every screenshot. Browser DOM diagnostics reported viewport 1280x800, nonblank body text, no text overflow items, and no text overlap pairs for every fixture."
+    },
+    {
+      "command": "file task-reports/PERSONAL-TASK-1144/screenshots/*.jpg",
+      "result": "passed",
+      "evidence_type": "visual_review",
+      "evidence": "All screenshot files are JPEG images at 1280x800 with nonzero file sizes."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "regression_test",
+      "evidence": "Vitest passed 11 files / 101 tests, then tsc and vite build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "browser": "Codex in-app browser",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "dev_server": "Vite via npm run dev at http://127.0.0.1:5331/",
+    "node_package_scripts": {
+      "dev": "vite --host 127.0.0.1 --port 5331",
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1141/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1142/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1143/attempt-1.json"
+    ],
+    "notes": "No backend or external service applies. Visual evidence uses deterministic local fixtures that import the production renderer and stylesheet through Vite."
+  },
+  "quality_gate_matrix": [
+    {
+      "gate": "screenshot capture completeness",
+      "expected": "Desktop 1280x800 browser screenshots exist for bidding, whist decision, contract play, all-pass, misere, and trick-complete/deal-settlement or next-deal state.",
+      "evidence_type": "visual_review",
+      "evidence": "Captured seven screenshots: 01-bidding.jpg, 02-whist-decision.jpg, 03-contract-play.jpg, 04-all-pass.jpg, 05-misere.jpg, 06-deal-settlement.jpg, and 07-next-deal.jpg. File checks confirmed 1280x800 dimensions.",
+      "status": "passed"
+    },
+    {
+      "gate": "action visibility",
+      "expected": "Legal action controls are visible and understandable in each state where human controls apply.",
+      "evidence_type": "visual_review",
+      "evidence": "Bidding shows pass, misere, and bid controls; whist shows pass, whist, and half-whist; contract/all-pass/misere play show enabled legal card controls; settlement shows Подсчитать; next-deal shows Следующая сдача.",
+      "status": "passed"
+    },
+    {
+      "gate": "active actor/phase labels",
+      "expected": "The active actor and current phase/state are visible enough for the user to understand whose turn it is.",
+      "evidence_type": "visual_review",
+      "evidence": "Every screenshot includes a footer such as Фаза: bidding/contract/play/deal-settlement/next-deal and Игрок: You. All-pass and misere deal family context is also visible in the left-side game log.",
+      "status": "passed"
+    },
+    {
+      "gate": "current trick/state area",
+      "expected": "The central table area is present and shows either the current trick or the current state message.",
+      "evidence_type": "visual_review",
+      "evidence": "Bidding and whist show state messages; contract play shows two current-trick cards plus the play message; all-pass and misere show the play area; deal-settlement and next-deal show summary state messages.",
+      "status": "passed"
+    },
+    {
+      "gate": "text fit/no overlap",
+      "expected": "No obvious text overlap, clipping, or incoherent layout collision at 1280x800.",
+      "evidence_type": "visual_review",
+      "evidence": "Manual screenshot review found no obvious overlap or clipping. Browser DOM diagnostics found zero text overflow items and zero text overlap pairs across all seven fixtures.",
+      "status": "passed"
+    },
+    {
+      "gate": "deterministic fixture reproducibility",
+      "expected": "Screenshots come from fixed fixture states that can be reloaded through a stable URL and production rendering code.",
+      "evidence_type": "visual_review",
+      "evidence": "phase-fixtures.html and phase-fixtures.ts live under the task report directory, use query parameter fixture keys, fixed card/state objects, and import ../../src/ui/render plus ../../src/styles.css through Vite.",
+      "status": "passed"
+    },
+    {
+      "gate": "regression verification",
+      "expected": "Full project verification passes after visual fixture/artifact work.",
+      "evidence_type": "regression_test",
+      "evidence": "npm run verify passed: 11 Vitest files / 101 tests, tsc, and vite build.",
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "task_id": "PERSONAL-TASK-1165",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "failed",
+  "summary": "Captured and inspected synthetic/static desktop and laptop Playwright screenshots for the US-845 bidding, contract order, whist, play, deal-result, and final-result table states. Spexus current_context was read before task and epic artifacts. Dependency reports for MZ-501, MZ-502, MZ-503, and MZ-504 were present and successful. The local Vite app started with npm run dev after sandbox escalation, MZ-505 captures completed for 1280x800 and 1024x768, and npm run verify passed. The visual gate did not pass because the 1024x768 settlement screenshot clips/scrolls the result panel inside the visible table area: score-change table headers are clipped and the result panel extends below the viewport/status line, so the result panel is not fully readable at laptop size. The 1024x768 final result is also crowded, with the result panel reaching the status area and disabled hand cards visible underneath, so final readability/framing remains a release risk.",
+  "files_changed": [
+    "output/playwright/mz505-capture.mjs",
+    "output/playwright/mz505-capture-results.json",
+    "output/playwright/mz-505-bidding-desktop.png",
+    "output/playwright/mz-505-bidding-laptop.png",
+    "output/playwright/mz-505-contract-desktop.png",
+    "output/playwright/mz-505-contract-laptop.png",
+    "output/playwright/mz-505-whist-desktop.png",
+    "output/playwright/mz-505-whist-laptop.png",
+    "output/playwright/mz-505-play-desktop.png",
+    "output/playwright/mz-505-play-laptop.png",
+    "output/playwright/mz-505-settlement-desktop.png",
+    "output/playwright/mz-505-settlement-laptop.png",
+    "output/playwright/mz-505-final-desktop.png",
+    "output/playwright/mz-505-final-laptop.png",
+    "task-reports/PERSONAL-TASK-1165/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run dev",
+      "result": "passed_after_escalation",
+      "evidence_type": "local_static_app_server",
+      "evidence": "Initial sandboxed run failed with listen EPERM on 127.0.0.1:5331. Escalated npm run dev started Vite successfully at http://127.0.0.1:5331/. Server was stopped after capture."
+    },
+    {
+      "command": "node output/playwright/mz505-capture.mjs",
+      "result": "passed_after_escalation",
+      "evidence_type": "synthetic_static_visual_ui_evidence",
+      "evidence": "Initial sandboxed Chromium launch failed with MachPortRendezvous permission denied. Escalated capture produced 12 screenshots plus output/playwright/mz505-capture-results.json for bidding, contract, whist, play, settlement, and final states at 1280x800 and 1024x768."
+    },
+    {
+      "command": "visual inspection of output/playwright/mz-505-*.png and metrics in output/playwright/mz505-capture-results.json",
+      "result": "failed",
+      "evidence_type": "visual_review",
+      "evidence": "Bidding, contract, whist, play, and desktop settlement/final screenshots were usable with no horizontal overflow. Laptop settlement showed clipped score-change table header text and a result panel bottom at 1078.98px in a 768px viewport; laptop final reached the status area and showed disabled hand cards underneath the final result panel."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness_regression",
+      "evidence": "Vitest passed 14 files / 134 tests, then tsc and vite production build completed successfully."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Laptop 1024x768 deal-result readability does not satisfy AC-2428/AC-2429 because the settlement panel overflows the visible table frame and clips score-change context.",
+      "evidence": "output/playwright/mz-505-settlement-laptop.png; output/playwright/mz505-capture-results.json reports clipped TH cells for Игрок/Было/Изменение/Стало and resultPanelRect.bottom=1078.98 for viewport height 768.",
+      "impact": "A laptop player cannot fully understand the deal result and score changes without hidden/blocked content in the first viewport, so the release visual gate cannot pass."
+    },
+    {
+      "risk": "Laptop final-result framing remains crowded and may not cleanly communicate final ranking/completion.",
+      "evidence": "output/playwright/mz-505-final-laptop.png; metrics show resultPanelRect.bottom=741.05 in a 768px viewport, overlapping the status-line band and showing disabled hand cards below the final result panel.",
+      "impact": "Final-result readability is fragile at the required laptop viewport and should be fixed before release readiness is accepted."
+    }
+  ],
+  "failure_type": "product_gap",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "component_key": "default",
+    "layer": "visual-regression",
+    "phase": "verification",
+    "viewports": [
+      "1280x800 desktop",
+      "1024x768 laptop"
+    ],
+    "evidence_classification": "Screenshots are synthetic/static visual UI evidence rendered through the real Vite app and real renderGame UI with deterministic GameState fixtures; they are not backend-live evidence.",
+    "spexus_context": {
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1165",
+      "epic_hierarchy_read": "PERSONAL-EP-180",
+      "refs": [
+        "PERSONAL-US-845",
+        "PERSONAL-REQ-1762",
+        "PERSONAL-AC-2428",
+        "PERSONAL-AC-2429"
+      ]
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1161/attempt-1.json",
+      "docs/test-design/us-845-desktop-table-states.md",
+      "task-reports/PERSONAL-TASK-1162/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1163/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1164/attempt-1.json",
+      "output/playwright/mz406-capture.mjs",
+      "task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json"
+    ],
+    "sandbox_notes": [
+      "npm run dev required escalation because binding 127.0.0.1:5331 failed with EPERM in the sandbox.",
+      "Playwright Chromium required escalation because sandboxed launch failed with macOS MachPortRendezvous permission denied."
+    ]
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1762",
+      "scenario": "The table must show current phase, active actor, legal human actions, contract/trump/current trick, player hands, score table, deal result, and final result.",
+      "evidence_type": "synthetic_static_visual_ui_evidence",
+      "command_or_source": "node output/playwright/mz505-capture.mjs; output/playwright/mz-505-*.png; output/playwright/mz505-capture-results.json",
+      "result": "failed",
+      "findings": "Required state surfaces were present in the captured fixtures, but laptop settlement/final result framing prevented full result readability.",
+      "limitations": "Evidence is static UI screenshot/DOM metrics against deterministic fixtures, not live backend evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "At desktop or laptop viewport, bidding, contract, whist, play, deal-result, and final-result states show current phase, active actor, legal actions, and score/contract context without blocking normal play.",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-bidding-*.png; output/playwright/mz-505-contract-*.png; output/playwright/mz-505-whist-*.png; output/playwright/mz-505-play-*.png; output/playwright/mz-505-settlement-*.png; output/playwright/mz-505-final-*.png",
+      "result": "failed",
+      "findings": "Bidding, contract, whist, and play layouts were usable at both target viewports. Laptop deal-result and final-result states did not meet the no-blocking/readability expectation.",
+      "limitations": "The play action area has no command buttons because legal card actions are represented by enabled hand cards; this is acceptable for the play fixture and visible in the screenshots."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2429",
+      "scenario": "After a deal completes, the deal result is understandable and the player can proceed to the next deal unless the bullet is complete.",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-settlement-desktop.png; output/playwright/mz-505-settlement-laptop.png; output/playwright/mz505-capture-results.json",
+      "result": "failed",
+      "findings": "The settlement action remains visible, but the 1024x768 result panel is not fully readable: the score-change table header text is clipped and lower result content is outside the visible table frame.",
+      "limitations": "Next-deal was represented by the deal-result/settlement visual contract requested for this task; the integration dependency covers next-deal behavior separately."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-502 implementation dependency",
+      "scenario": "Verify the implemented desktop table rendering from MZ-502 with browser screenshots.",
+      "evidence_type": "dependency_report_plus_visual_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1162/attempt-1.json; output/playwright/mz-505-*.png",
+      "result": "failed",
+      "findings": "The implementation dependency report was present and successful, but fresh viewport visual evidence found a laptop result-state layout gap."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-503 and MZ-504 supporting gates",
+      "scenario": "Integration and accessibility dependencies support but do not replace visual screenshot acceptance.",
+      "evidence_type": "dependency_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1163/attempt-1.json; task-reports/PERSONAL-TASK-1164/attempt-1.json; npm run verify",
+      "result": "passed_with_visual_risk",
+      "findings": "Dependency reports and automated verify were green. They do not close the fresh laptop visual clipping found in this task."
+    },
+    {
+      "req_or_ac_or_contract": "visual evidence classification",
+      "scenario": "Classify captured screenshots correctly.",
+      "evidence_type": "scope_classification",
+      "command_or_source": "output/playwright/mz505-capture.mjs; output/playwright/mz505-capture-results.json",
+      "result": "passed",
+      "findings": "All MZ-505 screenshots are synthetic/static visual UI evidence rendered through the local Vite app with deterministic GameState fixtures, not backend-live evidence."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "desktop coverage",
+      "applicability": "required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-bidding-desktop.png; output/playwright/mz-505-contract-desktop.png; output/playwright/mz-505-whist-desktop.png; output/playwright/mz-505-play-desktop.png; output/playwright/mz-505-settlement-desktop.png; output/playwright/mz-505-final-desktop.png",
+      "result": "passed",
+      "limitations": "Synthetic/static fixtures only; no backend-live evidence.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "laptop coverage",
+      "applicability": "required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-bidding-laptop.png; output/playwright/mz-505-contract-laptop.png; output/playwright/mz-505-whist-laptop.png; output/playwright/mz-505-play-laptop.png; output/playwright/mz-505-settlement-laptop.png; output/playwright/mz-505-final-laptop.png",
+      "result": "failed",
+      "limitations": "Laptop screenshots were captured, but settlement/final result states did not satisfy readability/framing requirements.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "layout overlap/clipping",
+      "applicability": "required",
+      "evidence_type": "dom_metrics_and_visual_review",
+      "command_or_source": "output/playwright/mz505-capture-results.json; output/playwright/mz-505-settlement-laptop.png; output/playwright/mz-505-final-laptop.png",
+      "result": "failed",
+      "limitations": "Metrics are conservative and were confirmed by visual inspection.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "action visibility",
+      "applicability": "required",
+      "evidence_type": "dom_metrics_and_visual_review",
+      "command_or_source": "output/playwright/mz505-capture-results.json; output/playwright/mz-505-*.png",
+      "result": "passed",
+      "limitations": "Play state exposes legal card actions through enabled hand cards rather than command buttons; final state intentionally exposes no continuation action.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "card/trick/score framing",
+      "applicability": "required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-play-desktop.png; output/playwright/mz-505-play-laptop.png; output/playwright/mz-505-bidding-laptop.png; output/playwright/mz-505-settlement-laptop.png",
+      "result": "failed",
+      "limitations": "Card/trick/score framing is usable for bidding/contract/whist/play, but the settlement result panel crowds and clips score-change content at laptop size.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "result/final readability",
+      "applicability": "required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-settlement-desktop.png; output/playwright/mz-505-settlement-laptop.png; output/playwright/mz-505-final-desktop.png; output/playwright/mz-505-final-laptop.png",
+      "result": "failed",
+      "limitations": "Desktop result/final states are readable; laptop settlement/final states are not clean enough for release acceptance.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression/release readiness",
+      "applicability": "release_gate_required",
+      "evidence_type": "test_build_plus_visual_gate",
+      "command_or_source": "npm run verify; output/playwright/mz-505-*.png",
+      "result": "failed",
+      "limitations": "Automated test/build verification passed, but release readiness is blocked by the failed laptop visual gate.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "accessibility dependency",
+      "applicability": "required_dependency",
+      "evidence_type": "dependency_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1164/attempt-1.json",
+      "result": "passed_dependency",
+      "limitations": "Accessibility dependency passed, but it does not override this visual regression failure.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security not-applicable classification",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1165 scope; synthetic static UI screenshot workflow",
+      "result": "not_applicable",
+      "limitations": "This verification covers local static UI visual layout only and touches no auth, backend, network, storage schema, or sensitive-data path.",
+      "accepted_risk": "none"
+    }
+  ]
+}

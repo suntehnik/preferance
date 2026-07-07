@@ -1,0 +1,56 @@
+{
+  "task_id": "PERSONAL-TASK-1165",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "fixed",
+  "summary": "Implemented a dedicated result-table layout for deal-settlement, next-deal, and finished phases so laptop result views no longer spend vertical space on inactive opponent or human hand rows. Tightened result-panel and result-table sizing to keep settlement and final-result content readable at 1024x768 while preserving the score rail and table-state/action context rail. Fresh Playwright rerun shows the laptop settlement result panel ending at 679.25px and the laptop final result panel ending at 643.84px, both above the status line and within the visible table frame.",
+  "files_changed": [
+    "src/ui/render.ts",
+    "src/styles.css",
+    "src/ui/render.test.ts",
+    "src/test/us845DesktopTable.integration.test.ts",
+    "output/playwright/mz505-capture-results.json",
+    "output/playwright/mz-505-settlement-laptop.png",
+    "output/playwright/mz-505-final-laptop.png",
+    "task-reports/PERSONAL-TASK-1165/fix-1.json"
+  ],
+  "tests_run": [
+    "npm run test -- src/ui/render.test.ts src/test/us845DesktopTable.integration.test.ts",
+    "npm run test -- src/ui/render.test.ts src/test/us845DesktopTable.integration.test.ts src/test/us844Scoring.integration.test.ts",
+    "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts src/test/us845DesktopTable.integration.test.ts",
+    "npm run verify",
+    "npm run dev -- --host 127.0.0.1 --port 5331",
+    "node output/playwright/mz505-capture.mjs"
+  ],
+  "risks": [
+    "Result readability now depends on the dedicated result-phase layout contract in render.ts and styles.css; future reintroduction of play-phase hand rows in result phases could regress laptop framing.",
+    "The laptop visual gate was verified against the existing deterministic MZ-505 fixtures; materially larger result summaries or score strings could still need another pass."
+  ],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "localhost_server": "Vite dev server at http://127.0.0.1:5331/",
+    "visual_evidence": [
+      "output/playwright/mz-505-settlement-laptop.png",
+      "output/playwright/mz-505-final-laptop.png",
+      "output/playwright/mz505-capture-results.json"
+    ],
+    "notes": [
+      "Playwright rerun executed successfully against the local dev server.",
+      "Dev server was stopped after capture."
+    ]
+  },
+  "visual_fix_details": {
+    "layout_change": "Result-like phases now render a dedicated center-table layout with no opponent-row or human-hand row markup.",
+    "css_change": "Result panels use tighter sizing and fixed-table score presentation on laptop widths instead of the earlier stacked mobile-style score-change cards.",
+    "verification_outcome": {
+      "settlement_laptop_result_panel_bottom": 679.25,
+      "final_laptop_result_panel_bottom": 643.84,
+      "status_line_top": 719.08,
+      "clipped_text_after_rerun": [
+        "MARRIAGE"
+      ]
+    }
+  }
+}

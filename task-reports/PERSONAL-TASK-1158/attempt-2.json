@@ -1,0 +1,233 @@
+{
+  "task_id": "PERSONAL-TASK-1158",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "Verification attempt 2 passed. Spexus current_context was read before task access, task PERSONAL-TASK-1158 was read, all listed dependency and post-fix reports were present, and the regenerated post-fix screenshots were inspected directly. The focused fix in src/ui/render.ts, src/styles.css, and src/ui/render.test.ts adds labeled deal score-change cells and a stacked row-card layout for narrower desktop/laptop widths. The prior 1024x768 settlement clipping is no longer present: settlement laptop values remain inside the result panel horizontally, desktop settlement remains fully readable, ongoing score cards remain readable at desktop and laptop widths, and final desktop/laptop states show readable final ranking/settlement content with no continuation buttons. Release readiness is supported by the orchestrator post-fix rerun recording npm run verify passing with 13 test files, 126 tests, and a successful production build; a fresh local rerun was not needed because the post-fix rerun evidence and regenerated artifacts were complete and current.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1158/attempt-2.json"
+  ],
+  "tests_run": [
+    {
+      "command": "reviewed task-reports/PERSONAL-TASK-1153/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_review",
+      "evidence": "Dependency report present with status succeeded, empty risks, and failure_type not_applicable."
+    },
+    {
+      "command": "reviewed task-reports/PERSONAL-TASK-1154/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_review",
+      "evidence": "Dependency report present with status succeeded, empty risks, and npm run verify evidence for 120 tests plus build."
+    },
+    {
+      "command": "reviewed task-reports/PERSONAL-TASK-1155/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_review",
+      "evidence": "Dependency report present with status succeeded, empty risks, UI score/result implementation evidence, and live browser capture evidence."
+    },
+    {
+      "command": "reviewed task-reports/PERSONAL-TASK-1156/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_review",
+      "evidence": "Dependency report present with status succeeded, empty risks, and US-844 integration coverage evidence."
+    },
+    {
+      "command": "reviewed task-reports/PERSONAL-TASK-1157/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_review",
+      "evidence": "Dependency report present with status succeeded, empty risks, and accessibility/release readiness evidence."
+    },
+    {
+      "command": "reviewed task-reports/PERSONAL-TASK-1158/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "prior_failure_review",
+      "evidence": "Attempt 1 failure was confirmed as nfr_gap caused by right-edge clipping of output/playwright/mz-406-settlement-laptop.png at 1024x768."
+    },
+    {
+      "command": "reviewed task-reports/PERSONAL-TASK-1158/fix-1.json and source/test diffs",
+      "result": "passed",
+      "evidence_type": "source_or_report_review",
+      "evidence": "Reviewed the focused fix: render.ts adds data-cell-label values for Было/Изменение/Стало cells, styles.css stacks result table rows below 1180px with visible labels, and render.test.ts asserts the narrow-layout labels plus no finished-state continuation controls."
+    },
+    {
+      "command": "reviewed task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json",
+      "result": "passed",
+      "evidence_type": "release_readiness",
+      "evidence": "Post-fix rerun recorded targeted UI/integration tests passing, local Vite capture passing, Playwright metrics with horizontalOverflow=false and no overflowingElements for all states, final_state_buttons=[], and npm run verify passing with 13 test files, 126 tests, tsc, and vite build."
+    },
+    {
+      "command": "manual inspection of output/playwright/mz-406-active-desktop.png, mz-406-settlement-desktop.png, mz-406-final-desktop.png, mz-406-active-laptop.png, mz-406-settlement-laptop.png, mz-406-final-laptop.png",
+      "result": "passed",
+      "evidence_type": "visual_review",
+      "evidence": "Desktop and laptop active score cards are readable; desktop settlement table is fully visible; laptop settlement no longer clips score/result columns horizontally and uses labeled stacked cells; desktop and laptop final result states are readable and show no continuation buttons."
+    },
+    {
+      "command": "sips -g pixelWidth -g pixelHeight output/playwright/mz-406-*.png",
+      "result": "passed",
+      "evidence_type": "artifact_validation",
+      "evidence": "Confirmed desktop screenshots are 1280x800 and laptop screenshots are 1024x768."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "role": "verifier",
+    "production_source_modified": false,
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task": true,
+      "task_read": "PERSONAL-TASK-1158",
+      "epic_reference_id": "PERSONAL-EP-180"
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1153/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1154/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1155/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1156/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1157/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1158/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1158/fix-1.json",
+      "task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json"
+    ],
+    "source_files_reviewed": [
+      "src/ui/render.ts",
+      "src/styles.css",
+      "src/ui/render.test.ts"
+    ],
+    "visual_artifacts_reviewed": [
+      "output/playwright/mz-406-active-desktop.png",
+      "output/playwright/mz-406-settlement-desktop.png",
+      "output/playwright/mz-406-final-desktop.png",
+      "output/playwright/mz-406-active-laptop.png",
+      "output/playwright/mz-406-settlement-laptop.png",
+      "output/playwright/mz-406-final-laptop.png",
+      "output/playwright/mz406-capture.mjs"
+    ],
+    "viewports": [
+      "1280x800 desktop",
+      "1024x768 laptop"
+    ],
+    "fresh_verify_rerun": "not_run_not_needed",
+    "fresh_verify_rerun_reason": "The orchestrator post-fix visual rerun already supplied current regenerated screenshots, Playwright overflow metrics, final-state button metrics, and npm run verify evidence after the focused fix."
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1760",
+      "scenario": "Ongoing score display exposes bullet, mountain, and mutual-whist values for all three players across desktop and laptop widths.",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-406-active-desktop.png; output/playwright/mz-406-active-laptop.png; src/ui/render.ts scoreboardMarkup; src/styles.css .score-* rules",
+      "result": "passed",
+      "limitations": "Visual evidence uses deterministic synthetic score fixtures rendered through the app capture helper; full mobile is explicitly out of scope."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1761",
+      "scenario": "Deal settlement and final result surfaces show readable summaries, score changes, ranking, settlement text, and correct controls.",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-406-settlement-desktop.png; output/playwright/mz-406-settlement-laptop.png; output/playwright/mz-406-final-desktop.png; output/playwright/mz-406-final-laptop.png",
+      "result": "passed",
+      "limitations": "No pixel-diff baseline exists; verification is direct visual inspection plus post-fix Playwright overflow/button metrics."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2426",
+      "scenario": "After a deal completes, the score table/result display shows updated bullet, mountain, and mutual-whist before/delta/after values without clipped columns.",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-406-settlement-desktop.png; output/playwright/mz-406-settlement-laptop.png; src/ui/render.test.ts labeled-cell regression",
+      "result": "passed",
+      "limitations": "At 1024x768 the table intentionally stacks into row cards; this preserves labeled before/delta/after values and removes the prior horizontal clipping."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2427",
+      "scenario": "When the bullet target is reached, the final result/ranking is shown and accidental continuation is prevented.",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-406-final-desktop.png; output/playwright/mz-406-final-laptop.png; task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json final_state_buttons=[]; src/ui/render.test.ts finished-state no-continuation assertion",
+      "result": "passed",
+      "limitations": "Verified for desktop/laptop final screenshots and DOM/control evidence; full mobile is out of scope."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-403 / PERSONAL-TASK-1155 visual contract",
+      "scenario": "The verification task confirms the score/result UI implemented by MZ-403 has no clipped score/result columns or incoherent overlap in desktop/laptop scope.",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-406-active-desktop.png; output/playwright/mz-406-active-laptop.png; output/playwright/mz-406-settlement-desktop.png; output/playwright/mz-406-settlement-laptop.png; task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json",
+      "result": "passed",
+      "limitations": "The original laptop settlement horizontal clipping from attempt 1 is resolved in regenerated post-fix artifacts."
+    },
+    {
+      "req_or_ac_or_contract": "Release gate required",
+      "scenario": "Regression/release readiness is supported after the focused visual fix.",
+      "evidence_type": "release_readiness",
+      "command_or_source": "task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json",
+      "result": "passed",
+      "limitations": "Verifier did not rerun npm run verify locally because current orchestrator post-fix evidence was sufficient and complete."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "ongoing score readability",
+      "applicability": "applicable_required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-406-active-desktop.png; output/playwright/mz-406-active-laptop.png",
+      "result": "passed",
+      "limitations": "Desktop/laptop only; full mobile out of scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "deal settlement readability",
+      "applicability": "applicable_required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-406-settlement-desktop.png; output/playwright/mz-406-settlement-laptop.png",
+      "result": "passed",
+      "limitations": "Laptop uses stacked row cards instead of a wide table; this is the intended post-fix layout.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "final result readability/no continuation",
+      "applicability": "applicable_required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-406-final-desktop.png; output/playwright/mz-406-final-laptop.png; task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json final_state_buttons=[]; src/ui/render.test.ts",
+      "result": "passed",
+      "limitations": "No pixel-diff baseline exists; direct screenshot inspection and DOM/button metrics were used.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "desktop/laptop coverage",
+      "applicability": "applicable_required",
+      "evidence_type": "artifact_validation",
+      "command_or_source": "sips -g pixelWidth -g pixelHeight output/playwright/mz-406-*.png; output/playwright/mz406-capture.mjs",
+      "result": "passed",
+      "limitations": "Validated 1280x800 desktop and 1024x768 laptop artifacts; full mobile intentionally excluded by task scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression/release readiness",
+      "applicability": "applicable_required",
+      "evidence_type": "release_readiness",
+      "command_or_source": "task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json",
+      "result": "passed",
+      "limitations": "Relies on orchestrator post-fix rerun for npm run verify rather than a duplicate local rerun in this verifier attempt.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "accessibility applicability",
+      "applicability": "applicable_reviewed",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1157/attempt-1.json; src/ui/render.test.ts",
+      "result": "passed",
+      "limitations": "This attempt focused on visual regression; accessibility was covered by dependency verification and targeted render assertions for labels/no continuation.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security applicability",
+      "applicability": "not_applicable",
+      "evidence_type": "classification",
+      "command_or_source": "PERSONAL-TASK-1158 task scope",
+      "result": "passed",
+      "limitations": "Visual regression task with no security-sensitive behavior or data boundary changes.",
+      "accepted_risk": "none"
+    }
+  ]
+}

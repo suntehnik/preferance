@@ -1,0 +1,135 @@
+{
+  "task_id": "PERSONAL-TASK-1148",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Implemented deterministic middle-strength local AI heuristics in src/ai/heuristicAi.ts so chooseAiAction remains legal-action-only while using bidding strength, ordered-contract floor/context, deterministic discard scoring, whist/check profile handling, play-mode/trump/trick context, continuation phases, and richer no-legal-actions diagnostics. Added focused US-843 unit coverage in src/ai/heuristicAi.test.ts for legality across AI-controlled phases, non-first bidding behavior, legal contract ordering, exact-two-card legal discard, ten-level check, six-spades legal whist choice, play-mode-sensitive card selection, continuation actions, and diagnostic error context. Final targeted AI regression and full npm run verify both passed.",
+  "files_changed": [
+    "src/ai/heuristicAi.ts",
+    "src/ai/heuristicAi.test.ts",
+    "task-reports/PERSONAL-TASK-1148/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ai/heuristicAi.test.ts",
+      "result": "failed before fix, then passed",
+      "evidence_type": "tdd_red_green",
+      "evidence": "Initial red run failed bidding fallback, contract-play context, and no-legal-actions diagnostic assertions; green run passed 9 heuristic AI tests."
+    },
+    {
+      "command": "npm run test -- src/ai/heuristicAi.test.ts src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "evidence_type": "targeted_regression",
+      "evidence": "11 tests passed, covering phase-aware AI heuristics plus deterministic harness auto-advance loop regression."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "full_verification",
+      "evidence": "Vitest: 11 files, 109 tests passed. Build: tsc and vite build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1148",
+      "epic_hierarchy_read": "PERSONAL-EP-180"
+    },
+    "dependency_reports_reviewed": [
+      "docs/test-design/us-843-ai-decisions.md",
+      "task-reports/PERSONAL-TASK-1147/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1140/attempt-2.json",
+      "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json"
+    ]
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1758",
+      "scenario": "AI chooser only returns actions from getLegalActions across bidding, contract/order, widow pickup, discard, whist decision, all-pass play, misere play, contract play, settlement, and next-deal states.",
+      "evidence_type": "targeted_regression",
+      "command_or_source": "src/ai/heuristicAi.test.ts legality matrix; npm run test -- src/ai/heuristicAi.test.ts src/test/integrationHarness.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Coverage is representative across AI-controlled phases rather than an exhaustive bullet-completion matrix in this task."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1759",
+      "scenario": "AI chooser uses hand strength, contract floor, trump, trick, whist profile, all-pass, and misere context instead of a phase-blind fallback.",
+      "evidence_type": "unit_test_and_source_review",
+      "command_or_source": "src/ai/heuristicAi.ts bidding/order/discard/whist/play heuristics; focused assertions in src/ai/heuristicAi.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Heuristics are intentionally simple and deterministic, not search-based or intended to replicate the original DOS AI exactly."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2424",
+      "scenario": "Given legal actions exist, AI selects one of them without throwing.",
+      "evidence_type": "full_verification",
+      "command_or_source": "Representative legal-action property checks in src/ai/heuristicAi.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Assertion coverage is automated local Vitest coverage; no external runtime or browser-network path applies in this project scope."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2425",
+      "scenario": "Across bidding, whist, contract play, all-pass, and misere scenarios, AI decisions are phase-aware and not always the first legal action.",
+      "evidence_type": "unit_test",
+      "command_or_source": "Bidding and play-mode tests assert non-first-action choices where context warrants; whist and continuation tests assert phase-specific behavior.",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Phase-awareness is validated through representative scenarios rather than every possible legal-action ordering permutation."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "regression",
+      "applicability": "applicable_critical",
+      "evidence_type": "targeted_regression_and_full_verification",
+      "command_or_source": "npm run test -- src/ai/heuristicAi.test.ts src/test/integrationHarness.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "Regression evidence is local deterministic test/build coverage and does not include a separate manual browser smoke run for this task.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "observability",
+      "applicability": "applicable_required",
+      "evidence_type": "unit_test_and_source_review",
+      "command_or_source": "src/ai/heuristicAi.ts buildNoLegalActionsMessage; src/ai/heuristicAi.test.ts diagnostic assertion",
+      "result": "passed",
+      "limitations": "Observability coverage here is limited to thrown diagnostic context for no-legal-actions states; no telemetry or external logging path exists in scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security_applicability",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-EP-180 hierarchy; local deterministic AI logic only",
+      "result": "passed",
+      "limitations": "This task does not introduce network, auth, persistence-boundary, or sensitive-data behavior beyond existing local app scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release_readiness_input",
+      "applicability": "applicable",
+      "evidence_type": "implementation_verification",
+      "command_or_source": "src/ai/heuristicAi.ts; src/ai/heuristicAi.test.ts; npm run verify",
+      "result": "passed",
+      "limitations": "This row contributes implementation evidence for the orchestrator release decision; broader epic readiness still depends on adjacent task coverage.",
+      "accepted_risk": "none"
+    }
+  ]
+}

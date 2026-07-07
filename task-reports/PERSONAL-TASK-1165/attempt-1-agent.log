@@ -1,0 +1,25 @@
+Agent: Pasteur (019f369e-7c9e-74e2-a3e6-30feddf1f770)
+Task: PERSONAL-TASK-1165 / MZ-505 US-845 visual regression for desktop table
+Attempt: 1
+Model: gpt-5.5
+Reasoning: medium
+
+Final message:
+Verification attempt 1 is complete and the report is written at task-reports/PERSONAL-TASK-1165/attempt-1.json.
+
+Verdict: failed with failure_type: product_gap.
+
+Evidence:
+- Captured all required synthetic/static UI screenshots at 1280x800 and 1024x768.
+- Ran npm run verify successfully.
+- Stopped the Vite server afterward.
+- No production source files were changed by the verifier.
+
+Blocking visual finding:
+The 1024x768 settlement/result state is not fully readable. The result panel extends below the viewport, score-change table header text is clipped, and the final-result laptop view is crowded enough to remain a release risk.
+
+Key artifacts:
+- output/playwright/mz505-capture.mjs
+- output/playwright/mz505-capture-results.json
+- output/playwright/mz-505-settlement-laptop.png
+- output/playwright/mz-505-final-laptop.png

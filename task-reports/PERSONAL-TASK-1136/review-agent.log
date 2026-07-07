@@ -1,0 +1,8 @@
+Sartre compatibility review:
+- No findings.
+- Confirmed active bullet envelope validation covers schema, required fields, supported settings, score-table consistency, and history shape.
+- Confirmed corrupt JSON and invalid envelopes return null safely.
+- Confirmed finished/completed bullets are hidden from resume.
+- Confirmed legacy { schema: 1, state } shape is normalized.
+- Confirmed added coverage for unsupported activeBulletSettings and missing active envelope fields.
+- Accepted MZ-107.

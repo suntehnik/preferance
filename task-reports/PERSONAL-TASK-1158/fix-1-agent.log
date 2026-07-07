@@ -1,0 +1,25 @@
+Agent: Boyle (019f3540-55e1-70c3-a7ec-55030bbc4dde)
+Task: PERSONAL-TASK-1158 visual-fix
+Attempt: 1
+Model: gpt-5.4
+Reasoning: medium
+
+Final message:
+I fixed the settlement-table overflow in the narrow desktop/laptop range by giving the score-change cells explicit labels in the markup and switching that table to a stacked row-card layout before the mobile breakpoint, so "Было / Изменение / Стало" can stay readable inside the center panel instead of clipping off the right edge. The scoped code changes are in src/ui/render.ts, src/styles.css, and the regression test in src/ui/render.test.ts.
+
+Verification run by worker:
+- npm run test -- src/ui/render.test.ts
+- npm run test -- src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts
+- npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts
+- npm run verify
+
+All worker-run commands passed.
+
+Worker limitation:
+The worker could not rerun npm run dev or node output/playwright/mz406-capture.mjs because the local server bind on 127.0.0.1:5331 was sandbox-blocked and the escalation retry was rejected by the environment usage gate.
+
+Orchestrator follow-up evidence after worker completion:
+- npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts passed with 29 tests.
+- npm run dev was started by the orchestrator on 127.0.0.1:5331 with approved escalation and was stopped after capture.
+- node output/playwright/mz406-capture.mjs passed after the fix.
+- npm run verify passed with 13 test files, 126 tests, and production build.

@@ -1,0 +1,22 @@
+Agent: Harvey (019f3690-88fa-78a1-a87d-54ebca6c627a)
+Task: PERSONAL-TASK-1163 / MZ-503 US-845 add desktop UI integration tests
+Attempt: 1
+Model: gpt-5.4
+Reasoning: medium
+
+Final message:
+Done. I added the new US-845 integration suite in src/test/us845DesktopTable.integration.test.ts and wrote the task report at task-reports/PERSONAL-TASK-1163/attempt-1.json.
+
+The test file stays inside the repo's existing Vitest/jsdom integration seam and covers the required desktop state families: bidding, contract-family order/whist, contract play, all-pass or misere context suppression, deal-settlement plus next-deal continuation, and final-result lockout. I did not touch production source.
+
+Verification run by worker:
+- npm run test -- src/test/us845DesktopTable.integration.test.ts
+- npm run test -- src/test/us845DesktopTable.integration.test.ts src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts
+- npm run verify
+
+Worker note:
+One small snag showed up during npm run verify: TypeScript caught an unused helper in the new test file, the worker removed it, and reran verify to green. The report correctly classifies Playwright/viewport evidence as downstream NFR work because this repo has no Playwright runner entrypoint in package.json.
+
+Orchestrator validation:
+- Re-ran npm run test -- src/test/us845DesktopTable.integration.test.ts src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts: 5 files / 42 tests passed.
+- Re-ran npm run verify: 14 files / 134 tests passed, tsc and vite build passed.

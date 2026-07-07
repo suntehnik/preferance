@@ -1,0 +1,73 @@
+{
+  "task_id": "PERSONAL-TASK-1158",
+  "epic_id": "PERSONAL-EP-180",
+  "type": "orchestrator_visual_rerun_after_fix",
+  "status": "passed",
+  "summary": "After the focused visual fix, the orchestrator reran targeted UI tests, started the local Vite app, reran the MZ-406 Playwright capture, inspected the regenerated laptop settlement/final screenshots, and reran full npm verification. The prior 1024x768 settlement score-change table clipping was not reproduced: the table now stacks rows with explicit labels and stays inside the central result panel horizontally.",
+  "files_reviewed": [
+    "src/ui/render.ts",
+    "src/styles.css",
+    "src/ui/render.test.ts",
+    "output/playwright/mz406-capture.mjs",
+    "output/playwright/mz-406-settlement-laptop.png",
+    "output/playwright/mz-406-final-laptop.png"
+  ],
+  "commands_run": [
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/us844Scoring.integration.test.ts",
+      "result": "passed",
+      "evidence": "3 test files passed, 29 tests passed."
+    },
+    {
+      "command": "npm run dev",
+      "result": "passed",
+      "evidence": "Vite served the app at http://127.0.0.1:5331/ with approved escalation. The server was stopped after capture."
+    },
+    {
+      "command": "node output/playwright/mz406-capture.mjs",
+      "result": "passed",
+      "evidence": "Regenerated active, settlement, and final screenshots at 1280x800 and 1024x768. Capture metrics reported horizontalOverflow=false and no overflowingElements for all states."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence": "13 test files passed, 126 tests passed, and tsc/vite production build passed."
+    }
+  ],
+  "visual_artifacts": [
+    "output/playwright/mz-406-active-desktop.png",
+    "output/playwright/mz-406-settlement-desktop.png",
+    "output/playwright/mz-406-final-desktop.png",
+    "output/playwright/mz-406-active-laptop.png",
+    "output/playwright/mz-406-settlement-laptop.png",
+    "output/playwright/mz-406-final-laptop.png"
+  ],
+  "capture_metrics": {
+    "viewports": [
+      "1280x800 desktop",
+      "1024x768 laptop"
+    ],
+    "all_states_horizontal_overflow": false,
+    "all_states_overflowing_elements": [],
+    "laptop_settlement_result_rect": {
+      "x": 304.625,
+      "y": 134.46875,
+      "width": 414.75,
+      "height": 944.515625,
+      "right": 719.375,
+      "bottom": 1078.984375
+    },
+    "laptop_settlement_viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "final_state_buttons": []
+  },
+  "risks": [],
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome"
+  }
+}

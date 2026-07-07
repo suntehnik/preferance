@@ -1,0 +1,11 @@
+2026-07-06T01:35:00+02:00 Loaded Spexus context with mcp__spexus.current_context and read PERSONAL-TASK-1140 with mcp__spexus.get_task before inspecting task artifacts.
+2026-07-06T01:35:20+02:00 Inspected attempt-1 worktree state. Found UI/controller createNewGame calls did not pass selected bullet size, while saveStore validation only recognized old phases.
+2026-07-06T01:35:30+02:00 Added failing controller tests for selected bullet size propagation into currentDeal.bulletTarget on start and in-game new deal/reset paths.
+2026-07-06T01:35:30+02:00 Added failing persistence tests for deal-settlement/next-deal active bullet resume compatibility, malformed new-phase summaries, and malformed bulletTarget rejection.
+2026-07-06T01:35:30+02:00 Red test evidence: npm run test -- src/ui/controller.test.ts failed 3 bulletTarget assertions; npm run test -- src/persistence/saveStore.test.ts failed valid deal-settlement loading and malformed bulletTarget rejection.
+2026-07-06T01:36:00+02:00 Patched src/ui/controller.ts so startNewBullet and in-game new-game creation call createNewGame(seed, bulletSize).
+2026-07-06T01:36:05+02:00 Patched src/persistence/saveStore.ts validation to require numeric finite bulletTarget, accept deal-settlement and next-deal phases, validate contract step, play mode, whistResponses, settlementSummary, previousSummary, and trick card shape.
+2026-07-06T01:36:08+02:00 Focused green tests: npm run test -- src/ui/controller.test.ts passed 9 tests; npm run test -- src/persistence/saveStore.test.ts passed 28 tests.
+2026-07-06T01:36:14+02:00 Regression tests passed: npm run test -- src/domain/engine.test.ts passed 21 tests; npm run test -- src/domain/rules.test.ts passed 4 tests; npm run test -- src/test/integrationHarness.test.ts passed 2 tests.
+2026-07-06T01:36:19+02:00 Full verification passed: npm run verify ran all 80 Vitest tests and production build successfully.
+2026-07-06T01:39:33+02:00 Orchestrator post-review fixed the remaining legacy-save compatibility risk by adding migration for pre-rule-engine schema-one and active bullet saves without currentDeal.bulletTarget. Final verification passed: npm run verify ran 82 Vitest tests and production build successfully.

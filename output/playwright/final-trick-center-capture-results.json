@@ -1,0 +1,36 @@
+{
+  "screenshotPath": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake/output/playwright/final-trick-centered-desktop.png",
+  "metrics": {
+    "zoneClassName": "trick-zone  completed-trick-zone",
+    "zoneRect": {
+      "x": 310,
+      "y": 139,
+      "width": 1427,
+      "height": 749,
+      "bottom": 888
+    },
+    "cardRects": [
+      {
+        "x": 805,
+        "y": 461,
+        "width": 72,
+        "height": 104,
+        "bottom": 565
+      },
+      {
+        "x": 887,
+        "y": 461,
+        "width": 72,
+        "height": 104,
+        "bottom": 565
+      },
+      {
+        "x": 969,
+        "y": 461,
+        "width": 72,
+        "height": 104,
+        "bottom": 565
+      }
+    ]
+  }
+}

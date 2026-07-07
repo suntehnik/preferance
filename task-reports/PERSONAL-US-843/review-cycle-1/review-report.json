@@ -1,0 +1,317 @@
+{
+  "epic_id": "PERSONAL-EP-180",
+  "us_id": "PERSONAL-US-843",
+  "summary": "US-843 completion gate passed for the single active Spexus component, default. Spexus current_context was read before the epic hierarchy and task records. The required dependency reports were present at the exact accepted paths, valid JSON, matched PERSONAL-EP-180, and reported succeeded status with no risks. Current source/test inspection plus a fresh npm run verify confirmed that local AI decisions are selected from getLegalActions, use deterministic middle-strength phase/context heuristics across bidding, contract ordering, discard, whist/check/pass, all-pass, misere, contract play, settlement, and next-deal transitions, and include actionable diagnostics for no-legal-action or illegal/stuck auto-turn failures. US-scoped integration tests exercise chooseAiAction through applyAction over representative scenarios. No backend, live API, authentication, tenant scope, backend route, server persistence, database migration, or browser API interception path applies to this static local Vite frontend/domain app.",
+  "requirements_coverage": [
+    {
+      "requirement_id": "PERSONAL-REQ-1758",
+      "status": "covered",
+      "evidence": "src/ai/heuristicAi.ts, src/ai/heuristicAi.test.ts, src/test/aiDecision.integration.test.ts, src/test/integrationHarness.ts, task-reports/PERSONAL-TASK-1148/attempt-1.json, task-reports/PERSONAL-TASK-1149/attempt-1.json, task-reports/PERSONAL-TASK-1151/attempt-1.json, task-reports/PERSONAL-TASK-1152/attempt-1.json, npm run verify",
+      "notes": "chooseAiAction derives choices from getLegalActions and tests assert returned action keys are present in the legal action set before applyAction is called across representative AI-controlled phases."
+    },
+    {
+      "requirement_id": "PERSONAL-REQ-1759",
+      "status": "covered",
+      "evidence": "src/ai/heuristicAi.ts, src/ai/heuristicAi.test.ts, src/test/aiDecision.integration.test.ts, docs/test-design/us-843-ai-decisions.md, task-reports/PERSONAL-TASK-1147/attempt-1.json, task-reports/PERSONAL-TASK-1148/attempt-1.json, task-reports/PERSONAL-TASK-1149/attempt-1.json, task-reports/PERSONAL-TASK-1152/attempt-1.json, npm run verify",
+      "notes": "AI heuristics use hand strength, winning contract floor, trump, trick, whist/check profile, all-pass and misere play mode, and continuation context. Tests include non-first-action and phase-context assertions rather than exact DOS AI reconstruction."
+    }
+  ],
+  "acceptance_criteria_coverage": [
+    {
+      "acceptance_criteria_id": "PERSONAL-AC-2424",
+      "status": "covered",
+      "evidence": "src/ai/heuristicAi.test.ts, src/test/aiDecision.integration.test.ts, src/test/integrationHarness.ts, task-reports/PERSONAL-TASK-1149/attempt-1.json, task-reports/PERSONAL-TASK-1151/attempt-1.json, task-reports/PERSONAL-TASK-1152/attempt-1.json, npm run verify",
+      "notes": "Representative AI states assert legal.length > 0, chooseAiAction does not throw, the chosen action is in getLegalActions, and applyAction accepts the choice."
+    },
+    {
+      "acceptance_criteria_id": "PERSONAL-AC-2425",
+      "status": "covered",
+      "evidence": "src/ai/heuristicAi.test.ts, src/test/aiDecision.integration.test.ts, docs/test-design/us-843-ai-decisions.md, task-reports/PERSONAL-TASK-1147/attempt-1.json, task-reports/PERSONAL-TASK-1148/attempt-1.json, task-reports/PERSONAL-TASK-1149/attempt-1.json, npm run verify",
+      "notes": "Bidding, whist, contract play, all-pass, and misere scenarios demonstrate phase/context awareness and include assertions that avoid accepting a generic phase-blind first-action strategy."
+    }
+  ],
+  "component_coverage": [
+    {
+      "component": "default",
+      "status": "covered",
+      "actual_code_changes": [
+        "docs/test-design/us-843-ai-decisions.md",
+        "src/ai/heuristicAi.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/aiDecision.integration.test.ts",
+        "src/test/integrationHarness.ts",
+        "task-reports/PERSONAL-TASK-1147/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1148/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1149/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1150/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1151/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1152/attempt-1.json"
+      ],
+      "verification_reports": [
+        "task-reports/PERSONAL-TASK-1147/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1148/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1149/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1150/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1151/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1152/attempt-1.json"
+      ],
+      "limitations": "Spexus current_context lists only the default component for this project. Other modified files in the worktree belong to adjacent stories and were used only as dependency/context where relevant."
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1758",
+      "scenario": "AI chooses exactly one action from the legal action set returned by the rules engine while an AI player is active.",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "src/test/aiDecision.integration.test.ts chooseAiAction plus applyAction scenario matrix; src/ai/heuristicAi.ts getLegalActions call; task-reports/PERSONAL-TASK-1149/attempt-1.json; task-reports/PERSONAL-TASK-1152/attempt-1.json; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Local in-process AI/rules integration coverage for legal AI action selection.",
+      "limitations": "Representative deterministic phase fixtures, not exhaustive over every possible hand, seed, and action ordering. No backend/live API path exists."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1759",
+      "scenario": "AI uses hand-strength, contract, trump, trick, whist, all-pass, and misere context for bids, contract orders, discards, whist decisions, and card plays.",
+      "evidence_type": "contract_or_unit",
+      "evidence_source": "src/ai/heuristicAi.ts scoreGameBid, scoreMisereBid, chooseOrderedContract, scoreDiscardPair, chooseWhistAction, scorePlayCard; src/ai/heuristicAi.test.ts; task-reports/PERSONAL-TASK-1148/attempt-1.json; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Middle-strength deterministic heuristic behavior required by US-843.",
+      "limitations": "Advanced search/simulation strength and exact MARRIAGE 3.30 AI reconstruction are explicitly out of MVP scope."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2424",
+      "scenario": "Given legal actions exist, AI selects one legal action without throwing and the rules engine applies it without error.",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "src/test/aiDecision.integration.test.ts; src/ai/heuristicAi.test.ts; task-reports/PERSONAL-TASK-1149/attempt-1.json; task-reports/PERSONAL-TASK-1151/attempt-1.json; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Acceptance criterion coverage for no illegal/no throw AI decisions.",
+      "limitations": "Local deterministic integration through real domain engine/rules code; no external runtime or backend service applies."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2425",
+      "scenario": "Bidding, whist, contract play, all-pass, and misere decisions account for current phase/context and do not use a phase-blind first-action strategy.",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "src/test/aiDecision.integration.test.ts; src/ai/heuristicAi.test.ts; docs/test-design/us-843-ai-decisions.md; task-reports/PERSONAL-TASK-1147/attempt-1.json; task-reports/PERSONAL-TASK-1149/attempt-1.json; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Acceptance criterion coverage for phase-aware AI decisions.",
+      "limitations": "Phase-awareness is demonstrated with targeted fixture contrasts rather than exhaustive behavioral snapshots."
+    },
+    {
+      "req_or_ac_or_contract": "US-843 deterministic AI scenarios and auto-turn progression",
+      "scenario": "Deterministic AI scenarios and auto-turn smoke/diagnostic checks pass without illegal AI action, stuck active player, or unhandled errors in the covered harness scope.",
+      "evidence_type": "regression_test",
+      "evidence_source": "src/test/integrationHarness.ts runDeterministicSmoke/assertLegalHarnessAction; src/test/integrationHarness.test.ts; src/test/aiDecision.integration.test.ts; task-reports/PERSONAL-TASK-1151/attempt-1.json; task-reports/PERSONAL-TASK-1152/attempt-1.json; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Regression impact and auto-turn legality diagnostics for US-843.",
+      "limitations": "Harness is deterministic and in-process. It is not live browser automation because no backend or browser API path is implicated by this US."
+    },
+    {
+      "req_or_ac_or_contract": "US-843 observability diagnostics",
+      "scenario": "AI no-legal-action and illegal auto-turn failures include actionable reproduction context.",
+      "evidence_type": "observability_check",
+      "evidence_source": "src/ai/heuristicAi.ts buildNoLegalActionsMessage; src/test/integrationHarness.ts buildHarnessFailureMessage; src/ai/heuristicAi.test.ts; src/test/aiDecision.integration.test.ts; task-reports/PERSONAL-TASK-1150/attempt-1.json; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Required AI observability diagnostics NFR gate.",
+      "limitations": "Diagnostics are local thrown-error/test/development output with seed, phase, actor, legal set, chosen action, trace, and cause where applicable. No external telemetry sink is in MVP scope."
+    },
+    {
+      "req_or_ac_or_contract": "Evidence Integrity Contract",
+      "scenario": "Mocked harness, fixture, backend/live API, mutating API, authorization, scope, backend route, and server-persistence applicability classification.",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "PERSONAL-EP-180 hierarchy; package.json; rg inspection for page.route, route.fulfill, MSW, fetch, XMLHttpRequest, fake server, auth, server, migration, and localStorage terms; task-reports/PERSONAL-TASK-1151/attempt-1.json; task-reports/PERSONAL-TASK-1152/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [
+        "docs/test-design/us-843-ai-decisions.md deterministic fixture recommendations",
+        "src/test/aiDecision.integration.test.ts deterministic fixture states",
+        "src/test/integrationHarness.ts fixtureDeals/runDeterministicSmoke"
+      ],
+      "accepted_for": "Evidence classification and applicability boundary only; deterministic fixtures are accepted for local contract/unit, in-process integration, regression, and observability evidence.",
+      "limitations": "No page.route, route.fulfill, MSW, fetch, XMLHttpRequest, fake backend, backend service, API route, auth, tenant/project scope header, server persistence, or database migration path was found. Fixture-backed evidence is not used as live_api or live_browser evidence."
+    },
+    {
+      "req_or_ac_or_contract": "Release readiness contract",
+      "scenario": "US-843 implementation, US-scoped integration tests, observability verification, component regression, NFR classification, and build readiness are mutually consistent.",
+      "evidence_type": "release_readiness",
+      "evidence_source": "task-reports/PERSONAL-TASK-1147/attempt-1.json through task-reports/PERSONAL-TASK-1152/attempt-1.json; current source/test inspection; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Static Vite/web release gate for US-843.",
+      "limitations": "No feature flag, server rollback, live deployment smoke, auth, backend route, server persistence, or database migration gate applies to the static local MVP."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "dependency_report_integrity",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "Exact accepted dependency report paths for PERSONAL-TASK-1147 through PERSONAL-TASK-1152 inspected locally.",
+      "accepted_for": "Completion-gate dependency trust boundary.",
+      "limitations": "Report review was supplemented with current source/test inspection and a fresh npm run verify.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "component_code_and_test_changes",
+      "applicability": "applicable_critical",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "git status --short; git diff --stat; rg --files docs/test-design src/test src/ai; dependency reports",
+      "accepted_for": "Proof that the touched default component has actual AI implementation, test-design, unit test, integration test, and verification report changes.",
+      "limitations": "The worktree contains additional adjacent-story modifications; this gate accepted only the US-843-scoped AI/test/report files as direct US-843 evidence.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "integration_tests",
+      "applicability": "applicable_critical",
+      "evidence_type": "real_integration_test",
+      "evidence_source": "src/test/aiDecision.integration.test.ts; src/test/integrationHarness.ts; npm run verify",
+      "accepted_for": "US-843 chooseAiAction plus applyAction scenarios across bidding, contract order, widow pickup, discard, whist, all-pass, misere, contract play, settlement, and next-deal.",
+      "limitations": "Local deterministic integration tests exercise the real domain engine and rules code in-process, not a backend/live API path.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "test_quality",
+      "applicability": "applicable_critical",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1151/attempt-1.json; task-reports/PERSONAL-TASK-1152/attempt-1.json; npm run verify",
+      "accepted_for": "False-positive risk check for US-843 tests.",
+      "limitations": "Tests are deterministic representative Vitest tests rather than exhaustive all-hand/all-seed behavioral proofs.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "qa_test_strategy",
+      "applicability": "applicable_critical",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "docs/test-design/us-843-ai-decisions.md; task-reports/PERSONAL-TASK-1147/attempt-1.json",
+      "accepted_for": "US-843 QA scenario design and traceability before implementation and integration tests.",
+      "limitations": "The design document itself is not runtime evidence; runtime evidence is supplied by later reports, source inspection, and npm run verify.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "observability",
+      "applicability": "applicable_required_ai_diagnostics",
+      "evidence_type": "observability_check",
+      "evidence_source": "task-reports/PERSONAL-TASK-1150/attempt-1.json; src/ai/heuristicAi.ts; src/test/integrationHarness.ts; src/ai/heuristicAi.test.ts; src/test/aiDecision.integration.test.ts; npm run verify",
+      "accepted_for": "AI no-legal-action, illegal choice, and stuck auto-turn diagnostics.",
+      "limitations": "Observability is local thrown-error/test/development output. No production telemetry or backend logging sink exists in MVP scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security_authorization_scope",
+      "applicability": "not_applicable",
+      "evidence_type": "security_review",
+      "evidence_source": "PERSONAL-EP-180 scope; package.json; source scan for network/API/auth usage",
+      "accepted_for": "Static-app security applicability classification.",
+      "limitations": "The app has no server, accounts, online multiplayer, authorization, tenant/project scope, live API mutation path, sensitive data flow, or backend validation surface.",
+      "accepted_risk": "No security gate applies beyond local static-app behavior."
+    },
+    {
+      "gate": "mutating_backend_route_server_persistence",
+      "applicability": "not_applicable_static_local_vite_frontend_domain_app",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "PERSONAL-EP-180 scope; package.json; rg inspection; src/persistence/saveStore.ts localStorage references",
+      "accepted_for": "Backend/live evidence applicability.",
+      "limitations": "US-843 changes are local AI/rules/test behavior. Mutations are in-memory game-state transitions; browser localStorage exists elsewhere in the app, but there are no backend routes, middleware, server persistence, or live service calls.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "migration_compatibility",
+      "applicability": "not_applicable",
+      "evidence_type": "migration_verification",
+      "evidence_source": "PERSONAL-EP-180 scope; package.json; dependency reports; source scan for migration/server persistence",
+      "accepted_for": "Schema/persistence applicability for US-843.",
+      "limitations": "US-843 does not introduce a database, server DTO/API, seeded data, rollback migration, or browser save schema change.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "accessibility",
+      "applicability": "not_applicable_for_us_843_ai_domain_changes",
+      "evidence_type": "accessibility_review",
+      "evidence_source": "PERSONAL-US-843 scope; dependency reports; current source/test inspection",
+      "accepted_for": "UI accessibility applicability classification.",
+      "limitations": "US-843 changes target local AI/domain/test behavior rather than UI rendering or controls. UI-facing accessibility remains covered by adjacent UI stories.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "visual",
+      "applicability": "not_applicable_for_us_843_ai_domain_changes",
+      "evidence_type": "visual_review",
+      "evidence_source": "PERSONAL-US-843 scope; dependency reports; current source/test inspection",
+      "accepted_for": "Visual evidence applicability classification.",
+      "limitations": "US-843 has no direct layout or visual-state requirement. Visual QA belongs to desktop table UI stories.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression_impact",
+      "applicability": "applicable_critical",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1151/attempt-1.json; task-reports/PERSONAL-TASK-1152/attempt-1.json; npm run verify",
+      "accepted_for": "AI legality, phase-context behavior, auto-turn progression, and full local test/build regression.",
+      "limitations": "Regression evidence is local deterministic test/build coverage.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "release_readiness",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "release_readiness",
+      "evidence_source": "task-reports/PERSONAL-TASK-1152/attempt-1.json; fresh npm run verify",
+      "accepted_for": "US-843 completion gate and static Vite build readiness.",
+      "limitations": "No server rollback, feature flag, deployment smoke, backend auth, or migration gate applies to this static local MVP.",
+      "accepted_risk": "none"
+    }
+  ],
+  "findings": [],
+  "stats": {
+    "dependency_reports_expected": 6,
+    "dependency_reports_found": 6,
+    "dependency_reports_missing": 0,
+    "dependency_reports_succeeded": 6,
+    "tasks_loaded_from_spexus": 6,
+    "requirements_reviewed": 2,
+    "acceptance_criteria_reviewed": 2,
+    "components_reviewed": 1,
+    "evidence_rows": 8,
+    "quality_gate_rows": 13,
+    "commands_run": [
+      "sed -n '1,240p' /Users/dvaletin/.codex/skills/spexus/SKILL.md",
+      "sed -n '1,620p' /Users/dvaletin/.codex/skills/orchestrator/SKILL.md",
+      "pwd",
+      "rg --files -g 'AGENTS.md' -g 'docs/orchestrator.md' -g 'docs/testing.md' -g 'task-reports/orchestrator-project.md' -g 'package.json' -g 'task-reports/**'",
+      "mcp__spexus.current_context",
+      "mcp__spexus.epic_hierarchy(PERSONAL-EP-180, full_hierarchy=true)",
+      "mcp__spexus.get_task(PERSONAL-TASK-1147)",
+      "mcp__spexus.get_task(PERSONAL-TASK-1148)",
+      "mcp__spexus.get_task(PERSONAL-TASK-1149)",
+      "mcp__spexus.get_task(PERSONAL-TASK-1150)",
+      "mcp__spexus.get_task(PERSONAL-TASK-1151)",
+      "mcp__spexus.get_task(PERSONAL-TASK-1152)",
+      "sed -n '1,220p' package.json",
+      "git status --short",
+      "git diff --stat",
+      "git diff --name-only",
+      "jq '.' task-reports/PERSONAL-TASK-1147/attempt-1.json task-reports/PERSONAL-TASK-1148/attempt-1.json task-reports/PERSONAL-TASK-1149/attempt-1.json",
+      "jq '.' task-reports/PERSONAL-TASK-1150/attempt-1.json task-reports/PERSONAL-TASK-1151/attempt-1.json task-reports/PERSONAL-TASK-1152/attempt-1.json",
+      "rg --files docs/test-design src/test src/ai",
+      "rg -n chooseAiAction/getLegalActions/diagnostic/phase-context patterns in US-843 source and tests",
+      "rg -n page.route/route.fulfill/MSW/fetch/XMLHttpRequest/fake server/mock/fixture/localStorage/auth/server/migration patterns",
+      "sed -n '1,260p' src/test/aiDecision.integration.test.ts",
+      "sed -n '1,340p' src/ai/heuristicAi.ts",
+      "sed -n '1,260p' docs/test-design/us-843-ai-decisions.md",
+      "npm run verify",
+      "mkdir -p task-reports/PERSONAL-US-843/review-cycle-1"
+    ],
+    "verification_command": {
+      "command": "npm run verify",
+      "result": "passed",
+      "test_files": 12,
+      "tests": 111,
+      "build": "passed"
+    },
+    "mocked_or_fixture_paths_disclosed": 3,
+    "blocking_findings": 0
+  },
+  "verdict": "passed"
+}

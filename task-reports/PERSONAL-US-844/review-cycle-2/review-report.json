@@ -1,0 +1,250 @@
+{
+  "epic_id": "PERSONAL-EP-180",
+  "us_id": "PERSONAL-US-844",
+  "summary": {
+    "verdict": "passed",
+    "role": "completion-gate verifier",
+    "review_cycle": "review-cycle-2",
+    "scope": "Final US-844 completion gate including newly discovered rank-32000 task PERSONAL-TASK-1160 / MZ-408.",
+    "conclusion": "US-844 satisfies PERSONAL-REQ-1760, PERSONAL-REQ-1761, PERSONAL-AC-2426, and PERSONAL-AC-2427. Required task reports MZ-401 through MZ-408 are present and accepted, the prior MZ-406 visual blocker is closed by fix/rerun/attempt-2 evidence, MZ-407 component regression passed, and MZ-408 release gate passed with fresh npm run verify evidence. No dependent component or contract gap remains for this US.",
+    "important_context": "review-cycle-1 was used as supporting context only because it predated discovery of PERSONAL-TASK-1160 / MZ-408. This review-cycle-2 includes MZ-408 as required.",
+    "production_source_modified_by_this_review": false,
+    "report_written": "task-reports/PERSONAL-US-844/review-cycle-2/review-report.json"
+  },
+  "requirements_coverage": [
+    {
+      "requirement": "PERSONAL-REQ-1760",
+      "status": "covered",
+      "summary": "The domain score model maintains bullet, mountain, and directed mutual whist values for all three players. Source inspection and accepted MZ-402/MZ-407/MZ-408 reports confirm score cloning, score deltas, whist antisymmetry, and UI exposure of the full score shape."
+    },
+    {
+      "requirement": "PERSONAL-REQ-1761",
+      "status": "covered",
+      "summary": "Deal settlement creates structured deal results with before/delta/after scores, whist adjustments, and target-reached state. Final settlement creates deterministic ranking/final result data and exposes it to the UI. Accepted integration, component regression, visual, accessibility, and release-gate reports corroborate this path."
+    }
+  ],
+  "acceptance_criteria_coverage": [
+    {
+      "acceptance_criteria": "PERSONAL-AC-2426",
+      "status": "covered",
+      "summary": "US-scoped integration tests settle a deal and verify updated score totals plus mutual-whist deltas are reflected in rendered score/result UI. Accessibility and visual reports confirm the score/result display remains readable and labeled in desktop/laptop scope."
+    },
+    {
+      "acceptance_criteria": "PERSONAL-AC-2427",
+      "status": "covered",
+      "summary": "Integration and renderer tests verify bullet completion reaches finished state, finalResult winner/ranking is shown, and settle/next-deal continuation controls are absent. MZ-406 visual evidence and MZ-408 release gate both confirm final result readability and no accidental continuation."
+    }
+  ],
+  "component_coverage": [
+    {
+      "component": "default",
+      "status": "covered",
+      "touched_surfaces": [
+        "docs/test-design/us-844-bullet-scoring.md",
+        "src/domain/state.ts",
+        "src/domain/scoring.ts",
+        "src/domain/engine.ts",
+        "src/domain/scoring.test.ts",
+        "src/domain/engine.test.ts",
+        "src/persistence/saveStore.ts",
+        "src/persistence/saveStore.test.ts",
+        "src/ui/render.ts",
+        "src/ui/render.test.ts",
+        "src/ui/controller.ts",
+        "src/ui/controller.test.ts",
+        "src/styles.css",
+        "src/test/us844Scoring.integration.test.ts",
+        "output/playwright/mz406-capture.mjs",
+        "output/playwright/mz-406-*.png"
+      ],
+      "summary": "All US-844-owned layers have actual code, test, or evidence changes: QA design, scoring domain/state, settlement engine, persistence compatibility, score/result UI, US-scoped integration tests, accessibility review, desktop/laptop visual evidence, component regression, and release-gate verification."
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1760",
+      "scenario": "Maintain a full preference score model: bullet, mountain, and mutual whists for all three players throughout the bullet.",
+      "evidence_type": "source_or_report_review; unit_test; integration_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1154/attempt-1.json; task-reports/PERSONAL-TASK-1159/attempt-1.json; task-reports/PERSONAL-TASK-1160/attempt-1.json; src/domain/state.ts; src/domain/scoring.ts; src/domain/scoring.test.ts",
+      "live_paths": [
+        "Domain unit tests and local static-app integration tests executed under npm run verify per MZ-408."
+      ],
+      "mocked_paths": [],
+      "accepted_for": "Requirement coverage for score data model and settlement score dimensions.",
+      "limitations": "No backend/live service evidence applies because the epic scope is a static Vite browser game with localStorage persistence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1761",
+      "scenario": "Settle each completed deal and final bullet, calculate deal/final results, and expose the result to the UI.",
+      "evidence_type": "source_or_report_review; integration_test; release_gate",
+      "evidence_source": "task-reports/PERSONAL-TASK-1154/attempt-1.json; task-reports/PERSONAL-TASK-1155/attempt-1.json; task-reports/PERSONAL-TASK-1156/attempt-1.json; task-reports/PERSONAL-TASK-1160/attempt-1.json; src/domain/engine.ts; src/ui/render.ts; src/test/us844Scoring.integration.test.ts",
+      "live_paths": [
+        "Local engine-to-renderer integration tests for settlement, next-deal, and finished states."
+      ],
+      "mocked_paths": [],
+      "accepted_for": "Requirement coverage for deal settlement, final settlement/ranking, and UI exposure.",
+      "limitations": "Integration evidence is in-process browser/static-app evidence, not backend API evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2426",
+      "scenario": "Given a deal completes, when the deal result is settled, the score table/result display updates bullet, mountain, and mutual whist values for all players.",
+      "evidence_type": "integration_test; accessibility_review; visual_review",
+      "evidence_source": "src/test/us844Scoring.integration.test.ts; task-reports/PERSONAL-TASK-1156/attempt-1.json; task-reports/PERSONAL-TASK-1157/attempt-1.json; task-reports/PERSONAL-TASK-1158/attempt-2.json; task-reports/PERSONAL-TASK-1160/attempt-1.json",
+      "live_paths": [
+        "US-844 integration test settles a real engine state and renders the resulting next-deal score/result UI."
+      ],
+      "mocked_paths": [
+        "output/playwright/mz406-capture.mjs renders constructed active, settlement, and final frontend states for static visual screenshots."
+      ],
+      "accepted_for": "AC-2426 functional, accessibility, and desktop/laptop visual evidence.",
+      "limitations": "Playwright screenshots are acceptable static visual UI evidence only; they are not overstated as backend/live evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2427",
+      "scenario": "Given the bullet target is reached, when final settlement is calculated, final ranking/result is shown and continuation is prevented.",
+      "evidence_type": "integration_test; component_test; accessibility_review; visual_review; release_gate",
+      "evidence_source": "src/test/us844Scoring.integration.test.ts; src/ui/render.test.ts; task-reports/PERSONAL-TASK-1157/attempt-1.json; task-reports/PERSONAL-TASK-1158/attempt-2.json; task-reports/PERSONAL-TASK-1159/attempt-1.json; task-reports/PERSONAL-TASK-1160/attempt-1.json",
+      "live_paths": [
+        "Local integration test drives settleDeal to finished state and verifies finalResult winner/ranking plus absence of settleDeal/startNextDeal controls."
+      ],
+      "mocked_paths": [
+        "output/playwright/mz406-capture.mjs renders constructed final state for desktop/laptop visual review."
+      ],
+      "accepted_for": "AC-2427 final result and completed-bullet continuation guard.",
+      "limitations": "Visual evidence is static frontend fixture evidence; no backend/live path exists for this static app."
+    },
+    {
+      "req_or_ac_or_contract": "Evidence Integrity Contract",
+      "scenario": "Every evidence row must use acceptable evidence for a static browser app, and mocked/browser fixture evidence must not be overstated.",
+      "evidence_type": "report_review; evidence_classification",
+      "evidence_source": "task-reports/PERSONAL-TASK-1158/attempt-2.json; task-reports/PERSONAL-TASK-1160/attempt-1.json; output/playwright/mz406-capture.mjs",
+      "live_paths": [
+        "npm run verify from MZ-408 is accepted as current local release readiness evidence."
+      ],
+      "mocked_paths": [
+        "MZ-406 visual captures use constructed frontend states against local Vite and are accepted only for static UI visual/layout verification."
+      ],
+      "accepted_for": "Evidence classification and integrity of static-app verification.",
+      "limitations": "No network/backend/live-user evidence is claimed or required."
+    },
+    {
+      "req_or_ac_or_contract": "Owner scope and MVP boundary",
+      "scenario": "No expanded statistics or visible full deal history were added beyond approved score/result/final-summary scope.",
+      "evidence_type": "source_or_report_review; scope_review",
+      "evidence_source": "mcp__spexus.epic_hierarchy PERSONAL-EP-180; task-reports/PERSONAL-TASK-1159/attempt-1.json; task-reports/PERSONAL-TASK-1160/attempt-1.json; src/ui/render.ts; src/persistence/saveStore.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "Approved US scope and release readiness.",
+      "limitations": "The existing compact in-game log and technical persisted deal history remain in scope for current state/debugging; they are not a new visible full deal history surface."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "Required report presence",
+      "applicability": "required",
+      "evidence_type": "file_presence; report_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1153/attempt-1.json; task-reports/PERSONAL-TASK-1154/attempt-1.json; task-reports/PERSONAL-TASK-1155/attempt-1.json; task-reports/PERSONAL-TASK-1156/attempt-1.json; task-reports/PERSONAL-TASK-1157/attempt-1.json; task-reports/PERSONAL-TASK-1158/attempt-1.json; task-reports/PERSONAL-TASK-1158/fix-1.json; task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json; task-reports/PERSONAL-TASK-1158/attempt-2.json; task-reports/PERSONAL-TASK-1159/attempt-1.json; task-reports/PERSONAL-TASK-1160/attempt-1.json",
+      "accepted_for": "Completion gate dependency completeness, including MZ-408.",
+      "limitations": "review-cycle-1 was reviewed only as supporting context.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "QA/test strategy completion",
+      "applicability": "required",
+      "evidence_type": "qa_design_report",
+      "evidence_source": "docs/test-design/us-844-bullet-scoring.md; task-reports/PERSONAL-TASK-1153/attempt-1.json",
+      "accepted_for": "Scoring scenario design and downstream verification traceability.",
+      "limitations": "QA design intentionally distinguished executable MVP behavior from provisional exact-DOS formula gaps; downstream tasks implemented the accepted MVP scoring contract."
+    },
+    {
+      "gate": "Integration tests",
+      "applicability": "required",
+      "evidence_type": "integration_test",
+      "evidence_source": "src/test/us844Scoring.integration.test.ts; task-reports/PERSONAL-TASK-1156/attempt-1.json; task-reports/PERSONAL-TASK-1160/attempt-1.json",
+      "accepted_for": "US-844 deal settlement and final completion scenarios.",
+      "limitations": "Tests are local static-app integration tests, appropriate for this app scope."
+    },
+    {
+      "gate": "Accessibility evidence",
+      "applicability": "required for score/result UI",
+      "evidence_type": "accessibility_review; component_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1157/attempt-1.json; src/ui/render.test.ts; src/ui/controller.test.ts",
+      "accepted_for": "Readable/labeled score, deal result, final result, keyboard-reachable controls where present, and no finished-state continuation controls.",
+      "limitations": "Evidence is source/test/report based; no separate manual screen-reader session was recorded.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Visual evidence",
+      "applicability": "required for desktop/laptop score/result states",
+      "evidence_type": "visual_review; screenshot_artifact",
+      "evidence_source": "task-reports/PERSONAL-TASK-1158/attempt-1.json; task-reports/PERSONAL-TASK-1158/fix-1.json; task-reports/PERSONAL-TASK-1158/orchestrator-visual-rerun.json; task-reports/PERSONAL-TASK-1158/attempt-2.json; output/playwright/mz-406-active-desktop.png; output/playwright/mz-406-settlement-desktop.png; output/playwright/mz-406-final-desktop.png; output/playwright/mz-406-active-laptop.png; output/playwright/mz-406-settlement-laptop.png; output/playwright/mz-406-final-laptop.png",
+      "accepted_for": "Desktop/laptop readability of ongoing score, deal settlement, and final result states; closure of the prior MZ-406 laptop clipping blocker.",
+      "limitations": "Screenshots are static frontend fixture evidence. Full mobile is out of MVP scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Component regression verification",
+      "applicability": "required",
+      "evidence_type": "component_regression_report",
+      "evidence_source": "task-reports/PERSONAL-TASK-1159/attempt-1.json",
+      "accepted_for": "Regression coverage across score model, settlement, result UI, final completion guard, no expanded stats/full visible history, accessibility, visual evidence, and release readiness.",
+      "limitations": "MZ-407 predated MZ-408 but is itself covered by MZ-408 release gate.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Integration release gate",
+      "applicability": "required and newly included in cycle-2",
+      "evidence_type": "release_gate_report; release_readiness_command",
+      "evidence_source": "task-reports/PERSONAL-TASK-1160/attempt-1.json",
+      "accepted_for": "Final release readiness after all dependency tasks, including MZ-407 and MZ-406 post-fix visual closure.",
+      "limitations": "MZ-408 classifies Playwright screenshots as synthetic/static visual UI evidence, which is acceptable for this static Vite/localStorage game.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Release readiness",
+      "applicability": "required",
+      "evidence_type": "npm_verify",
+      "evidence_source": "task-reports/PERSONAL-TASK-1160/attempt-1.json records fresh npm run verify passing with 13 test files, 126 tests, tsc, and vite build.",
+      "accepted_for": "Current release-readiness command evidence.",
+      "limitations": "No rerun was needed in this review because accepted MZ-408 evidence is fresh, current, and not contradicted.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Security applicability",
+      "applicability": "not applicable beyond static localStorage persistence boundary",
+      "evidence_type": "scope_classification",
+      "evidence_source": "PERSONAL-EP-180 hierarchy; task-reports/PERSONAL-TASK-1160/attempt-1.json",
+      "accepted_for": "Release readiness classification.",
+      "limitations": "US-844 introduced no backend, auth, accounts, network API, payment, or sensitive-data boundary.",
+      "accepted_risk": "none"
+    }
+  ],
+  "findings": [],
+  "stats": {
+    "required_reports_listed": 11,
+    "required_reports_present": 11,
+    "required_reports_missing": 0,
+    "required_reports_accepted": 10,
+    "prior_failure_reports_reviewed_as_context": 1,
+    "spexus_current_context_read_before_artifacts": true,
+    "epic_hierarchy_read": true,
+    "task_metadata_loaded": [
+      "PERSONAL-TASK-1153",
+      "PERSONAL-TASK-1154",
+      "PERSONAL-TASK-1155",
+      "PERSONAL-TASK-1156",
+      "PERSONAL-TASK-1157",
+      "PERSONAL-TASK-1158",
+      "PERSONAL-TASK-1159",
+      "PERSONAL-TASK-1160"
+    ],
+    "commands_rerun_by_this_review": [],
+    "commands_relied_on_from_accepted_reports": [
+      "npm run verify from task-reports/PERSONAL-TASK-1160/attempt-1.json: 13 test files, 126 tests, tsc, and vite build passed",
+      "MZ-406 orchestrator visual rerun: targeted UI/integration tests, local Vite capture, Playwright screenshot generation, and npm run verify passed"
+    ],
+    "production_source_files_changed_by_this_review": 0,
+    "report_files_written_by_this_review": 1
+  },
+  "verdict": "passed"
+}

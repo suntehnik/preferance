@@ -1,0 +1,124 @@
+{
+  "task_id": "PERSONAL-TASK-1133",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "Added US-841 jsdom integration coverage for start/resume behavior across UI controller and localStorage persistence. Tests cover empty boot and explicit bullet start, valid unfinished resume, explicit start-new replacement with subsequent boot, incompatible saved data fallback, finished save fallback, and completed bullet target fallback.",
+  "files_changed": [
+    "src/test/startResume.integration.test.ts"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/test/startResume.integration.test.ts",
+      "result": "passed",
+      "details": "4 integration tests passed"
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "details": "9 test files passed, 71 tests passed, production build passed"
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-05",
+    "integration_layer": "Vitest jsdom through project npm scripts; no Playwright dependency is present in package.json"
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-AC-2420",
+      "scenario": "Empty localStorage boot shows start screen, player selects a supported bullet size, first deal is created and persisted, and a subsequent boot offers resume/start-new for that new bullet.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/test/startResume.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "jsdom integration, not real-browser Playwright."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1753 / PERSONAL-REQ-1754 / PERSONAL-AC-2421",
+      "scenario": "Valid unfinished active bullet prompts for continue, then renders saved phase, actor/status, hand-card count, log, persisted bullet size, seed, and score table.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/test/startResume.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Score table is verified through persistence because current UI has no dedicated score table surface."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-REQ-1753 / PERSONAL-REQ-1754 / PERSONAL-AC-2420 / PERSONAL-AC-2421",
+      "scenario": "Start-new from a valid unfinished save replaces the active bullet, starts with fresh technical history, and subsequent boot offers resume/start-new for the replacement.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/test/startResume.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "LocalStorage persistence only; no backend exists."
+    },
+    {
+      "req_or_ac_or_contract": "Compatibility regression scope",
+      "scenario": "Corrupt JSON, malformed schema-1 state, unsupported schema, finished save, and completed bullet target all fall back to start-only with no continue option and no active bullet.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/test/startResume.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Covers project-local localStorage schema fixtures."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "test-quality",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "Chandrasekhar and Hooke review of src/test/startResume.integration.test.ts",
+      "result": "passed after coverage expansion",
+      "limitations": "Not a real-browser Playwright run.",
+      "accepted_risk": "Real-browser keyboard/focus and visual behavior remain assigned to MZ-105/MZ-106."
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "No live backend or browser because project has neither backend nor Playwright dependency.",
+      "accepted_risk": "None for scoped jsdom integration owner task."
+    },
+    {
+      "gate": "compatibility",
+      "applicability": "applicable",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "npm run test -- src/test/startResume.integration.test.ts",
+      "result": "passed",
+      "limitations": "Covers localStorage schema compatibility and invalid saved data fallback.",
+      "accepted_risk": "None for local schema fixture scope."
+    }
+  ],
+  "reviews": [
+    {
+      "reviewer": "Chandrasekhar",
+      "result": "initial_review_found_coverage_gaps",
+      "findings": [
+        "Invalid-save fallback needed corrupt JSON and malformed schema-1 cases.",
+        "Start-new replacement needed subsequent boot coverage.",
+        "Resume restoration assertions needed broader phase/actor/hand/log/score evidence."
+      ],
+      "resolution": "Expanded src/test/startResume.integration.test.ts and re-ran targeted/full verification."
+    },
+    {
+      "reviewer": "Hooke",
+      "result": "accepted",
+      "findings": [],
+      "resolution": "Accepted jsdom integration layer; noted real-browser visual/focus risks belong to later tasks."
+    },
+    {
+      "reviewer": "Chandrasekhar re-review",
+      "result": "accepted",
+      "findings": [],
+      "resolution": "Prior P1/P2 gaps resolved; MZ-104 accepted."
+    }
+  ]
+}

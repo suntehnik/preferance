@@ -1,0 +1,24 @@
+Completed TASK PERSONAL-TASK-1148 / MZ-302.
+
+Artifacts:
+- src/ai/heuristicAi.ts
+- src/ai/heuristicAi.test.ts
+- task-reports/PERSONAL-TASK-1148/attempt-1.json
+
+Implemented deterministic middle-strength AI heuristics that keep chooseAiAction inside getLegalActions(state) while using bidding strength, contract ordering context, discard scoring, whist/check profile handling, play-mode/trump/trick context, continuation phases, and richer no-legal-actions diagnostics.
+
+Verification run by worker:
+- npm run test -- src/ai/heuristicAi.test.ts
+- npm run test -- src/ai/heuristicAi.test.ts src/test/integrationHarness.test.ts
+- npm run verify
+
+Follow-up report normalization:
+- normalized evidence_matrix rows to canonical req_or_ac_or_contract/scenario/evidence_type/command_or_source/live_paths/mocked_paths/result/limitations schema
+- normalized quality_gate_matrix rows to include gate/applicability/evidence_type/command_or_source/result/limitations/accepted_risk
+- preserved status=succeeded and risks=[]
+
+Orchestrator local acceptance also ran:
+- npm run test -- src/ai/heuristicAi.test.ts
+- npm run verify
+
+Result: succeeded, failure_type=not_applicable, blocking risks=[].

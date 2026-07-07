@@ -1,0 +1,136 @@
+{
+  "task_id": "PERSONAL-TASK-1169",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Implemented US-846 deterministic full-bullet smoke coverage by activating a real harness smoke scenario that reaches phase=finished with the live engine and heuristic AI, adding explicit finished-state termination and legalCount diagnostics, and preserving adjacent rule-critical suites. Targeted regression and fresh npm run verify both passed.",
+  "files_changed": [
+    "src/test/integrationHarness.ts",
+    "src/test/integrationHarness.test.ts",
+    "src/test/aiDecision.integration.test.ts",
+    "task-reports/PERSONAL-TASK-1169/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "mcp__spexus.current_context",
+      "result": "passed",
+      "evidence_type": "mandatory_spexus_context",
+      "evidence": "Read active PERSONAL project/default component scope before Spexus artifact reads."
+    },
+    {
+      "command": "mcp__spexus.get_task PERSONAL-TASK-1169",
+      "result": "passed",
+      "evidence_type": "task_scope_confirmation",
+      "evidence": "Confirmed MZ-602 owns integration-test implementation for PERSONAL-US-846 deterministic full-bullet smoke coverage."
+    },
+    {
+      "command": "npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts src/ai/heuristicAi.test.ts src/domain/engine.test.ts src/domain/rules.test.ts",
+      "result": "passed",
+      "evidence_type": "targeted_rule_critical_regression",
+      "evidence": "41 tests passed across the new smoke coverage, harness diagnostics, heuristic AI legality, engine transitions, and rules validation."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_gate_verification",
+      "evidence": "Vitest passed 14 files / 137 tests, then tsc and vite build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "component_key": "default",
+    "layer": "integration-tests",
+    "phase": "implementation",
+    "qa_risk_level": "critical",
+    "release_gate_required": true,
+    "verification_commands": [
+      "npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts src/ai/heuristicAi.test.ts src/domain/engine.test.ts src/domain/rules.test.ts",
+      "npm run verify"
+    ]
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1763",
+      "scenario": "US-846 suite includes executable deterministic smoke coverage in addition to the existing rule/AI/unit/integration inventory.",
+      "evidence_type": "integration_harness_smoke",
+      "command_or_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; npm run verify",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Smoke scenario uses deterministic seed 639 with bulletTarget 1 to keep the full-bullet completion executable and bounded."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2430",
+      "scenario": "Rule-critical engine/rules/AI paths remain green after harness changes.",
+      "evidence_type": "targeted_regression",
+      "command_or_source": "npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts src/ai/heuristicAi.test.ts src/domain/engine.test.ts src/domain/rules.test.ts",
+      "live_paths": [
+        "src/domain/rules.test.ts",
+        "src/domain/engine.test.ts",
+        "src/ai/heuristicAi.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "This worker touched integration/harness coverage only and relied on existing adjacent suites for the remaining AC-2430 categories."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2431",
+      "scenario": "Deterministic full-bullet smoke reaches finished without unhandled error, illegal AI action, or stuck progression and respects an explicit step bound.",
+      "evidence_type": "deterministic_full_bullet_smoke",
+      "command_or_source": "src/test/integrationHarness.test.ts; src/test/integrationHarness.ts; npm run verify",
+      "live_paths": [
+        "src/test/integrationHarness.ts",
+        "src/test/integrationHarness.test.ts",
+        "src/test/aiDecision.integration.test.ts"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Progress is asserted from consecutive trace deltas and bounded by fixtureDeals.fullBulletSmoke.maxSteps = 80."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "Spexus protocol compliance",
+      "applicability": "required",
+      "evidence_type": "mandatory_context_review",
+      "command_or_source": "mcp__spexus.current_context; mcp__spexus.get_task PERSONAL-TASK-1169",
+      "result": "passed",
+      "limitations": "No Spexus writes were performed.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Deterministic full-bullet smoke implemented",
+      "applicability": "required",
+      "evidence_type": "integration_test",
+      "command_or_source": "src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "limitations": "Scenario is intentionally minimal and deterministic rather than exhaustive across multiple smoke seeds.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Useful smoke diagnostics",
+      "applicability": "required",
+      "evidence_type": "failure_message_assertion",
+      "command_or_source": "src/test/aiDecision.integration.test.ts",
+      "result": "passed",
+      "limitations": "Diagnostics focus on seed, step, phase, actor, legalCount, legal actions, chosen action, and recent trace.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Broad verification",
+      "applicability": "required",
+      "evidence_type": "full_verify_command",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "Verification covers the current repo state in this worktree only.",
+      "accepted_risk": "none"
+    }
+  ]
+}

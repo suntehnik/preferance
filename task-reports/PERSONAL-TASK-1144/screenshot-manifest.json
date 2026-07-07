@@ -1,0 +1,86 @@
+{
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "browser": "Codex in-app browser",
+  "fixture_url_base": "http://127.0.0.1:5331/task-reports/PERSONAL-TASK-1144/phase-fixtures.html",
+  "screenshots": [
+    {
+      "fixture": "bidding",
+      "path": "task-reports/PERSONAL-TASK-1144/screenshots/01-bidding.jpg",
+      "bytes": 87900,
+      "observations": [
+        "Bidding phase label and active actor are visible in the footer.",
+        "Pass, misere, and ordered bid controls are visible and understandable.",
+        "Current trick area displays the bidding state message with no overlap or clipping."
+      ]
+    },
+    {
+      "fixture": "whist",
+      "path": "task-reports/PERSONAL-TASK-1144/screenshots/02-whist-decision.jpg",
+      "bytes": 85187,
+      "observations": [
+        "Contract phase label and active actor are visible in the footer.",
+        "Pass, whist, and half-whist controls are visible and enabled for the human actor.",
+        "Current trick area displays the whist decision state message with no overlap or clipping."
+      ]
+    },
+    {
+      "fixture": "contract-play",
+      "path": "task-reports/PERSONAL-TASK-1144/screenshots/03-contract-play.jpg",
+      "bytes": 77274,
+      "observations": [
+        "Play phase label and active actor are visible in the footer.",
+        "The current trick area shows two played cards plus the play message.",
+        "Only the legal human card is enabled; disabled cards are visibly distinct."
+      ]
+    },
+    {
+      "fixture": "all-pass",
+      "path": "task-reports/PERSONAL-TASK-1144/screenshots/04-all-pass.jpg",
+      "bytes": 73724,
+      "observations": [
+        "All-pass context is visible in the log, with play phase and active actor visible in the footer.",
+        "Legal playable cards are visible and enabled for the human actor.",
+        "Current trick area is present and nonblank with no text overflow or clipping."
+      ]
+    },
+    {
+      "fixture": "misere",
+      "path": "task-reports/PERSONAL-TASK-1144/screenshots/05-misere.jpg",
+      "bytes": 74166,
+      "observations": [
+        "Misere context is visible in the log, with play phase and active actor visible in the footer.",
+        "Legal playable cards are visible and enabled for the human actor.",
+        "No whist controls are shown in the misere play state."
+      ]
+    },
+    {
+      "fixture": "deal-settlement",
+      "path": "task-reports/PERSONAL-TASK-1144/screenshots/06-deal-settlement.jpg",
+      "bytes": 72507,
+      "observations": [
+        "Deal-settlement phase label and active actor are visible in the footer.",
+        "Settlement summary is visible in the current state area.",
+        "Settle action is visible and enabled, with no overlap or clipping."
+      ]
+    },
+    {
+      "fixture": "next-deal",
+      "path": "task-reports/PERSONAL-TASK-1144/screenshots/07-next-deal.jpg",
+      "bytes": 70964,
+      "observations": [
+        "Next-deal phase label and active actor are visible in the footer.",
+        "Previous deal summary is visible in the current state area.",
+        "Start-next-deal action is visible and enabled, with no overlap or clipping."
+      ]
+    }
+  ],
+  "automated_dom_checks": {
+    "viewport_match": true,
+    "nonblank": true,
+    "text_overflow_items": 0,
+    "text_overlap_pairs": 0
+  }
+}

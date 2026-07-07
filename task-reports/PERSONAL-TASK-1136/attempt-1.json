@@ -1,0 +1,93 @@
+{
+  "task_id": "PERSONAL-TASK-1136",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "Verified localStorage save-schema compatibility for US-841. Coverage now includes stable schema-1 active bullet envelopes, legacy shipped schema-one state migration, corrupt JSON fallback, unsupported schema fallback, unsupported bullet-size settings, missing active envelope fields, score-table mismatches, finished/completed non-resumable saves, and app-level fallback for bad saved data.",
+  "files_changed": [
+    "src/persistence/saveStore.test.ts"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/persistence/saveStore.test.ts",
+      "result": "passed",
+      "details": "25 tests passed"
+    },
+    {
+      "command": "npm run test -- src/test/startResume.integration.test.ts",
+      "result": "passed",
+      "details": "4 tests passed"
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "details": "9 test files passed, 74 tests passed, production build passed"
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06"
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1754 / PERSONAL-AC-2421",
+      "scenario": "Versioned schema-1 active bullet envelope stores and restores activeBulletSettings, currentDeal, scoreTable, and technicalDealHistory.",
+      "evidence_type": "migration_verification",
+      "command_or_source": "npm run test -- src/persistence/saveStore.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "LocalStorage schema fixture verification."
+    },
+    {
+      "req_or_ac_or_contract": "Compatibility regression scope",
+      "scenario": "Legacy shipped { schema: 1, state } envelope migrates into the active bullet shape with default bullet size 10.",
+      "evidence_type": "migration_verification",
+      "command_or_source": "npm run test -- src/persistence/saveStore.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "No older multi-version migrations required by task."
+    },
+    {
+      "req_or_ac_or_contract": "Compatibility regression scope",
+      "scenario": "Corrupt JSON, unsupported schema, malformed legacy state, unsupported active bullet settings, missing active envelope fields, score mismatches, finished saves, and completed bullet targets do not load as resumable games.",
+      "evidence_type": "migration_verification",
+      "command_or_source": "npm run test -- src/persistence/saveStore.test.ts && npm run test -- src/test/startResume.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "LocalStorage schema fixture and jsdom app fallback verification."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "compatibility",
+      "applicability": "applicable",
+      "evidence_type": "migration_verification",
+      "command_or_source": "Sartre review plus targeted schema tests",
+      "result": "passed",
+      "limitations": "Local-only persistence; no backend migration layer exists.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "None for scoped task.",
+      "accepted_risk": "None."
+    }
+  ],
+  "reviews": [
+    {
+      "reviewer": "Sartre",
+      "result": "accepted",
+      "findings": [],
+      "summary": "No blockers; compatibility surface and added coverage accepted."
+    }
+  ]
+}

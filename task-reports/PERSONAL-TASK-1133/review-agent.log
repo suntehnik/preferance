@@ -1,0 +1,17 @@
+Chandrasekhar initial review:
+- P1: invalid-save fallback missing corrupt JSON and malformed schema-1 boot cases.
+- P1: start-new replacement did not verify subsequent boot offers resume/start-new for the new active bullet.
+- P2: resume restoration assertions were thin versus phase, actor, hand state, score table, and log.
+
+Hooke review:
+- Accepted targeted jsdom integration approach and found low false-positive/flakiness risk.
+- Residual real-browser focus/visual risks routed to later verification tasks.
+
+Resolution:
+- Added corrupt JSON and malformed schema-1 fallback coverage.
+- Added subsequent boot assertion after explicit replacement.
+- Added stronger resume assertions for status phase/actor, rendered hand card count, saved log, seed, bullet size, and persisted score table.
+- Targeted integration and full verify passed.
+
+Chandrasekhar re-review:
+- No remaining findings; MZ-104 accepted.

@@ -1,0 +1,20 @@
+Agent: Planck (019f3537-cc6d-71d1-850c-f79906582169)
+Task: PERSONAL-TASK-1158 / MZ-406 visual regression for score/results
+Attempt: 1
+Model: gpt-5.5
+Reasoning: medium
+
+Final status:
+The verifier completed MZ-406 attempt 1 and wrote task-reports/PERSONAL-TASK-1158/attempt-1.json.
+
+Initial result:
+- status: failed
+- failure reason: laptop 1024x768 settlement view clipped the right side of the score-change table/result content, including the final "Стало" column area.
+- npm run verify passed.
+- browser screenshots were captured for active, settlement, and final states at 1280x800 and 1024x768.
+
+Correction requested by orchestrator:
+The first report used a noncanonical failure_type. The verifier was asked to amend the report to an allowed orchestrator failure_type.
+
+Verifier amendment:
+Done. I amended only task-reports/PERSONAL-TASK-1158/attempt-1.json, changed failure_type to nfr_gap, and validated the JSON with jq empty.

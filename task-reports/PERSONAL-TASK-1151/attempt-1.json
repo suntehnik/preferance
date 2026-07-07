@@ -1,0 +1,190 @@
+{
+  "task_id": "PERSONAL-TASK-1151",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Verified US-843 AI component regression for legal, context-aware decisions and auto-turn diagnostics. Spexus current_context was read before task and epic context. Dependency reports PERSONAL-TASK-1147 through PERSONAL-TASK-1150 were present and reviewed. Source inspection of src/ai/heuristicAi.ts confirms chooseAiAction always derives from getLegalActions, throws contextual diagnostics when no legal actions exist, and uses phase/context-specific heuristics for bidding, contract ordering, discard, whist/check/pass, contract play, all-pass, misere, settlement, and next-deal. Unit and integration tests verify representative AI choices are legal and applyAction-compatible, not merely first-action fallback, and preserve MZ-304 diagnostics. Targeted AI regression and npm run verify both passed. This app is a static Vite/localStorage browser game with no backend, live API, auth, server persistence, or production telemetry pipeline in scope.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1151/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "test -f .venv/bin/activate",
+      "result": "failed_as_expected_no_venv",
+      "evidence_type": "source_or_report_review",
+      "evidence": "No project virtualenv activation file exists in the requested worktree; verification continued with package.json Node scripts."
+    },
+    {
+      "command": "npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "evidence_type": "regression_test",
+      "evidence": "Vitest reported 3 files passed and 13 tests passed, covering heuristic AI unit scenarios, AI decision integration scenarios, and deterministic harness behavior."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "regression_test",
+      "evidence": "Vitest reported 12 files passed and 111 tests passed; tsc and vite production build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1151",
+      "epic_hierarchy_read": "PERSONAL-EP-180",
+      "refs_reviewed": [
+        "PERSONAL-US-843",
+        "PERSONAL-REQ-1758",
+        "PERSONAL-REQ-1759",
+        "PERSONAL-AC-2424",
+        "PERSONAL-AC-2425",
+        "PERSONAL-STD-063"
+      ]
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1147/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1148/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1149/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1150/attempt-1.json"
+    ],
+    "project_scope_note": "Static Vite browser MVP; no backend/live API/auth/scope/server persistence applies. Browser storage is localStorage only. No API interception paths were found in the inspected AI/test files."
+  },
+  "quality_gate_matrix": [
+    {
+      "gate": "dependency_report_presence",
+      "applicability": "applicable_required",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1147/attempt-1.json; task-reports/PERSONAL-TASK-1148/attempt-1.json; task-reports/PERSONAL-TASK-1149/attempt-1.json; task-reports/PERSONAL-TASK-1150/attempt-1.json",
+      "result": "passed",
+      "limitations": "Dependency reports were reviewed at the exact paths supplied by the verifier prompt; current source and fresh commands were used for final acceptance.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "ai_component_regression",
+      "applicability": "applicable_critical",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "limitations": "Deterministic local unit/integration coverage is representative across phase fixtures and not exhaustive over all seeds, hands, and legal action orderings.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "broad_release_gate_verification",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "Local deterministic test/build verification only; no backend or live service exists for this app.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "observability_diagnostics",
+      "applicability": "applicable_required",
+      "evidence_type": "observability_check",
+      "command_or_source": "src/ai/heuristicAi.ts buildNoLegalActionsMessage; src/test/integrationHarness.ts buildHarnessFailureMessage; src/ai/heuristicAi.test.ts; src/test/aiDecision.integration.test.ts; task-reports/PERSONAL-TASK-1150/attempt-1.json",
+      "result": "passed",
+      "limitations": "Observability is actionable thrown-error/test/development output with seed, phase, actor, legal set, chosen action, and trace context. There is no production telemetry sink in MVP scope.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "backend_live_api_auth_scope_persistence_applicability",
+      "applicability": "not_applicable",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "PERSONAL-EP-180 hierarchy; package.json; src/test/integrationHarness.ts; src/test/aiDecision.integration.test.ts; rg scan for page.route/route.fulfill/MSW/fake server",
+      "result": "passed",
+      "limitations": "The app has no backend/live API/auth/scope/server persistence path. Browser localStorage persistence exists elsewhere in the static app, but US-843 AI regression does not introduce server persistence or auth behavior.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "interception_mock_disclosure",
+      "applicability": "applicable_for_evidence_classification",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "rg -n \"page\\.route|route\\.fulfill|MSW|mock|fake server|fixture\" src test || true",
+      "result": "passed",
+      "limitations": "The scan reported no API/browser route interception harness. It did find deterministic fixture references in local tests, so evidence is classified as local unit/integration/regression rather than live_browser or live_api.",
+      "accepted_risk": "none"
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1758",
+      "scenario": "AI chooses only one action from the legal action set returned by the rules engine.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "src/ai/heuristicAi.ts chooseAiAction/getLegalActions source review; src/ai/heuristicAi.test.ts legality matrix; npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Unit-level representative phase fixtures, not exhaustive over all possible hands and seeds."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1758 / PERSONAL-AC-2424",
+      "scenario": "Representative AI choices are accepted by applyAction without throwing across bidding, contract order, widow pickup, discard, whist, all-pass play, misere play, contract play, deal settlement, and next-deal states.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts chooseAiAction plus applyAction matrix; npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "This is in-process project integration through the real domain engine and rules code; no backend/live API path applies."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1759",
+      "scenario": "AI uses hand strength, phase, contract, trump, trick, whist, all-pass, and misere context rather than a generic first-action fallback.",
+      "evidence_type": "contract_or_unit",
+      "command_or_source": "src/ai/heuristicAi.ts scoreGameBid, scoreMisereBid, chooseOrderedContract, scoreDiscardPair, chooseWhistAction, scorePlayCard; src/ai/heuristicAi.test.ts non-first bidding/play-mode assertions",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Heuristics are middle-strength deterministic rules, not search/simulation strength or exact MARRIAGE 3.30 AI reconstruction, which is explicitly out of MVP scope."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1759 / PERSONAL-AC-2425",
+      "scenario": "Across bidding, whist, contract play, all-pass, and misere states, requested AI decisions account for current phase and do not collapse to first legal action.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts scenario matrix; src/ai/heuristicAi.test.ts phase-aware assertions; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Representative deterministic scenario coverage, not exhaustive behavioral snapshots for every legal action ordering."
+    },
+    {
+      "req_or_ac_or_contract": "US-843 auto-turn progression",
+      "scenario": "Auto-turn harness uses chooseAiAction deterministically, checks chosen actions against legal actions before applyAction, and exposes deterministic smoke hooks.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/integrationHarness.ts runDeterministicSmoke/assertLegalHarnessAction; src/test/integrationHarness.test.ts; npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Harness smoke is deterministic in-process engine progression. It is not a browser e2e or live service flow because no such backend path exists."
+    },
+    {
+      "req_or_ac_or_contract": "MZ-304 observability diagnostics",
+      "scenario": "No-legal-action and illegal auto-turn failures include seed, phase, actor, legal action set, chosen action, recent trace, and cause as applicable.",
+      "evidence_type": "observability_check",
+      "command_or_source": "src/ai/heuristicAi.ts buildNoLegalActionsMessage; src/test/integrationHarness.ts buildHarnessFailureMessage; src/ai/heuristicAi.test.ts diagnostic assertion; src/test/aiDecision.integration.test.ts illegal harness diagnostic assertion; task-reports/PERSONAL-TASK-1150/attempt-1.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Diagnostics are local thrown errors and test/development reproduction data; production telemetry is not part of the static MVP scope."
+    },
+    {
+      "req_or_ac_or_contract": "Evidence Integrity Contract",
+      "scenario": "Classify US-843 evidence for a static browser app without backend/live API/auth/scope/server persistence.",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "PERSONAL-EP-180 hierarchy; package.json; dependency reports; source inspection; targeted tests; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "accepted",
+      "limitations": "Evidence is local source review plus contract/unit, in-process integration, regression, and observability checks. live_api, live_browser, security, migration, and server persistence evidence are not applicable to this task scope."
+    }
+  ]
+}

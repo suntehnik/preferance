@@ -1,0 +1,187 @@
+{
+  "task_id": "PERSONAL-TASK-1138",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "US-841 release gate passed for the default component. Implementation, integration tests, component regression, accessibility, visual regression, and localStorage compatibility evidence are complete for the start/resume workflow. AC-2420 and AC-2421 have passing evidence, full project verification passes, and release scope remains local-only without multi-save/backend/account/sync/mobile/tutorial creep.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1138/attempt-1.json",
+    "task-reports/PERSONAL-TASK-1138/review-agent.log"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "details": "9 test files passed, 74 tests passed, production build passed"
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06"
+  },
+  "dependency_reports": {
+    "PERSONAL-TASK-1129": "MZ-000 deterministic integration harness; verified earlier by npm run verify",
+    "PERSONAL-TASK-1130": "docs/test-design/us-841-start-resume.md",
+    "PERSONAL-TASK-1131": "MZ-102 persistence implementation; covered by src/persistence/saveStore.test.ts and Spexus checkpoint",
+    "PERSONAL-TASK-1132": "task-reports/PERSONAL-TASK-1132/attempt-1.json",
+    "PERSONAL-TASK-1133": "task-reports/PERSONAL-TASK-1133/attempt-1.json",
+    "PERSONAL-TASK-1134": "task-reports/PERSONAL-TASK-1134/attempt-1.json",
+    "PERSONAL-TASK-1135": "task-reports/PERSONAL-TASK-1135/attempt-1.json",
+    "PERSONAL-TASK-1136": "task-reports/PERSONAL-TASK-1136/attempt-1.json",
+    "PERSONAL-TASK-1137": "task-reports/PERSONAL-TASK-1137/attempt-1.json"
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-AC-2420",
+      "scenario": "Player starts a new local bullet by choosing a supported size before first deal creation.",
+      "evidence_type": "regression_test",
+      "evidence_source": [
+        "src/ui/controller.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "task-reports/PERSONAL-TASK-1133/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1137/attempt-1.json"
+      ],
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "US-841 release gate",
+      "limitations": "Local-only frontend; no backend exists."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1753 / PERSONAL-AC-2421",
+      "scenario": "Player with a valid unfinished saved bullet gets an explicit continue/start-new prompt; continue restores saved state; start-new replaces the active bullet.",
+      "evidence_type": "regression_test",
+      "evidence_source": [
+        "src/ui/controller.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "task-reports/PERSONAL-TASK-1132/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1133/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1137/attempt-1.json"
+      ],
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "US-841 release gate",
+      "limitations": "jsdom integration plus desktop browser visual evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1754 / PERSONAL-AC-2421",
+      "scenario": "Versioned localStorage schema restores valid active bullets and safely rejects corrupt, unsupported, malformed, finished, and completed saved data.",
+      "evidence_type": "migration_verification",
+      "evidence_source": [
+        "src/persistence/saveStore.test.ts",
+        "src/test/startResume.integration.test.ts",
+        "task-reports/PERSONAL-TASK-1136/attempt-1.json",
+        "task-reports/PERSONAL-TASK-1137/attempt-1.json"
+      ],
+      "live_paths": [],
+      "mocked_paths": [],
+      "accepted_for": "US-841 release gate",
+      "limitations": "LocalStorage schema only."
+    },
+    {
+      "req_or_ac_or_contract": "US-841 start/resume visual workflow",
+      "scenario": "Clean start, invalid-save fallback, saved-bullet resume, and after-start-new desktop layouts are readable and non-overlapping.",
+      "evidence_type": "visual_review",
+      "evidence_source": [
+        "task-reports/PERSONAL-TASK-1135/screenshots/clean-start-1280x800.png",
+        "task-reports/PERSONAL-TASK-1135/screenshots/invalid-save-fallback-1280x800.png",
+        "task-reports/PERSONAL-TASK-1135/screenshots/saved-bullet-resume-1280x800.png",
+        "task-reports/PERSONAL-TASK-1135/screenshots/after-start-new-1280x800.png",
+        "task-reports/PERSONAL-TASK-1135/attempt-1.json"
+      ],
+      "live_paths": [
+        "http://127.0.0.1:5333/",
+        "http://127.0.0.1:5334/"
+      ],
+      "mocked_paths": [],
+      "accepted_for": "US-841 release gate",
+      "limitations": "Desktop/laptop viewport only as scoped by task."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "test-design",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "docs/test-design/us-841-start-resume.md",
+      "accepted_for": "US-841 release gate",
+      "limitations": "Design doc is local project artifact.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "integration-tests",
+      "applicability": "applicable",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1133/attempt-1.json",
+      "accepted_for": "US-841 release gate",
+      "limitations": "Vitest jsdom integration because project has no Playwright dependency.",
+      "accepted_risk": "Real-browser visual/focus covered by MZ-105/MZ-106 evidence."
+    },
+    {
+      "gate": "accessibility-review",
+      "applicability": "applicable",
+      "evidence_type": "accessibility_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1134/attempt-1.json",
+      "accepted_for": "US-841 release gate",
+      "limitations": "No axe dependency; native/browser/source evidence.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "visual-regression",
+      "applicability": "applicable",
+      "evidence_type": "visual_review",
+      "evidence_source": "task-reports/PERSONAL-TASK-1135/attempt-1.json",
+      "accepted_for": "US-841 release gate",
+      "limitations": "No mobile completeness required for MVP per MZ-106.",
+      "accepted_risk": "None for desktop/laptop scope."
+    },
+    {
+      "gate": "compatibility",
+      "applicability": "applicable",
+      "evidence_type": "migration_verification",
+      "evidence_source": "task-reports/PERSONAL-TASK-1136/attempt-1.json",
+      "accepted_for": "US-841 release gate",
+      "limitations": "LocalStorage schema only.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "component-regression",
+      "applicability": "applicable",
+      "evidence_type": "regression_test",
+      "evidence_source": "task-reports/PERSONAL-TASK-1137/attempt-1.json",
+      "accepted_for": "US-841 release gate",
+      "limitations": "No backend or Playwright package exists.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "release-readiness",
+      "applicability": "applicable",
+      "evidence_type": "release_readiness",
+      "evidence_source": "npm run verify; this release gate report",
+      "accepted_for": "US-841 release gate",
+      "limitations": "No feature flag or rollback mechanism exists; changes are local frontend/persistence only.",
+      "accepted_risk": "Rollback is git revert of local source changes if needed."
+    }
+  ],
+  "release_notes": {
+    "summary": "US-841 adds a local start/resume workflow for the browser remake.",
+    "known_limitations": [
+      "One active local bullet only; no multi-save.",
+      "No backend/account/sync/online play.",
+      "No full mobile UX completion in this US.",
+      "No tutorial/onboarding in this US."
+    ],
+    "rollback": "Revert the US-841 source changes and generated task reports; localStorage data is client-local and invalid/corrupt saves fall back safely to start screen."
+  },
+  "reviews": [
+    {
+      "reviewer": "Herschel",
+      "result": "accepted",
+      "findings": [],
+      "non_blocking_notes": [
+        "Clean up orchestrator-log current phase / last completed task wording."
+      ]
+    }
+  ]
+}

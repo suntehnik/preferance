@@ -1,0 +1,21 @@
+Done. Implemented the US-846 rule-critical smoke coverage and wrote the final report to task-reports/PERSONAL-TASK-1169/attempt-1.json.
+
+Changed files:
+- src/test/integrationHarness.ts
+- src/test/integrationHarness.test.ts
+- src/test/aiDecision.integration.test.ts
+- task-reports/PERSONAL-TASK-1169/attempt-1.json
+
+What changed: the harness now has an active deterministic full-bullet smoke scenario, stops explicitly on phase === 'finished', records legalActionCountBefore in trace entries, and includes legalCount= in failure diagnostics. The new smoke test drives a real game with the live engine and heuristic AI to completion within a fixed bound and checks that progress never stalls between consecutive trace states.
+
+Commands run:
+- mcp__spexus.current_context
+- mcp__spexus.get_task PERSONAL-TASK-1169
+- npm test -- src/test/integrationHarness.test.ts src/test/aiDecision.integration.test.ts src/ai/heuristicAi.test.ts src/domain/engine.test.ts src/domain/rules.test.ts
+- npm run verify
+
+Verification results:
+- Targeted regression: 41 tests passed
+- Full verify: 14 test files / 137 tests passed, then tsc && vite build passed
+
+MZ-602 is ready to accept: yes.

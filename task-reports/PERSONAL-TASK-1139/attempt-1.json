@@ -1,0 +1,86 @@
+{
+  "task_id": "PERSONAL-TASK-1139",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Created the US-842 QA test design at docs/test-design/us-842-rule-phases.md with executable phase scenarios for bidding, all-pass, contract ordering, widow pickup, discard, whist, half-whist, pass, trick play, misere, deal settlement, next deal, and bullet completion. The document makes the fixed Sochi profile explicit, traces scenarios to REQ-1755/1756/1757 and AC-2422/2423, defines legal-action generation expectations, and includes shared trick/all-pass/misere fixtures plus handoff notes for MZ-202 and MZ-204.",
+  "files_changed": [
+    "docs/test-design/us-842-rule-phases.md",
+    "task-reports/PERSONAL-TASK-1139/attempt-1.json",
+    "task-reports/PERSONAL-TASK-1139/attempt-1-agent.log"
+  ],
+  "tests_run": [
+    {
+      "command": "rg -n \"^(# US-842 Rule Phases QA Test Design|## Fixed Agreement Profile Assumptions|## Scenario Matrix|## Legal Action Generation Scenarios Per Phase|## Transition Scenarios|## Trick-Winner Fixtures|## All-Pass And Misere Fixtures|## Regression And NFR Notes|## Implementation Handoff Notes)\" docs/test-design/us-842-rule-phases.md",
+      "result": "passed",
+      "details": "Confirmed the required sections exist in the authored QA test design."
+    },
+    {
+      "command": "npm run test",
+      "result": "passed",
+      "details": "Existing project tests passed without changes required by this documentation task."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06"
+  },
+  "quality_gate_matrix": [
+    {
+      "gate": "test-design-completeness",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "docs/test-design/us-842-rule-phases.md",
+      "accepted_for": "PERSONAL-TASK-1139",
+      "limitations": "Design artifact only; implementation evidence belongs to MZ-202/MZ-204.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "fixed-profile-coverage",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "Fixed Agreement Profile Assumptions and scenario rows RUL-842-007 through RUL-842-015 in docs/test-design/us-842-rule-phases.md",
+      "accepted_for": "PERSONAL-TASK-1139",
+      "limitations": "Rule formulas still need implementation verification later.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "ac-req-traceability",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "Scenario Matrix and phase scenarios in docs/test-design/us-842-rule-phases.md",
+      "accepted_for": "PERSONAL-TASK-1139",
+      "limitations": "Traceability is document-level until tests are implemented.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "regression-scope",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "Regression And NFR Notes in docs/test-design/us-842-rule-phases.md",
+      "accepted_for": "PERSONAL-TASK-1139",
+      "limitations": "Regression execution belongs to later verification tasks.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "nfr-applicability",
+      "applicability": "applicable",
+      "evidence_type": "source_or_report_review",
+      "evidence_source": "Regression And NFR Notes in docs/test-design/us-842-rule-phases.md",
+      "accepted_for": "PERSONAL-TASK-1139",
+      "limitations": "Accessibility and visual checks are intentionally deferred to MZ-205/MZ-206.",
+      "accepted_risk": "None."
+    },
+    {
+      "gate": "release-gate-readiness",
+      "applicability": "applicable",
+      "evidence_type": "release_readiness",
+      "evidence_source": "docs/test-design/us-842-rule-phases.md and task-reports/PERSONAL-TASK-1139/attempt-1.json",
+      "accepted_for": "PERSONAL-TASK-1139",
+      "limitations": "Release gate is ready at design level only until implementation and verification tasks land.",
+      "accepted_risk": "None."
+    }
+  ]
+}

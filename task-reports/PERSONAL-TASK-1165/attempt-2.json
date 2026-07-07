@@ -1,0 +1,156 @@
+{
+  "task_id": "PERSONAL-TASK-1165",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "failed",
+  "summary": "Verification attempt 2 inspected the required Spexus task context, dependency reports, source-level result-layout fix, post-fix capture script/results, and all listed MZ-505 desktop/laptop screenshots. The focused result-layout fix resolved the attempt-1 settlement/final laptop blockers: deal-settlement and final-result now use a dedicated result layout with no inactive hand rows, readable score/result panels, no non-decorative clipped text, and result panel bottoms at 679.25px and 643.84px in the 1024x768 viewport, above the status band. However, the visual gate cannot pass because the contract-order action stack is clipped at both required desktop sizes: output/playwright/mz-505-contract-desktop.png and output/playwright/mz-505-contract-laptop.png show the final order action extending beneath/off the bottom status frame. Capture metrics confirm actionAreaRect.bottom=841.42 and maxVisibleButtonBottom=795.03 for 1280x800, and actionAreaRect.bottom=824.16 and maxVisibleButtonBottom=779.3 for 1024x768. That violates the required action visibility/no clipped action area contract for a normal desktop/laptop play state. Evidence remains synthetic/static visual UI evidence, not backend-live evidence.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1165/attempt-2.json"
+  ],
+  "tests_run": [
+    {
+      "command": "mcp__spexus.current_context",
+      "result": "passed",
+      "evidence_type": "mandatory_spexus_context",
+      "evidence": "Read current Spexus tenant/project/component scope before reading task artifact."
+    },
+    {
+      "command": "mcp__spexus.get_task PERSONAL-TASK-1165",
+      "result": "passed",
+      "evidence_type": "task_scope_confirmation",
+      "evidence": "Confirmed task [MZ-505] US-845 visual regression for desktop table, epic PERSONAL-EP-180, refs PERSONAL-US-845 / PERSONAL-REQ-1762 / PERSONAL-AC-2428 / PERSONAL-AC-2429, and visual-regression verification scope."
+    },
+    {
+      "command": "jq -e 'type' required dependency reports and output/playwright/mz505-capture-results.json",
+      "result": "passed",
+      "evidence_type": "dependency_report_validation",
+      "evidence": "Validated JSON for MZ-501 attempt-1, MZ-502 attempt-1, MZ-503 attempt-1, MZ-504 attempt-1, MZ-505 attempt-1, MZ-505 fix-1, MZ-505 orchestrator-visual-rerun, and mz505-capture-results.json. The QA design markdown was present and readable."
+    },
+    {
+      "command": "source/read inspection of src/ui/render.ts, src/styles.css, output/playwright/mz505-capture.mjs, fix-1.json, and orchestrator-visual-rerun.json",
+      "result": "passed_with_product_gap_found",
+      "evidence_type": "source_and_evidence_review",
+      "evidence": "Confirmed the fix introduced result-like phase handling for deal-settlement/next-deal/finished, applies card-table result-table-layout/result-zone, omits hand rows for result-like phases, and tightens result panel/table CSS. Also confirmed capture fixtures are synthetic/static UI evidence with no backend service involved."
+    },
+    {
+      "command": "direct visual inspection of output/playwright/mz-505-*.png and metrics in output/playwright/mz505-capture-results.json",
+      "result": "failed",
+      "evidence_type": "visual_review",
+      "evidence": "Inspected bidding, contract, whist, play, settlement, and final screenshots at 1280x800 and 1024x768. Bidding, whist, play, settlement, and final were coherent. Settlement/final laptop blockers from attempt 1 were fixed. Contract-order screenshots still clip/obscure the bottom order action under the status area at both desktop and laptop sizes."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed_from_orchestrator_post_fix_evidence",
+      "evidence_type": "release_readiness_regression",
+      "evidence": "Did not rerun because orchestrator-visual-rerun.json records post-fix targeted tests, focused regression, npm run verify, and node output/playwright/mz505-capture.mjs all passed after the fix. The release gate still fails on manual visual inspection of regenerated artifacts."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Contract-order legal action area is not fully visible at required desktop/laptop sizes.",
+      "evidence": "output/playwright/mz-505-contract-desktop.png; output/playwright/mz-505-contract-laptop.png; output/playwright/mz505-capture-results.json reports actionAreaRect.bottom=841.42 / maxVisibleButtonBottom=795.03 for 1280x800 and actionAreaRect.bottom=824.16 / maxVisibleButtonBottom=779.3 for 1024x768.",
+      "impact": "A player ordering a contract cannot see all available order actions cleanly in the normal visible table frame, so AC-2428 action visibility and desktop/laptop playability are not release-ready."
+    }
+  ],
+  "failure_type": "product_gap",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "role": "visual_regression_verifier",
+    "spexxus_context_read": true,
+    "task_read": "PERSONAL-TASK-1165",
+    "viewports": [
+      {
+        "label": "desktop",
+        "width": 1280,
+        "height": 800
+      },
+      {
+        "label": "laptop",
+        "width": 1024,
+        "height": 768
+      }
+    ],
+    "evidence_classification": "synthetic_static_visual_ui_evidence",
+    "backend_live_evidence": false,
+    "verify_source": "task-reports/PERSONAL-TASK-1165/orchestrator-visual-rerun.json post-fix npm run verify evidence"
+  },
+  "evidence_matrix": [
+    {
+      "requirement": "PERSONAL-REQ-1762",
+      "status": "failed",
+      "evidence": "All six required state families were captured at desktop and laptop sizes. Phase, actor, score, table, trick/result, and context framing are visible for bidding, whist, play, settlement, and final. Contract-order state fails because the full legal action stack is not contained in the visible desktop/laptop frame."
+    },
+    {
+      "requirement": "PERSONAL-AC-2428",
+      "status": "failed",
+      "evidence": "State/context text is readable and no non-decorative clipped text was reported, but action visibility is incomplete in contract-order screenshots. The final order action extends below/under the status frame in both output/playwright/mz-505-contract-desktop.png and output/playwright/mz-505-contract-laptop.png."
+    },
+    {
+      "requirement": "PERSONAL-AC-2429",
+      "status": "passed",
+      "evidence": "Post-fix settlement/final result screenshots are readable at laptop and desktop sizes. Result panels fit above the status line, score-change/final ranking context is readable, score panel remains visible, and inactive hand rows are absent in result-like phases."
+    },
+    {
+      "requirement": "visual_contract:screenshot_artifacts",
+      "status": "passed",
+      "evidence": "All required screenshots plus output/playwright/mz505-capture-results.json and output/playwright/mz505-capture.mjs are present. PNG dimensions match 1280x800 desktop and 1024x768 laptop. Evidence is synthetic/static UI evidence."
+    },
+    {
+      "requirement": "visual_contract:layout_overlap_clipping",
+      "status": "failed",
+      "evidence": "No horizontal overflow and no non-decorative clipped text were reported. Result/final overlap issues from attempt 1 are fixed. Contract-order action area extends below the visible frame/status band, which is a release-blocking clipping/action visibility issue."
+    },
+    {
+      "requirement": "visual_contract:release_readiness",
+      "status": "failed",
+      "evidence": "Post-fix orchestrator evidence records npm run verify and regenerated visual capture passing, but manual visual verification found a product layout gap in contract-order action visibility."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "desktop coverage",
+      "status": "passed",
+      "evidence": "Desktop screenshots exist and were inspected for bidding, contract, whist, play, settlement, and final."
+    },
+    {
+      "gate": "laptop coverage",
+      "status": "passed",
+      "evidence": "Laptop screenshots exist and were inspected for bidding, contract, whist, play, settlement, and final."
+    },
+    {
+      "gate": "layout overlap/clipping",
+      "status": "failed",
+      "evidence": "Contract-order action stack clips/extends below the visible status frame at 1280x800 and 1024x768. Result/final laptop clipping from attempt 1 is fixed."
+    },
+    {
+      "gate": "action visibility",
+      "status": "failed",
+      "evidence": "Bidding, whist, play, and settlement action/read-only areas are visible. Contract-order legal order actions are not fully visible in the normal desktop/laptop viewport."
+    },
+    {
+      "gate": "card/trick/score framing",
+      "status": "passed",
+      "evidence": "Card table, current trick/play area, and score rail remain readable and framed in inspected screenshots; result-like phases correctly omit inactive hand rows."
+    },
+    {
+      "gate": "result/final readability",
+      "status": "passed",
+      "evidence": "Settlement and final result panels are readable at desktop and laptop sizes, with laptop result panel bottoms above the status line and no clipped score-change/final ranking text."
+    },
+    {
+      "gate": "regression/release readiness",
+      "status": "failed",
+      "evidence": "npm run verify passed in orchestrator post-fix evidence, but visual release readiness fails due to contract-order action clipping."
+    },
+    {
+      "gate": "accessibility dependency",
+      "status": "passed",
+      "evidence": "MZ-504 attempt-1 report is present, valid JSON, status passed, and records targeted accessibility plus npm run verify passing."
+    },
+    {
+      "gate": "security not-applicable classification",
+      "status": "passed",
+      "evidence": "Scope is synthetic/static desktop UI visual evidence with no backend-live evidence and no security-relevant behavior changes under this verifier task."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+Verifier: PERSONAL-TASK-1143 / MZ-205
+Epic: PERSONAL-EP-180
+Date: 2026-07-06
+Worktree: /Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake
+
+Spexus context:
+- Called mcp__spexus.current_context before reading Spexus artifacts.
+- Read PERSONAL-TASK-1143 with mcp__spexus.get_task.
+
+Inputs reviewed:
+- src/ui/render.ts
+- src/ui/render.test.ts
+- src/ui/controller.test.ts
+- src/styles.css
+- src/test/ruleFlow.integration.test.ts
+- task-reports/PERSONAL-TASK-1141/attempt-1.json
+- task-reports/PERSONAL-TASK-1142/attempt-1.json
+
+Accessibility review findings:
+- Legal action and card controls were already native button elements and previous tests covered suppression of illegal, AI-actor, and finished-state controls.
+- Small in-scope gaps were fixed:
+  - In-game action buttons and card buttons lacked explicit focus-visible styles outside the start screen.
+  - Card accessible names used suit symbols rather than understandable Russian suit names.
+  - Discard card labels did not describe the toggle action, and the disabled discard confirmation button needed a stable accessible confirmation label.
+
+Changes made:
+- src/ui/render.ts:
+  - Added Russian accessible labels for card controls.
+  - Added discard toggle labels that switch between "Выбрать в снос" and "Убрать из сноса".
+  - Added aria-label "Подтвердить снос 2 выбранных карт" to discard confirmation.
+  - Added accessible labels for bid and order action buttons.
+- src/styles.css:
+  - Added focus-visible outline/box-shadow rules for .actions button, .secondary, and button.card.
+- src/ui/render.test.ts:
+  - Added focused assertions for discard aria-pressed, discard labels, confirmation label, visible count text, bid/order accessible labels, and playable-card names.
+
+Verification:
+- npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts
+  - Final result: passed, 3 files / 28 tests.
+- npm run verify
+  - Final result: passed, 11 files / 101 tests, tsc and vite build completed.
+
+Intermediate failures:
+- A first focused run failed due to verifier-authored assertions using unstable fixture assumptions and a brittle CSS source import.
+- An intermediate npm run verify failed because a verifier-only test imported node:fs without Node types. The brittle source-import assertion was removed; focus-visible coverage is recorded as source-review evidence.
+
+Result:
+- status=succeeded
+- risks=[]
+- failure_type=not_applicable

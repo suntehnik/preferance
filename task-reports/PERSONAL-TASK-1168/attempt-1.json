@@ -1,0 +1,216 @@
+{
+  "task_id": "PERSONAL-TASK-1168",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Created the US-846 rule-critical coverage matrix at docs/test-design/us-846-rule-critical-coverage-matrix.md. The matrix traces PERSONAL-REQ-1763, PERSONAL-AC-2430, and PERSONAL-AC-2431 to current unit/integration evidence, identifies the missing requested US-841 completion report path, and explicitly marks full-bullet smoke as the remaining executable gap for MZ-602 rather than overstating current harness/source evidence. MZ-601 is ready to accept as a QA/test-design task, but US-846 release readiness is not yet satisfied because AC-2431 still lacks a real bullet-completion smoke test.",
+  "files_changed": [
+    "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+    "task-reports/PERSONAL-TASK-1168/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "mcp__spexus.current_context",
+      "result": "passed",
+      "evidence_type": "mandatory_spexus_context",
+      "evidence": "Read active Spexus tenant/project/component scope before task and epic artifacts. Active project PERSONAL, component default."
+    },
+    {
+      "command": "mcp__spexus.get_task PERSONAL-TASK-1168",
+      "result": "passed",
+      "evidence_type": "task_scope_confirmation",
+      "evidence": "Confirmed task [MZ-601] US-846 QA coverage matrix under PERSONAL-EP-180 with refs PERSONAL-US-846 / PERSONAL-REQ-1763 / PERSONAL-AC-2430 / PERSONAL-AC-2431 / PERSONAL-STD-063."
+    },
+    {
+      "command": "mcp__spexus.epic_hierarchy PERSONAL-EP-180 --full",
+      "result": "passed",
+      "evidence_type": "requirements_acceptance_context",
+      "evidence": "Loaded epic hierarchy and full US-841 through US-846 requirement/acceptance context before drafting the matrix."
+    },
+    {
+      "command": "rg --files / sed / rg inspection across package.json, docs/test-design, src/domain/*.test.ts, src/ai/*.test.ts, src/persistence/*.test.ts, src/test/*.test.ts, and requested task-reports",
+      "result": "passed",
+      "evidence_type": "artifact_inventory_review",
+      "evidence": "Confirmed current executable test inventory, current QA design docs, requested dependency reports present or missing at the exact paths, and harness/smoke surfaces relevant to US-846."
+    },
+    {
+      "command": "test -s docs/test-design/us-846-rule-critical-coverage-matrix.md && rg -n \"Full-bullet smoke|Acceptance Readiness For MZ-601|missing at requested path\" docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "result": "passed",
+      "evidence_type": "artifact_existence_readability",
+      "evidence": "Verified the matrix file exists, is non-empty, records the missing requested US-841 report path, calls out the full-bullet smoke gap, and includes an explicit MZ-601 acceptance section."
+    },
+    {
+      "command": "jq -e . task-reports/PERSONAL-TASK-1168/attempt-1.json",
+      "result": "passed",
+      "evidence_type": "json_validity_check",
+      "evidence": "Verified the final task report is valid JSON."
+    },
+    {
+      "command": "rg -n \"Reserved seed for future full-bullet smoke runs|runDeterministicSmoke\\(|keeps state valid after several legal actions\" src/test/integrationHarness.ts src/test/integrationHarness.test.ts src/domain/engine.test.ts",
+      "result": "passed",
+      "evidence_type": "gap_confirmation_review",
+      "evidence": "Verified the current smoke surface stops at a short fixed-step harness and an 8-step engine loop, which supports classifying AC-2431 as an executable gap rather than covered behavior."
+    }
+  ],
+  "risks": [
+    "task-reports/PERSONAL-US-841/review-cycle-1/review-report.json is missing at the exact requested path, so report-layer dependency traceability for US-841 is weaker than for US-842 through US-845.",
+    "PERSONAL-AC-2431 is still a real coverage gap: the repo does not yet contain a deterministic full-bullet smoke test that reaches phase=finished without unhandled error, illegal AI action, or stuck actor."
+  ],
+  "failure_type": "release_readiness_gap",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "component_key": "default",
+    "layer": "qa-test-design",
+    "phase": "implementation",
+    "qa_risk_level": "critical",
+    "release_gate_required": true,
+    "nfr_applicability": {
+      "regression_verification": "required",
+      "release_readiness": "required",
+      "security_review": "not_applicable"
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json",
+      "task-reports/PERSONAL-US-843/review-cycle-1/review-report.json",
+      "task-reports/PERSONAL-US-844/review-cycle-2/review-report.json",
+      "task-reports/PERSONAL-TASK-1167/attempt-1.json",
+      "task-reports/PERSONAL-US-845/review-cycle-2/review-report.json",
+      "task-reports/orchestrator-log.json"
+    ],
+    "dependency_reports_missing_at_requested_path": [
+      "task-reports/PERSONAL-US-841/review-cycle-1/review-report.json"
+    ],
+    "source_artifacts_reviewed": [
+      "package.json",
+      "docs/test-design/us-841-start-resume.md",
+      "docs/test-design/us-842-rule-phases.md",
+      "docs/test-design/us-843-ai-decisions.md",
+      "docs/test-design/us-844-bullet-scoring.md",
+      "docs/test-design/us-845-desktop-table-states.md",
+      "src/domain/cards.test.ts",
+      "src/domain/rules.test.ts",
+      "src/domain/engine.test.ts",
+      "src/domain/scoring.test.ts",
+      "src/persistence/saveStore.test.ts",
+      "src/ai/heuristicAi.test.ts",
+      "src/test/startResume.integration.test.ts",
+      "src/test/ruleFlow.integration.test.ts",
+      "src/test/aiDecision.integration.test.ts",
+      "src/test/us844Scoring.integration.test.ts",
+      "src/test/us845DesktopTable.integration.test.ts",
+      "src/test/integrationHarness.ts",
+      "src/test/integrationHarness.test.ts",
+      "docs/test-design/us-846-rule-critical-coverage-matrix.md"
+    ],
+    "production_code_edited_by_worker": false
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1763",
+      "scenario": "Rule-critical coverage matrix must trace deck/deal, bidding, fixed agreement profile, legal actions, trick winner, whist/half-whist, all-pass, misere, scoring, save/load, AI legality, and full-bullet smoke to executable owners.",
+      "evidence_type": "qa_design_trace_matrix",
+      "command_or_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "partial",
+      "limitations": "All areas except full-bullet smoke have current executable evidence. The matrix explicitly records AC-2431 as a remaining executable gap for MZ-602."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2430",
+      "scenario": "Current unit/integration suite covers deck/deal, bidding, legal actions, trick winner, whist, all-pass, misere, scoring, persistence, and AI legality.",
+      "evidence_type": "source_and_test_inventory_review",
+      "command_or_source": "src/domain/cards.test.ts; src/domain/rules.test.ts; src/domain/engine.test.ts; src/domain/scoring.test.ts; src/persistence/saveStore.test.ts; src/ai/heuristicAi.test.ts; src/test/startResume.integration.test.ts; src/test/ruleFlow.integration.test.ts; src/test/aiDecision.integration.test.ts; src/test/us844Scoring.integration.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "This task confirmed inventory and traceability only. It did not rerun the broad test suite because MZ-601 scope is QA design, not release verification."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2431",
+      "scenario": "Current repo should contain a deterministic full-bullet smoke that completes a bullet without unhandled error, illegal AI action, or stuck active player.",
+      "evidence_type": "gap_confirmation_review",
+      "command_or_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/domain/engine.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "failed",
+      "limitations": "Current harness smoke is limited to a short fixed step count and explicitly reserves the fullBulletSmoke seed for future work. No current test proves bullet completion."
+    },
+    {
+      "req_or_ac_or_contract": "Dependency evidence contract",
+      "scenario": "Read exact dependency report paths where present and do not infer alternate attempts.",
+      "evidence_type": "dependency_report_review",
+      "command_or_source": "task-reports/PERSONAL-US-842/review-cycle-1/review-report.json; task-reports/PERSONAL-US-843/review-cycle-1/review-report.json; task-reports/PERSONAL-US-844/review-cycle-2/review-report.json; task-reports/PERSONAL-TASK-1167/attempt-1.json; task-reports/PERSONAL-US-845/review-cycle-2/review-report.json; task-reports/orchestrator-log.json",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed_with_missing_dependency",
+      "limitations": "task-reports/PERSONAL-US-841/review-cycle-1/review-report.json was absent at the requested path, so the matrix used current executable persistence tests and US-841 design docs instead of inventing a different completion report."
+    },
+    {
+      "req_or_ac_or_contract": "Security applicability contract",
+      "scenario": "US-846 matrix must explicitly classify security-review as not applicable unless security-sensitive behavior is discovered.",
+      "evidence_type": "scope_classification",
+      "command_or_source": "PERSONAL-EP-180 hierarchy; package.json; current source/test inventory",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Classification is valid for the current static localStorage browser app scope. It must be revisited only if later tasks add backend/auth/network-sensitive behavior, which is not expected here."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "Spexus protocol compliance",
+      "applicability": "required",
+      "evidence_type": "mandatory_context_review",
+      "evidence_source": "mcp__spexus.current_context; mcp__spexus.get_task PERSONAL-TASK-1168; mcp__spexus.epic_hierarchy PERSONAL-EP-180 --full",
+      "accepted_for": "Correct artifact read order and scope confirmation before drafting the matrix.",
+      "limitations": "None.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Coverage-matrix artifact presence",
+      "applicability": "required",
+      "evidence_type": "artifact_existence_readability",
+      "evidence_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "accepted_for": "Required QA/test-design deliverable for MZ-601.",
+      "limitations": "Presence alone does not satisfy downstream executable coverage gaps.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Traceability to current executable tests",
+      "applicability": "required_critical",
+      "evidence_type": "source_and_test_inventory_review",
+      "evidence_source": "Current repo test files and prior US design/review artifacts listed in verification_environment.source_artifacts_reviewed",
+      "accepted_for": "Traceability from REQ/AC to concrete unit/integration owners and identification of missing smoke coverage.",
+      "limitations": "This task intentionally avoided claiming fresh passing test execution beyond lightweight file/JSON checks.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Full-bullet smoke completeness",
+      "applicability": "required_critical",
+      "evidence_type": "gap_confirmation_review",
+      "evidence_source": "src/test/integrationHarness.ts; src/test/integrationHarness.test.ts; src/domain/engine.test.ts; docs/test-design/us-846-rule-critical-coverage-matrix.md",
+      "accepted_for": "Explicit identification of the remaining AC-2431 gap and assignment to MZ-602/MZ-603/MZ-604.",
+      "limitations": "Gate is not satisfied for US-846 overall until a real bullet-completion smoke test exists.",
+      "accepted_risk": "US-846 is not release-ready yet."
+    },
+    {
+      "gate": "Regression verification expectation",
+      "applicability": "required",
+      "evidence_type": "qa_design_requirement",
+      "evidence_source": "docs/test-design/us-846-rule-critical-coverage-matrix.md sections MZ-603 Regression Verification Expectations and MZ-604 Release-Readiness Expectations",
+      "accepted_for": "Downstream rerun expectations and release-gate boundaries.",
+      "limitations": "This task defines the gate but does not execute the regression suite.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "Security review applicability",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_classification",
+      "evidence_source": "PERSONAL-EP-180 hierarchy; package.json; static localStorage app architecture",
+      "accepted_for": "Explicit NFR classification required by the task.",
+      "limitations": "Would need revisiting only if later tasks introduce new sensitive boundaries.",
+      "accepted_risk": "No current security-review gate applies."
+    }
+  ]
+}

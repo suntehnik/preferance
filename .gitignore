@@ -1,0 +1,14 @@
+.superpowers/
+.worktrees/
+node_modules/
+dist/
+coverage/
+.DS_Store
+
+# Original DOS game artifacts kept only as local reverse-engineering inputs.
+\!READ_ME.!!!
+MARRIAGE.[0-9][0-9][0-9]
+MARRIAGE.EXE
+PREFF.PSR
+STAT1.EXE
+old-games.nfo

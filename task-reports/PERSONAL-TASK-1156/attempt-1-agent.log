@@ -1,0 +1,32 @@
+Agent: Carver (019f352b-2dc6-7c40-be9b-3ca540372521)
+Task: PERSONAL-TASK-1156 [MZ-404] US-844 add scoring integration tests
+Attempt: 1
+Model: gpt-5.4
+Reasoning: medium
+
+Final worker result:
+- Added US-844-scoped integration tests in src/test/us844Scoring.integration.test.ts.
+- Covered real engine settlement into renderer assertions for scored next-deal UI.
+- Covered completed bullet finalResult/final ranking UI with no continuation actions.
+- Production domain/UI/persistence code was not changed by this task.
+
+Worker verification:
+- npm run test -- src/test/us844Scoring.integration.test.ts
+- npm run test -- src/test/ruleFlow.integration.test.ts src/test/startResume.integration.test.ts src/test/us844Scoring.integration.test.ts
+- npm run test -- src/ui/render.test.ts src/ui/controller.test.ts
+- npm run test -- src/persistence/saveStore.test.ts
+- npm run verify
+
+Orchestrator acceptance review:
+- Report JSON validated.
+- Local acceptance commands passed:
+  - npm run test -- src/test/us844Scoring.integration.test.ts
+  - npm run test -- src/test/ruleFlow.integration.test.ts src/test/startResume.integration.test.ts src/test/us844Scoring.integration.test.ts
+  - npm run test -- src/ui/render.test.ts src/ui/controller.test.ts
+  - npm run test -- src/persistence/saveStore.test.ts
+  - npm run verify
+
+Accepted report:
+- task-reports/PERSONAL-TASK-1156/attempt-1.json
+- status: succeeded
+- risks: []

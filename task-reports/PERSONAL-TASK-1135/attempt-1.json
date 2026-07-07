@@ -1,0 +1,151 @@
+{
+  "task_id": "PERSONAL-TASK-1135",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "Captured and reviewed desktop visual-regression screenshots for US-841 no-save start, invalid-save fallback, saved-bullet resume prompt, and after-start-new game state at 1280x800. Screenshots and layout metrics show centered/readable start states, clear resume prompt, no visible text overlap, no viewport overflow, and game shell fitting the desktop viewport.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1135/screenshots/clean-start-1280x800.png",
+    "task-reports/PERSONAL-TASK-1135/screenshots/invalid-save-fallback-1280x800.png",
+    "task-reports/PERSONAL-TASK-1135/screenshots/saved-bullet-resume-1280x800.png",
+    "task-reports/PERSONAL-TASK-1135/screenshots/after-start-new-1280x800.png"
+  ],
+  "tests_run": [
+    {
+      "command": "browser screenshot capture against http://127.0.0.1:5333/",
+      "result": "passed",
+      "details": "Captured clean-start, saved-bullet-resume, and after-start-new screenshots at 1280x800"
+    },
+    {
+      "command": "browser screenshot capture against http://127.0.0.1:5334/ with corrupt localStorage seed",
+      "result": "passed",
+      "details": "Captured invalid-save-fallback screenshot at 1280x800; fallback rendered start-only with no continue option"
+    },
+    {
+      "command": "browser layout metrics",
+      "result": "passed",
+      "details": "All four captured states reported scrollWidth=1280, scrollHeight=800, and no overflowing inspected elements"
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "details": "9 test files passed, 72 tests passed, production build passed"
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06",
+    "viewport": "1280x800",
+    "local_server": "http://127.0.0.1:5333/"
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-AC-2420",
+      "scenario": "No-save start screen displays supported bullet-size choices cleanly on desktop.",
+      "evidence_type": "visual_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1135/screenshots/clean-start-1280x800.png",
+      "live_paths": [
+        "http://127.0.0.1:5333/"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Desktop/laptop viewport only, as scoped by task."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1753 / PERSONAL-AC-2421",
+      "scenario": "Invalid saved data falls back to the clean start screen without showing a continue option.",
+      "evidence_type": "visual_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1135/screenshots/invalid-save-fallback-1280x800.png",
+      "live_paths": [
+        "http://127.0.0.1:5334/"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Desktop/laptop viewport only, as scoped by task."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1753 / PERSONAL-AC-2421",
+      "scenario": "Saved-bullet resume prompt clearly offers continue and start-new choices without text overlap.",
+      "evidence_type": "visual_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1135/screenshots/saved-bullet-resume-1280x800.png",
+      "live_paths": [
+        "http://127.0.0.1:5333/"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Desktop/laptop viewport only, as scoped by task."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-REQ-1753 / PERSONAL-AC-2420 / PERSONAL-AC-2421",
+      "scenario": "After explicit start-new, the game shell renders within the 1280x800 desktop viewport.",
+      "evidence_type": "visual_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1135/screenshots/after-start-new-1280x800.png",
+      "live_paths": [
+        "http://127.0.0.1:5333/"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Desktop/laptop viewport only, as scoped by task."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "visual-regression",
+      "applicability": "applicable",
+      "evidence_type": "visual_review",
+      "command_or_source": "Screenshots plus Averroes review",
+      "result": "passed",
+      "limitations": "Task explicitly excludes mobile completeness.",
+      "accepted_risk": "None for desktop/laptop scope."
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "None for scoped task.",
+      "accepted_risk": "None."
+    }
+  ],
+  "screenshots": [
+    "task-reports/PERSONAL-TASK-1135/screenshots/clean-start-1280x800.png",
+    "task-reports/PERSONAL-TASK-1135/screenshots/invalid-save-fallback-1280x800.png",
+    "task-reports/PERSONAL-TASK-1135/screenshots/saved-bullet-resume-1280x800.png",
+    "task-reports/PERSONAL-TASK-1135/screenshots/after-start-new-1280x800.png"
+  ],
+  "layout_metrics_summary": {
+    "viewport": "1280x800",
+    "clean_start": {
+      "scrollWidth": 1280,
+      "scrollHeight": 800,
+      "hasOverflowingElement": false
+    },
+    "invalid_save_fallback": {
+      "scrollWidth": 1280,
+      "scrollHeight": 800,
+      "hasContinue": false,
+      "hasOverflowingElement": false
+    },
+    "saved_bullet_resume": {
+      "scrollWidth": 1280,
+      "scrollHeight": 800,
+      "hasOverflowingElement": false
+    },
+    "after_start_new": {
+      "scrollWidth": 1280,
+      "scrollHeight": 800,
+      "hasOverflowingElement": false
+    }
+  },
+  "reviews": [
+    {
+      "reviewer": "Averroes",
+      "result": "accepted",
+      "findings": [],
+      "summary": "Reviewed screenshots and metrics; no findings; accepted MZ-106."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+Agent: Darwin (019f36a5-1e8d-71d0-8c47-d77692f42c03)
+Task: PERSONAL-TASK-1165 visual-fix
+Attempt: 1
+Model: gpt-5.4
+Reasoning: medium
+
+Final message:
+Done. I fixed the result-state layout by giving deal-settlement, next-deal, and finished their own table skeleton in src/ui/render.ts, then tightened the result-panel/table CSS in src/styles.css. I also added regression coverage in src/ui/render.test.ts and src/test/us845DesktopTable.integration.test.ts, and wrote the fix report to task-reports/PERSONAL-TASK-1165/fix-1.json.
+
+Fresh verification passed:
+- npm run test -- src/ui/render.test.ts src/test/us845DesktopTable.integration.test.ts src/test/us844Scoring.integration.test.ts
+- npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts src/test/us845DesktopTable.integration.test.ts
+- npm run verify
+
+The worker also reran the local Playwright capture against Vite. The updated laptop screenshots in output/playwright/mz-505-settlement-laptop.png and output/playwright/mz-505-final-laptop.png keep the result panels inside the visible table frame, with settlement panel bottom at 679.25px and final panel bottom at 643.84px, both above the status line.
+
+Orchestrator validation:
+- Inspected updated settlement/final laptop screenshots.
+- Re-ran targeted fix tests: 3 files / 29 tests passed.
+- Re-ran focused regression: 5 files / 43 tests passed.
+- Re-ran npm run verify: 14 files / 135 tests passed, tsc and vite build passed.
+- Independently reran node output/playwright/mz505-capture.mjs against a locally started Vite server and stopped the server afterward.

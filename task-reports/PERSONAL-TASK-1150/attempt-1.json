@@ -1,0 +1,142 @@
+{
+  "task_id": "PERSONAL-TASK-1150",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Verified US-843 observability diagnostics for AI no-legal-action failures, illegal auto-turn choices, and stuck/trace context. Source inspection confirms no-legal-action errors include phase and active actor plus seed and state hints such as current bid, contract step/contract, play mode/trick size, or continuation state. Harness diagnostics for illegal/stuck auto-turn failures include seed, step, phase, actor, legal action set, chosen action when present, recent trace context, and cause. Targeted diagnostic tests and full release-gate verification passed. This app is a static/local browser game with no backend, live API, or production telemetry sink; MVP observability is provided through actionable local test/development thrown-error output.",
+  "files_changed": [
+    "task-reports/PERSONAL-TASK-1150/attempt-1.json"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "evidence_type": "targeted_regression",
+      "evidence": "Vitest reported 3 files passed and 13 tests passed, including no-legal-action diagnostic assertions and illegal auto-turn harness diagnostic assertions."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "full_verification",
+      "evidence": "Vitest reported 12 files passed and 111 tests passed; tsc and vite build completed successfully."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "spexus_context": {
+      "project_key": "PERSONAL",
+      "component_key": "default",
+      "current_context_read_before_task_and_epic": true,
+      "task_read": "PERSONAL-TASK-1150",
+      "epic_hierarchy_read": "PERSONAL-EP-180",
+      "refs_reviewed": [
+        "PERSONAL-US-843",
+        "PERSONAL-REQ-1758",
+        "PERSONAL-AC-2424",
+        "PERSONAL-AC-2425"
+      ]
+    },
+    "dependency_reports_reviewed": [
+      "task-reports/PERSONAL-TASK-1148/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1149/attempt-1.json",
+      "task-reports/PERSONAL-TASK-1147/attempt-1.json"
+    ],
+    "project_scope_note": "No backend, live API, or external telemetry pipeline exists for this MVP static browser app; observability verification is local thrown-error/test/development output."
+  },
+  "quality_gate_matrix": [
+    {
+      "gate": "dependency_report_presence",
+      "applicability": "applicable_required",
+      "evidence_type": "source_or_report_review",
+      "command_or_source": "task-reports/PERSONAL-TASK-1148/attempt-1.json; task-reports/PERSONAL-TASK-1149/attempt-1.json; task-reports/PERSONAL-TASK-1147/attempt-1.json",
+      "result": "passed",
+      "limitations": "Dependency reports were reviewed as exact listed paths; source and fresh test commands were used for final MZ-304 acceptance.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "no_legal_action_diagnostics",
+      "applicability": "applicable_required",
+      "evidence_type": "observability_check",
+      "command_or_source": "src/ai/heuristicAi.ts:260; src/ai/heuristicAi.test.ts no-legal-actions diagnostic test; npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "limitations": "Automated assertions check phase and actor directly; source inspection confirms seed and state hints for current bid, contract step/contract, play mode/trick size, and continuation states.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "auto_turn_illegal_and_stuck_diagnostics",
+      "applicability": "applicable_required",
+      "evidence_type": "observability_check",
+      "command_or_source": "src/test/integrationHarness.ts:257; src/test/aiDecision.integration.test.ts:193; npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts",
+      "result": "passed",
+      "limitations": "Harness output provides the legal action set via formatted legal action keys rather than a separate numeric count; the task strategy allows legal action keys/count or legal set, so this is accepted.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "full_release_gate_verification",
+      "applicability": "applicable_release_gate_required",
+      "evidence_type": "full_verification",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "Local deterministic test/build verification only; no backend/live service path applies to this static MVP.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "backend_live_api_telemetry_applicability",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-EP-180 hierarchy; package.json; local source inspection",
+      "result": "passed",
+      "limitations": "The app is a Vite static browser game using local code and browser storage; no production telemetry/backend exists in MVP scope.",
+      "accepted_risk": "none"
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1758",
+      "scenario": "AI failure path when rules expose no legal actions.",
+      "evidence_type": "observability_check",
+      "command_or_source": "src/ai/heuristicAi.ts buildNoLegalActionsMessage; src/ai/heuristicAi.test.ts no-legal-actions diagnostic assertion",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Diagnostic behavior is verified through thrown local errors in unit tests and source inspection, not through external telemetry."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2424",
+      "scenario": "Illegal chosen action from the auto-turn harness produces actionable reproduction context.",
+      "evidence_type": "observability_check",
+      "command_or_source": "src/test/integrationHarness.ts buildHarnessFailureMessage; src/test/aiDecision.integration.test.ts illegal harness diagnostic assertions",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Diagnostic test forces an illegal choice rather than relying on a naturally failing seed, which is appropriate for a forced diagnostic path."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2425",
+      "scenario": "Phase-aware AI diagnostics remain tied to current phase and recent action trace across representative AI decision scenarios.",
+      "evidence_type": "real_integration_test",
+      "command_or_source": "src/test/aiDecision.integration.test.ts representative phase matrix; npm run test -- src/ai/heuristicAi.test.ts src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "covered",
+      "limitations": "Representative deterministic local integration tests cover bidding, contract ordering, widow pickup, discard, whist, all-pass, misere, contract play, settlement, and next-deal states rather than exhaustive seed permutations."
+    },
+    {
+      "req_or_ac_or_contract": "Evidence Integrity Contract",
+      "scenario": "Classify observability evidence for static MVP without backend/live API/telemetry.",
+      "evidence_type": "observability_check",
+      "command_or_source": "package.json scripts; PERSONAL-EP-180 static Vite/browser-local scope; npm run verify",
+      "live_paths": [],
+      "mocked_paths": [],
+      "result": "accepted",
+      "limitations": "No live API, backend service, production telemetry, security, migration, or accessibility path is implicated by this observability verification task."
+    }
+  ]
+}

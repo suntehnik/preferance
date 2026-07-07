@@ -1,0 +1,250 @@
+{
+  "task_id": "PERSONAL-TASK-1165",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "fixed",
+  "summary": "Implemented a focused contract-order action layout fix for the remaining MZ-505 blocker. Contract-order legal actions now render as a compact 3x3 labeled contract-choice grid instead of nine full-width identical buttons, preserving action keys, click handlers, accessible names, and readable visible labels. Fresh MZ-505 capture shows the contract action area fully above the status frame at both required viewports: desktop actionAreaRect.bottom=581.08 / maxVisibleButtonBottom=581.08 with statusLineTop=749.81, and laptop actionAreaRect.bottom=573.00 / maxVisibleButtonBottom=573.00 with statusLineTop=719.08. The existing settlement/final result-layout fix remains intact: laptop settlement resultPanelRect.bottom=679.25 and laptop final resultPanelRect.bottom=643.84, both above the 719.08 status line with no human hand row.",
+  "files_changed": [
+    "src/ui/render.ts",
+    "src/styles.css",
+    "src/ui/render.test.ts",
+    "src/test/us845DesktopTable.integration.test.ts",
+    "output/playwright/mz505-capture.mjs",
+    "output/playwright/mz505-capture-results.json",
+    "output/playwright/mz-505-bidding-desktop.png",
+    "output/playwright/mz-505-bidding-laptop.png",
+    "output/playwright/mz-505-contract-desktop.png",
+    "output/playwright/mz-505-contract-laptop.png",
+    "output/playwright/mz-505-whist-desktop.png",
+    "output/playwright/mz-505-whist-laptop.png",
+    "output/playwright/mz-505-play-desktop.png",
+    "output/playwright/mz-505-play-laptop.png",
+    "output/playwright/mz-505-settlement-desktop.png",
+    "output/playwright/mz-505-settlement-laptop.png",
+    "output/playwright/mz-505-final-desktop.png",
+    "output/playwright/mz-505-final-laptop.png",
+    "task-reports/PERSONAL-TASK-1165/fix-2.json"
+  ],
+  "tests_run": [
+    {
+      "command": "mcp__spexus.current_context",
+      "result": "passed",
+      "evidence_type": "mandatory_spexus_context",
+      "evidence": "Read active Spexus tenant/project/component scope before reading task artifact."
+    },
+    {
+      "command": "mcp__spexus.get_task PERSONAL-TASK-1165",
+      "result": "passed",
+      "evidence_type": "task_scope_confirmation",
+      "evidence": "Confirmed task [MZ-505] US-845 visual regression for desktop table under epic PERSONAL-EP-180."
+    },
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/test/us845DesktopTable.integration.test.ts",
+      "result": "failed_before_fix",
+      "evidence_type": "regression_test_red",
+      "evidence": "New focused tests failed because .contract-order-group did not exist in the prior implementation."
+    },
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/test/us845DesktopTable.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "regression_test",
+      "evidence": "2 files / 28 tests passed after the compact contract-order action layout was implemented."
+    },
+    {
+      "command": "npm run test -- src/ui/render.test.ts src/ui/controller.test.ts src/test/ruleFlow.integration.test.ts src/test/us844Scoring.integration.test.ts src/test/us845DesktopTable.integration.test.ts",
+      "result": "passed",
+      "evidence_type": "focused_regression_test",
+      "evidence": "5 files / 44 tests passed for nearby UI render/controller and US-844/US-845 rule-flow coverage."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence_type": "release_readiness_regression",
+      "evidence": "Vitest passed 14 files / 136 tests; TypeScript compilation and Vite production build passed."
+    },
+    {
+      "command": "npm run dev",
+      "result": "passed_after_escalation_on_5332",
+      "evidence_type": "local_static_app_server",
+      "evidence": "Sandboxed start failed with listen EPERM on 127.0.0.1:5331. Escalated Vite start succeeded; 5331 was already occupied, so Vite selected http://127.0.0.1:5332/. Server was stopped after capture."
+    },
+    {
+      "command": "MZ505_BASE_URL=http://127.0.0.1:5332/ node output/playwright/mz505-capture.mjs",
+      "result": "passed_after_escalation",
+      "evidence_type": "synthetic_static_visual_ui_evidence",
+      "evidence": "Sandboxed Chromium launch failed with macOS MachPortRendezvous permission denied. Escalated capture regenerated all MZ-505 desktop/laptop screenshots and output/playwright/mz505-capture-results.json against the local Vite app."
+    },
+    {
+      "command": "jq inspection of output/playwright/mz505-capture-results.json and visual inspection of output/playwright/mz-505-contract-laptop.png",
+      "result": "passed",
+      "evidence_type": "visual_review",
+      "evidence": "Contract-order legal action stack now fits within the visible right rail at 1280x800 and 1024x768; all nine legal order choices are visible and labeled."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "repository": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "local_time": "2026-07-06 13:11:28 CEST",
+    "node_runtime": "Node.js v22.22.3",
+    "dev_server": "Vite served http://127.0.0.1:5332/ because 127.0.0.1:5331 was already in use; MZ505_BASE_URL was used to point the existing capture script at the selected port.",
+    "server_stopped": true,
+    "viewports": [
+      {
+        "label": "desktop",
+        "width": 1280,
+        "height": 800
+      },
+      {
+        "label": "laptop",
+        "width": 1024,
+        "height": 768
+      }
+    ],
+    "evidence_classification": "Screenshots are synthetic/static visual UI evidence rendered through the local Vite app with deterministic GameState fixtures; they are not backend-live evidence.",
+    "spexus_context": {
+      "current_context_read_before_task": true,
+      "task_read": "PERSONAL-TASK-1165",
+      "refs": [
+        "PERSONAL-US-845",
+        "PERSONAL-REQ-1762",
+        "PERSONAL-AC-2428",
+        "PERSONAL-AC-2429"
+      ]
+    },
+    "sandbox_notes": [
+      "No .venv/bin/activate was present.",
+      "npm run dev required escalation because binding localhost was blocked in the sandbox.",
+      "Playwright Chromium required escalation because sandboxed launch failed with macOS MachPortRendezvous permission denied."
+    ]
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1762",
+      "scenario": "Desktop table shows phase, active actor, legal human actions, contract/trump/current trick, player hands, score table, deal result, and final result.",
+      "evidence_type": "synthetic_static_visual_ui_evidence",
+      "command_or_source": "MZ505_BASE_URL=http://127.0.0.1:5332/ node output/playwright/mz505-capture.mjs; output/playwright/mz-505-*.png; output/playwright/mz505-capture-results.json",
+      "result": "passed",
+      "findings": "All required state screenshots were regenerated. Contract-order actions are fully visible; settlement/final result panels remain readable and framed.",
+      "limitations": "Evidence is static UI screenshot/DOM metrics against deterministic fixtures, not live backend evidence."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2428",
+      "scenario": "At desktop/laptop viewport, bidding, contract, whist, play, deal-result, and final-result states show current phase, active actor, legal actions, and score/contract context without blocking normal play.",
+      "evidence_type": "visual_review_and_dom_metrics",
+      "command_or_source": "output/playwright/mz-505-contract-desktop.png; output/playwright/mz-505-contract-laptop.png; output/playwright/mz505-capture-results.json",
+      "result": "passed",
+      "findings": "Contract actionAreaRect.bottom improved from 841.42 to 581.08 at 1280x800 and from 824.16 to 573.00 at 1024x768. The status line begins at 749.81 and 719.08 respectively, so the legal action grid no longer extends beneath the status frame.",
+      "limitations": "Play state exposes legal card actions through enabled hand cards rather than command buttons, matching the existing UI pattern."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-AC-2429",
+      "scenario": "After a deal completes, result context remains understandable and the player can proceed unless the bullet is complete.",
+      "evidence_type": "regression_visual_review",
+      "command_or_source": "output/playwright/mz-505-settlement-laptop.png; output/playwright/mz-505-final-laptop.png; output/playwright/mz505-capture-results.json",
+      "result": "passed",
+      "findings": "Fix-1 result layout remained intact: settlement/final laptop result panels remain above the status band and no inactive human hand row is present.",
+      "limitations": "Result evidence uses deterministic fixture content."
+    },
+    {
+      "req_or_ac_or_contract": "contract_order_action_visibility_regression",
+      "scenario": "Renderer keeps every legal orderContract action available, labeled, and compact enough for the desktop/laptop action rail.",
+      "evidence_type": "automated_regression_test",
+      "command_or_source": "npm run test -- src/ui/render.test.ts src/test/us845DesktopTable.integration.test.ts",
+      "result": "passed",
+      "findings": "Tests assert the compact .contract-order-group/.contract-order-grid structure, all legal action keys, and visible labels 8♥ through 10♥."
+    },
+    {
+      "req_or_ac_or_contract": "visual_capture_harness",
+      "scenario": "Existing MZ-505 capture script can target the actual local Vite port when 5331 is occupied.",
+      "evidence_type": "capture_script_maintenance",
+      "command_or_source": "output/playwright/mz505-capture.mjs",
+      "result": "passed",
+      "findings": "Only a base URL environment override was added; the existing fixture and screenshot/metric harness remained otherwise unchanged."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "desktop coverage",
+      "applicability": "required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-bidding-desktop.png; output/playwright/mz-505-contract-desktop.png; output/playwright/mz-505-whist-desktop.png; output/playwright/mz-505-play-desktop.png; output/playwright/mz-505-settlement-desktop.png; output/playwright/mz-505-final-desktop.png",
+      "result": "passed",
+      "limitations": "Synthetic/static fixtures only.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "laptop coverage",
+      "applicability": "required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-bidding-laptop.png; output/playwright/mz-505-contract-laptop.png; output/playwright/mz-505-whist-laptop.png; output/playwright/mz-505-play-laptop.png; output/playwright/mz-505-settlement-laptop.png; output/playwright/mz-505-final-laptop.png",
+      "result": "passed",
+      "limitations": "Synthetic/static fixtures only.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "layout overlap/clipping",
+      "applicability": "required",
+      "evidence_type": "dom_metrics_and_visual_review",
+      "command_or_source": "output/playwright/mz505-capture-results.json",
+      "result": "passed",
+      "limitations": "The only clippedText entry in relevant captures is the known decorative MARRIAGE heading.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "action visibility",
+      "applicability": "required",
+      "evidence_type": "dom_metrics_and_visual_review",
+      "command_or_source": "output/playwright/mz-505-contract-desktop.png; output/playwright/mz-505-contract-laptop.png; output/playwright/mz505-capture-results.json",
+      "result": "passed",
+      "limitations": "Contract-order actions are compact buttons with full accessible names and short visible labels.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "card/trick/score framing",
+      "applicability": "required",
+      "evidence_type": "visual_review",
+      "command_or_source": "output/playwright/mz-505-play-desktop.png; output/playwright/mz-505-play-laptop.png; output/playwright/mz-505-contract-laptop.png",
+      "result": "passed",
+      "limitations": "No backend-live behavior is exercised by these screenshots.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "result/final readability",
+      "applicability": "required",
+      "evidence_type": "regression_visual_review",
+      "command_or_source": "output/playwright/mz-505-settlement-laptop.png; output/playwright/mz-505-final-laptop.png; output/playwright/mz505-capture-results.json",
+      "result": "passed",
+      "limitations": "Uses fix-1 result layout and deterministic fixture content.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "regression/release readiness",
+      "applicability": "release_gate_required",
+      "evidence_type": "test_build_plus_visual_gate",
+      "command_or_source": "npm run verify; MZ505_BASE_URL=http://127.0.0.1:5332/ node output/playwright/mz505-capture.mjs",
+      "result": "passed",
+      "limitations": "Visual gate is synthetic/static UI evidence.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "accessibility",
+      "applicability": "required_for_ui_change",
+      "evidence_type": "automated_semantic_regression",
+      "command_or_source": "src/ui/render.test.ts accessible-name assertions; npm run verify",
+      "result": "passed",
+      "limitations": "No manual screen-reader run was performed; existing accessible names for orderContract actions were preserved and tests cover them.",
+      "accepted_risk": "none"
+    },
+    {
+      "gate": "security not-applicable classification",
+      "applicability": "not_applicable",
+      "evidence_type": "scope_review",
+      "command_or_source": "PERSONAL-TASK-1165 scope and changed files",
+      "result": "not_applicable",
+      "limitations": "This fix changes static local UI rendering, styles, tests, and screenshot evidence only; it touches no auth, backend, persistence schema, network, or sensitive data path.",
+      "accepted_risk": "none"
+    }
+  ]
+}

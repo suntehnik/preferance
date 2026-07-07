@@ -1,0 +1,17 @@
+Gauss initial review:
+- Blocking: start-new replacement retained previous technicalDealHistory.
+- Blocking: continue could run AI turns before rendering saved state.
+
+Planck initial review:
+- P2: start-new replacement retained previous technicalDealHistory.
+- P2: unfinished bullet detection ignored completed bullet target.
+
+Resolution:
+- Added failing tests for fresh technical history, exact AI-actor resume, explicit replacement, and completed bullet target filtering.
+- Implemented replaceActiveBullet option in saveGame.
+- Changed continue flow to render saved.currentDeal without AI advancement or immediate save.
+- Filtered loadActiveBullet by finished phase and bullet target completion.
+
+Franklin re-review:
+- No remaining blocking issues.
+- Previous findings resolved and task acceptable.

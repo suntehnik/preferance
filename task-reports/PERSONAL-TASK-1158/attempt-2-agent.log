@@ -1,0 +1,10 @@
+Agent: Parfit (019f3660-6d35-72a0-b632-80c76ee19cf7)
+Task: PERSONAL-TASK-1158 / MZ-406 visual regression for score/results
+Attempt: 2
+Model: gpt-5.5
+Reasoning: medium
+
+Final message:
+Wrote the verification report to task-reports/PERSONAL-TASK-1158/attempt-2.json.
+
+Verdict: passed. The post-fix desktop/laptop screenshots satisfy the visual gate: the prior 1024x768 settlement right-edge clipping is resolved, active score and final result states are readable, final state has no continuation controls, dependency reports are present/risk-free, and release readiness is supported by the orchestrator's post-fix npm run verify evidence.

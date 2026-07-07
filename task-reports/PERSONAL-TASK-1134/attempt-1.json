@@ -1,0 +1,116 @@
+{
+  "task_id": "PERSONAL-TASK-1134",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "passed",
+  "summary": "Verified and improved accessibility for the US-841 start/resume UI. The resume prompt now places Continue before start-new choices in keyboard order, start-new choices are exposed as a labelled group, start buttons have distinct accessible names, and start/resume controls have visible keyboard focus styling.",
+  "files_changed": [
+    "src/ui/render.ts",
+    "src/styles.css",
+    "src/ui/controller.test.ts"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/ui/controller.test.ts",
+      "result": "passed",
+      "details": "8 tests passed"
+    },
+    {
+      "command": "npm run test -- src/test/startResume.integration.test.ts",
+      "result": "passed",
+      "details": "4 tests passed"
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "details": "9 test files passed, 72 tests passed, production build passed"
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "branch": "browser-remake",
+    "date": "2026-07-06",
+    "local_server": "http://127.0.0.1:5331/ and http://localhost:5331/ via npm run dev"
+  },
+  "evidence_matrix": [
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1752 / PERSONAL-AC-2420",
+      "scenario": "Start screen exposes supported bullet-size buttons as native buttons with distinct accessible names and a labelled group.",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "Browser evidence and source review of src/ui/render.ts",
+      "live_paths": [
+        "http://localhost:5331/"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Automated browser Tab keypress did not provide reliable focus movement in this in-app browser runtime; DOM order and native control semantics were verified instead."
+    },
+    {
+      "req_or_ac_or_contract": "PERSONAL-REQ-1753 / PERSONAL-AC-2421",
+      "scenario": "Resume prompt keyboard order prioritizes Continue before destructive/replacement start-new choices.",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "Browser evidence and npm run test -- src/ui/controller.test.ts",
+      "live_paths": [
+        "http://localhost:5331/"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Keyboard order was verified by DOM order of native focusable buttons."
+    },
+    {
+      "req_or_ac_or_contract": "Accessibility NFR",
+      "scenario": "Start/resume controls expose visible keyboard focus styling.",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "Browser stylesheet evidence and source review of src/styles.css",
+      "live_paths": [
+        "http://localhost:5331/"
+      ],
+      "mocked_paths": [],
+      "result": "passed",
+      "limitations": "Visual screenshots are owned by MZ-106."
+    }
+  ],
+  "quality_gate_matrix": [
+    {
+      "gate": "accessibility-review",
+      "applicability": "applicable",
+      "evidence_type": "accessibility_review",
+      "command_or_source": "Browser DOM evidence, source review, regression test, and Rawls review",
+      "result": "passed",
+      "limitations": "No axe dependency is present in the project; used native browser/source evidence.",
+      "accepted_risk": "No blocking accessibility risk for start/resume flow."
+    },
+    {
+      "gate": "regression",
+      "applicability": "applicable",
+      "evidence_type": "regression_test",
+      "command_or_source": "npm run verify",
+      "result": "passed",
+      "limitations": "None for scoped task.",
+      "accepted_risk": "None."
+    }
+  ],
+  "browser_evidence": {
+    "resume_focusables_order": [
+      "Продолжить незавершенную пулю",
+      "Начать пулю до 10",
+      "Начать пулю до 20",
+      "Начать пулю до 30"
+    ],
+    "start_actions_role": "group",
+    "start_actions_label": "Выбор размера пули",
+    "start_panel_labelledby": "start-title",
+    "focus_visible_rule_present": true
+  },
+  "reviews": [
+    {
+      "reviewer": "Rawls",
+      "result": "accepted",
+      "findings": [],
+      "non_blocking_notes": [
+        "Suggested role=\"group\" on the labelled start-actions div; implemented before closing task."
+      ]
+    }
+  ]
+}

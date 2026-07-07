@@ -1,0 +1,77 @@
+{
+  "task_id": "PERSONAL-TASK-1142",
+  "epic_id": "PERSONAL-EP-180",
+  "status": "succeeded",
+  "summary": "Added US-842 integration coverage for all-pass, misere, contract-phase progression, third-card trick resolution, next-lead/trick-count mutation, and rendered legal-action projection using the existing Vitest/jsdom stack across domain applyAction/getLegalActions and UI renderGame action identities.",
+  "files_changed": [
+    "src/test/ruleFlow.integration.test.ts",
+    "task-reports/PERSONAL-TASK-1142/attempt-1.json",
+    "task-reports/PERSONAL-TASK-1142/attempt-1-agent.log"
+  ],
+  "tests_run": [
+    {
+      "command": "npm run test -- src/test/ruleFlow.integration.test.ts",
+      "result": "failed before fix, then passed after test correction",
+      "evidence": "Initial red run exposed five mismatches between the first draft expectations and the current human-control/render boundaries plus full-trick sequencing; final focused run passed 5 integration tests."
+    },
+    {
+      "command": "npm run verify",
+      "result": "passed",
+      "evidence": "Vitest passed 11 files / 99 tests and the production build completed successfully with tsc and vite build."
+    }
+  ],
+  "risks": [],
+  "failure_type": "not_applicable",
+  "verification_environment": {
+    "cwd": "/Users/dvaletin/development/Maryazh_330/.worktrees/browser-remake",
+    "date": "2026-07-06",
+    "timezone": "Europe/Rome",
+    "node_package_scripts": {
+      "test": "vitest run --passWithNoTests",
+      "verify": "npm run test && npm run build"
+    },
+    "notes": "No backend or live API applies; integration evidence comes from local project integration tests spanning domain state transitions and jsdom UI rendering."
+  },
+  "evidence_matrix": [
+    {
+      "requirement": "PERSONAL-REQ-1755",
+      "scenario": "Fixed-profile all-pass, misere, whist, and ten-game behavior in integrated flows",
+      "expected": "All-pass progresses with progressive-state carryover, misere skips whist exposure, whistable contracts expose pass/whist/half-whist, and ten-level whist decisions expose check-only behavior.",
+      "evidence": "src/test/ruleFlow.integration.test.ts covers all-pass bidding->play->settlement->next-deal, misere bidding->play->settlement, contract whist decisions with half-whist/pass, and representative ten-level render projection for check-only controls.",
+      "evidence_type": "real_integration_test",
+      "status": "covered"
+    },
+    {
+      "requirement": "PERSONAL-REQ-1756",
+      "scenario": "Required phase and transition coverage through the full rule flow",
+      "expected": "Integration tests cover bidding, contract ordering, widow pickup, discard, whist decision, play, settlement, and next-deal continuation using legal actions only.",
+      "evidence": "src/test/ruleFlow.integration.test.ts drives all-pass, misere, and contract paths entirely through getLegalActions/applyAction and checks representative renderGame action projections for human states.",
+      "evidence_type": "real_integration_test",
+      "status": "covered"
+    },
+    {
+      "requirement": "PERSONAL-REQ-1757",
+      "scenario": "Third-card trick resolution updates winner, trick counts, and next lead",
+      "expected": "The third legal card clears the trick, increments the winning seat's trick count, and assigns the next actor to the winner or settlement actor on the final trick.",
+      "evidence": "src/test/ruleFlow.integration.test.ts resolves a trump-winning third card through applyAction after asserting the single legal play from getLegalActions, then checks cleared trick, trick count mutation, and winner actor.",
+      "evidence_type": "real_integration_test",
+      "status": "covered"
+    },
+    {
+      "requirement": "PERSONAL-AC-2422",
+      "scenario": "Rendered human legal-action exposure stays inside rule-engine legality",
+      "expected": "Rendered controls are a subset or projection of getLegalActions for representative bidding, contract order, whist, play, settlement, and next-deal states.",
+      "evidence": "src/test/ruleFlow.integration.test.ts compares renderGame action identities and enabled card controls against getLegalActions-derived keys, including discard projection handling and ten-game check-only exposure.",
+      "evidence_type": "real_integration_test",
+      "status": "covered"
+    },
+    {
+      "requirement": "PERSONAL-AC-2423",
+      "scenario": "Completed trick mutation is visible at integration level",
+      "expected": "A completed three-card trick mutates state by clearing currentTrick, incrementing the correct trick counter, and promoting the winner to lead or settlement actor.",
+      "evidence": "src/test/ruleFlow.integration.test.ts asserts post-trick state after the third-card action in both flowing scenarios and the dedicated trick-resolution test.",
+      "evidence_type": "real_integration_test",
+      "status": "covered"
+    }
+  ]
+}

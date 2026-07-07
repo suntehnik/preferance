@@ -1,0 +1,5 @@
+Done.
+
+Created docs/test-design/us-846-rule-critical-coverage-matrix.md and wrote task-reports/PERSONAL-TASK-1168/attempt-1.json.
+
+Bottom line from attempt 1: MZ-601 appeared ready to accept, but the report also exposed two issues: the requested PERSONAL-US-841 completion report path was missing, and PERSONAL-AC-2431 lacked a deterministic full-bullet smoke test. The orchestrator did not accept this attempt because the report had status=succeeded with non-empty risks and failure_type=release_readiness_gap.

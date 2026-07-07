@@ -1,0 +1,19 @@
+Completed TASK PERSONAL-TASK-1149 / MZ-303.
+
+Artifacts:
+- src/test/aiDecision.integration.test.ts
+- src/test/integrationHarness.ts
+- task-reports/PERSONAL-TASK-1149/attempt-1.json
+
+Implemented US-843 integration coverage for chooseAiAction + applyAction across representative bidding, contract ordering, widow pickup, discard, whist, all-pass, misere, contract play, settlement, and next-deal scenarios. Strengthened harness diagnostics so illegal auto-turn failures include seed, step, phase, actor, legal action keys, chosen action, cause, and trace context.
+
+Verification run by worker:
+- npm run test -- src/test/aiDecision.integration.test.ts
+- npm run test -- src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts src/test/ruleFlow.integration.test.ts
+- npm run verify
+
+Orchestrator local acceptance also ran:
+- npm run test -- src/test/aiDecision.integration.test.ts src/test/integrationHarness.test.ts src/test/ruleFlow.integration.test.ts
+- npm run verify
+
+Result: succeeded, failure_type=not_applicable, blocking risks=[].
