@@ -10,6 +10,7 @@ import {
   type SupportedBulletSize
 } from '../persistence/saveStore';
 import { renderGame, renderStartScreen, type RenderView } from './render';
+import { defaultRules, type RulesConfig } from '../domain/rules';
 
 const AI_TURN_DELAY_MS = 700;
 const POST_DEAL_DELAY_MS = 850;
@@ -53,10 +54,10 @@ export function startApp(root: HTMLElement): void {
     }
   };
 
-  const startNewBullet = (selectedBulletSize: SupportedBulletSize) => {
+  const startNewBullet = (selectedBulletSize: SupportedBulletSize, rules: RulesConfig = defaultRules) => {
     bulletSize = selectedBulletSize;
     clearAiTimer();
-    state = createNewGame(Date.now() % 100000, selectedBulletSize);
+    state = createNewGame(Date.now() % 100000, selectedBulletSize, rules);
     view = { tableMotion: 'deal' };
     saveGame(state, { bulletSize, replaceActiveBullet: true });
     renderGameScreen();

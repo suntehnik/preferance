@@ -13,8 +13,8 @@ export const deterministicSeeds = {
 export const fixtureDeals = {
   fullBulletSmoke: {
     seed: deterministicSeeds.fullBulletSmoke,
-    bulletTarget: 1,
-    maxSteps: 80,
+    bulletTarget: 10,
+    maxSteps: 2000,
     purpose: 'Deterministic full-bullet smoke run that reaches finished with the real engine and heuristic AI.'
   },
   seededRuleScenario: {

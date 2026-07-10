@@ -26,7 +26,7 @@ describe('US-841 start/resume integration flow', () => {
     const saved = loadActiveBullet();
 
     expect(firstBoot.querySelector('.game-shell')).not.toBeNull();
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 20 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 20 });
     expect(saved?.currentDeal.phase).toBe('bidding');
 
     const secondBoot = bootApp();
@@ -61,7 +61,7 @@ describe('US-841 start/resume integration flow', () => {
     expect(root.querySelector('.status-line')?.textContent).toContain('Игрок: AF Computers');
     expect(root.querySelectorAll('[data-card-id]')).toHaveLength(savedState.hands[0].length);
     expect(root.querySelector('.side-panel li')?.textContent).toBe('Saved desktop checkpoint');
-    expect(active?.activeBulletSettings).toEqual({ bulletSize: 30 });
+    expect(active?.activeBulletSettings).toMatchObject({ bulletSize: 30 });
     expect(active?.currentDeal.seed).toBe(deterministicSeeds.playwrightDesktopFlow);
     expect(active?.scoreTable).toEqual(savedState.scores);
   });
@@ -75,7 +75,7 @@ describe('US-841 start/resume integration flow', () => {
 
     const active = loadActiveBullet();
     expect(root.querySelector('.game-shell')).not.toBeNull();
-    expect(active?.activeBulletSettings).toEqual({ bulletSize: 10 });
+    expect(active?.activeBulletSettings).toMatchObject({ bulletSize: 10 });
     expect(active?.currentDeal.seed).not.toBe(deterministicSeeds.playwrightDesktopFlow);
     expect(active?.technicalDealHistory).toHaveLength(1);
     expect(active?.technicalDealHistory[0].seed).toBe(active?.currentDeal.seed);
@@ -143,8 +143,8 @@ function completedBullet(game: GameState): GameState {
     ...game,
     scores: [
       { ...game.scores[0], bullet: 10 },
-      game.scores[1],
-      game.scores[2]
+      { ...game.scores[1], bullet: 10 },
+      { ...game.scores[2], bullet: 10 }
     ]
   };
 }

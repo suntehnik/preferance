@@ -1,5 +1,5 @@
 import type { Card, Suit } from './cards';
-import type { Bid, GameBid } from './rules';
+import type { Bid, GameBid, RulesConfig } from './rules';
 
 export type PlayerId = 0 | 1 | 2;
 
@@ -89,6 +89,7 @@ type BaseState = {
   scoreSheet?: ScoreSheet;
   allPassCount: number;
   log: string[];
+  rules?: RulesConfig;
 };
 
 export type BiddingState = BaseState & {
@@ -105,6 +106,7 @@ export type ContractState = BaseState & {
   declarer: PlayerId;
   defenderOrder: [PlayerId, PlayerId];
   whistResponses: [WhistResponse | null, WhistResponse | null];
+  whistStage?: 'initial' | 'half-whist-offer';
 };
 
 export type PlayMode = 'all-pass' | 'contract' | 'misere';

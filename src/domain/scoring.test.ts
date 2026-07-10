@@ -97,7 +97,7 @@ describe('scoring', () => {
     expect(result.summary).toContain('failed misere');
   });
 
-  it('writes whists only for the whisting defender and keeps the declarer row unchanged', () => {
+  it('writes all defender tricks to the sole whister and caps bullet overflow as help', () => {
     const result = settleDealResult({
       mode: 'contract',
       contract: { type: 'game', level: 8, suit: 'hearts' },
@@ -110,7 +110,8 @@ describe('scoring', () => {
       progressiveAllPass: true
     });
 
-    expect(result.scoresAfter[0].bullet).toBe(12);
+    expect(result.scoresAfter[0].bullet).toBe(10);
+    expect(result.scoresAfter[2].bullet).toBe(3);
     expect(result.whistAdjustments).toEqual([{ defender: 1, declarer: 0, response: 'whist', tricks: 2, delta: 12 }]);
     expect(result.scoresAfter[0].whists[1]).toBe(4);
     expect(result.scoresAfter[1].whists[0]).toBe(12);
@@ -120,21 +121,10 @@ describe('scoring', () => {
     expect(result.scoresAfter[2].whists[0]).toBe(2);
   });
 
-  it('writes half-whist as exactly half of the corresponding full-whist pair delta', () => {
-    const fullWhist = settleDealResult({
-      mode: 'contract',
-      contract: { type: 'game', level: 8, suit: 'hearts' },
-      declarer: 0,
-      tricksTaken: [8, 2, 0],
-      whistResponses: ['whist', 'pass'],
-      scores: scoreCarry(),
-      bulletTarget: 10,
-      allPassCount: 0,
-      progressiveAllPass: true
-    });
+  it('writes half-whist as the fixed four-whist settlement without a full play', () => {
     const halfWhist = settleDealResult({
       mode: 'contract',
-      contract: { type: 'game', level: 8, suit: 'hearts' },
+      contract: { type: 'game', level: 6, suit: 'hearts' },
       declarer: 0,
       tricksTaken: [8, 2, 0],
       whistResponses: ['half-whist', 'pass'],
@@ -144,10 +134,8 @@ describe('scoring', () => {
       progressiveAllPass: true
     });
 
-    expect(halfWhist.whistAdjustments).toEqual([{ defender: 1, declarer: 0, response: 'half-whist', tricks: 2, delta: 6 }]);
-    expect(fullWhist.whistAdjustments[0].delta).toBe(halfWhist.whistAdjustments[0].delta * 2);
-    expect(halfWhist.scoresAfter[0].bullet).toBe(fullWhist.scoresAfter[0].bullet);
-    expect(halfWhist.scoresAfter[0].mountain).toBe(fullWhist.scoresAfter[0].mountain);
+    expect(halfWhist.whistAdjustments).toEqual([{ defender: 1, declarer: 0, response: 'half-whist', tricks: 2, delta: 4 }]);
+    expect(halfWhist.scoreDelta[1].whists[0]).toBe(4);
   });
 
   it('writes full whists for checked ten-level games', () => {
@@ -192,6 +180,45 @@ describe('scoring', () => {
 
     expect(result.scoresAfter.map((score) => score.bullet)).toEqual([20, 5, 2]);
     expect(result.bulletTargetReached).toBe(false);
+  });
+
+  it('caps a closed bullet and distributes overflow as help to the furthest player', () => {
+    const result = settleDealResult({
+      mode: 'misere',
+      contract: { type: 'misere' },
+      declarer: 0,
+      tricksTaken: [0, 5, 5],
+      whistResponses: [null, null],
+      scores: [
+        { bullet: 9, mountain: 0, whists: [0, 0, 0] },
+        { bullet: 0, mountain: 0, whists: [0, 0, 0] },
+        { bullet: 4, mountain: 0, whists: [0, 0, 0] }
+      ],
+      bulletTarget: 10,
+      allPassCount: 0,
+      progressiveAllPass: true
+    });
+
+    expect(result.scoresAfter.map((score) => score.bullet)).toEqual([10, 9, 4]);
+    expect(result.scoreDelta.map((score) => score.bullet)).toEqual([1, 9, 0]);
+  });
+
+  it('charges the sole whister for missing the required defender trick norm', () => {
+    const result = settleDealResult({
+      mode: 'contract',
+      contract: { type: 'game', level: 6, suit: 'clubs' },
+      declarer: 0,
+      tricksTaken: [7, 2, 1],
+      whistResponses: ['whist', 'pass'],
+      scores: emptyScores(),
+      bulletTarget: 10,
+      allPassCount: 0,
+      progressiveAllPass: true,
+      responsibleWhist: false
+    });
+
+    expect(result.scoreDelta[1].mountain).toBe(1);
+    expect(result.whistAdjustments[0]).toEqual({ defender: 1, declarer: 0, response: 'whist', tricks: 3, delta: 6 });
   });
 
   it('calculates final ranking from settled whists instead of raw bullet totals', () => {

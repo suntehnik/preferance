@@ -28,17 +28,27 @@ describe('startApp start/resume flow', () => {
     expect(loadActiveBullet()).toBeNull();
   });
 
-  it('starts a new bullet with the selected supported size', () => {
+  it('starts a new bullet with the selected size and persisted agreements', () => {
     const root = document.createElement('div');
     startApp(root);
 
+    const mandatory = root.querySelector<HTMLInputElement>('[data-rule="mandatoryWhistOnSixSpades"]');
+    const responsible = root.querySelector<HTMLInputElement>('[data-rule="responsibleWhist"]');
+    if (!mandatory || !responsible) throw new Error('Expected agreement controls');
+    mandatory.checked = false;
+    responsible.checked = true;
     root.querySelector<HTMLButtonElement>('[data-start-bullet-size="20"]')?.click();
 
     const saved = loadActiveBullet();
     expect(root.querySelector('.game-shell')).not.toBeNull();
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 20 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 20 });
     expect(saved?.currentDeal.bulletTarget).toBe(20);
     expect(saved?.currentDeal.phase).toBe('bidding');
+    expect(saved?.activeBulletSettings.rules).toMatchObject({
+      mandatoryWhistOnSixSpades: false,
+      responsibleWhist: true
+    });
+    expect(saved?.currentDeal.rules).toEqual(saved?.activeBulletSettings.rules);
   });
 
   it('offers continue or start-new when an unfinished save exists', () => {
@@ -74,7 +84,7 @@ describe('startApp start/resume flow', () => {
     root.querySelector<HTMLButtonElement>('[data-continue-bullet]')?.click();
 
     expect(root.querySelector('.game-shell')).not.toBeNull();
-    expect(loadActiveBullet()?.activeBulletSettings).toEqual({ bulletSize: 30 });
+    expect(loadActiveBullet()?.activeBulletSettings).toMatchObject({ bulletSize: 30 });
     expect(loadActiveBullet()?.currentDeal.seed).toBe(44);
   });
 
@@ -87,7 +97,7 @@ describe('startApp start/resume flow', () => {
 
     const saved = loadActiveBullet();
     expect(root.querySelector('.game-shell')).not.toBeNull();
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 10 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 10 });
     expect(saved?.currentDeal.seed).not.toBe(44);
   });
 
@@ -99,7 +109,7 @@ describe('startApp start/resume flow', () => {
     root.querySelector<HTMLButtonElement>('[data-start-bullet-size="20"]')?.click();
 
     const saved = loadActiveBullet();
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 20 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 20 });
     expect(saved?.currentDeal.bulletTarget).toBe(20);
     expect(saved?.technicalDealHistory).toHaveLength(1);
     expect(saved?.technicalDealHistory[0].seed).toBe(saved?.currentDeal.seed);
@@ -112,7 +122,7 @@ describe('startApp start/resume flow', () => {
     root.querySelector<HTMLButtonElement>('[data-start-bullet-size="30"]')?.click();
 
     expect(root.querySelector('[data-new-game]')).toBeNull();
-    expect(loadActiveBullet()?.activeBulletSettings).toEqual({ bulletSize: 30 });
+    expect(loadActiveBullet()?.activeBulletSettings).toMatchObject({ bulletSize: 30 });
     expect(loadActiveBullet()?.currentDeal.bulletTarget).toBe(30);
   });
 

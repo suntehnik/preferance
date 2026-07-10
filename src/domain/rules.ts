@@ -39,7 +39,7 @@ export function compareBids(left: GameBid, right: GameBid): number {
 export function isBidAllowedAfter(current: Bid | null, next: Bid): boolean {
   if (!current) return true;
   if (current.type === 'misere') {
-    return next.type === 'game' && next.level >= 9;
+    return next.type === 'game' && next.level === 9;
   }
   if (next.type === 'misere') {
     return current.level < 9;

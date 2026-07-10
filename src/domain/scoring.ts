@@ -35,6 +35,7 @@ export function settleDealResult(input: {
   bulletTarget: number;
   allPassCount: number;
   progressiveAllPass: boolean;
+  responsibleWhist?: boolean;
 }): DealResult {
   const scoresBefore = cloneScores(input.scores);
   const scoreDelta = zeroScoreDelta();
@@ -64,7 +65,15 @@ export function settleDealResult(input: {
       scoreDelta[input.declarer].mountain += undertricks * contractBulletValue(input.contract);
       outcome = { type: 'contract-failed', undertricks };
     }
-    applyWhists(scoreDelta, whistAdjustments, input.declarer, input.contract, input.tricksTaken, input.whistResponses);
+    applyWhists(
+      scoreDelta,
+      whistAdjustments,
+      input.declarer,
+      input.contract,
+      input.tricksTaken,
+      input.whistResponses,
+      input.responsibleWhist ?? false
+    );
   } else {
     outcome = { type: 'all-pass', trickValue: 0 };
   }
@@ -81,7 +90,11 @@ export function settleDealResult(input: {
     outcome = { type: 'all-pass', trickValue };
   }
 
-  const scoresAfter = applyScoreDelta(scoresBefore, scoreDelta);
+  const rawScoresAfter = applyScoreDelta(scoresBefore, scoreDelta);
+  const scoresAfter = closeBulletAndDistributeHelp(rawScoresAfter, input.bulletTarget);
+  scoresAfter.forEach((score, player) => {
+    scoreDelta[player].bullet = score.bullet - scoresBefore[player].bullet;
+  });
   const bulletTargetReached = scoresAfter.every((score) => score.bullet >= input.bulletTarget);
 
   return {
@@ -163,18 +176,60 @@ function applyWhists(
   declarer: PlayerId,
   contract: Extract<Bid, { type: 'game' }>,
   tricksTaken: [number, number, number],
-  whistResponses: [WhistResponse | null, WhistResponse | null]
+  whistResponses: [WhistResponse | null, WhistResponse | null],
+  responsibleWhist: boolean
 ) {
   const defenders = [((declarer + 1) % 3) as PlayerId, ((declarer + 2) % 3) as PlayerId] as const;
-  defenders.forEach((defender, index) => {
-    const response = whistResponses[index];
-    if (response !== 'whist' && response !== 'half-whist' && response !== 'check') return;
-    const multiplier = response === 'half-whist' ? 0.5 : 1;
-    const delta = tricksTaken[defender] * contractBulletValue(contract) * multiplier;
+  const activeWhisters = defenders
+    .map((defender, index) => ({ defender, response: whistResponses[index], index }))
+    .filter((entry) => entry.response === 'whist' || entry.response === 'half-whist' || entry.response === 'check');
+
+  activeWhisters.forEach(({ defender, response }) => {
+    if (response === null || response === 'pass') return;
+    const tricks =
+      activeWhisters.length === 1 && response === 'whist'
+        ? tricksTaken[defenders[0]] + tricksTaken[defenders[1]]
+        : tricksTaken[defender];
+    const delta = response === 'half-whist' ? 4 : tricks * contractBulletValue(contract);
     if (delta === 0) return;
     scoreDelta[defender].whists[declarer] += delta;
-    whistAdjustments.push({ defender, declarer, response, tricks: tricksTaken[defender], delta });
+    whistAdjustments.push({ defender, declarer, response, tricks, delta });
   });
+
+  const fullWhisters = activeWhisters.filter((entry) => entry.response === 'whist');
+  if (fullWhisters.length === 0) return;
+  const requiredDefenderTricks = contract.level === 6 ? 4 : contract.level === 7 ? 2 : contract.level < 10 ? 1 : 0;
+  const actualDefenderTricks = tricksTaken[defenders[0]] + tricksTaken[defenders[1]];
+  const shortage = Math.max(0, requiredDefenderTricks - actualDefenderTricks);
+  if (shortage === 0) return;
+  const totalPenalty = shortage * contractBulletValue(contract) * (responsibleWhist ? 1 : 0.5);
+  const share = totalPenalty / fullWhisters.length;
+  fullWhisters.forEach(({ defender }) => {
+    scoreDelta[defender].mountain += share;
+  });
+}
+
+function closeBulletAndDistributeHelp(
+  scores: [Score, Score, Score],
+  bulletTarget: number
+): [Score, Score, Score] {
+  const next = cloneScores(scores);
+  for (let player = 0; player < next.length; player += 1) {
+    let overflow = Math.max(0, next[player].bullet - bulletTarget);
+    next[player].bullet = Math.min(next[player].bullet, bulletTarget);
+    while (overflow > 0) {
+      const recipients = next
+        .map((score, index) => ({ index, missing: bulletTarget - score.bullet }))
+        .filter((entry) => entry.index !== player && entry.missing > 0)
+        .sort((left, right) => right.missing - left.missing || left.index - right.index);
+      const recipient = recipients[0];
+      if (!recipient) break;
+      const help = Math.min(overflow, recipient.missing);
+      next[recipient.index].bullet += help;
+      overflow -= help;
+    }
+  }
+  return next;
 }
 
 function calculateNetWhists(scores: readonly [Score, Score, Score], player: PlayerId): number {

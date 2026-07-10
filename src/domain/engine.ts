@@ -1,5 +1,5 @@
 import { createDeck, dealPreference, ranks, seededShuffle, sortCards, type Card } from './cards';
-import { defaultRules, isBidAllowedAfter, type Bid, type GameBid } from './rules';
+import { defaultRules, isBidAllowedAfter, type Bid, type GameBid, type RulesConfig } from './rules';
 import { calculateFinalResult, settleDealResult } from './scoring';
 import type {
   BiddingState,
@@ -30,8 +30,17 @@ function createPlayers(): [Player, Player, Player] {
   ];
 }
 
-export function createNewGame(seed: number, bulletTarget = 10): GameState {
-  return createBiddingDeal(seed, bulletTarget, 2, [emptyScore(), emptyScore(), emptyScore()], 0, createPlayers());
+export function createNewGame(seed: number, bulletTarget = 10, rules: RulesConfig = defaultRules): GameState {
+  return createBiddingDeal(
+    seed,
+    bulletTarget,
+    2,
+    [emptyScore(), emptyScore(), emptyScore()],
+    0,
+    createPlayers(),
+    emptyScoreSheet(),
+    rules
+  );
 }
 
 export function getLegalActions(state: GameState): GameAction[] {
@@ -75,7 +84,8 @@ function createBiddingDeal(
   scores: [Score, Score, Score],
   allPassCount: number,
   players = createPlayers(),
-  scoreSheet: ScoreSheet = emptyScoreSheet()
+  scoreSheet: ScoreSheet = emptyScoreSheet(),
+  rules: RulesConfig = defaultRules
 ): BiddingState {
   const deal = dealPreference(seededShuffle(createDeck(), seed));
   return {
@@ -93,7 +103,8 @@ function createBiddingDeal(
     scores,
     scoreSheet,
     allPassCount,
-    log: ['New deal started']
+    log: ['New deal started'],
+    rules
   };
 }
 
@@ -122,7 +133,7 @@ function legalContractActions(state: ContractState): GameAction[] {
     case 'discard':
       return createDiscardActions(state.hands[state.declarer]);
     case 'whist-decision':
-      return createWhistActions(state.contract);
+      return createWhistActions(state);
   }
 }
 
@@ -136,15 +147,20 @@ function createDiscardActions(hand: Card[]): GameAction[] {
   return actions;
 }
 
-function createWhistActions(contract: Bid): GameAction[] {
+function createWhistActions(state: ContractState): GameAction[] {
+  const contract = state.contract;
+  const rules = rulesFor(state);
   if (contract.type !== 'game') return [];
-  if (contract.level === 6 && contract.suit === 'spades' && defaultRules.mandatoryWhistOnSixSpades) {
+  if (state.whistStage === 'half-whist-offer') {
+    return [{ type: 'pass' }, { type: 'halfWhist' }];
+  }
+  if (contract.level === 6 && contract.suit === 'spades' && rules.mandatoryWhistOnSixSpades) {
     return [{ type: 'whist' }];
   }
-  if (contract.level === 10 && defaultRules.tenGameIsChecked) {
+  if (contract.level === 10 && rules.tenGameIsChecked) {
     return [{ type: 'check' }];
   }
-  return [{ type: 'pass' }, { type: 'whist' }, { type: 'halfWhist' }];
+  return [{ type: 'pass' }, { type: 'whist' }];
 }
 
 function legalOrderedContracts(winningBid: Bid): Bid[] {
@@ -159,7 +175,15 @@ function compareBidIdentity(left: Bid, right: Bid): boolean {
 function legalCardsForActor(state: PlayState) {
   const hand = state.hands[state.actor];
   const leadSuit = state.currentTrick[0]?.card.suit;
-  if (!leadSuit) return hand;
+  if (!leadSuit) {
+    if (state.mode === 'all-pass') {
+      const completedTricks = state.tricksTaken.reduce((sum, tricks) => sum + tricks, 0);
+      const forcedSuit = completedTricks < 2 ? state.widow[completedTricks]?.suit : undefined;
+      const forced = forcedSuit ? hand.filter((card) => card.suit === forcedSuit) : [];
+      if (forced.length > 0) return forced;
+    }
+    return hand;
+  }
   const following = hand.filter((card) => card.suit === leadSuit);
   if (following.length > 0) return following;
   const trumping = state.trump ? hand.filter((card) => card.suit === state.trump) : [];
@@ -190,7 +214,8 @@ function applyBiddingAction(state: BiddingState, action: GameAction): GameState 
         scores: state.scores,
         scoreSheet: state.scoreSheet,
         allPassCount: state.allPassCount + 1,
-        log
+        log,
+        rules: rulesFor(state)
       };
     }
     const nextState = { ...state, passed, log };
@@ -218,6 +243,9 @@ function applyBiddingAction(state: BiddingState, action: GameAction): GameState 
     actor: nextActiveBidder(state.actor, state.passed),
     log: [...state.log, `${state.players[state.actor].name} bids ${formatBid(bid)}`]
   };
+  if (state.currentBid?.type === 'misere' && bid.type === 'game' && bid.level === 9) {
+    return completeWonBidding(nextState as BiddingState & { currentBid: Bid; bidWinner: PlayerId });
+  }
   const active = activeBidders(nextState);
   if (isCurrentBidWon(nextState, active)) {
     return completeWonBidding(nextState);
@@ -254,7 +282,8 @@ function completeWonBidding(state: BiddingState & { currentBid: Bid; bidWinner: 
     scores: state.scores,
     scoreSheet: state.scoreSheet,
     allPassCount: state.allPassCount,
-    log: state.log
+    log: state.log,
+    rules: rulesFor(state)
   };
 }
 
@@ -272,7 +301,8 @@ function applyContractAction(state: ContractState, action: GameAction): GameStat
         step: 'whist-decision',
         actor: state.defenderOrder[0],
         contract: action.contract,
-        log: [...state.log, `${state.players[state.declarer].name} orders ${formatBid(action.contract)}`]
+        log: [...state.log, `${state.players[state.declarer].name} orders ${formatBid(action.contract)}`],
+        whistStage: 'initial'
       };
     case 'widow-pickup':
       if (action.type !== 'pickupWidow') {
@@ -340,6 +370,13 @@ function applyWhistDecision(state: ContractState, action: GameAction): GameState
   }
 
   const response = mapWhistResponse(action);
+  if (state.whistStage === 'half-whist-offer') {
+    const finalResponses: [WhistResponse | null, WhistResponse | null] = [
+      response === 'half-whist' ? 'half-whist' : 'pass',
+      'pass'
+    ];
+    return toAutomaticSettlement(state, finalResponses);
+  }
   const defenderIndex = state.defenderOrder.indexOf(state.actor);
   const whistResponses = [...state.whistResponses] as [WhistResponse | null, WhistResponse | null];
   whistResponses[defenderIndex] = response;
@@ -354,12 +391,74 @@ function applyWhistDecision(state: ContractState, action: GameAction): GameState
     };
   }
 
+  if (whistResponses[0] === 'pass' && whistResponses[1] === 'pass') {
+    if (state.contract.type === 'game' && state.contract.level <= 7) {
+      return {
+        ...state,
+        actor: state.defenderOrder[0],
+        whistResponses,
+        whistStage: 'half-whist-offer',
+        log: [...state.log, `${state.players[state.actor].name} chooses ${response}`]
+      };
+    }
+    return toAutomaticSettlement(state, whistResponses);
+  }
+  if (whistResponses[0] === 'check' && whistResponses[1] === 'check') {
+    return toAutomaticSettlement(state, whistResponses);
+  }
+
   return toPlayState(state, {
     hands: state.hands,
     mode: state.contract.type === 'misere' ? 'misere' : 'contract',
     trump: state.contract.type === 'game' ? state.contract.suit : null,
     whistResponses
   });
+}
+
+function toAutomaticSettlement(
+  state: ContractState,
+  whistResponses: [WhistResponse | null, WhistResponse | null]
+): DealSettlementState {
+  if (state.contract.type !== 'game') {
+    throw new Error('Only game contracts can settle without play');
+  }
+  const tricksTaken: [number, number, number] = [0, 0, 0];
+  tricksTaken[state.declarer] = state.contract.level;
+  const dealResult = buildDealResult({
+    mode: 'contract',
+    contract: state.contract,
+    declarer: state.declarer,
+    tricksTaken,
+    whistResponses,
+    scores: state.scores,
+    bulletTarget: state.bulletTarget,
+    allPassCount: state.allPassCount,
+    rules: rulesFor(state)
+  });
+  return {
+    phase: 'deal-settlement',
+    mode: 'contract',
+    seed: state.seed,
+    bulletTarget: state.bulletTarget,
+    players: state.players,
+    dealer: state.dealer,
+    actor: state.declarer,
+    hands: state.hands,
+    widow: state.widow,
+    contract: state.contract,
+    declarer: state.declarer,
+    trump: state.contract.suit,
+    currentTrick: [],
+    tricksTaken,
+    whistResponses,
+    scores: state.scores,
+    scoreSheet: state.scoreSheet,
+    allPassCount: state.allPassCount,
+    log: state.log,
+    rules: rulesFor(state),
+    settlementSummary: dealResult.summary,
+    dealResult
+  };
 }
 
 function mapWhistResponse(action: GameAction): WhistResponse {
@@ -398,7 +497,8 @@ function toPlayState(
     scores: state.scores,
     scoreSheet: state.scoreSheet,
     allPassCount: state.allPassCount,
-    log: state.log
+    log: state.log,
+    rules: rulesFor(state)
   };
 }
 
@@ -443,7 +543,8 @@ function applyPlayAction(state: PlayState, action: GameAction): GameState {
       whistResponses: state.whistResponses,
       scores: state.scores,
       bulletTarget: state.bulletTarget,
-      allPassCount: state.allPassCount
+      allPassCount: state.allPassCount,
+      rules: rulesFor(state)
     });
     return {
       phase: 'deal-settlement',
@@ -465,6 +566,7 @@ function applyPlayAction(state: PlayState, action: GameAction): GameState {
       scoreSheet: state.scoreSheet,
       allPassCount: state.allPassCount,
       log,
+      rules: rulesFor(state),
       settlementSummary: dealResult.summary,
       dealResult
     };
@@ -507,6 +609,7 @@ function applySettlementAction(state: DealSettlementState, action: GameAction): 
       scoreSheet,
       allPassCount: state.mode === 'all-pass' ? state.allPassCount : 0,
       log,
+      rules: rulesFor(state),
       winnerSummary: buildWinnerSummary(state.players, finalResult),
       previousDealResult: dealResult,
       finalResult
@@ -525,6 +628,7 @@ function applySettlementAction(state: DealSettlementState, action: GameAction): 
     scoreSheet,
     allPassCount: state.mode === 'all-pass' ? state.allPassCount : 0,
     log,
+    rules: rulesFor(state),
     previousSummary: dealResult.summary,
     previousDealResult: dealResult
   };
@@ -541,7 +645,8 @@ function applyNextDealAction(state: NextDealState, action: GameAction): GameStat
     state.scores,
     state.allPassCount,
     state.players,
-    state.scoreSheet
+    state.scoreSheet,
+    rulesFor(state)
   );
 }
 
@@ -639,7 +744,9 @@ function buildDealResult(state: {
   scores: DealSettlementState['scores'];
   bulletTarget: number;
   allPassCount: number;
+  rules?: RulesConfig;
 }): DealResult {
+  const rules = state.rules ?? defaultRules;
   return settleDealResult({
     mode: state.mode,
     contract: state.contract,
@@ -649,8 +756,13 @@ function buildDealResult(state: {
     scores: state.scores,
     bulletTarget: state.bulletTarget,
     allPassCount: state.allPassCount,
-    progressiveAllPass: defaultRules.progressiveAllPass
+    progressiveAllPass: rules.progressiveAllPass,
+    responsibleWhist: rules.responsibleWhist
   });
+}
+
+function rulesFor(state: { rules?: RulesConfig }): RulesConfig {
+  return state.rules ?? defaultRules;
 }
 
 function buildWinnerSummary(players: GameState['players'], finalResult: FinalResult) {

@@ -13,6 +13,7 @@ import type {
   WhistResponse
 } from '../domain/state';
 import type { ActiveBulletSave, SupportedBulletSize } from '../persistence/saveStore';
+import { defaultRules, type RulesConfig } from '../domain/rules';
 
 export type RenderHandlers = {
   onAction: (action: GameAction) => void;
@@ -45,7 +46,7 @@ export type RenderView = {
 
 export type StartScreenHandlers = {
   onContinue?: () => void;
-  onStart: (bulletSize: SupportedBulletSize) => void;
+  onStart: (bulletSize: SupportedBulletSize, rules?: RulesConfig) => void;
 };
 
 export function renderStartScreen(
@@ -77,6 +78,13 @@ export function renderStartScreen(
             )
             .join('')}
         </div>
+        <fieldset class="agreement-settings">
+          <legend>Соглашения</legend>
+          <label><input type="checkbox" data-rule="mandatoryWhistOnSixSpades" ${defaultRules.mandatoryWhistOnSixSpades ? 'checked' : ''}> Обязательный вист на 6 пик</label>
+          <label><input type="checkbox" data-rule="tenGameIsChecked" ${defaultRules.tenGameIsChecked ? 'checked' : ''}> Проверять десятерную</label>
+          <label><input type="checkbox" data-rule="responsibleWhist" ${defaultRules.responsibleWhist ? 'checked' : ''}> Ответственный вист</label>
+          <label><input type="checkbox" data-rule="progressiveAllPass" ${defaultRules.progressiveAllPass ? 'checked' : ''}> Прогрессивные распасы</label>
+        </fieldset>
       </section>
     </main>
   `;
@@ -84,13 +92,24 @@ export function renderStartScreen(
   root.querySelectorAll<HTMLButtonElement>('[data-start-bullet-size]').forEach((button) => {
     const bulletSize = Number(button.dataset.startBulletSize);
     if (isRenderedBulletSize(bulletSize, supportedBulletSizes)) {
-      button.addEventListener('click', () => handlers.onStart(bulletSize));
+      button.addEventListener('click', () => handlers.onStart(bulletSize, readRenderedRules(root)));
     }
   });
 
   if (saved && handlers.onContinue) {
     root.querySelector('[data-continue-bullet]')?.addEventListener('click', handlers.onContinue);
   }
+}
+
+function readRenderedRules(root: HTMLElement): RulesConfig {
+  const checked = (name: keyof RulesConfig) =>
+    root.querySelector<HTMLInputElement>(`[data-rule="${name}"]`)?.checked ?? defaultRules[name];
+  return {
+    mandatoryWhistOnSixSpades: checked('mandatoryWhistOnSixSpades'),
+    tenGameIsChecked: checked('tenGameIsChecked'),
+    responsibleWhist: checked('responsibleWhist'),
+    progressiveAllPass: checked('progressiveAllPass')
+  };
 }
 
 export function renderGame(root: HTMLElement, state: GameState, handlers: RenderHandlers, view: RenderView = {}): void {
@@ -120,8 +139,8 @@ export function renderGame(root: HTMLElement, state: GameState, handlers: Render
             resultLikePhase
               ? ''
               : `<div class="opponents-row">
-                  <div class="opponent-hand opponent-left" aria-label="${escapeAttribute(state.players[1].name)} hand">${state.hands[1].map(() => cardBack()).join('')}</div>
-                  <div class="opponent-hand opponent-right" aria-label="${escapeAttribute(state.players[2].name)} hand">${state.hands[2].map(() => cardBack()).join('')}</div>
+                  <div class="opponent-hand opponent-left" aria-label="${escapeAttribute(state.players[1].name)} hand">${opponentHandMarkup(state, 1)}</div>
+                  <div class="opponent-hand opponent-right" aria-label="${escapeAttribute(state.players[2].name)} hand">${opponentHandMarkup(state, 2)}</div>
                 </div>`
           }
           ${biddingBubblesMarkup(biddingBubbles)}
@@ -178,6 +197,18 @@ export function renderGame(root: HTMLElement, state: GameState, handlers: Render
       if (action) button.addEventListener('click', () => handlers.onAction(action));
     });
   }
+}
+
+function opponentHandMarkup(state: GameState, player: PlayerId): string {
+  const openWhist =
+    (state.phase === 'play' || state.phase === 'deal-settlement') &&
+    state.mode === 'contract' &&
+    state.declarer !== null &&
+    player !== state.declarer &&
+    state.whistResponses.filter((response) => response === 'whist').length === 1;
+  return openWhist
+    ? state.hands[player].map((card) => cardSpan(card, ' open-whist-card')).join('')
+    : state.hands[player].map(() => cardBack()).join('');
 }
 
 function savedBulletSummary(saved: ActiveBulletSave): string {
@@ -238,6 +269,15 @@ function tableContent(state: GameState, view: RenderView): string {
     return state.finalResult
       ? renderFinalResultPanel(state.finalResult, state.previousDealResult, state.players, state.scoreSheet ?? scoreSheetFromScores(state.scores), state.winnerSummary)
       : `<span class="table-message">${escapeHtml(state.winnerSummary)}</span>`;
+  }
+
+  if (state.phase === 'play' && state.mode === 'all-pass') {
+    const completedTricks = state.tricksTaken.reduce((sum, tricks) => sum + tricks, 0);
+    const openWidow = state.widow
+      .map((card, index) => cardSpan(card, index === completedTricks && index < 2 ? ' active-widow-card' : ''))
+      .join('');
+    const currentTrick = trickCardsMarkup(state.currentTrick, view.playedCardId);
+    return `<div class="table-stack"><div class="widow-row widow-open" aria-label="Открытый прикуп на распасах">${openWidow}</div>${currentTrick}<span class="table-message">Распасы</span></div>`;
   }
 
   const currentTrick = trickCardsMarkup(state.currentTrick, view.playedCardId);

@@ -149,21 +149,21 @@ describe('US-842 rule flow integration', () => {
     if (firstWhist.phase !== 'contract') throw new Error('Expected contract');
     expect(firstWhist.step).toBe('whist-decision');
     expect(firstWhist.actor).toBe(1);
-    expect(legalActionKeys(firstWhist)).toEqual(['halfWhist', 'pass', 'whist']);
+    expect(legalActionKeys(firstWhist)).toEqual(['pass', 'whist']);
 
-    const secondWhist = applyAction(firstWhist, { type: 'halfWhist' });
+    const secondWhist = applyAction(firstWhist, { type: 'whist' });
     expect(secondWhist.phase).toBe('contract');
     if (secondWhist.phase !== 'contract') throw new Error('Expected contract');
     expect(secondWhist.step).toBe('whist-decision');
     expect(secondWhist.actor).toBe(2);
-    expect(legalActionKeys(secondWhist)).toEqual(['halfWhist', 'pass', 'whist']);
+    expect(legalActionKeys(secondWhist)).toEqual(['pass', 'whist']);
 
     const play = applyAction(secondWhist, { type: 'pass' });
     expect(play.phase).toBe('play');
     if (play.phase !== 'play') throw new Error('Expected play');
     expect(play.mode).toBe('contract');
     expect(play.trump).toBe('hearts');
-    expect(play.whistResponses).toEqual(['half-whist', 'pass']);
+    expect(play.whistResponses).toEqual(['whist', 'pass']);
     expect(renderProjection(play)).toEqual(['playCard:hearts-7', 'playCard:spades-7']);
   });
 

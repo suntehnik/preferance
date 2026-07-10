@@ -7,9 +7,10 @@ describe('rules', () => {
     expect(compareBids({ type: 'game', level: 7, suit: 'spades' }, { type: 'game', level: 6, suit: 'hearts' })).toBeGreaterThan(0);
   });
 
-  it('allows misere to be overcalled only by a nine-level game or higher', () => {
+  it('allows misere to be overcalled only by a nine-level game', () => {
     expect(isBidAllowedAfter({ type: 'misere' }, { type: 'game', level: 8, suit: 'hearts' })).toBe(false);
     expect(isBidAllowedAfter({ type: 'misere' }, { type: 'game', level: 9, suit: 'spades' })).toBe(true);
+    expect(isBidAllowedAfter({ type: 'misere' }, { type: 'game', level: 10, suit: 'spades' })).toBe(false);
   });
 
   it('maps contract levels to bullet values', () => {

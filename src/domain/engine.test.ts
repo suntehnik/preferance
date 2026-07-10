@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { chooseAiAction } from '../ai/heuristicAi';
 import { createDeck, sortCards, type Card } from './cards';
 import { applyAction, createNewGame, getLegalActions } from './engine';
+import { defaultRules } from './rules';
 import type { BiddingState, ContractState, DealSettlementState, GameState, PlayerId, PlayState, Score } from './state';
 
 describe('engine', () => {
@@ -61,6 +62,16 @@ describe('engine', () => {
 });
 
 describe('bidding transitions', () => {
+  it('ends bidding immediately when a nine-level game overcalls misere', () => {
+    const misere = applyAction(createNewGame(123), { type: 'bidMisere' });
+    const overcall = applyAction(misere, { type: 'bidGame', bid: { type: 'game', level: 9, suit: 'clubs' } });
+
+    expect(overcall.phase).toBe('contract');
+    if (overcall.phase !== 'contract') throw new Error('Expected contract');
+    expect(overcall.contract).toEqual({ type: 'game', level: 9, suit: 'clubs' });
+    expect(overcall.declarer).toBe(1);
+  });
+
   it('records a game bid and advances the actor', () => {
     const game = createNewGame(123);
     const next = applyAction(game, { type: 'bidGame', bid: { type: 'game', level: 6, suit: 'spades' } });
@@ -254,9 +265,61 @@ describe('fixed-profile whist legal actions', () => {
 
     expect(legal).toContainEqual(chooseAiAction(state, 4));
   });
+
+  it('offers half-whist only after both defenders pass and settles it without card play', () => {
+    const firstPass = applyAction(makeWhistState({ type: 'game', level: 7, suit: 'clubs' }), { type: 'pass' });
+    expect(firstPass.phase).toBe('contract');
+    if (firstPass.phase !== 'contract') throw new Error('Expected contract');
+    expect(getLegalActions(firstPass)).toEqual([{ type: 'pass' }, { type: 'whist' }]);
+
+    const secondPass = applyAction(firstPass, { type: 'pass' });
+    expect(secondPass.phase).toBe('contract');
+    if (secondPass.phase !== 'contract') throw new Error('Expected half-whist offer');
+    expect(secondPass.whistStage).toBe('half-whist-offer');
+    expect(getLegalActions(secondPass)).toEqual([{ type: 'pass' }, { type: 'halfWhist' }]);
+
+    const settled = applyAction(secondPass, { type: 'halfWhist' });
+    expect(settled.phase).toBe('deal-settlement');
+    if (settled.phase !== 'deal-settlement') throw new Error('Expected automatic settlement');
+    expect(settled.whistResponses).toEqual(['half-whist', 'pass']);
+    expect(settled.dealResult?.scoreDelta[1].whists[0]).toBe(4);
+  });
+
+  it('uses the rules stored with the bullet instead of global defaults', () => {
+    const state = makeWhistState({ type: 'game', level: 6, suit: 'spades' });
+    state.rules = { ...defaultRules, mandatoryWhistOnSixSpades: false };
+
+    expect(getLegalActions(state)).toEqual([{ type: 'pass' }, { type: 'whist' }]);
+  });
 });
 
 describe('play and trick resolution', () => {
+  it('uses the two open widow suits for the first two all-pass leads', () => {
+    const firstLead = makePlayState({
+      mode: 'all-pass',
+      contract: { type: 'allPass' },
+      declarer: null,
+      trump: null,
+      actor: 0,
+      widow: [findCard('hearts-ace'), findCard('diamonds-ace')],
+      hands: [[findCard('hearts-7'), findCard('clubs-7')], [findCard('hearts-8')], [findCard('hearts-9')]],
+      tricksTaken: [0, 0, 0]
+    });
+    expect(getLegalActions(firstLead)).toEqual([{ type: 'playCard', cardId: 'hearts-7' }]);
+
+    const secondLead = makePlayState({
+      mode: 'all-pass',
+      contract: { type: 'allPass' },
+      declarer: null,
+      trump: null,
+      actor: 0,
+      widow: [findCard('hearts-ace'), findCard('diamonds-ace')],
+      hands: [[findCard('diamonds-7'), findCard('clubs-7')], [findCard('diamonds-8')], [findCard('diamonds-9')]],
+      tricksTaken: [1, 0, 0]
+    });
+    expect(getLegalActions(secondLead)).toEqual([{ type: 'playCard', cardId: 'diamonds-7' }]);
+  });
+
   it('only allows following suit when possible', () => {
     const state = makePlayState({
       actor: 1,
@@ -410,9 +473,9 @@ describe('settlement and continuation', () => {
     if (next.phase !== 'deal-settlement') throw new Error('Expected deal-settlement');
     expect(next.scores).toEqual(scoreCarry());
     expect(next.dealResult?.scoresAfter).toEqual([
-      { bullet: 12, mountain: 1, whists: [0, 4, 0] },
+      { bullet: 10, mountain: 1, whists: [0, 4, 0] },
       { bullet: 2, mountain: 3, whists: [12, 0, 5] },
-      { bullet: 1, mountain: 0, whists: [2, 0, 0] }
+      { bullet: 3, mountain: 0, whists: [2, 0, 0] }
     ]);
     expect(next.dealResult?.bulletTargetReached).toBe(false);
     expect(next.settlementSummary).toBe(next.dealResult?.summary);
@@ -463,7 +526,7 @@ describe('settlement and continuation', () => {
     expect(settled.winnerSummary).toContain('wins the final rating');
     expect(settled.previousDealResult?.scoresAfter[0].bullet).toBe(10);
     expect(settled.finalResult?.winner).toBe(0);
-    expect(settled.finalResult?.ranking.map((entry) => entry.player)).toEqual([0, 2, 1]);
+    expect(settled.finalResult?.ranking.map((entry) => entry.player)).toEqual([0, 1, 2]);
     expect(getLegalActions(settled)).toEqual([]);
   });
 
@@ -481,10 +544,10 @@ describe('settlement and continuation', () => {
     expect(settled.phase).toBe('next-deal');
     if (settled.phase !== 'next-deal') throw new Error('Expected next-deal');
     expect(settled.scores[0]).toEqual({ bullet: 6, mountain: 9, whists: [0, 4, 0] });
-    expect(settled.scores[1]).toEqual({ bullet: 2, mountain: 3, whists: [8, 0, 5] });
+    expect(settled.scores[1]).toEqual({ bullet: 2, mountain: 3, whists: [20, 0, 5] });
     expect(settled.previousDealResult?.scoreDelta[0]).toEqual({ bullet: 0, mountain: 8, whists: [0, 0, 0] });
     expect(settled.previousDealResult?.whistAdjustments).toEqual([
-      { defender: 1, declarer: 0, response: 'whist', tricks: 2, delta: 8 }
+      { defender: 1, declarer: 0, response: 'whist', tricks: 5, delta: 20 }
     ]);
   });
 

@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { createNewGame } from '../domain/engine';
-import type { DealResult, DealSettlementState, Score } from '../domain/state';
 import {
   deterministicSeeds,
   fixtureDeals,
@@ -21,7 +20,10 @@ describe('deterministic integration harness', () => {
   });
 
   it('drives the reserved full-bullet smoke seed to a finished bullet within an explicit step bound', () => {
-    const initialState = makeNearlyFinishedSettlementState();
+    const initialState = createNewGame(
+      deterministicSeeds.fullBulletSmoke,
+      fixtureDeals.fullBulletSmoke.bulletTarget
+    );
     const result = runDeterministicSmoke({
       initialState,
       maxSteps: fixtureDeals.fullBulletSmoke.maxSteps
@@ -54,52 +56,3 @@ describe('deterministic integration harness', () => {
     expect(playwrightDesktopHooks.newDealButton).toBe('[data-new-game]');
   });
 });
-
-function makeNearlyFinishedSettlementState(): DealSettlementState {
-  const base = createNewGame(deterministicSeeds.fullBulletSmoke, fixtureDeals.fullBulletSmoke.bulletTarget);
-  const scoresBefore: [Score, Score, Score] = [
-    { bullet: 0, mountain: 0, whists: [0, 0, 0] },
-    { bullet: 1, mountain: 0, whists: [0, 0, 0] },
-    { bullet: 1, mountain: 0, whists: [0, 0, 0] }
-  ];
-  const scoreDelta: [Score, Score, Score] = [
-    { bullet: 2, mountain: 0, whists: [0, 0, 0] },
-    { bullet: 0, mountain: 0, whists: [0, 0, 0] },
-    { bullet: 0, mountain: 0, whists: [0, 0, 0] }
-  ];
-  const scoresAfter: [Score, Score, Score] = [
-    { bullet: 2, mountain: 0, whists: [0, 0, 0] },
-    { bullet: 1, mountain: 0, whists: [0, 0, 0] },
-    { bullet: 1, mountain: 0, whists: [0, 0, 0] }
-  ];
-  const dealResult: DealResult = {
-    mode: 'contract',
-    contract: { type: 'game', level: 6, suit: 'spades' },
-    declarer: 0,
-    trickCounts: [6, 2, 2],
-    whistResponses: [null, null],
-    scoresBefore,
-    scoreDelta,
-    scoresAfter,
-    whistAdjustments: [],
-    outcome: { type: 'contract-made', contractPoints: 2 },
-    bulletTarget: fixtureDeals.fullBulletSmoke.bulletTarget,
-    bulletTargetReached: true,
-    summary: 'Smoke fixture closes every player at the bullet target.'
-  };
-
-  return {
-    ...base,
-    phase: 'deal-settlement',
-    mode: 'contract',
-    contract: { type: 'game', level: 6, suit: 'spades' },
-    declarer: 0,
-    trump: 'spades',
-    currentTrick: [],
-    tricksTaken: [6, 2, 2],
-    whistResponses: [null, null],
-    scores: scoresBefore,
-    settlementSummary: dealResult.summary,
-    dealResult
-  };
-}

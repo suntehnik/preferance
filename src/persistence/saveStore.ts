@@ -1,4 +1,5 @@
 import { ranks, suits } from '../domain/cards';
+import { defaultRules, type RulesConfig } from '../domain/rules';
 import type { GameState } from '../domain/state';
 
 const saveKey = 'marriage.save.v1';
@@ -22,6 +23,7 @@ export type ActiveBulletSave = {
   schema: 1;
   activeBulletSettings: {
     bulletSize: SupportedBulletSize;
+    rules?: RulesConfig;
   };
   currentDeal: GameState;
   scoreTable: GameState['scores'];
@@ -44,7 +46,7 @@ export function saveGame(state: GameState, options: SaveGameOptions = {}): void 
     options.technicalDealHistory ?? appendDealHistory(previous?.technicalDealHistory ?? [], createDealHistoryEntry(state));
   const envelope: ActiveBulletSave = {
     schema: 1,
-    activeBulletSettings: { bulletSize },
+    activeBulletSettings: { bulletSize, rules: state.rules ?? defaultRules },
     currentDeal: state,
     scoreTable: state.scores,
     technicalDealHistory
@@ -102,7 +104,7 @@ function appendDealHistory(
 }
 
 function isBulletTargetComplete(scoreTable: GameState['scores'], bulletSize: SupportedBulletSize): boolean {
-  return scoreTable.some((score) => score.bullet >= bulletSize);
+  return scoreTable.every((score) => score.bullet >= bulletSize);
 }
 
 function normalizeSaveEnvelope(value: unknown): ActiveBulletSave | null {
@@ -113,7 +115,7 @@ function normalizeSaveEnvelope(value: unknown): ActiveBulletSave | null {
   if (legacyState) {
     return {
       schema: 1,
-      activeBulletSettings: { bulletSize: 10 },
+      activeBulletSettings: { bulletSize: 10, rules: legacyState.rules ?? defaultRules },
       currentDeal: legacyState,
       scoreTable: legacyState.scores,
       technicalDealHistory: [createDealHistoryEntry(legacyState)]
@@ -140,8 +142,11 @@ function normalizeActiveBulletSave(value: unknown): ActiveBulletSave | null {
   const technicalDealHistory = value.technicalDealHistory as TechnicalDealHistoryEntry[];
   return {
     schema: 1,
-    activeBulletSettings: { bulletSize: value.activeBulletSettings.bulletSize },
-    currentDeal,
+    activeBulletSettings: {
+      bulletSize: value.activeBulletSettings.bulletSize,
+      rules: isRulesConfig(value.activeBulletSettings.rules) ? value.activeBulletSettings.rules : currentDeal.rules ?? defaultRules
+    },
+    currentDeal: { ...currentDeal, rules: currentDeal.rules ?? defaultRules },
     scoreTable: currentDeal.scores,
     technicalDealHistory
   };
@@ -237,10 +242,21 @@ function isActiveBulletSave(value: unknown): value is ActiveBulletSave {
     value.schema === 1 &&
     isRecord(value.activeBulletSettings) &&
     isSupportedBulletSize(value.activeBulletSettings.bulletSize) &&
+    (!('rules' in value.activeBulletSettings) || isRulesConfig(value.activeBulletSettings.rules)) &&
     isGameState(value.currentDeal) &&
     isScores(value.scoreTable) &&
     scoresEqual(value.scoreTable, value.currentDeal.scores) &&
     isTechnicalDealHistory(value.technicalDealHistory)
+  );
+}
+
+function isRulesConfig(value: unknown): value is RulesConfig {
+  return (
+    isRecord(value) &&
+    typeof value.mandatoryWhistOnSixSpades === 'boolean' &&
+    typeof value.tenGameIsChecked === 'boolean' &&
+    typeof value.responsibleWhist === 'boolean' &&
+    typeof value.progressiveAllPass === 'boolean'
   );
 }
 

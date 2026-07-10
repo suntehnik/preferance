@@ -25,7 +25,7 @@ describe('saveStore', () => {
     const saved = loadActiveBullet();
     expect(saved).not.toBeNull();
     expect(saved?.schema).toBe(1);
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 20 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 20 });
     expect(saved?.currentDeal).toEqual(game);
     expect(saved?.scoreTable).toEqual(game.scores);
     expect(saved?.technicalDealHistory).toEqual([
@@ -53,7 +53,7 @@ describe('saveStore', () => {
     saveGame(second, { bulletSize: 30 });
 
     const saved = loadActiveBullet();
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 30 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 30 });
     expect(saved?.currentDeal).toEqual(second);
     expect(saved?.currentDeal).not.toEqual(first);
     expect(loadGame()).toEqual(second);
@@ -67,7 +67,7 @@ describe('saveStore', () => {
     saveGame(second, { bulletSize: 20, replaceActiveBullet: true });
 
     const saved = loadActiveBullet();
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 20 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 20 });
     expect(saved?.currentDeal).toEqual(second);
     expect(saved?.technicalDealHistory.map((entry) => entry.seed)).toEqual([45]);
   });
@@ -80,7 +80,7 @@ describe('saveStore', () => {
     saveGame(second);
 
     const saved = loadActiveBullet();
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 30 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 30 });
     expect(saved?.currentDeal).toEqual(second);
     expect(saved?.technicalDealHistory.map((entry) => entry.seed)).toEqual([44, 45]);
   });
@@ -91,7 +91,7 @@ describe('saveStore', () => {
 
     const saved = loadActiveBullet();
 
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 10 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 10 });
     expect(saved?.currentDeal).toEqual(game);
     expect(saved?.scoreTable).toEqual(game.scores);
     expect(saved?.technicalDealHistory).toEqual([
@@ -112,7 +112,7 @@ describe('saveStore', () => {
 
     const saved = loadActiveBullet();
 
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 10 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 10 });
     expect(saved?.currentDeal).toEqual({ ...legacyGame, bulletTarget: 10 });
     expect(saved?.technicalDealHistory[0]).toMatchObject({
       seed: legacyGame.seed,
@@ -146,7 +146,7 @@ describe('saveStore', () => {
 
     const saved = loadActiveBullet();
 
-    expect(saved?.activeBulletSettings).toEqual({ bulletSize: 20 });
+    expect(saved?.activeBulletSettings).toMatchObject({ bulletSize: 20 });
     expect(saved?.currentDeal).toEqual({ ...legacyGame, bulletTarget: 10 });
     expect(saved?.scoreTable).toEqual(legacyGame.scores);
   });
@@ -217,8 +217,8 @@ describe('saveStore', () => {
       ...game,
       scores: [
         { ...game.scores[0], bullet: 10 },
-        game.scores[1],
-        game.scores[2]
+        { ...game.scores[1], bullet: 10 },
+        { ...game.scores[2], bullet: 10 }
       ]
     };
 
@@ -237,7 +237,7 @@ describe('saveStore', () => {
     const nextDeal = makeNextDealState();
     saveGame(nextDeal, { bulletSize: 30, replaceActiveBullet: true });
 
-    expect(loadActiveBullet()?.activeBulletSettings).toEqual({ bulletSize: 30 });
+    expect(loadActiveBullet()?.activeBulletSettings).toMatchObject({ bulletSize: 30 });
     expect(loadActiveBullet()?.currentDeal).toEqual(nextDeal);
   });
 

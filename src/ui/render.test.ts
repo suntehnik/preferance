@@ -19,6 +19,19 @@ import type {
 import { renderGame, type RenderHandlers, type RenderView } from './render';
 
 describe('renderGame legal human actions', () => {
+  it('reveals defender cards when exactly one defender is whisting openly', () => {
+    const state = makePlayState({
+      declarer: 0,
+      whistResponses: ['whist', 'pass']
+    });
+    const root = renderFor(state);
+
+    expect(root.querySelectorAll('.opponent-hand .open-whist-card')).toHaveLength(
+      state.hands[1].length + state.hands[2].length
+    );
+    expect(root.querySelectorAll('.opponent-hand .card-back')).toHaveLength(0);
+  });
+
   it('renders bidding controls from legal actions only', () => {
     const state = makeBiddingState();
     const root = renderFor(state);
